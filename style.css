@@ -1,17 +1,125 @@
-/* Modal Background */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 9999; /* Sit on top */
+/* Base Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header, section, footer {
+    padding: 3rem;
+    text-align: center;
+  }
+  
+  header {
+    background-color: #181818;
+  }
+  
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .highlight {
+    color: #4CAF50; /* Green highlight */
+  }
+  
+  .subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .intro {
+    max-width: 700px;
+    margin: 0 auto 1rem;
+    line-height: 1.6;
+  }
+  
+  .profile-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-top: 2rem;
+  }
+  
+  .button, .button-secondary {
+    display: inline-block;
+    padding: 0.7rem 1.5rem;
+    margin: 0.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  
+  .button {
+    background-color: #4CAF50;
+    color: #fff;
+  }
+  
+  .button-secondary {
+    background-color: transparent;
+    border: 2px solid #4CAF50;
+    color: #4CAF50;
+  }
+  
+  .button:hover, .button-secondary:hover {
+    opacity: 0.85;
+  }
+  
+  .experience-education {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+  
+  .experience, .skills, .education {
+    background: #181818;
+    padding: 2rem;
+    border-radius: 10px;
+    min-width: 350px;
+    max-width: 400px;
+    line-height: 1.6;
+    text-align: left;
+  }
+  
+  .experience ul li,
+  .skills ul li,
+  .education ul li {
+    margin-bottom: 0.8rem;
+  }
+  
+  footer {
+    background-color: #181818;
+    font-size: 0.9rem;
+    padding: 1.5rem 0;
+  }
+  
+  a {
+    color: #4CAF50;
+  }
+  
+  a:hover {
+    opacity: 0.8;
+  }
+  
+  /* Modal Styles */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.7); /* Black with opacity */
+    background-color: rgba(0, 0, 0, 0.7);
+    animation: fadeIn 0.4s ease;
   }
   
-  /* Modal Content Box */
   .modal-content {
     background-color: #181818;
     margin: 10% auto;
@@ -23,8 +131,7 @@
     text-align: center;
   }
   
-  /* Modal Input Fields */
-  .modal-content input, 
+  .modal-content input,
   .modal-content textarea {
     width: 100%;
     margin: 0.5rem 0;
@@ -35,7 +142,10 @@
     color: white;
   }
   
-  /* Modal Close Button */
+  .modal-content button {
+    margin-top: 1rem;
+  }
+  
   .close {
     color: #4CAF50;
     float: right;
@@ -44,8 +154,13 @@
     cursor: pointer;
   }
   
-  /* Modal Close Button Hover */
   .close:hover {
     color: white;
+  }
+  
+  /* Fade In Animation */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
   
