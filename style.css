@@ -1,0 +1,92 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header, section, footer {
+    padding: 3rem;
+    text-align: center;
+  }
+  
+  header {
+    background-color: #181818;
+  }
+  
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .highlight {
+    color: #4CAF50; /* Green highlight instead of purple */
+  }
+  
+  .subtitle {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .intro {
+    max-width: 700px;
+    margin: 0 auto 2rem;
+  }
+  
+  .profile-img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-top: 2rem;
+  }
+  
+  .button, .button-secondary {
+    display: inline-block;
+    padding: 0.7rem 1.5rem;
+    margin: 0.5rem;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+  }
+  
+  .button {
+    background-color: #4CAF50; /* Green */
+    color: #fff;
+  }
+  
+  .button-secondary {
+    background-color: transparent;
+    border: 2px solid #4CAF50; /* Green border */
+    color: #4CAF50;
+  }
+  
+  .experience-education {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-top: 2rem;
+  }
+  
+  .experience, .skills, .education {
+    background: #181818;
+    padding: 1.5rem;
+    border-radius: 10px;
+    max-width: 300px;
+  }
+  
+  footer {
+    background-color: #181818;
+    font-size: 0.9rem;
+  }
+  
+  a {
+    color: #4CAF50;
+  }
+  
+  a:hover {
+    opacity: 0.8;
+  }
+  
