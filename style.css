@@ -74,7 +74,8 @@ body {
     background: #181818;
     padding: 2rem;
     border-radius: 10px;
-    max-width: 320px;
+    min-width: 350px;
+    max-width: 400px;
     line-height: 1.6;
     text-align: left;
   }
@@ -82,7 +83,7 @@ body {
   .experience ul li,
   .skills ul li,
   .education ul li {
-    margin-bottom: 0.8rem; 
+    margin-bottom: 0.8rem;
   }
   
   footer {
@@ -97,3 +98,4 @@ body {
   a:hover {
     opacity: 0.8;
   }
+  
