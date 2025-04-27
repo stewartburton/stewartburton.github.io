@@ -1,36 +1,33 @@
 // Get modal element
-var modal = document.getElementById("contactModal");
+const modal = document.getElementById('contactModal');
 // Get open button
-var btn = document.getElementById("contactBtn");
+const contactBtn = document.getElementById('contactBtn');
 // Get close button
-var span = document.getElementsByClassName("close")[0];
-// Get form element
-var form = modal.querySelector("form");
-// Get modal content
-var modalContent = modal.querySelector(".modal-content");
+const closeBtn = document.getElementsByClassName('close')[0];
+// Get form inside modal
+const form = modal.querySelector("form");
 
 // Open modal
-btn.onclick = function() {
+contactBtn.onclick = function() {
   modal.style.display = "block";
 }
 
 // Close modal
-span.onclick = function() {
+closeBtn.onclick = function() {
   modal.style.display = "none";
 }
 
-// Close if clicked outside modal
+// Close modal if clicked outside modal
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
 }
 
-// Handle form submission with success message
+// Handle form submission with fetch and custom success/error message
 form.addEventListener("submit", function(event) {
-  event.preventDefault(); // Stop default submit
+  event.preventDefault(); // Prevent default form behavior (no redirect)
 
-  // Actually submit the form using fetch
   fetch(form.action, {
     method: "POST",
     body: new FormData(form),
