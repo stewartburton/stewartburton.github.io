@@ -15,18 +15,17 @@
   /* Layout Sections */
   header, section, footer {
     padding: 3rem 1rem;
-    text-align: center;
   }
   
-  header {
-    background-color: #181818;
-    padding-top: 4rem;
-  }
-  
-  /* Header Content */
   h1 {
     font-size: 3rem;
     margin-bottom: 0.5rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
   }
   
   .highlight {
@@ -40,23 +39,48 @@
   
   .intro {
     max-width: 800px;
-    margin: 0 auto 1rem;
+    margin-bottom: 1rem;
     font-size: 1.1rem;
   }
   
+  /* Hero Section Layout */
+  .hero {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    background-color: #181818;
+    text-align: left;
+  }
+  
+  .hero-text {
+    flex: 1 1 500px;
+    max-width: 600px;
+  }
+  
+  .hero-buttons {
+    margin-top: 1.5rem;
+  }
+  
+  .hero-image {
+    flex: 1 1 300px;
+    text-align: center;
+  }
+  
   .profile-img {
-    width: 200px;
-    height: 200px;
-    object-fit: cover;
+    width: 280px;
+    height: 280px;
     border-radius: 50%;
-    margin-top: 2rem;
+    object-fit: cover;
+    margin-top: 1rem;
   }
   
   /* Buttons */
   .button, .button-secondary {
     display: inline-block;
     padding: 0.8rem 1.8rem;
-    margin: 0.5rem;
+    margin: 0.5rem 0.5rem 0 0;
     text-decoration: none;
     font-weight: bold;
     border-radius: 6px;
@@ -84,6 +108,7 @@
   /* About Section */
   #about {
     margin-top: 4rem;
+    text-align: center;
   }
   
   .experience-education {
@@ -116,17 +141,23 @@
   
   .download-resume {
     margin-top: 2rem;
-    text-align: center;
+  }
+  
+  .download-resume .button {
+    margin: 0 auto;
+    display: inline-block;
   }
   
   /* My Work Section */
   #work {
     margin-top: 4rem;
+    text-align: center;
   }
   
   /* Contact Section */
   #contact {
     margin-top: 4rem;
+    text-align: center;
   }
   
   /* Footer */
@@ -135,6 +166,7 @@
     font-size: 0.9rem;
     padding: 2rem 1rem;
     margin-top: 4rem;
+    text-align: center;
   }
   
   /* Links */
@@ -202,5 +234,21 @@
   @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
+  }
+  
+  /* Responsive Tweaks */
+  @media (max-width: 768px) {
+    .hero {
+      flex-direction: column;
+      text-align: center;
+    }
+  
+    .hero-text {
+      text-align: center;
+    }
+  
+    .hero-buttons {
+      justify-content: center;
+    }
   }
   
