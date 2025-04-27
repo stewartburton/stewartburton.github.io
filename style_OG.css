@@ -21,7 +21,7 @@ body {
   }
   
   .highlight {
-    color: #4CAF50; /* Green highlight */
+    color: #4CAF50; /* Green highlight instead of purple */
   }
   
   .subtitle {
@@ -58,7 +58,7 @@ body {
   
   .button-secondary {
     background-color: transparent;
-    border: 2px solid #4CAF50;
+    border: 2px solid #4CAF50; /* Green border */
     color: #4CAF50;
   }
   
@@ -72,17 +72,9 @@ body {
   
   .experience, .skills, .education {
     background: #181818;
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: 10px;
-    max-width: 320px;
-    line-height: 1.6;
-    text-align: left;
-  }
-  
-  .experience ul li,
-  .skills ul li,
-  .education ul li {
-    margin-bottom: 0.8rem; 
+    max-width: 300px;
   }
   
   footer {
@@ -97,3 +89,4 @@ body {
   a:hover {
     opacity: 0.8;
   }
+  
