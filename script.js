@@ -8,7 +8,8 @@ const closeBtn = document.getElementsByClassName('close')[0];
 const form = modal.querySelector("form");
 
 // Open modal
-contactBtn.onclick = function() {
+contactBtn.onclick = function(event) {
+  event.preventDefault(); // Prevent default behavior
   modal.style.display = "block";
 }
 
@@ -17,16 +18,16 @@ closeBtn.onclick = function() {
   modal.style.display = "none";
 }
 
-// Close modal if clicked outside modal
+// Close modal if clicked outside
 window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
   }
 }
 
-// Handle form submission with fetch and custom success/error message
+// Handle form submission with fetch
 form.addEventListener("submit", function(event) {
-  event.preventDefault(); // Prevent default form behavior (no redirect)
+  event.preventDefault(); // Prevent default form behavior
 
   fetch(form.action, {
     method: "POST",

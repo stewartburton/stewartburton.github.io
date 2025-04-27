@@ -114,6 +114,11 @@
     margin-bottom: 0.8rem;
   }
   
+  .download-resume {
+    margin-top: 2rem;
+    text-align: center;
+  }
+  
   /* My Work Section */
   #work {
     margin-top: 4rem;
