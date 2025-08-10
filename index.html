@@ -1,108 +1,1001 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Stewart Burton | DevOps Engineer</title>
-  <link rel="stylesheet" href="style.css?v=1.5">
+  <link rel="stylesheet" href="style.css?v=2.0">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
+<body class="bg-slate-900 text-slate-100 font-sans transition-colors duration-300">
 
-  <header>
-    <div class="hero-container">
-      <div class="hero-text">
-        <h1>Hi, I'm <span class="highlight">Stewart Burton</span></h1>
-        <p class="subtitle">DevOps Engineer</p>
-        <p class="intro">
-          I am a DevOps Engineer specializing in Azure DevOps, Kubernetes, Docker, Ansible, OpenShift, ArgoCD, Octopus Deploy, HashiCorp Vault, Jira, and monitoring tools such as Grafana, ELK, and Dynatrace.
-        </p>
-        <p class="intro">
-          I design and implement scalable CI/CD pipelines, infrastructure as code solutions, and automation frameworks that drive operational excellence across development and production environments.
-        </p>
-        <p class="intro">
-          Committed to continuous improvement, I constantly upskill, document & embrace emerging technologies like Agentic coding and advocate for the adoption of modern DevOps and Agile methodologies.
-        </p>
-        <div class="hero-buttons">
-          <a class="button" href="#about">Learn More About Me</a>
-          <button class="button-secondary" id="contactBtn">Get in Touch</button>
+  <!-- Theme Toggle Button -->
+  <button id="themeToggle" class="fixed top-4 right-4 z-50 p-3 rounded-full bg-slate-800 dark:bg-slate-700 hover:bg-slate-700 dark:hover:bg-slate-600 border border-slate-600 dark:border-slate-500 transition-all duration-300 shadow-lg">
+    <svg class="w-5 h-5 text-yellow-500 dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+      <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+    </svg>
+    <svg class="w-5 h-5 text-slate-300 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+      <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+    </svg>
+  </button>
+
+  <!-- Enhanced Hero Section -->
+  <header class="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 relative overflow-hidden">
+    <!-- Animated Background Pattern -->
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-20 left-10 w-20 h-20 border border-terminal-green rounded-lg animate-pulse-slow"></div>
+      <div class="absolute top-40 right-20 w-16 h-16 border border-azure rounded-full animate-bounce-slow"></div>
+      <div class="absolute bottom-20 left-20 w-24 h-24 border border-terminal-green/50 rounded-lg rotate-45 animate-pulse-slow"></div>
+      <div class="absolute bottom-40 right-10 w-12 h-12 border border-azure/50 rounded-full animate-bounce-slow"></div>
+    </div>
+    
+    <div class="container mx-auto px-6 py-20 relative z-10">
+      <div class="flex flex-col lg:flex-row items-center justify-between gap-12 max-w-7xl mx-auto">
+        
+        <!-- Enhanced Hero Text -->
+        <div class="flex-1 text-center lg:text-left animate-fade-in">
+          <!-- Terminal-style greeting -->
+          <div class="mb-6 font-mono text-sm text-terminal-green">
+            <span class="opacity-60">$</span> whoami
+          </div>
+          
+          <h1 class="text-5xl lg:text-7xl font-bold mb-6 leading-tight">
+            Hi, I'm <span class="text-transparent bg-clip-text bg-gradient-to-r from-terminal-green to-azure text-shadow-glow">Stewart Burton</span>
+          </h1>
+          
+          <div class="mb-6 font-mono text-lg text-slate-300">
+            <span class="text-terminal-green">></span> <span class="text-azure">DevOps Engineer</span> 
+            <span class="animate-terminal-blink">_</span>
+          </div>
+          
+          <!-- Enhanced Description -->
+          <div class="space-y-4 text-lg text-slate-300 leading-relaxed mb-8">
+            <p class="animate-slide-up">
+              I am a <span class="text-terminal-green font-semibold">DevOps Engineer</span> specializing in 
+              <span class="text-azure">Azure DevOps</span>, <span class="text-azure">Kubernetes</span>, 
+              <span class="text-azure">Docker</span>, and modern automation frameworks.
+            </p>
+            <p class="animate-slide-up" style="animation-delay: 0.2s;">
+              I design and implement <span class="text-terminal-green font-semibold">scalable CI/CD pipelines</span>, 
+              infrastructure as code solutions, and automation frameworks that drive 
+              <span class="text-azure">operational excellence</span> across development and production environments.
+            </p>
+            <p class="animate-slide-up" style="animation-delay: 0.4s;">
+              Committed to continuous improvement, I constantly upskill and embrace emerging technologies like 
+              <span class="text-terminal-green font-semibold">Agentic coding</span> while advocating for modern 
+              <span class="text-azure">DevOps and Agile methodologies</span>.
+            </p>
+          </div>
+          
+          <!-- Enhanced CTA Buttons -->
+          <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+            <a href="#about" class="btn-primary bg-gradient-to-r from-terminal-green to-emerald-500 hover:from-emerald-600 hover:to-terminal-green text-slate-900 font-semibold transform hover:scale-105 transition-all">
+              Explore My Journey
+            </a>
+            <button id="contactBtn" class="btn-secondary border-azure text-azure hover:bg-azure hover:text-slate-900 transform hover:scale-105 transition-all">
+              Get in Touch
+            </button>
+          </div>
         </div>
-      </div>
-      <div class="hero-image">
-        <img class="profile-img" src="assets/profile.jpg" alt="Stewart Burton">
+        
+        <!-- Enhanced Profile Image -->
+        <div class="flex-1 max-w-md mx-auto lg:mx-0 animate-fade-in">
+          <div class="relative">
+            <!-- Glowing border effect -->
+            <div class="absolute inset-0 bg-gradient-to-r from-terminal-green to-azure rounded-full blur-lg opacity-30 animate-pulse-slow"></div>
+            
+            <!-- Terminal window frame -->
+            <div class="terminal-window relative">
+              <div class="terminal-header">
+                <div class="terminal-dot bg-red-500"></div>
+                <div class="terminal-dot bg-yellow-500"></div>
+                <div class="terminal-dot bg-green-500"></div>
+                <span class="text-xs text-slate-400 ml-4 font-mono">stewart@devops:~$</span>
+              </div>
+              <div class="p-6 bg-slate-900">
+                <img class="w-full h-80 object-cover rounded-lg border-2 border-slate-700" 
+                     src="assets/profile.jpg" 
+                     alt="Stewart Burton - DevOps Engineer">
+                <div class="mt-4 font-mono text-xs text-terminal-green">
+                  <div>Status: <span class="text-emerald-400">● Online</span></div>
+                  <div>Role: <span class="text-azure">DevOps Engineer</span></div>
+                  <div>Pipeline: <span class="text-emerald-400">✓ All systems operational</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
       </div>
     </div>
   </header>
 
-  <section id="about">
-    <h2>About Me</h2>
-
-    <div class="experience-education">
-      <div class="experience">
-        <h3>Professional Experience</h3>
-        <ul>
-          <li><strong>Intermediate DevOps Engineer</strong> | BET Software (06/2024 – Present)</li>
-          <li><strong>Senior Software Quality Analyst</strong> | BET Software (06/2023 – 06/2024)</li>
-          <li><strong>Software Development Engineer in Test</strong> | Derivco (02/2022 – 07/2023)</li>
-        </ul>
-      </div>
-
-      <div class="skills">
-        <h3>Skills & Expertise</h3>
-        <ul>
-          <li>CI/CD (Azure DevOps, GitHub Actions)</li>
-          <li>Containers (Docker, Kubernetes)</li>
-          <li>Infrastructure as Code (Ansible, Terraform)</li>
-          <li>Monitoring & Observability (Dynatrace, Grafana, ELK)</li>
-          <li>Scripting & Automation (Python, PowerShell, Bash)</li>
-        </ul>
-      </div>
-
-      <div class="education">
-        <h3>Education & Certifications</h3>
-        <ul>
-          <li>Various DevOps and Cloud Courses – LinkedIn Learning, KodeKloud Academy (2024–2025)</li>
-          <li>ISTQB Advanced Level Test Analyst – SQS (2018)</li>
-          <li>BA Psychology, Communications, English – Varsity College (2003–2006)</li>
-        </ul>
+  <!-- Interactive Career Timeline Section -->
+  <section id="about" class="py-20 bg-slate-800 relative">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 opacity-5">
+      <div class="grid grid-cols-12 gap-4 h-full">
+        <div class="col-span-1 bg-terminal-green"></div>
+        <div class="col-span-1 bg-azure"></div>
+        <div class="col-span-1 bg-terminal-green"></div>
+        <div class="col-span-1 bg-azure"></div>
+        <div class="col-span-1 bg-terminal-green"></div>
+        <div class="col-span-1 bg-azure"></div>
+        <div class="col-span-1 bg-terminal-green"></div>
+        <div class="col-span-1 bg-azure"></div>
+        <div class="col-span-1 bg-terminal-green"></div>
+        <div class="col-span-1 bg-azure"></div>
+        <div class="col-span-1 bg-terminal-green"></div>
+        <div class="col-span-1 bg-azure"></div>
       </div>
     </div>
+    
+    <div class="container mx-auto px-6 relative z-10">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl lg:text-5xl font-bold mb-4">
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-terminal-green to-azure">Career Journey</span>
+        </h2>
+        <p class="text-xl text-slate-300 font-mono">From Quality Assurance to DevOps Excellence</p>
+      </div>
 
-    <div class="download-resume">
-      <a class="button" href="resume/Stewart_Burton_DevOps_Engineer_Resume.pdf" download="Stewart_Burton_DevOps_Engineer_Resume.pdf" target="_blank">Download Resume</a>
+      <!-- Interactive Timeline -->
+      <div class="max-w-6xl mx-auto">
+        <!-- Timeline Line -->
+        <div class="relative">
+          <div class="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-terminal-green via-azure to-terminal-green"></div>
+          
+          <!-- Timeline Items -->
+          <div class="space-y-16">
+            
+            <!-- Current Role -->
+            <div class="timeline-item flex items-center relative animate-fade-in">
+              <div class="flex-1 pr-8 text-right">
+                <div class="bg-slate-900 p-6 rounded-lg border border-terminal-green shadow-lg hover:shadow-terminal-green/20 transition-all">
+                  <div class="mb-2">
+                    <span class="inline-block px-3 py-1 bg-terminal-green text-slate-900 rounded-full text-sm font-semibold">
+                      Current
+                    </span>
+                  </div>
+                  <h3 class="text-xl font-bold text-terminal-green mb-2">Intermediate DevOps Engineer</h3>
+                  <p class="text-azure font-semibold mb-2">BET Software</p>
+                  <p class="text-slate-400 text-sm mb-4">June 2024 – Present</p>
+                  <ul class="text-slate-300 text-sm space-y-1">
+                    <li>• CI/CD Pipeline Architecture & Implementation</li>
+                    <li>• Kubernetes Orchestration & Container Management</li>
+                    <li>• Infrastructure as Code with Ansible & Terraform</li>
+                    <li>• GitOps Implementation with ArgoCD</li>
+                    <li>• AI-driven Automation & Quality Gates</li>
+                  </ul>
+                </div>
+              </div>
+              
+              <!-- Timeline Node -->
+              <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-terminal-green rounded-full border-4 border-slate-800 shadow-lg animate-pipeline-pulse"></div>
+              
+              <div class="flex-1 pl-8"></div>
+            </div>
+
+            <!-- Previous Role -->
+            <div class="timeline-item flex items-center relative animate-fade-in" style="animation-delay: 0.2s;">
+              <div class="flex-1 pr-8"></div>
+              
+              <!-- Timeline Node -->
+              <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-azure rounded-full border-4 border-slate-800 shadow-lg"></div>
+              
+              <div class="flex-1 pl-8">
+                <div class="bg-slate-900 p-6 rounded-lg border border-azure shadow-lg hover:shadow-azure/20 transition-all">
+                  <h3 class="text-xl font-bold text-azure mb-2">Senior Software Quality Analyst</h3>
+                  <p class="text-terminal-green font-semibold mb-2">BET Software</p>
+                  <p class="text-slate-400 text-sm mb-4">June 2023 – June 2024</p>
+                  <ul class="text-slate-300 text-sm space-y-1">
+                    <li>• Quality-focused DevOps transition</li>
+                    <li>• Automated Testing Framework Development</li>
+                    <li>• Monitoring & Observability Implementation</li>
+                    <li>• Cross-functional Team Leadership</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Earlier Role -->
+            <div class="timeline-item flex items-center relative animate-fade-in" style="animation-delay: 0.4s;">
+              <div class="flex-1 pr-8 text-right">
+                <div class="bg-slate-900 p-6 rounded-lg border border-slate-600 shadow-lg hover:shadow-slate-500/20 transition-all">
+                  <h3 class="text-xl font-bold text-slate-200 mb-2">Software Development Engineer in Test</h3>
+                  <p class="text-slate-300 font-semibold mb-2">Derivco</p>
+                  <p class="text-slate-400 text-sm mb-4">February 2022 – July 2023</p>
+                  <ul class="text-slate-300 text-sm space-y-1">
+                    <li>• Test Automation & CI Integration</li>
+                    <li>• Performance Testing & Optimization</li>
+                    <li>• Quality Metrics & Reporting</li>
+                    <li>• Development Process Improvement</li>
+                  </ul>
+                </div>
+              </div>
+              
+              <!-- Timeline Node -->
+              <div class="absolute left-1/2 transform -translate-x-1/2 w-6 h-6 bg-slate-500 rounded-full border-4 border-slate-800 shadow-lg"></div>
+              
+              <div class="flex-1 pl-8"></div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Skills Matrix -->
+      <div class="mt-20">
+        <h3 class="text-3xl font-bold text-center mb-12">
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-azure to-terminal-green">Core Competencies</span>
+        </h3>
+        
+        <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          
+          <!-- DevOps & Platform -->
+          <div class="bg-slate-900 p-6 rounded-lg border border-terminal-green/50 hover:border-terminal-green transition-all">
+            <div class="text-terminal-green text-2xl mb-4">⚙️</div>
+            <h4 class="text-xl font-bold text-terminal-green mb-4">DevOps & Platform</h4>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag">Azure DevOps</span>
+              <span class="skill-tag">Kubernetes</span>
+              <span class="skill-tag">Docker</span>
+              <span class="skill-tag">ArgoCD</span>
+              <span class="skill-tag">Octopus Deploy</span>
+              <span class="skill-tag">Ansible</span>
+              <span class="skill-tag">Terraform</span>
+            </div>
+          </div>
+
+          <!-- Monitoring & Observability -->
+          <div class="bg-slate-900 p-6 rounded-lg border border-azure/50 hover:border-azure transition-all">
+            <div class="text-azure text-2xl mb-4">📊</div>
+            <h4 class="text-xl font-bold text-azure mb-4">Observability</h4>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag">Dynatrace</span>
+              <span class="skill-tag">Grafana</span>
+              <span class="skill-tag">ELK Stack</span>
+              <span class="skill-tag">SonarQube</span>
+              <span class="skill-tag">Prometheus</span>
+            </div>
+          </div>
+
+          <!-- AI & Automation -->
+          <div class="bg-slate-900 p-6 rounded-lg border border-terminal-green/50 hover:border-terminal-green transition-all">
+            <div class="text-terminal-green text-2xl mb-4">🤖</div>
+            <h4 class="text-xl font-bold text-terminal-green mb-4">AI & Automation</h4>
+            <div class="flex flex-wrap gap-2">
+              <span class="skill-tag">Agentic Software</span>
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">PowerShell</span>
+              <span class="skill-tag">Bash</span>
+              <span class="skill-tag">GitHub Actions</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Download Resume -->
+      <div class="text-center mt-16">
+        <a href="resume/Stewart_Burton_DevOps_Engineer_Resume.pdf" 
+           download="Stewart_Burton_DevOps_Engineer_Resume.pdf" 
+           target="_blank"
+           class="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-azure to-purple-600 hover:from-purple-600 hover:to-azure text-white font-semibold rounded-lg transform hover:scale-105 transition-all shadow-lg">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M3 17a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm3.293-7.707a1 1 0 011.414 0L9 10.586V3a1 1 0 112 0v7.586l1.293-1.293a1 1 0 111.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+          </svg>
+          Download Resume
+        </a>
+      </div>
+
     </div>
-
   </section>
 
-  <section id="work">
-    <h2>My Work</h2>
-    <p>Explore my GitHub repositories showcasing various DevOps projects, CI/CD pipelines, and automation scripts.</p>
-    <a class="button" href="https://github.com/stewartburton" target="_blank">Visit My GitHub Profile</a>
+  <!-- Project Showcase Section -->
+  <section id="work" class="py-20 bg-slate-900 relative">
+    <!-- Code Pattern Background -->
+    <div class="absolute inset-0 opacity-5 font-mono text-xs leading-relaxed overflow-hidden">
+      <div class="p-8">
+        <div class="text-terminal-green">apiVersion: apps/v1</div>
+        <div class="text-azure">kind: Deployment</div>
+        <div class="text-slate-400">metadata:</div>
+        <div class="text-terminal-green ml-4">name: portfolio-app</div>
+        <div class="text-slate-400">spec:</div>
+        <div class="text-azure ml-4">replicas: 3</div>
+        <div class="text-slate-400 ml-4">selector:</div>
+        <div class="text-terminal-green ml-8">matchLabels:</div>
+        <div class="text-azure ml-12">app: portfolio</div>
+      </div>
+    </div>
+    
+    <div class="container mx-auto px-6 relative z-10">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl lg:text-5xl font-bold mb-4">
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-azure to-terminal-green">Project Showcase</span>
+        </h2>
+        <p class="text-xl text-slate-300 font-mono">Infrastructure, Automation & DevOps Solutions</p>
+      </div>
+
+      <!-- Featured Projects Grid -->
+      <div class="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+        
+        <!-- Project 1: CI/CD Pipeline -->
+        <div class="group bg-slate-800 rounded-lg border border-slate-600 hover:border-terminal-green transition-all duration-300 overflow-hidden">
+          <div class="p-6">
+            <!-- Project Header -->
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-gradient-to-br from-terminal-green to-emerald-500 rounded-lg flex items-center justify-center">
+                  <svg class="w-6 h-6 text-slate-900" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M6 2a1 1 0 00-1 1v1H4a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V6a2 2 0 00-2-2h-1V3a1 1 0 10-2 0v1H7V3a1 1 0 00-1-1zm0 5a1 1 0 000 2h8a1 1 0 100-2H6z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-terminal-green">Enterprise CI/CD Pipeline</h3>
+                  <p class="text-sm text-slate-400">Azure DevOps • Kubernetes • ArgoCD</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 bg-terminal-green rounded-full animate-pulse"></span>
+                <span class="text-sm text-terminal-green">Active</span>
+              </div>
+            </div>
+
+            <!-- Project Description -->
+            <p class="text-slate-300 mb-6 leading-relaxed">
+              Architected and implemented a comprehensive CI/CD pipeline serving 15+ microservices with automated testing, 
+              security scanning, and GitOps deployment strategies. Reduced deployment time by 70% and increased reliability to 99.9%.
+            </p>
+
+            <!-- Tech Stack -->
+            <div class="mb-6">
+              <h4 class="text-sm font-semibold text-slate-400 mb-2">Technologies:</h4>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-2 py-1 bg-slate-700 text-terminal-green rounded text-xs">Azure DevOps</span>
+                <span class="px-2 py-1 bg-slate-700 text-azure rounded text-xs">Kubernetes</span>
+                <span class="px-2 py-1 bg-slate-700 text-terminal-green rounded text-xs">ArgoCD</span>
+                <span class="px-2 py-1 bg-slate-700 text-azure rounded text-xs">Docker</span>
+                <span class="px-2 py-1 bg-slate-700 text-terminal-green rounded text-xs">Helm</span>
+              </div>
+            </div>
+
+            <!-- Metrics -->
+            <div class="grid grid-cols-3 gap-4 mb-6">
+              <div class="text-center">
+                <div class="text-2xl font-bold text-terminal-green">70%</div>
+                <div class="text-xs text-slate-400">Faster Deployments</div>
+              </div>
+              <div class="text-center">
+                <div class="text-2xl font-bold text-azure">99.9%</div>
+                <div class="text-xs text-slate-400">Reliability</div>
+              </div>
+              <div class="text-center">
+                <div class="text-2xl font-bold text-terminal-green">15+</div>
+                <div class="text-xs text-slate-400">Microservices</div>
+              </div>
+            </div>
+
+            <!-- View Project Button -->
+            <button class="w-full py-3 bg-slate-700 hover:bg-slate-600 text-slate-300 rounded-lg transition-all group-hover:bg-terminal-green group-hover:text-slate-900 font-semibold">
+              <span class="flex items-center justify-center gap-2">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                </svg>
+                View Implementation Details
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Project 2: Infrastructure Automation -->
+        <div class="group bg-slate-800 rounded-lg border border-slate-600 hover:border-azure transition-all duration-300 overflow-hidden">
+          <div class="p-6">
+            <!-- Project Header -->
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-gradient-to-br from-azure to-blue-500 rounded-lg flex items-center justify-center">
+                  <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-azure">Infrastructure as Code Platform</h3>
+                  <p class="text-sm text-slate-400">Ansible • Terraform • Vault</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 bg-azure rounded-full animate-pulse"></span>
+                <span class="text-sm text-azure">Production</span>
+              </div>
+            </div>
+
+            <!-- Project Description -->
+            <p class="text-slate-300 mb-6 leading-relaxed">
+              Developed a comprehensive Infrastructure as Code platform managing 200+ servers across multiple environments. 
+              Implemented automated provisioning, configuration management, and secret rotation with HashiCorp Vault integration.
+            </p>
+
+            <!-- Tech Stack -->
+            <div class="mb-6">
+              <h4 class="text-sm font-semibold text-slate-400 mb-2">Technologies:</h4>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-2 py-1 bg-slate-700 text-azure rounded text-xs">Ansible</span>
+                <span class="px-2 py-1 bg-slate-700 text-terminal-green rounded text-xs">Terraform</span>
+                <span class="px-2 py-1 bg-slate-700 text-azure rounded text-xs">HashiCorp Vault</span>
+                <span class="px-2 py-1 bg-slate-700 text-terminal-green rounded text-xs">Python</span>
+                <span class="px-2 py-1 bg-slate-700 text-azure rounded text-xs">GitLab CI</span>
+              </div>
+            </div>
+
+            <!-- Metrics -->
+            <div class="grid grid-cols-3 gap-4 mb-6">
+              <div class="text-center">
+                <div class="text-2xl font-bold text-azure">200+</div>
+                <div class="text-xs text-slate-400">Managed Servers</div>
+              </div>
+              <div class="text-center">
+                <div class="text-2xl font-bold text-terminal-green">85%</div>
+                <div class="text-xs text-slate-400">Time Saved</div>
+              </div>
+              <div class="text-center">
+                <div class="text-2xl font-bold text-azure">100%</div>
+                <div class="text-xs text-slate-400">Automation</div>
+              </div>
+            </div>
+
+            <!-- View Project Button -->
+            <button class="w-full py-3 bg-slate-700 hover:bg-slate-600 text-slate-300 rounded-lg transition-all group-hover:bg-azure group-hover:text-white font-semibold">
+              <span class="flex items-center justify-center gap-2">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                </svg>
+                Explore Architecture
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Project 3: Monitoring & Observability -->
+        <div class="group bg-slate-800 rounded-lg border border-slate-600 hover:border-terminal-green transition-all duration-300 overflow-hidden">
+          <div class="p-6">
+            <!-- Project Header -->
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-gradient-to-br from-terminal-green to-emerald-500 rounded-lg flex items-center justify-center">
+                  <svg class="w-6 h-6 text-slate-900" fill="currentColor" viewBox="0 0 20 20">
+                    <path d="M2 11a1 1 0 011-1h2a1 1 0 011 1v5a1 1 0 01-1 1H3a1 1 0 01-1-1v-5zM8 7a1 1 0 011-1h2a1 1 0 011 1v9a1 1 0 01-1 1H9a1 1 0 01-1-1V7zM14 4a1 1 0 011-1h2a1 1 0 011 1v12a1 1 0 01-1 1h-2a1 1 0 01-1-1V4z"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-terminal-green">Full-Stack Observability</h3>
+                  <p class="text-sm text-slate-400">Grafana • ELK • Dynatrace</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 bg-terminal-green rounded-full animate-pulse"></span>
+                <span class="text-sm text-terminal-green">Monitoring</span>
+              </div>
+            </div>
+
+            <!-- Project Description -->
+            <p class="text-slate-300 mb-6 leading-relaxed">
+              Built comprehensive monitoring and observability platform processing 10TB+ daily logs. 
+              Implemented real-time alerting, custom dashboards, and automated incident response workflows.
+            </p>
+
+            <!-- Tech Stack -->
+            <div class="mb-6">
+              <h4 class="text-sm font-semibold text-slate-400 mb-2">Technologies:</h4>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-2 py-1 bg-slate-700 text-terminal-green rounded text-xs">Grafana</span>
+                <span class="px-2 py-1 bg-slate-700 text-azure rounded text-xs">ELK Stack</span>
+                <span class="px-2 py-1 bg-slate-700 text-terminal-green rounded text-xs">Dynatrace</span>
+                <span class="px-2 py-1 bg-slate-700 text-azure rounded text-xs">Prometheus</span>
+                <span class="px-2 py-1 bg-slate-700 text-terminal-green rounded text-xs">PagerDuty</span>
+              </div>
+            </div>
+
+            <!-- Metrics -->
+            <div class="grid grid-cols-3 gap-4 mb-6">
+              <div class="text-center">
+                <div class="text-2xl font-bold text-terminal-green">10TB+</div>
+                <div class="text-xs text-slate-400">Daily Logs</div>
+              </div>
+              <div class="text-center">
+                <div class="text-2xl font-bold text-azure">99.5%</div>
+                <div class="text-xs text-slate-400">Uptime</div>
+              </div>
+              <div class="text-center">
+                <div class="text-2xl font-bold text-terminal-green">2min</div>
+                <div class="text-xs text-slate-400">MTTR</div>
+              </div>
+            </div>
+
+            <!-- View Project Button -->
+            <button class="w-full py-3 bg-slate-700 hover:bg-slate-600 text-slate-300 rounded-lg transition-all group-hover:bg-terminal-green group-hover:text-slate-900 font-semibold">
+              <span class="flex items-center justify-center gap-2">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                </svg>
+                View Dashboards
+              </span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Project 4: AI-Driven Automation -->
+        <div class="group bg-slate-800 rounded-lg border border-slate-600 hover:border-azure transition-all duration-300 overflow-hidden">
+          <div class="p-6">
+            <!-- Project Header -->
+            <div class="flex items-center justify-between mb-4">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 bg-gradient-to-br from-azure to-purple-500 rounded-lg flex items-center justify-center">
+                  <svg class="w-6 h-6 text-white" fill="currentColor" viewBox="0 0 20 20">
+                    <path fill-rule="evenodd" d="M11.3 1.046A1 1 0 0112 2v5h4a1 1 0 01.82 1.573l-7 10A1 1 0 018 18v-5H4a1 1 0 01-.82-1.573l7-10a1 1 0 011.12-.38z" clip-rule="evenodd"></path>
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="text-xl font-bold text-azure">Agentic Automation Suite</h3>
+                  <p class="text-sm text-slate-400">AI • Python • GitHub Copilot</p>
+                </div>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 bg-azure rounded-full animate-pulse"></span>
+                <span class="text-sm text-azure">Experimental</span>
+              </div>
+            </div>
+
+            <!-- Project Description -->
+            <p class="text-slate-300 mb-6 leading-relaxed">
+              Pioneering AI-driven automation using agentic software principles. Developed intelligent workflow orchestration 
+              that adapts to changing requirements and self-optimizes deployment strategies.
+            </p>
+
+            <!-- Tech Stack -->
+            <div class="mb-6">
+              <h4 class="text-sm font-semibold text-slate-400 mb-2">Technologies:</h4>
+              <div class="flex flex-wrap gap-2">
+                <span class="px-2 py-1 bg-slate-700 text-azure rounded text-xs">GitHub Copilot</span>
+                <span class="px-2 py-1 bg-slate-700 text-terminal-green rounded text-xs">Python</span>
+                <span class="px-2 py-1 bg-slate-700 text-azure rounded text-xs">LangChain</span>
+                <span class="px-2 py-1 bg-slate-700 text-terminal-green rounded text-xs">OpenAI API</span>
+                <span class="px-2 py-1 bg-slate-700 text-azure rounded text-xs">Kubernetes</span>
+              </div>
+            </div>
+
+            <!-- Metrics -->
+            <div class="grid grid-cols-3 gap-4 mb-6">
+              <div class="text-center">
+                <div class="text-2xl font-bold text-azure">90%</div>
+                <div class="text-xs text-slate-400">Task Automation</div>
+              </div>
+              <div class="text-center">
+                <div class="text-2xl font-bold text-terminal-green">50%</div>
+                <div class="text-xs text-slate-400">Faster Decisions</div>
+              </div>
+              <div class="text-center">
+                <div class="text-2xl font-bold text-azure">24/7</div>
+                <div class="text-xs text-slate-400">Autonomous</div>
+              </div>
+            </div>
+
+            <!-- View Project Button -->
+            <button class="w-full py-3 bg-slate-700 hover:bg-slate-600 text-slate-300 rounded-lg transition-all group-hover:bg-azure group-hover:text-white font-semibold">
+              <span class="flex items-center justify-center gap-2">
+                <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"></path>
+                </svg>
+                Explore AI Implementation
+              </span>
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- GitHub Link -->
+      <div class="text-center mt-16">
+        <a href="https://github.com/stewartburton" 
+           target="_blank"
+           class="inline-flex items-center gap-3 px-8 py-4 bg-slate-800 hover:bg-slate-700 border border-slate-600 hover:border-terminal-green text-slate-300 hover:text-terminal-green font-semibold rounded-lg transform hover:scale-105 transition-all shadow-lg">
+          <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+          View All Projects on GitHub
+        </a>
+      </div>
+
+    </div>
   </section>
 
-  <section id="contact">
-    <h2>Contact Information</h2>
-    <p>Email: <a href="mailto:stewart@stewart-burton.com">stewart@stewart-burton.com</a></p>
-    <p>Connect on <a href="https://www.linkedin.com/in/stewart-burton" target="_blank">LinkedIn</a></p>
+  <!-- CI/CD Pipeline Visualization Section -->
+  <section id="pipeline" class="py-20 bg-slate-800 relative overflow-hidden">
+    <!-- Animated Circuit Background -->
+    <div class="absolute inset-0 opacity-10">
+      <svg class="w-full h-full" viewBox="0 0 1200 800">
+        <defs>
+          <pattern id="circuit" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M20 0v20M0 20h40M20 20h20v20" stroke="currentColor" stroke-width="1" fill="none" class="text-terminal-green"/>
+          </pattern>
+        </defs>
+        <rect width="100%" height="100%" fill="url(#circuit)"/>
+      </svg>
+    </div>
+    
+    <div class="container mx-auto px-6 relative z-10">
+      <div class="text-center mb-16">
+        <h2 class="text-4xl lg:text-5xl font-bold mb-4">
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-terminal-green to-azure">Pipeline Visualization</span>
+        </h2>
+        <p class="text-xl text-slate-300 font-mono">Real-time CI/CD Pipeline Status & Metrics</p>
+      </div>
+
+      <!-- Pipeline Status Dashboard -->
+      <div class="max-w-6xl mx-auto mb-16">
+        
+        <!-- Pipeline Overview Cards -->
+        <div class="grid md:grid-cols-4 gap-6 mb-12">
+          
+          <div class="bg-slate-900 p-6 rounded-lg border border-terminal-green/50 hover:border-terminal-green transition-all">
+            <div class="flex items-center justify-between mb-4">
+              <div class="text-terminal-green text-2xl">✓</div>
+              <div class="w-3 h-3 bg-terminal-green rounded-full animate-pulse"></div>
+            </div>
+            <div class="text-3xl font-bold text-terminal-green mb-1">847</div>
+            <div class="text-sm text-slate-400">Successful Builds</div>
+            <div class="text-xs text-terminal-green mt-1">+12 today</div>
+          </div>
+
+          <div class="bg-slate-900 p-6 rounded-lg border border-azure/50 hover:border-azure transition-all">
+            <div class="flex items-center justify-between mb-4">
+              <div class="text-azure text-2xl">⚡</div>
+              <div class="w-3 h-3 bg-azure rounded-full animate-pulse"></div>
+            </div>
+            <div class="text-3xl font-bold text-azure mb-1">2.3m</div>
+            <div class="text-sm text-slate-400">Avg Build Time</div>
+            <div class="text-xs text-azure mt-1">-15% this week</div>
+          </div>
+
+          <div class="bg-slate-900 p-6 rounded-lg border border-terminal-orange/50 hover:border-terminal-orange transition-all">
+            <div class="flex items-center justify-between mb-4">
+              <div class="text-terminal-orange text-2xl">🔄</div>
+              <div class="w-3 h-3 bg-terminal-orange rounded-full animate-pulse"></div>
+            </div>
+            <div class="text-3xl font-bold text-terminal-orange mb-1">3</div>
+            <div class="text-sm text-slate-400">Running Now</div>
+            <div class="text-xs text-terminal-orange mt-1">Stage 2/4</div>
+          </div>
+
+          <div class="bg-slate-900 p-6 rounded-lg border border-slate-600 hover:border-slate-500 transition-all">
+            <div class="flex items-center justify-between mb-4">
+              <div class="text-slate-400 text-2xl">📊</div>
+              <div class="w-3 h-3 bg-slate-500 rounded-full"></div>
+            </div>
+            <div class="text-3xl font-bold text-slate-300 mb-1">99.2%</div>
+            <div class="text-sm text-slate-400">Success Rate</div>
+            <div class="text-xs text-slate-500 mt-1">Last 30 days</div>
+          </div>
+
+        </div>
+
+        <!-- Interactive Pipeline Flow -->
+        <div class="bg-slate-900 rounded-lg border border-slate-600 p-8 mb-12">
+          <h3 class="text-2xl font-bold text-center mb-8 text-slate-200">Live Pipeline Status</h3>
+          
+          <!-- Pipeline Stages -->
+          <div class="flex items-center justify-between relative">
+            
+            <!-- Stage 1: Source -->
+            <div class="pipeline-stage-container flex flex-col items-center">
+              <div class="pipeline-stage bg-terminal-green border-terminal-green text-slate-900 animate-pipeline-pulse">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M12.316 3.051a1 1 0 01.633 1.265l-4 12a1 1 0 11-1.898-.632l4-12a1 1 0 011.265-.633zM5.707 6.293a1 1 0 010 1.414L3.414 10l2.293 2.293a1 1 0 11-1.414 1.414l-3-3a1 1 0 010-1.414l3-3a1 1 0 011.414 0zm8.586 0a1 1 0 011.414 0l3 3a1 1 0 010 1.414l-3 3a1 1 0 11-1.414-1.414L16.586 10l-2.293-2.293a1 1 0 010-1.414z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <div class="mt-2 text-sm font-semibold text-terminal-green">Source</div>
+              <div class="text-xs text-slate-400">✓ Complete</div>
+            </div>
+
+            <!-- Connector 1 -->
+            <div class="flex-1 h-1 bg-terminal-green mx-4 relative overflow-hidden">
+              <div class="absolute inset-0 bg-gradient-to-r from-terminal-green to-transparent animate-pipeline-flow"></div>
+            </div>
+
+            <!-- Stage 2: Build -->
+            <div class="pipeline-stage-container flex flex-col items-center">
+              <div class="pipeline-stage bg-azure border-azure text-white animate-pipeline-pulse">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h4a1 1 0 010 2H6.414l2.293 2.293a1 1 0 11-1.414 1.414L5 6.414V8a1 1 0 01-2 0V4zm9 1a1 1 0 010-2h4a1 1 0 011 1v4a1 1 0 01-2 0V6.414l-2.293 2.293a1 1 0 11-1.414-1.414L13.586 5H12zm-9 7a1 1 0 012 0v1.586l2.293-2.293a1 1 0 111.414 1.414L6.414 15H8a1 1 0 010 2H4a1 1 0 01-1-1v-4zm13-1a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 010-2h1.586l-2.293-2.293a1 1 0 111.414-1.414L15.586 13H17a1 1 0 01-1-1z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <div class="mt-2 text-sm font-semibold text-azure">Build</div>
+              <div class="text-xs text-slate-400">⚡ Running</div>
+            </div>
+
+            <!-- Connector 2 -->
+            <div class="flex-1 h-1 bg-slate-600 mx-4 relative overflow-hidden">
+              <div class="absolute inset-0 bg-gradient-to-r from-azure to-transparent animate-pipeline-flow w-3/4"></div>
+            </div>
+
+            <!-- Stage 3: Test -->
+            <div class="pipeline-stage-container flex flex-col items-center">
+              <div class="pipeline-stage bg-slate-700 border-slate-500 text-slate-400">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                </svg>
+              </div>
+              <div class="mt-2 text-sm font-semibold text-slate-400">Test</div>
+              <div class="text-xs text-slate-500">⏳ Pending</div>
+            </div>
+
+            <!-- Connector 3 -->
+            <div class="flex-1 h-1 bg-slate-600 mx-4"></div>
+
+            <!-- Stage 4: Deploy -->
+            <div class="pipeline-stage-container flex flex-col items-center">
+              <div class="pipeline-stage bg-slate-700 border-slate-500 text-slate-400">
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                  <path d="M8 5a1 1 0 100 2h5.586l-1.293 1.293a1 1 0 001.414 1.414l3-3a1 1 0 000-1.414l-3-3a1 1 0 10-1.414 1.414L13.586 5H8zM12 15a1 1 0 100-2H6.414l1.293-1.293a1 1 0 10-1.414-1.414l-3 3a1 1 0 000 1.414l3 3a1 1 0 001.414-1.414L6.414 15H12z"></path>
+                </svg>
+              </div>
+              <div class="mt-2 text-sm font-semibold text-slate-400">Deploy</div>
+              <div class="text-xs text-slate-500">⏸️ Waiting</div>
+            </div>
+
+          </div>
+
+          <!-- Pipeline Timing -->
+          <div class="mt-8 grid grid-cols-4 gap-4 text-center">
+            <div>
+              <div class="text-terminal-green font-mono text-lg">1.2s</div>
+              <div class="text-xs text-slate-400">Source</div>
+            </div>
+            <div>
+              <div class="text-azure font-mono text-lg">2m 15s</div>
+              <div class="text-xs text-slate-400">Build</div>
+            </div>
+            <div>
+              <div class="text-slate-400 font-mono text-lg">--:--</div>
+              <div class="text-xs text-slate-400">Test</div>
+            </div>
+            <div>
+              <div class="text-slate-400 font-mono text-lg">--:--</div>
+              <div class="text-xs text-slate-400">Deploy</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Recent Pipeline Runs -->
+        <div class="bg-slate-900 rounded-lg border border-slate-600 p-6">
+          <h3 class="text-xl font-bold mb-6 text-slate-200">Recent Pipeline Executions</h3>
+          
+          <div class="space-y-4">
+            
+            <!-- Pipeline Run 1 -->
+            <div class="flex items-center justify-between p-4 bg-slate-800 rounded-lg border border-slate-700 hover:border-terminal-green/50 transition-all">
+              <div class="flex items-center gap-4">
+                <div class="w-2 h-2 bg-terminal-green rounded-full animate-pulse"></div>
+                <div>
+                  <div class="font-semibold text-terminal-green">#847 - feature/user-auth</div>
+                  <div class="text-sm text-slate-400">Triggered by: stewart.burton</div>
+                </div>
+              </div>
+              <div class="text-right">
+                <div class="text-sm font-mono text-terminal-green">2m 34s</div>
+                <div class="text-xs text-slate-400">3 minutes ago</div>
+              </div>
+            </div>
+
+            <!-- Pipeline Run 2 -->
+            <div class="flex items-center justify-between p-4 bg-slate-800 rounded-lg border border-slate-700">
+              <div class="flex items-center gap-4">
+                <div class="w-2 h-2 bg-terminal-green rounded-full"></div>
+                <div>
+                  <div class="font-semibold text-slate-300">#846 - hotfix/payment-gateway</div>
+                  <div class="text-sm text-slate-400">Triggered by: stewart.burton</div>
+                </div>
+              </div>
+              <div class="text-right">
+                <div class="text-sm font-mono text-slate-300">1m 58s</div>
+                <div class="text-xs text-slate-400">15 minutes ago</div>
+              </div>
+            </div>
+
+            <!-- Pipeline Run 3 -->
+            <div class="flex items-center justify-between p-4 bg-slate-800 rounded-lg border border-slate-700">
+              <div class="flex items-center gap-4">
+                <div class="w-2 h-2 bg-terminal-red rounded-full"></div>
+                <div>
+                  <div class="font-semibold text-terminal-red">#845 - feature/notifications</div>
+                  <div class="text-sm text-slate-400">Triggered by: automated</div>
+                </div>
+              </div>
+              <div class="text-right">
+                <div class="text-sm font-mono text-terminal-red">Failed</div>
+                <div class="text-xs text-slate-400">1 hour ago</div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
   </section>
 
-  <footer>
-    <p>© 2025 Stewart Burton. All rights reserved. | v1.0.5</p>
+  <!-- Enhanced Contact Section -->
+  <section id="contact" class="py-20 bg-slate-900 relative">
+    <!-- Network Grid Background -->
+    <div class="absolute inset-0 opacity-5">
+      <div class="grid grid-cols-8 gap-px h-full">
+        <div class="bg-terminal-green"></div>
+        <div class="bg-azure"></div>
+        <div class="bg-terminal-green"></div>
+        <div class="bg-azure"></div>
+        <div class="bg-terminal-green"></div>
+        <div class="bg-azure"></div>
+        <div class="bg-terminal-green"></div>
+        <div class="bg-azure"></div>
+      </div>
+    </div>
+    
+    <div class="container mx-auto px-6 relative z-10 text-center">
+      <div class="max-w-3xl mx-auto">
+        
+        <h2 class="text-4xl lg:text-5xl font-bold mb-8">
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-azure to-terminal-green">Get In Touch</span>
+        </h2>
+        
+        <p class="text-xl text-slate-300 mb-12 leading-relaxed">
+          Ready to discuss DevOps transformation, automation strategies, or infrastructure challenges? 
+          Let's connect and explore how we can drive operational excellence together.
+        </p>
+
+        <!-- Contact Methods -->
+        <div class="grid md:grid-cols-2 gap-8 mb-12">
+          
+          <!-- Email Contact -->
+          <div class="bg-slate-800 p-8 rounded-lg border border-terminal-green/50 hover:border-terminal-green transition-all group">
+            <div class="text-terminal-green text-4xl mb-4 group-hover:scale-110 transition-transform">📧</div>
+            <h3 class="text-xl font-bold text-terminal-green mb-2">Email</h3>
+            <a href="mailto:stewart@stewart-burton.com" 
+               class="text-slate-300 hover:text-terminal-green transition-colors font-mono">
+              stewart@stewart-burton.com
+            </a>
+          </div>
+
+          <!-- LinkedIn Contact -->
+          <div class="bg-slate-800 p-8 rounded-lg border border-azure/50 hover:border-azure transition-all group">
+            <div class="text-azure text-4xl mb-4 group-hover:scale-110 transition-transform">💼</div>
+            <h3 class="text-xl font-bold text-azure mb-2">LinkedIn</h3>
+            <a href="https://www.linkedin.com/in/stewart-burton" 
+               target="_blank"
+               class="text-slate-300 hover:text-azure transition-colors">
+              Connect with me
+            </a>
+          </div>
+
+        </div>
+
+        <!-- Quick Contact Button -->
+        <button id="contactBtn" 
+                class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-terminal-green to-emerald-500 hover:from-emerald-600 hover:to-terminal-green text-slate-900 font-bold rounded-lg transform hover:scale-105 transition-all shadow-lg">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+          </svg>
+          Send Quick Message
+        </button>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Enhanced Footer -->
+  <footer class="bg-slate-800 border-t border-slate-700 py-12">
+    <div class="container mx-auto px-6">
+      
+      <!-- Footer Content -->
+      <div class="flex flex-col md:flex-row justify-between items-center">
+        
+        <!-- Brand & Version -->
+        <div class="mb-6 md:mb-0">
+          <div class="font-bold text-xl text-terminal-green mb-2">Stewart Burton</div>
+          <div class="text-slate-400 font-mono text-sm">DevOps Engineer | v2.0.0</div>
+        </div>
+
+        <!-- Social Links -->
+        <div class="flex items-center gap-6 mb-6 md:mb-0">
+          <a href="https://github.com/stewartburton" 
+             target="_blank"
+             class="text-slate-400 hover:text-terminal-green transition-colors transform hover:scale-110">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+            </svg>
+          </a>
+          <a href="https://www.linkedin.com/in/stewart-burton" 
+             target="_blank"
+             class="text-slate-400 hover:text-azure transition-colors transform hover:scale-110">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+            </svg>
+          </a>
+        </div>
+
+        <!-- Copyright -->
+        <div class="text-slate-400 text-sm">
+          © 2025 Stewart Burton. All rights reserved.
+        </div>
+
+      </div>
+
+      <!-- Additional Footer Info -->
+      <div class="mt-8 pt-8 border-t border-slate-700 text-center">
+        <div class="font-mono text-xs text-slate-500">
+          Built with <span class="text-terminal-green">Tailwind CSS</span> • 
+          Deployed on <span class="text-azure">GitHub Pages</span> • 
+          <span class="text-terminal-green">100%</span> Automated CI/CD
+        </div>
+      </div>
+
+    </div>
   </footer>
 
-  <!-- Contact Modal -->
-  <div id="contactModal" class="modal">
-    <div class="modal-content">
-      <span class="close">&times;</span>
-      <h2>Contact Me</h2>
-      <form action="https://formspree.io/f/xkgrgeja" method="POST">
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="email" placeholder="Your Email" required>
-        <textarea name="message" placeholder="Your Message" required></textarea>
-        <button type="submit" class="button">Send Message</button>
-      </form>
+  <!-- Enhanced Contact Modal -->
+  <div id="contactModal" class="modal fixed inset-0 bg-black bg-opacity-75 items-center justify-center z-50 hidden backdrop-blur-sm">
+    <div class="modal-content bg-slate-900 border border-terminal-green rounded-lg shadow-2xl max-w-md w-full mx-4 transform transition-all">
+      <div class="p-6">
+        <!-- Modal Header -->
+        <div class="flex items-center justify-between mb-6">
+          <h2 class="text-2xl font-bold text-terminal-green">Quick Contact</h2>
+          <button class="close text-slate-400 hover:text-terminal-green text-2xl font-bold transition-colors">
+            &times;
+          </button>
+        </div>
+        
+        <!-- Contact Form -->
+        <form action="https://formspree.io/f/xkgrgeja" method="POST" class="space-y-4">
+          <div>
+            <input type="text" 
+                   name="name" 
+                   placeholder="Your Name" 
+                   required
+                   class="w-full px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-slate-100 placeholder-slate-400 focus:border-terminal-green focus:ring-1 focus:ring-terminal-green focus:outline-none transition-all">
+          </div>
+          
+          <div>
+            <input type="email" 
+                   name="email" 
+                   placeholder="Your Email" 
+                   required
+                   class="w-full px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-slate-100 placeholder-slate-400 focus:border-terminal-green focus:ring-1 focus:ring-terminal-green focus:outline-none transition-all">
+          </div>
+          
+          <div>
+            <textarea name="message" 
+                      placeholder="Your Message" 
+                      required
+                      rows="4"
+                      class="w-full px-4 py-3 bg-slate-800 border border-slate-600 rounded-lg text-slate-100 placeholder-slate-400 focus:border-terminal-green focus:ring-1 focus:ring-terminal-green focus:outline-none transition-all resize-none"></textarea>
+          </div>
+          
+          <button type="submit" 
+                  class="w-full py-3 bg-gradient-to-r from-terminal-green to-emerald-500 hover:from-emerald-600 hover:to-terminal-green text-slate-900 font-bold rounded-lg transform hover:scale-105 transition-all shadow-lg">
+            <span class="flex items-center justify-center gap-2">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+              </svg>
+              Send Message
+            </span>
+          </button>
+        </form>
+      </div>
     </div>
   </div>
 
-  <script src="script.js?v=1.5"></script>
+  <script src="script.js?v=2.0"></script>
 </body>
 </html>
