@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Stewart Burton | Hybrid DevOps Engineer Cape Town • Remote UK/EU UTC+2</title>
+  <meta name="description" content="DevOps Engineer based in Cape Town specializing in hybrid roles and remote UK/EU opportunities. Timezone advantage (UTC+2) for seamless collaboration with UK teams. Work-life balance focused.">
+  <meta name="keywords" content="hybrid devops cape town, remote devops uk, work life balance devops, utc+2 timezone, kubernetes docker ansible">
+  <meta property="og:title" content="Stewart Burton | Hybrid DevOps Engineer Cape Town • Remote UK/EU">
+  <meta property="og:description" content="Cape Town-based DevOps Engineer open to hybrid CT roles and remote UK/EU opportunities. Perfect timezone overlap (UTC+2) for UK business hours.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://stewart-burton.com">
+  <link rel="canonical" href="https://stewart-burton.com">
+  
+  <!-- Schema.org JSON-LD -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Stewart Burton",
+    "jobTitle": "DevOps Engineer",
+    "description": "Hybrid DevOps Engineer based in Cape Town, open to hybrid roles and remote UK/EU opportunities with perfect UTC+2 timezone alignment",
+    "url": "https://stewart-burton.com",
+    "sameAs": [
+      "https://www.linkedin.com/in/stewart-burton",
+      "https://github.com/stewartburton"
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Cape Town",
+      "addressCountry": "South Africa"
+    },
+    "knowsAbout": [
+      "DevOps",
+      "Kubernetes",
+      "Docker",
+      "Azure DevOps",
+      "CI/CD",
+      "Infrastructure as Code",
+      "Ansible",
+      "Monitoring",
+      "Work-life balance in technology"
+    ],
+    "seeks": {
+      "@type": "JobPosting",
+      "description": "Hybrid DevOps roles in Cape Town or remote opportunities with UK/EU companies, timezone UTC+2 compatible"
+    }
+  }
+  </script>
+  <link rel="preload" href="style.css?v=2.0" as="style">
+  <link rel="stylesheet" href="style.css?v=2.0">
+</head>
+<body>
+
+  <header>
+    <div class="hero-container">
+      <div class="hero-text">
+        <h1>Hi, I'm <span class="highlight">Stewart Burton</span></h1>
+        <p class="subtitle">DevOps Engineer • Cape Town</p>
+        
+        <p class="intro">
+          I am a DevOps Engineer specializing in Azure DevOps, Kubernetes, Docker, Ansible, OpenShift, ArgoCD, Octopus Deploy, HashiCorp Vault, Jira, and monitoring tools such as Grafana, ELK, and Dynatrace.
+        </p>
+        
+        <br>
+        
+        <p class="intro">
+          I design and implement scalable CI/CD pipelines, infrastructure as code solutions, and automation frameworks that drive operational excellence across development and production environments.
+        </p>
+        
+        <br>
+        
+        <p class="intro">
+          Committed to continuous improvement, I constantly upskill, document & embrace emerging technologies like Agentic coding and advocate for the adoption of modern DevOps and Agile methodologies.
+        </p>
+        
+        <div class="value-props">
+          <div class="value-prop">
+            <div class="prop-icon">🏢</div>
+            <div class="prop-text">
+              <strong>Hybrid Flexibility</strong><br>
+              Cape Town local with remote-ready infrastructure
+            </div>
+          </div>
+          <div class="value-prop">
+            <div class="prop-icon">⚡</div>
+            <div class="prop-text">
+              <strong>Technical Excellence</strong><br>
+              Kubernetes, CI/CD, Infrastructure as Code
+            </div>
+          </div>
+          <div class="value-prop">
+            <div class="prop-icon">⚖️</div>
+            <div class="prop-text">
+              <strong>Work-Life Balance</strong><br>
+              Sustainable operations, reduced incidents
+            </div>
+          </div>
+        </div>
+        <div class="hero-buttons">
+          <a class="button" href="#about">Explore How I Can Help Your Team</a>
+          <button class="button-secondary" id="contactBtn">Discuss Opportunities</button>
+        </div>
+      </div>
+      <div class="hero-image">
+        <img class="profile-img" src="assets/profile.jpg" alt="Stewart Burton DevOps Engineer Cape Town" loading="eager" width="260" height="260">
+      </div>
+    </div>
+  </header>
+
+  <section id="about">
+    <h2>About Me</h2>
+
+    <div class="experience-education">
+      <div class="experience">
+        <h3>Professional Experience</h3>
+        <ul>
+          <li><strong>Intermediate DevOps Engineer</strong> | BET Software<br><small>06/2024 – Present | Reduced deployment time by 60% through CI/CD optimization</small></li>
+          <li><strong>Senior Software Quality Analyst</strong> | BET Software<br><small>06/2023 – 06/2024 | Improved system reliability, cutting incidents by 60%</small></li>
+          <li><strong>Software Development Engineer in Test</strong> | Derivco<br><small>02/2022 – 07/2023 | Developed quality assurance processes and API testing frameworks using Azure DevOps</small></li>
+        </ul>
+      </div>
+
+      <div class="skills">
+        <h3>Core Technologies</h3>
+        <ul>
+          <li><strong>Container Orchestration:</strong> Kubernetes, Docker, OpenShift</li>
+          <li><strong>CI/CD Platforms:</strong> Azure DevOps, GitHub Actions, ArgoCD</li>
+          <li><strong>Infrastructure as Code:</strong> Ansible, Terraform</li>
+          <li><strong>Monitoring & Observability:</strong> Dynatrace, Grafana, ELK Stack</li>
+          <li><strong>Automation & Scripting:</strong> Python, PowerShell, Bash</li>
+          <li><strong>Security & Secrets:</strong> HashiCorp Vault, Azure Key Vault</li>
+        </ul>
+      </div>
+
+      <div class="availability">
+        <h3>Availability & Preferences</h3>
+        <ul>
+          <li><strong>Cape Town Hybrid Roles:</strong> Available for office/remote mix</li>
+          <li><strong>UK/EU Remote Opportunities:</strong> Perfect timezone fit (UTC+2)</li>
+          <li><strong>Working Hours:</strong> 8 AM - 5 PM SAST (6 AM - 3 PM GMT)</li>
+          <li><strong>Collaboration Style:</strong> Team-first with hybrid flexibility</li>
+          <li><strong>Focus:</strong> Building sustainable, maintainable infrastructure</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="download-resume">
+      <a class="button" href="resume/Stewart_Burton_DevOps_Engineer_Resume.pdf" download="Stewart_Burton_DevOps_Engineer_Resume.pdf" target="_blank">Download Resume</a>
+      <a class="button-secondary" href="#certifications">View Certifications</a>
+    </div>
+
+  </section>
+
+  <section id="certifications">
+    <h2>Certifications & Continuous Learning</h2>
+    <p class="certifications-intro">Building expertise through continuous hands-on learning and industry-recognized certifications.</p>
+    
+    <div class="cert-timeline">
+      <div class="timeline-item">
+        <div class="timeline-year">2024-2025</div>
+        <div class="timeline-content">
+          <h3>🚀 DevOps Mastery Track</h3>
+          <div class="cert-grid">
+            <div class="cert-pill">Jenkins • CI/CD</div>
+            <div class="cert-pill">Kubernetes • Container Orchestration</div>
+            <div class="cert-pill">Python • DevOps Automation</div>
+            <div class="cert-pill">Linux • System Administration</div>
+            <div class="cert-pill">Git • Version Control</div>
+            <div class="cert-pill">Shell Scripting • Automation</div>
+            <div class="cert-pill">DevOps Fundamentals</div>
+            <div class="cert-pill">DevOps Prerequisites</div>
+          </div>
+          <p class="cert-provider">KodeKloud Academy • Hands-on Labs & Real-world Projects</p>
+        </div>
+      </div>
+      
+      <div class="timeline-item">
+        <div class="timeline-year">2018</div>
+        <div class="timeline-content">
+          <h3>📊 Quality Assurance Foundation</h3>
+          <div class="cert-grid">
+            <div class="cert-pill featured">ISTQB Advanced Test Analyst</div>
+          </div>
+          <p class="cert-provider">SQS (Software Quality Systems) • Industry Standard</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="learning-philosophy-new">
+      <div class="philosophy-header">
+        <span class="philosophy-icon">🎯</span>
+        <h3>Learning Philosophy</h3>
+      </div>
+      <p class="philosophy-text">Technology evolves rapidly, and so do I. I focus on practical, hands-on learning and emerging technologies like agentic coding to create intelligent, self-managing systems.</p>
+      
+      <div class="quick-stats">
+        <div class="stat-pill">
+          <span class="stat-number">10+</span>
+          <span class="stat-label">Certifications</span>
+        </div>
+        <div class="stat-pill">
+          <span class="stat-number">100%</span>
+          <span class="stat-label">Hands-on</span>
+        </div>
+        <div class="stat-pill">
+          <span class="stat-number">2024+</span>
+          <span class="stat-label">Growth</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <h2>Portfolio & Impact</h2>
+    <p class="portfolio-intro">Delivering measurable business value through innovative DevOps solutions and infrastructure excellence.</p>
+    
+    <div class="impact-showcase">
+      <div class="impact-header">
+        <div class="impact-stats">
+          <div class="impact-stat">
+            <div class="stat-icon">⚡</div>
+            <div class="stat-content">
+              <div class="stat-number">60%</div>
+              <div class="stat-label">Faster Deployments</div>
+            </div>
+          </div>
+          <div class="impact-stat">
+            <div class="stat-icon">🛡️</div>
+            <div class="stat-content">
+              <div class="stat-number">75%</div>
+              <div class="stat-label">Fewer Issues</div>
+            </div>
+          </div>
+          <div class="impact-stat">
+            <div class="stat-icon">💰</div>
+            <div class="stat-content">
+              <div class="stat-number">R45K</div>
+              <div class="stat-label">Monthly Savings</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-showcase">
+        <div class="project-card featured">
+          <div class="project-header">
+            <div class="project-badge">Featured</div>
+            <div class="project-title">
+              <h3>🚀 CI/CD Pipeline Transformation</h3>
+              <span class="project-company">BET Software • 2024</span>
+            </div>
+          </div>
+          <div class="project-description">
+            <p>Revolutionized deployment workflows by implementing Azure DevOps CI/CD pipelines with automated testing, infrastructure as code, and blue-green deployments using GitHub Repositories, GitHub Actions, Docker and Kubernetes.</p>
+          </div>
+          <div class="project-impact">
+            <div class="impact-metric">
+              <span class="metric-value">4h → 1.6h</span>
+              <span class="metric-desc">Deployment Time</span>
+            </div>
+            <div class="impact-metric">
+              <span class="metric-value">90% → 15%</span>
+              <span class="metric-desc">Production Issues</span>
+            </div>
+            <div class="impact-metric">
+              <span class="metric-value">R45K/month</span>
+              <span class="metric-desc">Overtime Savings</span>
+            </div>
+          </div>
+          <div class="project-tech">
+            <span class="tech-badge">Azure DevOps</span>
+            <span class="tech-badge">GitHub Actions</span>
+            <span class="tech-badge">Docker</span>
+            <span class="tech-badge">Kubernetes</span>
+            <span class="tech-badge">Terraform</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-title">
+            <h3>🌐 Infrastructure Monitoring Stack</h3>
+            <span class="project-company">BET Software • 2024</span>
+          </div>
+          <div class="project-description">
+            <p>Contributed to comprehensive monitoring infrastructure with ELK and Grafana dashboards, automated MSTeams alerting with webhook integration, and developing self-healing automation with Ansible.</p>
+          </div>
+          <div class="project-impact">
+            <div class="impact-metric">
+              <span class="metric-value">40% ↓</span>
+              <span class="metric-desc">Incidents</span>
+            </div>
+            <div class="impact-metric">
+              <span class="metric-value">10min</span>
+              <span class="metric-desc">Alert Response</span>
+            </div>
+            <div class="impact-metric">
+              <span class="metric-value">In Progress</span>
+              <span class="metric-desc">Self-Healing</span>
+            </div>
+          </div>
+          <div class="project-tech">
+            <span class="tech-badge">ELK Stack</span>
+            <span class="tech-badge">Grafana</span>
+            <span class="tech-badge">Dynatrace</span>
+            <span class="tech-badge">MSTeams API</span>
+            <span class="tech-badge">Ansible</span>
+          </div>
+        </div>
+
+        <div class="project-card">
+          <div class="project-title">
+            <h3>🔄 Azure DevOps Server to GitHub Migration</h3>
+            <span class="project-company">BET Software • 2024 - Ongoing</span>
+          </div>
+          <div class="project-description">
+            <p>Leading the migration of legacy Azure DevOps Server (on-premises) repositories and build pipelines to GitHub, implementing GitHub Actions workflows and establishing new DevOps practices for cloud-native development.</p>
+          </div>
+          <div class="project-impact">
+            <div class="impact-metric">
+              <span class="metric-value">15+ Repos</span>
+              <span class="metric-desc">Migrated</span>
+            </div>
+            <div class="impact-metric">
+              <span class="metric-value">GitHub Actions</span>
+              <span class="metric-desc">CI/CD</span>
+            </div>
+            <div class="impact-metric">
+              <span class="metric-value">In Progress</span>
+              <span class="metric-desc">Migration</span>
+            </div>
+          </div>
+          <div class="project-tech">
+            <span class="tech-badge">Azure DevOps Server</span>
+            <span class="tech-badge">GitHub</span>
+            <span class="tech-badge">GitHub Actions</span>
+            <span class="tech-badge">Git Migration</span>
+            <span class="tech-badge">CI/CD Modernization</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="github-showcase">
+      <div class="github-content">
+        <div class="github-info">
+          <h3>🔧 Open Source & Learning Projects</h3>
+          <p>Explore my repositories featuring infrastructure automation, DevOps tooling, and continuous learning projects that demonstrate practical application of emerging technologies.</p>
+          <a class="button-github" href="https://github.com/stewartburton" target="_blank">
+            <span class="github-icon">📂</span>
+            <span>Explore GitHub Profile</span>
+          </a>
+        </div>
+        <div class="github-stats">
+          <div class="github-stat">
+            <div class="stat-label">Public Repos</div>
+            <div class="stat-value">Active</div>
+          </div>
+          <div class="github-stat">
+            <div class="stat-label">Focus Areas</div>
+            <div class="stat-value">DevOps • AI</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Let's Connect</h2>
+    <p class="contact-intro">Ready to discuss how we can build reliable, sustainable infrastructure together?</p>
+
+    <div class="contact-grid">
+      <div class="contact-card-new primary">
+        <div class="contact-card-header">
+          <div class="contact-icon-new">📧</div>
+          <h3>Email</h3>
+        </div>
+        <div class="contact-details-new">
+          <a href="mailto:stewart@stewart-burton.com" class="contact-link">stewart@stewart-burton.com</a>
+          <p>Best for detailed project discussions and opportunities</p>
+          <div class="response-time">
+            <span class="status-dot"></span>
+            <span>Response within 2-4 hours during business hours</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-card-new">
+        <div class="contact-card-header">
+          <div class="contact-icon-new">💼</div>
+          <h3>LinkedIn</h3>
+        </div>
+        <div class="contact-details-new">
+          <a href="https://www.linkedin.com/in/stewart-burton" target="_blank" class="contact-link">Connect on LinkedIn</a>
+          <p>Professional networking and quick questions</p>
+          <div class="response-time">
+            <span class="status-dot active"></span>
+            <span>Active daily for professional connections</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="contact-card-new accent">
+        <div class="contact-card-header">
+          <div class="contact-icon-new">⏰</div>
+          <h3>Availability</h3>
+        </div>
+        <div class="contact-details-new">
+          <div class="timezone-info">
+            <div class="timezone-block">
+              <strong>SAST (UTC+2)</strong>
+              <span>Monday-Friday: 8 AM - 5 PM</span>
+            </div>
+            <div class="timezone-block">
+              <strong>GMT</strong>
+              <span>Monday-Friday: 6 AM - 3 PM</span>
+            </div>
+          </div>
+          <div class="availability-status">
+            <span class="status-dot available"></span>
+            <span>Open to hybrid and remote opportunities</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="subtle-quote">
+      <p><em>"I believe in building infrastructure that maximizes business uptime and reliability while enabling teams to do their best work without sacrificing personal time. Let's create something sustainable and resilient together."</em></p>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 Stewart Burton. All rights reserved. | v2.0.0</p>
+  </footer>
+
+  <!-- Contact Modal -->
+  <div id="contactModal" class="modal">
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <h2>Contact Me</h2>
+      <form action="https://formspree.io/f/xkgrgeja" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <input type="text" name="subject" id="contactSubject" placeholder="Subject" required>
+        <textarea name="message" id="contactMessage" placeholder="Your Message" required rows="6"></textarea>
+        <button type="submit" class="button">Send Message</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js?v=2.0" defer></script>
+</body>
+</html>
