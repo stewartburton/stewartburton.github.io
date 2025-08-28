@@ -12,7 +12,7 @@ This portfolio website showcases my journey as a DevOps Engineer specializing in
 ### 🎯 Key Highlights
 
 - **6+ years** of DevOps/QA experience
-- **10+ active certifications** from KodeKloud Academy
+- **13+ active certifications** from KodeKloud Academy
 - **80% faster deployments** through CI/CD optimization
 - **R100K+ monthly savings** via infrastructure improvements
 - Currently leading **Azure DevOps → GitHub migration** (15+ repositories)
@@ -119,6 +119,9 @@ Interactive certificate viewer featuring:
 - ✅ Jenkins CI/CD
 - ✅ Docker Training Course
 - ✅ Helm for Beginners
+- ✅ **Terraform Basics Training Course** 🆕
+- ✅ **GitOps with ArgoCD** 🆕
+- ✅ **Prometheus Certified Associate (PCA)** 🆕
 - ✅ Python DevOps Basics
 - ✅ Linux Administration
 - ✅ Git & Version Control
@@ -149,6 +152,9 @@ git pull origin main
 ## 🔄 Recent Updates
 
 ### v2.1 (Latest)
+- ✅ Added Terraform Basics Training Course certificate
+- ✅ Added GitOps with ArgoCD certificate
+- ✅ Added Prometheus Certified Associate (PCA) certificate
 - ✅ Added Helm and Docker certificates
 - ✅ Enhanced certificate viewer functionality
 - ✅ Performance optimizations with cache-busting
