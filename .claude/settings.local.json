@@ -10,7 +10,17 @@
       "Bash(rm:*)",
       "Bash(python:*)",
       "Bash(grep:*)",
-      "Bash(node:*)"
+      "Bash(node:*)",
+      "Bash(start index.html)",
+      "Bash(ls:*)",
+      "Bash(gh pr create:*)",
+      "Bash(claude mcp add:*)",
+      "Bash(claude mcp get:*)",
+      "Bash(claude mcp remove:*)",
+      "Read(C:\\Users\\stewa/**)",
+      "Read(C:\\Users\\stewa/**)",
+      "Bash(npx playwright:*)",
+      "Bash(del screenshot.js)"
     ],
     "deny": [],
     "ask": []
