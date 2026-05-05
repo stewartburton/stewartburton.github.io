@@ -1,197 +1,114 @@
-# Stewart Burton - DevOps Engineer Portfolio
+# stewart-burton.com
 
-[![Live Site](https://img.shields.io/badge/Live%20Site-stewart--burton.com-blue?style=for-the-badge)](https://stewart-burton.com)
-[![GitHub Pages](https://img.shields.io/badge/Deployed%20on-GitHub%20Pages-success?style=for-the-badge)](https://stewartburton.github.io)
+[![Live Site](https://img.shields.io/badge/Live-stewart--burton.com-0d9488?style=for-the-badge)](https://www.stewart-burton.com)
+[![Deploy](https://img.shields.io/badge/Deploy-GitHub%20Actions-success?style=for-the-badge&logo=github-actions)](.github/workflows/deploy.yml)
+[![Astro](https://img.shields.io/badge/Built%20with-Astro-FF5D01?style=for-the-badge&logo=astro)](https://astro.build)
 
-> **Professional portfolio showcasing DevOps expertise, certifications, and impactful infrastructure solutions**
+> DevOps engineer building the AI layer for engineering teams.
 
-## 🚀 About This Portfolio
+The personal portfolio + recruiter-facing materials for [Stewart Burton](https://www.linkedin.com/in/stewart-burton/) — DevOps engineer, Cape Town. Built as an Astro static site, deployed to GitHub Pages on every push to `main`.
 
-This portfolio website showcases my journey as a DevOps Engineer specializing in Azure DevOps, Kubernetes, Docker, CI/CD pipelines, and infrastructure automation. Built with modern web technologies and optimized for recruiters and hiring managers.
-
-### 🎯 Key Highlights
-
-- **6+ years** of DevOps/QA experience
-- **13+ active certifications** from KodeKloud Academy
-- **80% faster deployments** through CI/CD optimization
-- **R100K+ monthly savings** via infrastructure improvements
-- Currently leading **Azure DevOps → GitHub migration** (15+ repositories)
-
-## 🛠️ Tech Stack & Architecture
-
-### Frontend
-- **HTML5** with semantic markup and accessibility features
-- **CSS3** with modern layouts (Grid, Flexbox) and responsive design
-- **Vanilla JavaScript** for interactive components
-- **Progressive enhancement** approach
-
-### Features
-- 📱 **Fully responsive** design across all devices
-- 🔍 **SEO optimized** with structured data and meta tags
-- 📊 **Interactive certificate viewer** with PDF embedding
-- ⚡ **Performance optimized** with asset cache-busting
-- 🎨 **Modern UI/UX** designed for professional impact
-
-### DevOps Integration
-- **GitHub Pages** deployment with custom domain
-- **Automated deployments** via GitHub Actions
-- **Version control** with feature branch workflow
-- **Cache management** with versioned assets
-
-## 📁 Project Structure
+## What's in this repo
 
 ```
 stewartburton.github.io/
-├── assets/
-│   ├── certificates/          # DevOps certification PDFs
-│   └── profile.jpg           # Professional headshot
+├── site/                                # Astro source (the live site)
+│   ├── src/
+│   │   ├── pages/                       # /, /work, /about, /services, /contact, /certifications
+│   │   ├── pages/work/[...slug].astro   # case-study template
+│   │   ├── content/work/                # 16 case studies as Markdown (8 enterprise + 8 product)
+│   │   ├── content/config.ts            # content collection schema
+│   │   ├── components/                  # TopNav, Footer, SectionLabel, StackChips, MermaidEnhancer, WorkCard
+│   │   ├── layouts/Base.astro
+│   │   └── styles/global.css            # Tailwind base + design tokens
+│   ├── public/                          # served at site root
+│   │   ├── CNAME                        # www.stewart-burton.com
+│   │   ├── certificates/                # KodeKloud + ISTQB cert PDFs
+│   │   ├── resume/                      # CV + AI/DevOps profile PDFs
+│   │   └── robots.txt
+│   ├── astro.config.mjs
+│   ├── tailwind.config.mjs              # design tokens (colours, type scale, spacing)
+│   └── package.json
 ├── resume/
+│   ├── source/resume.html               # multi-page A4 CV source
 │   └── Stewart_Burton_AI_DevOps_Engineer_Resume.pdf
-├── index.html                # Main portfolio page
-├── style.css                # Modern responsive styling
-├── script.js                # Interactive functionality
-└── README.md                # This file
+├── assets/
+│   ├── onepager/
+│   │   ├── onepager.html                # single-page recruiter handout source
+│   │   ├── profile.jpg
+│   │   └── Stewart_Burton_AI_DevOps_Engineer_Profile.pdf
+│   ├── certificates/                    # source-of-truth cert PDFs (mirrored into site/public/)
+│   └── profile.jpg
+├── .github/workflows/deploy.yml         # build Astro + publish to Pages on push to main
+└── README.md
 ```
 
-## 🏗️ Development Workflow
+The repo also contains the legacy static site (`index.html`, `style.css`, `script.js`) at the root from before the rebuild — these are not served. The Astro `site/dist/` build is the only thing GitHub Pages publishes.
 
-### Local Development
+## Live URLs
+
+- **Site** — https://www.stewart-burton.com
+- **Work index** — https://www.stewart-burton.com/work
+- **Certifications** — https://www.stewart-burton.com/certifications (inline PDF modal viewer)
+- **CV download** — https://www.stewart-burton.com/resume/Stewart_Burton_AI_DevOps_Engineer_Resume.pdf
+- **One-pager download** — https://www.stewart-burton.com/resume/Stewart_Burton_AI_DevOps_Engineer_Profile.pdf
+
+## Local development
+
 ```bash
-# Clone the repository
-git clone https://github.com/stewartburton/stewartburton.github.io.git
-cd stewartburton.github.io
-
-# Start local development server
-python -m http.server 8000
-# or
-npx live-server
-
-# Access at http://localhost:8000
+cd site
+npm install
+npm run dev          # http://localhost:4321
+npm run build        # produces site/dist/
+npm run preview      # serve the built dist
 ```
 
-### Feature Development
+## Regenerating the PDFs
+
+Both the multi-page CV and the one-pager are pure HTML rendered to PDF via headless Chrome — no resume builder, no third-party tool, fully reproducible from this repo.
+
 ```bash
-# Create feature branch
-git checkout -b feature/your-feature-name
+# Multi-page CV
+"/c/Program Files/Google/Chrome/Application/chrome.exe" \
+  --headless=new --disable-gpu --no-pdf-header-footer \
+  --print-to-pdf="resume/Stewart_Burton_AI_DevOps_Engineer_Resume.pdf" \
+  "file:///$(pwd)/resume/source/resume.html"
 
-# Make changes and commit
-git add .
-git commit -m "feat: describe your changes"
-
-# Push and create PR
-git push origin feature/your-feature-name
+# One-pager (no margins, no print headers)
+"/c/Program Files/Google/Chrome/Application/chrome.exe" \
+  --headless=new --disable-gpu --no-pdf-header-footer \
+  --print-to-pdf="assets/onepager/Stewart_Burton_AI_DevOps_Engineer_Profile.pdf" \
+  --print-to-pdf-no-header --no-margins \
+  "file:///$(pwd)/assets/onepager/onepager.html"
 ```
 
-## 🎨 Design Philosophy
+After regenerating, copy into `site/public/resume/` so the live site serves the latest version.
 
-### Professional Focus
-- **Recruiter-optimized** layout with clear value propositions
-- **Quantified achievements** with specific metrics and impact
-- **Work-life balance** emphasis for sustainable career growth
-- **Cape Town/UK remote** targeting with timezone advantages
+## Deployment
 
-### Technical Excellence
-- **Semantic HTML** for accessibility and SEO
-- **Mobile-first** responsive design approach
-- **Progressive enhancement** for all user capabilities
-- **Performance optimization** with lazy loading and caching
+`.github/workflows/deploy.yml` runs on every push to `main`:
 
-## 📈 SEO & Analytics
+1. `actions/checkout@v4`
+2. `actions/setup-node@v4` (Node 20, npm cache keyed on `site/package-lock.json`)
+3. `npm ci` and `npm run build` in `site/`
+4. `actions/upload-pages-artifact@v3` with the `site/dist/` directory
+5. `actions/deploy-pages@v4`
 
-### Search Optimization
-- **Structured data** (JSON-LD schema) for rich snippets
-- **Meta tags** optimized for DevOps recruiter searches
-- **Canonical URLs** and proper heading hierarchy
-- **Local SEO** for Cape Town hybrid opportunities
+GitHub Pages source is set to **GitHub Actions** (not legacy branch). CNAME is in `site/public/` so the custom domain stays live across deploys.
 
-### Performance Metrics
-- **Lighthouse score**: 95+ across all categories
-- **Core Web Vitals** optimized for user experience
-- **Asset optimization** with WebP images and minification
-- **Cache strategies** for repeat visitor performance
+## Design system
 
-## 🏆 Certifications Showcase
+Dark, restrained, mono accents, single teal accent. Hairline borders only (`0.5px`). No shadows. No gradients. Two font weights (Inter 400 / 500 + JetBrains Mono 400 / 500). Sentence case in headings, lowercase in mono labels.
 
-Interactive certificate viewer featuring:
+Design tokens are defined in `site/tailwind.config.mjs`. Mermaid diagrams in case studies are themed via `site/src/components/MermaidEnhancer.astro` (matches Shiki's `pre[data-language="mermaid"]` markup, extracts clean text, renders via the Mermaid runtime).
 
-### DevOps Mastery Track (KodeKloud Academy)
-- ✅ Kubernetes for Absolute Beginners
-- ✅ Jenkins CI/CD
-- ✅ Docker Training Course
-- ✅ Helm for Beginners
-- ✅ **Terraform Basics Training Course** 🆕
-- ✅ **GitOps with ArgoCD** 🆕
-- ✅ **Prometheus Certified Associate (PCA)** 🆕
-- ✅ Python DevOps Basics
-- ✅ Linux Administration
-- ✅ Git & Version Control
-- ✅ Shell Scripting
-- ✅ DevOps Fundamentals
-- ✅ Prerequisites Course
+## Contact
 
-### Professional Certifications
-- ✅ ISTQB Advanced Test Analyst (SQS)
+- 📧 [stewart@stewart-burton.com](mailto:stewart@stewart-burton.com)
+- 💼 [linkedin.com/in/stewart-burton](https://www.linkedin.com/in/stewart-burton/)
+- 🌐 [stewart-burton.com](https://www.stewart-burton.com)
+- 🐙 [github.com/stewartburton](https://github.com/stewartburton)
 
-## 🚀 Deployment
+## License
 
-### Automatic Deployment
-- **Main branch** → Production (stewart-burton.com)
-- **Feature branches** → Preview deployments
-- **GitHub Actions** for automated testing and deployment
-- **Custom domain** with SSL certificate
-
-### Manual Deployment
-```bash
-# Ensure you're on main branch
-git checkout main
-git pull origin main
-
-# Changes automatically deploy via GitHub Pages
-```
-
-## 🔄 Recent Updates
-
-### v2.1 (Latest)
-- ✅ Added Terraform Basics Training Course certificate
-- ✅ Added GitOps with ArgoCD certificate
-- ✅ Added Prometheus Certified Associate (PCA) certificate
-- ✅ Added Helm and Docker certificates
-- ✅ Enhanced certificate viewer functionality
-- ✅ Performance optimizations with cache-busting
-- ✅ Improved mobile responsiveness
-
-### v2.0 (Major Redesign)
-- ✅ Complete UI/UX overhaul
-- ✅ Interactive certificate system
-- ✅ Enhanced portfolio metrics
-- ✅ SEO and performance optimization
-
-## 📞 Contact & Opportunities
-
-### Currently Open To
-- 🏢 **Hybrid roles** in Cape Town, South Africa
-- 🌍 **Remote opportunities** with UK/EU companies
-- ⏰ **Timezone advantage**: UTC+2 (perfect for UK business hours)
-- 🎯 **Focus areas**: DevOps, CI/CD, Kubernetes, Infrastructure Automation
-
-### Connect With Me
-- 📧 **Email**: [stewart@stewart-burton.com](mailto:stewart@stewart-burton.com)
-- 💼 **LinkedIn**: [stewart-burton](https://www.linkedin.com/in/stewart-burton)
-- 🔧 **GitHub**: [stewartburton](https://github.com/stewartburton)
-- 🌐 **Portfolio**: [stewart-burton.com](https://stewart-burton.com)
-
-## 📝 License
-
-This project is open source and available under the [MIT License](LICENSE).
-
----
-
-<div align="center">
-
-**Building reliable infrastructure that enables teams to do their best work** 🚀
-
-[![Portfolio](https://img.shields.io/badge/Visit-Portfolio-blue?style=for-the-badge)](https://stewart-burton.com)
-[![LinkedIn](https://img.shields.io/badge/Connect-LinkedIn-0077B5?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/stewart-burton)
-[![GitHub](https://img.shields.io/badge/Follow-GitHub-181717?style=for-the-badge&logo=github)](https://github.com/stewartburton)
-
-</div>
+Code: [MIT](LICENSE). Content (case studies, copy, profile imagery, CV PDFs) is © Stewart Burton — please don't copy it for your own portfolio.
