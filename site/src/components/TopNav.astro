@@ -1,0 +1,33 @@
+---
+const { current } = Astro.props as { current?: 'home' | 'work' | 'about' | 'services' | 'contact' };
+
+const navItems = [
+  { href: '/work', label: 'work', key: 'work' },
+  { href: '/about', label: 'about', key: 'about' },
+  { href: '/services', label: 'services', key: 'services' },
+  { href: '/contact', label: 'contact', key: 'contact' },
+];
+---
+
+<nav class="border-b border-hairline border-border-subtle">
+  <div class="mx-auto max-w-page px-8 py-5 flex items-center justify-between">
+    <a href="/" class="font-mono text-card-sm text-text-primary tracking-tight">
+      stewart-burton<span class="text-accent">.com</span>
+    </a>
+    <ul class="flex items-center gap-6">
+      {navItems.map((item) => (
+        <li>
+          <a
+            href={item.href}
+            class:list={[
+              'font-mono text-mono-label uppercase tracking-wider transition-colors',
+              current === item.key ? 'text-text-primary' : 'text-text-tertiary hover:text-text-primary',
+            ]}
+          >
+            {item.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
+</nav>

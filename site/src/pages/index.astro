@@ -1,0 +1,278 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import StackChips from '../components/StackChips.astro';
+
+const pillars = [
+  {
+    n: '01',
+    title: 'AI-assisted code review at enterprise scale',
+    body:
+      'Designed and rolled out AI PR reviews across Azure DevOps and GitHub Copilot. Schema-validated model output, severity gating, advisory-to-enforced rollout, kill-switch controls, and per-review cost telemetry.',
+    outcome: 'Hundreds of production repositories · thousands of reviews per month',
+    href: '/work/ai-pr-reviews-azure-devops',
+    lead: true,
+  },
+  {
+    n: '02',
+    title: 'AI tooling for DevOps support',
+    body:
+      'A unified support toolkit (CLI + REST API), a VS Code chat participant, an Atlassian assistant, and a Kafka AI deployment workflow. Brings runbooks, deployment status, logs, and platform actions into the developer workspace with safe two-step flows.',
+    href: '/work/devops-support-toolkit',
+  },
+  {
+    n: '03',
+    title: 'Migration & operational automation',
+    body:
+      'Production-grade Azure DevOps to GitHub migration platform — open source, enterprise-scale. Plus PowerShell automation for backups, server health, and connection management.',
+    href: '/work/migration-platform',
+  },
+  {
+    n: '04',
+    title: 'AI products, shipped solo',
+    body:
+      'silkspotter, PowerMeter, ShotKit — Claude-powered consumer apps live on App Store, Google Play, and the open web. End-to-end ownership: edge architecture, mobile, billing, store deployment.',
+    href: '/work/silkspotter',
+  },
+];
+
+const featured = {
+  lead: {
+    title: 'AI pull request reviews on Azure DevOps',
+    body:
+      'A schema-validated, severity-gated PR reviewer that ships through build pipelines with kill-switch controls and per-review cost telemetry. Rolled out from advisory to enforced across an estate of hundreds of production repositories.',
+    stack: ['Python', 'Azure DevOps APIs', 'LLM API', 'JSON Schema', 'Branch policies'],
+    href: '/work/ai-pr-reviews-azure-devops',
+    indicator: 'enterprise',
+  },
+  stacked: [
+    {
+      title: 'DevOps support toolkit',
+      body: 'CLI + REST API unifying health checks, deployment diagnostics, runbook search, and dry-run-first cleanup workflows.',
+      href: '/work/devops-support-toolkit',
+    },
+    {
+      title: 'ADO → GitHub migration platform',
+      body: 'Public, enterprise-scale migration tooling. Source freezing, parity proofs, and retryable batches.',
+      href: '/work/migration-platform',
+    },
+  ],
+  product: {
+    title: 'silkspotter',
+    body:
+      'Claude Vision in production. Edge inference, prompt caching, adversarial protection — the kind of hardening most AI demos skip. Live on iOS, Android, and the open web.',
+    indicator: 'silkspotter.net',
+    href: '/work/silkspotter',
+  },
+};
+
+const alsoBuilding = [
+  { title: 'PowerMeter', body: 'iPhone-first electricity tracking with monthly forecasts and ZAR/VAT context.', stack: ['SwiftUI', 'FastAPI', 'PostgreSQL'], href: '/work/powermeter' },
+  { title: 'ShotKit', body: 'Photo-craft companion app powered by Claude — composition, lighting, and gear hints.', stack: ['React Native', 'Claude API', 'Workers'], href: '/work/shotkit' },
+  { title: 'izwi', body: 'A small, opinionated language tool for South African languages.', stack: ['Astro', 'Claude API', 'Cloudflare'], href: '/work/izwi' },
+  { title: 'Frenchie Trivia', body: 'Trivia game built end-to-end. Light project, real production hosting.', stack: ['Vite', 'Cloudflare Pages'], href: '/work/frenchie-trivia' },
+  { title: 'Wildlife migrations', body: 'Visualisation of large-scale animal movement data, dark-mode first.', stack: ['D3', 'Astro', 'Cloudflare'], href: '/work/wildlife-migrations' },
+  { title: 'Powerball ML', body: 'Statistical modelling of historical draws — not a tip service, an exploration of randomness.', stack: ['Python', 'pandas', 'matplotlib'], href: '/work/powerball' },
+];
+---
+
+<Base title="Home" current="home">
+  <!-- Hero -->
+  <section class="border-b border-hairline border-border-subtle">
+    <div class="mx-auto max-w-page px-8 py-section">
+      <SectionLabel label="who" />
+      <h1 class="mt-6 text-hero text-text-primary max-w-hero">
+        DevOps engineer building the <span class="text-accent">AI layer</span> for engineering teams.
+      </h1>
+      <p class="mt-6 max-w-prose text-body-lead text-text-body">
+        I help engineering teams ship faster with AI — built on DevOps fundamentals that actually run in production.
+      </p>
+
+      <div class="mt-10 flex flex-wrap items-center gap-x-3 gap-y-2 text-text-secondary">
+        <span class="font-mono text-mono-meta uppercase tracking-wide">Cape Town, South Africa</span>
+        <span class="text-accent" aria-hidden="true">→</span>
+        <span class="font-mono text-mono-meta uppercase tracking-wide">SA, hybrid, or fully remote</span>
+        <span class="text-accent" aria-hidden="true">→</span>
+        <span class="font-mono text-mono-meta uppercase tracking-wide">UK-timezone-friendly · British passport</span>
+      </div>
+
+      <div class="mt-10 flex flex-wrap items-center gap-3">
+        <a
+          href="/work"
+          class="inline-flex items-center gap-2 px-5 py-3 rounded-chip bg-accent text-accent-on-dark font-mono text-mono-label uppercase tracking-wider hover:opacity-90 transition-opacity"
+        >
+          See the work
+          <span aria-hidden="true">→</span>
+        </a>
+        <a
+          href="/contact"
+          class="inline-flex items-center gap-2 px-5 py-3 rounded-chip border border-hairline border-border-strong text-text-primary font-mono text-mono-label uppercase tracking-wider hover:border-accent hover:text-accent transition-colors"
+        >
+          Get in touch
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- What I build -->
+  <section>
+    <div class="mx-auto max-w-page px-8 py-section">
+      <div class="flex items-end justify-between gap-6 flex-wrap">
+        <div>
+          <SectionLabel label="what i build" />
+          <h2 class="mt-4 text-h2 text-text-primary">Four pillars.</h2>
+        </div>
+        <span class="font-mono text-mono-label uppercase tracking-wider text-text-tertiary">
+          four pillars / 01–04
+        </span>
+      </div>
+
+      <!-- Lead pillar -->
+      <article class="card-elevated p-8 mt-10 grid md:grid-cols-[auto_1fr] gap-x-10 gap-y-4">
+        <span class="font-mono text-mono-label uppercase tracking-wider text-accent">{pillars[0].n}</span>
+        <div>
+          <h3 class="text-card-lead text-text-primary">{pillars[0].title}</h3>
+          <p class="mt-3 text-body text-text-body max-w-prose">{pillars[0].body}</p>
+          <div class="mt-5 flex items-center gap-2">
+            <span class="text-accent" aria-hidden="true">↳</span>
+            <span class="font-mono text-mono-meta uppercase tracking-wide text-text-secondary">{pillars[0].outcome}</span>
+          </div>
+          <a
+            href={pillars[0].href}
+            class="inline-flex items-center gap-2 mt-6 font-mono text-mono-label uppercase tracking-wider text-text-primary hover:text-accent transition-colors"
+          >
+            Read case study <span class="text-accent" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Three-up pillar grid -->
+      <div class="mt-3 grid gap-3 md:grid-cols-3">
+        {pillars.slice(1).map((p) => (
+          <a href={p.href} class="card p-6 group hover:border-border transition-colors">
+            <span class="font-mono text-mono-label uppercase tracking-wider text-accent">{p.n}</span>
+            <h3 class="mt-4 text-card text-text-primary">{p.title}</h3>
+            <p class="mt-3 text-card-body text-text-secondary">{p.body}</p>
+            <span class="inline-flex items-center gap-2 mt-5 font-mono text-mono-meta uppercase tracking-wide text-text-tertiary group-hover:text-accent transition-colors">
+              read more <span aria-hidden="true">↳</span>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-page px-8 section-divider"></div>
+
+  <!-- Featured work -->
+  <section>
+    <div class="mx-auto max-w-page px-8 py-section">
+      <div class="flex items-end justify-between gap-6 flex-wrap">
+        <div>
+          <SectionLabel label="featured work" />
+          <h2 class="mt-4 text-h2 text-text-primary">Selected case studies.</h2>
+        </div>
+        <a href="/work" class="font-mono text-mono-label uppercase tracking-wider text-text-tertiary hover:text-accent transition-colors">
+          04 / 16 <span aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <div class="mt-10 grid gap-3 md:grid-cols-[1.6fr_1fr]">
+        <!-- Wide elevated lead -->
+        <a href={featured.lead.href} class="card-elevated p-8 group flex flex-col justify-between">
+          <div>
+            <span class="font-mono text-mono-label uppercase tracking-wider text-accent">{featured.lead.indicator}</span>
+            <h3 class="mt-4 text-card-lead text-text-primary">{featured.lead.title}</h3>
+            <p class="mt-3 text-card-body text-text-secondary max-w-prose">{featured.lead.body}</p>
+          </div>
+          <div class="mt-8">
+            <StackChips items={featured.lead.stack} />
+            <span class="inline-flex items-center gap-2 mt-6 font-mono text-mono-label uppercase tracking-wider text-text-primary group-hover:text-accent transition-colors">
+              read case study <span class="text-accent" aria-hidden="true">→</span>
+            </span>
+          </div>
+        </a>
+
+        <!-- Stacked column -->
+        <div class="grid gap-3 md:grid-rows-2">
+          {featured.stacked.map((s) => (
+            <a href={s.href} class="card p-6 group flex flex-col justify-between">
+              <div>
+                <h3 class="text-card text-text-primary">{s.title}</h3>
+                <p class="mt-3 text-card-body text-text-secondary">{s.body}</p>
+              </div>
+              <span class="inline-flex items-center gap-2 mt-5 font-mono text-mono-meta uppercase tracking-wide text-text-tertiary group-hover:text-accent transition-colors">
+                read more <span aria-hidden="true">↳</span>
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Product feature -->
+      <a href={featured.product.href} class="card-elevated p-8 mt-3 group flex items-end justify-between gap-6 flex-wrap">
+        <div class="max-w-prose">
+          <span class="font-mono text-mono-label uppercase tracking-wider text-accent">independent product</span>
+          <h3 class="mt-4 text-card-lead text-text-primary">{featured.product.title}</h3>
+          <p class="mt-3 text-card-body text-text-secondary">{featured.product.body}</p>
+        </div>
+        <span class="inline-flex items-center gap-2 font-mono text-mono-label uppercase tracking-wider text-accent group-hover:underline">
+          {featured.product.indicator} <span aria-hidden="true">↗</span>
+        </span>
+      </a>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-page px-8 section-divider"></div>
+
+  <!-- Also building -->
+  <section>
+    <div class="mx-auto max-w-page px-8 py-section">
+      <SectionLabel label="also building" />
+      <h2 class="mt-4 text-h2 text-text-primary">Smaller things that ship.</h2>
+      <p class="mt-3 max-w-prose text-body text-text-secondary">
+        Side projects, experiments, and tools — each one live somewhere. The point is the shipping muscle, not the codebase.
+      </p>
+
+      <div class="mt-10 grid gap-3 md:grid-cols-3">
+        {alsoBuilding.map((p) => (
+          <a href={p.href} class="card p-5 group">
+            <h3 class="inline-flex items-center gap-2 text-card text-text-primary">
+              {p.title}
+              <span class="text-accent text-mono-meta" aria-hidden="true">↗</span>
+            </h3>
+            <p class="mt-3 text-card-body text-text-secondary">{p.body}</p>
+            <div class="mt-5">
+              <StackChips items={p.stack} />
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-page px-8 section-divider"></div>
+
+  <!-- About -->
+  <section>
+    <div class="mx-auto max-w-page px-8 py-section grid md:grid-cols-[200px_1fr] gap-x-10 gap-y-6">
+      <SectionLabel label="about" />
+      <div class="max-w-prose">
+        <p class="text-body-lead text-text-body">
+          I'm a DevOps engineer based in Cape Town. The last two years I've spent building the AI layer for engineering teams: PR review automation across hundreds of repos, support tooling that lives where engineers already work, and a handful of consumer AI products shipped solo.
+        </p>
+        <p class="mt-6 text-body-lead text-text-body">
+          The throughline is <span class="text-accent">sustainable engineering</span> — automation that reduces the work, not the headcount. I work in the open where I can, ship in days not quarters, and prefer one well-built thing to ten half-built ones.
+        </p>
+        <div class="mt-10 flex flex-wrap gap-6">
+          <a href="/about" class="font-mono text-mono-label uppercase tracking-wider text-text-primary hover:text-accent transition-colors inline-flex items-center gap-2">
+            <span class="text-accent" aria-hidden="true">→</span> read more about me
+          </a>
+          <a href="/services" class="font-mono text-mono-label uppercase tracking-wider text-text-primary hover:text-accent transition-colors inline-flex items-center gap-2">
+            <span class="text-accent" aria-hidden="true">→</span> see what i offer teams
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

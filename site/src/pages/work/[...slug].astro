@@ -1,0 +1,143 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import SectionLabel from '../../components/SectionLabel.astro';
+import StackChips from '../../components/StackChips.astro';
+import MermaidEnhancer from '../../components/MermaidEnhancer.astro';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('work');
+  const sorted = [...entries].sort((a, b) => a.data.order - b.data.order);
+  // build a per-category ordered list to compute "next case study"
+  const byCat: Record<string, CollectionEntry<'work'>[]> = {};
+  for (const e of sorted) {
+    const k = e.data.category === 'product' ? 'product' : 'enterprise';
+    (byCat[k] ??= []).push(e);
+  }
+
+  return sorted.map((entry) => {
+    const k = entry.data.category === 'product' ? 'product' : 'enterprise';
+    const list = byCat[k];
+    const idx = list.indexOf(entry);
+    const next = list[(idx + 1) % list.length] ?? null;
+    return {
+      params: { slug: entry.slug },
+      props: { entry, next },
+    };
+  });
+}
+
+interface Props {
+  entry: CollectionEntry<'work'>;
+  next: CollectionEntry<'work'> | null;
+}
+const { entry, next } = Astro.props;
+const { Content } = await entry.render();
+const data = entry.data;
+
+const sectionLabel =
+  data.category === 'enterprise'
+    ? 'enterprise ai / devops'
+    : data.category === 'open-source'
+    ? 'open source'
+    : 'independent product';
+const breadcrumbSection =
+  data.category === 'product' ? 'Independent products' : 'Enterprise AI/DevOps';
+---
+
+<Base title={data.title} description={data.summary} current="work">
+  <article>
+    <!-- Breadcrumb -->
+    <div class="mx-auto max-w-page px-8 pt-12">
+      <nav class="font-mono text-mono-meta uppercase tracking-wide text-text-tertiary">
+        <a href="/work" class="hover:text-accent transition-colors">work</a>
+        <span class="mx-2 text-border-strong" aria-hidden="true">/</span>
+        <span>{breadcrumbSection}</span>
+        <span class="mx-2 text-border-strong" aria-hidden="true">/</span>
+        <span class="text-text-secondary">{data.title}</span>
+      </nav>
+    </div>
+
+    <!-- Eyebrow + H1 + summary -->
+    <header class="mx-auto max-w-page px-8 pt-10 pb-12">
+      <SectionLabel label={sectionLabel} />
+      <h1 class="mt-6 text-page-h1 text-text-primary max-w-prose">{data.title}</h1>
+      <p class="mt-6 max-w-prose text-body-lead text-text-body">{data.summary}</p>
+    </header>
+
+    <!-- Meta strip -->
+    <div class="mx-auto max-w-page px-8 pb-12">
+      <dl class="grid gap-3 md:grid-cols-3">
+        <div class="card p-5">
+          <dt class="mono-label">role</dt>
+          <dd class="mt-3 text-card-body text-text-primary">{data.role ?? 'Designer, builder, and rollout owner'}</dd>
+        </div>
+        <div class="card p-5">
+          <dt class="mono-label">status</dt>
+          <dd class="mt-3 text-card-body text-text-primary">{data.status}</dd>
+        </div>
+        <div class="card p-5">
+          <dt class="mono-label">stack</dt>
+          <dd class="mt-3"><StackChips items={data.stack.slice(0, 3)} /></dd>
+        </div>
+      </dl>
+    </div>
+
+    <div class="mx-auto max-w-page px-8 section-divider"></div>
+
+    <!-- Body content from Markdown -->
+    <div class="mx-auto max-w-page px-8 py-section grid md:grid-cols-[200px_1fr] gap-x-10 gap-y-6">
+      <SectionLabel label="case study" />
+      <div class="max-w-prose body-prose text-body text-text-body">
+        <Content />
+
+        <!-- Why this matters callout -->
+        <aside class="mt-12 not-prose">
+          <div class="rounded-card border border-hairline border-accent/30 bg-accent/5 p-6">
+            <span class="mono-label text-accent">why this matters</span>
+            <p class="mt-3 text-body text-text-body">{data.why}</p>
+          </div>
+        </aside>
+
+        <!-- Full stack -->
+        <div class="mt-12 not-prose">
+          <span class="mono-label">stack</span>
+          <div class="mt-3"><StackChips items={data.stack} /></div>
+        </div>
+
+        <!-- Live / repo links if any -->
+        {(data.liveUrl || data.repoUrl) && (
+          <div class="mt-8 not-prose flex flex-wrap gap-6">
+            {data.liveUrl && (
+              <a href={data.liveUrl} class="font-mono text-mono-label uppercase tracking-wider text-accent hover:underline inline-flex items-center gap-2" rel="noopener">
+                live <span aria-hidden="true">↗</span>
+              </a>
+            )}
+            {data.repoUrl && (
+              <a href={data.repoUrl} class="font-mono text-mono-label uppercase tracking-wider text-text-primary hover:text-accent inline-flex items-center gap-2" rel="noopener">
+                repository <span class="text-accent" aria-hidden="true">↗</span>
+              </a>
+            )}
+          </div>
+        )}
+      </div>
+    </div>
+
+    <!-- Next case study pager -->
+    {next && (
+      <div class="mx-auto max-w-page px-8 pb-section">
+        <a href={`/work/${next.slug}`} class="card-elevated p-8 group flex items-center justify-between gap-6 flex-wrap">
+          <div>
+            <span class="mono-label">next case study</span>
+            <h2 class="mt-3 text-card-lead text-text-primary">{next.data.title}</h2>
+            <p class="mt-3 max-w-prose text-card-body text-text-secondary">{next.data.summary}</p>
+          </div>
+          <span class="inline-flex items-center gap-2 font-mono text-mono-label uppercase tracking-wider text-text-primary group-hover:text-accent transition-colors">
+            read <span class="text-accent" aria-hidden="true">→</span>
+          </span>
+        </a>
+      </div>
+    )}
+  </article>
+  <MermaidEnhancer />
+</Base>

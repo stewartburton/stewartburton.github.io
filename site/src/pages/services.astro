@@ -1,0 +1,94 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+
+const services = [
+  {
+    n: '01',
+    title: 'AI PR review rollout',
+    body:
+      'Help your engineering org ship AI PR review the way it should be shipped: schema-validated output, severity gating, advisory-to-enforced rollout, kill-switch controls, and per-review cost telemetry. I have done this at hundreds of repositories of scale.',
+    deliverables: ['Rollout playbook', 'Reviewer pipeline', 'Telemetry + reporting layer', 'Branch policy mapping'],
+  },
+  {
+    n: '02',
+    title: 'AI tooling for DevOps support',
+    body:
+      'Audit the operational drag in your support team and turn it into tooling. Toolkits, chat participants, and structured intakes that make the team faster without removing humans from the loop.',
+    deliverables: ['Workflow audit', 'CLI / API design', 'Chat-participant prototype', 'Adoption tracker'],
+  },
+  {
+    n: '03',
+    title: 'Migration platforms',
+    body:
+      'Production-grade migration tooling — Azure DevOps to GitHub, or similar version-control or CI migrations. Idempotent, auditable, reversible. Built around the parts of migration that demos skip.',
+    deliverables: ['Inventory + freeze plan', 'Migration runner', 'Parity validation', 'Audit report'],
+  },
+  {
+    n: '04',
+    title: 'AI product engineering',
+    body:
+      'Solo or with a small team — design, build, and ship a Claude-powered product. Edge architecture, prompt caching, billing integration, store deployment. The hardening that takes a demo to a live app with real users.',
+    deliverables: ['Architecture decision', 'Edge worker', 'Mobile / web client', 'Production telemetry'],
+  },
+];
+---
+
+<Base title="Services" current="services">
+  <section>
+    <div class="mx-auto max-w-page px-8 py-section">
+      <SectionLabel label="services" />
+      <h1 class="mt-6 text-page-h1 text-text-primary max-w-prose">
+        Four ways I help teams. <span class="text-accent">Each one shipped before, not theorised.</span>
+      </h1>
+      <p class="mt-6 max-w-prose text-body text-text-secondary">
+        Engagements are scoped to outcomes, not hours. The fastest way to know if there's a fit is a 30-minute call — bring a real problem, leave with a concrete next step.
+      </p>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-page px-8 section-divider"></div>
+
+  <section>
+    <div class="mx-auto max-w-page px-8 py-section">
+      <div class="grid gap-3 md:grid-cols-2">
+        {services.map((s) => (
+          <article class="card p-6 flex flex-col">
+            <span class="font-mono text-mono-label uppercase tracking-wider text-accent">{s.n}</span>
+            <h2 class="mt-4 text-card-lead text-text-primary">{s.title}</h2>
+            <p class="mt-3 text-card-body text-text-secondary">{s.body}</p>
+            <div class="mt-6">
+              <span class="mono-label">deliverables</span>
+              <ul class="mt-3 space-y-1">
+                {s.deliverables.map((d) => (
+                  <li class="flex items-center gap-2 text-card-body text-text-body">
+                    <span class="text-accent" aria-hidden="true">↳</span>{d}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-page px-8 section-divider"></div>
+
+  <section>
+    <div class="mx-auto max-w-page px-8 py-section grid md:grid-cols-[200px_1fr] gap-x-10 gap-y-6">
+      <SectionLabel label="next" />
+      <div class="max-w-prose">
+        <p class="text-body-lead text-text-body">
+          If any of the four sound like the shape of your problem, the next step is a 30-minute call. Bring the actual context — repo count, team size, where the rollout has stalled — and I'll come with concrete options.
+        </p>
+        <a
+          href="/contact"
+          class="mt-10 inline-flex items-center gap-2 px-5 py-3 rounded-chip bg-accent text-accent-on-dark font-mono text-mono-label uppercase tracking-wider hover:opacity-90 transition-opacity"
+        >
+          Book a call <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,75 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: dark;
+  }
+
+  html {
+    background-color: #0a0a0a;
+    color: #d4d4d4;
+    font-family: Inter, system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    min-height: 100vh;
+  }
+
+  ::selection {
+    background-color: #5eead4;
+    color: #0a0a0a;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  /* hairline borders — 0.5px is the design-system rule, never 1px+ */
+  .border-hairline {
+    border-width: 0.5px;
+  }
+}
+
+@layer components {
+  .mono-label {
+    @apply font-mono text-mono-label uppercase text-text-tertiary;
+  }
+
+  .mono-meta {
+    @apply font-mono text-mono-meta uppercase text-text-tertiary;
+  }
+
+  .accent-rule {
+    @apply inline-block w-6 h-px bg-accent align-middle mr-2;
+  }
+
+  .section-divider {
+    @apply border-t border-hairline border-border-subtle;
+  }
+
+  .card {
+    @apply bg-bg-card border border-hairline border-border-subtle rounded-card;
+  }
+
+  .card-elevated {
+    @apply bg-bg-card-elevated border border-hairline border-border-subtle rounded-card;
+  }
+
+  .stack-chip {
+    @apply font-mono text-mono-meta uppercase tracking-wide text-text-tertiary;
+  }
+
+  .body-prose a {
+    @apply text-accent border-b border-hairline border-accent/40 hover:border-accent transition-colors;
+  }
+
+  .body-prose p + p {
+    @apply mt-4;
+  }
+}

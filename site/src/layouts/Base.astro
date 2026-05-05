@@ -1,0 +1,45 @@
+---
+import '../styles/global.css';
+import TopNav from '../components/TopNav.astro';
+import Footer from '../components/Footer.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+  current?: 'home' | 'work' | 'about' | 'services' | 'contact';
+}
+const {
+  title,
+  description = 'DevOps engineer building the AI layer for engineering teams. Cape Town, South Africa.',
+  current,
+} = Astro.props;
+const fullTitle = title === 'Home' ? 'Stewart Burton — DevOps & AI engineer' : `${title} · stewart-burton.com`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://rsms.me/" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <title>{fullTitle}</title>
+  </head>
+  <body class="bg-bg-primary text-text-body antialiased">
+    <TopNav current={current} />
+    <main>
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>
