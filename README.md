@@ -18,9 +18,9 @@ DevOps engineer building the **`AI layer`** for engineering teams.
 
 ##### `›` ABOUT
 
-Source for **[stewart-burton.com](https://www.stewart-burton.com)** — personal portfolio and recruiter-facing materials. Built as an Astro static site, deployed to GitHub Pages on every push to `main`. Custom domain via CNAME in `site/public/`.
+Source for **[stewart-burton.com](https://www.stewart-burton.com)** - personal portfolio and recruiter-facing materials. Built as an Astro static site, deployed to GitHub Pages on every push to `main`. Custom domain via CNAME in `site/public/`.
 
-The repo also holds the multi-page CV and the single-page recruiter handout — both are pure HTML rendered to PDF via headless Chrome, fully reproducible.
+The repo also holds the multi-page CV and the single-page recruiter handout - both are pure HTML rendered to PDF via headless Chrome, fully reproducible.
 
 ---
 
@@ -51,7 +51,7 @@ The repo also holds the multi-page CV and the single-page recruiter handout — 
 
 ```text
 .
-├── site/                                # Astro source — the live site
+├── site/                                # Astro source - the live site
 │   ├── src/
 │   │   ├── pages/                       # /, /work, /about, /services, /contact, /certifications
 │   │   ├── pages/work/[...slug].astro   # case-study template
@@ -79,7 +79,7 @@ The repo also holds the multi-page CV and the single-page recruiter handout — 
 └── .github/workflows/deploy.yml         # build + publish on push to main
 ```
 
-<sub>The legacy static site (`index.html`, `style.css`, `script.js`) at the repo root is from before the rebuild. It's not served — only the Astro `site/dist/` build is.</sub>
+<sub>The legacy static site (`index.html`, `style.css`, `script.js`) at the repo root is from before the rebuild. It's not served - only the Astro `site/dist/` build is.</sub>
 
 ---
 
@@ -100,13 +100,13 @@ npm run preview      # serve the build
 Both the CV and the one-pager are pure HTML, rendered to PDF via headless Chrome.
 
 ```bash
-# CV — multi-page A4
+# CV - multi-page A4
 "/c/Program Files/Google/Chrome/Application/chrome.exe" \
   --headless=new --disable-gpu --no-pdf-header-footer \
   --print-to-pdf="resume/Stewart_Burton_AI_DevOps_Engineer_Resume.pdf" \
   "file:///$(pwd)/resume/source/resume.html"
 
-# One-pager — single A4, no print headers / no margins
+# One-pager - single A4, no print headers / no margins
 "/c/Program Files/Google/Chrome/Application/chrome.exe" \
   --headless=new --disable-gpu --no-pdf-header-footer \
   --print-to-pdf="assets/onepager/Stewart_Burton_AI_DevOps_Engineer_Profile.pdf" \
@@ -141,7 +141,7 @@ Pages source is set to **GitHub Actions** (not legacy branch). CNAME bundled in 
 | Borders | `0.5px` only |
 | Accent | `#5eead4` on dark · `#0d9488` on print |
 | Casing | sentence case headings · lowercase mono labels |
-| Mermaid | themed via `site/src/components/MermaidEnhancer.astro` — matches Shiki's `pre[data-language="mermaid"]` markup |
+| Mermaid | themed via `site/src/components/MermaidEnhancer.astro` - matches Shiki's `pre[data-language="mermaid"]` markup |
 
 Tokens defined in `site/tailwind.config.mjs`.
 
@@ -160,7 +160,7 @@ Tokens defined in `site/tailwind.config.mjs`.
 
 ##### `›` LICENSE
 
-Code: [`MIT`](LICENSE). Content (case studies, copy, imagery, CVs) © Stewart Burton — please don't copy it for your own portfolio.
+Code: [`MIT`](LICENSE). Content (case studies, copy, imagery, CVs) © Stewart Burton - please don't copy it for your own portfolio.
 
 <div align="center">
 <sub>© Stewart Burton · Cape Town, South Africa</sub>
