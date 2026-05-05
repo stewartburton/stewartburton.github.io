@@ -1,12 +1,12 @@
 ---
 title: "PowerMeter"
 category: "product"
-status: "Live · iOS"
+status: "Live · web"
 order: 2
 role: "Solo founder, designer, and engineer"
-summary: "An iPhone-first electricity tracker for South African prepaid users - token logs, cost-per-kWh trends, monthly forecasts, and ZAR-with-VAT context the local utility apps don't show."
-stack: ["SwiftUI", "FastAPI", "PostgreSQL", "Cloudflare"]
-liveUrl: null
+summary: "An electricity tracker for South African prepaid users - token logs, cost-per-kWh trends, monthly forecasts, and ZAR-with-VAT context the local utility apps don't show."
+stack: ["FastAPI", "PostgreSQL", "Cloudflare", "Web (responsive)"]
+liveUrl: "https://powermeter.app/login"
 repoUrl: null
 why: "South African prepaid electricity is opaque by default. PowerMeter is the small thing that makes it legible - typical of consumer software where the right design choice is what's missing, not what's added."
 ---
@@ -19,9 +19,9 @@ A small consumer app that tracks prepaid electricity tokens, computes cost per k
 
 ```mermaid
 flowchart LR
-    User["iPhone (SwiftUI)"] --> API["FastAPI"]
+    Browser["Browser (mobile or desktop)"] --> API["FastAPI"]
     API --> DB["PostgreSQL"]
-    User --> Charts["Local charts and forecasts"]
+    Browser --> Charts["Charts and forecasts"]
 ```
 
 ## What I optimised for
@@ -32,4 +32,4 @@ flowchart LR
 
 ## Status
 
-Live on the App Store. iPhone-only by design - the audience uses iOS in the South African prepaid demographic the app targets, and supporting Android wasn't worth the duplication on a personal-tool budget.
+Live on the open web at [powermeter.app](https://powermeter.app/login). Mobile-first responsive design, no app-store install required - which suits the prepaid-electricity audience and keeps the deployment story simple.
