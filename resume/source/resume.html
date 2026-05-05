@@ -145,6 +145,10 @@
         display: grid;
         grid-template-columns: 26mm 1fr;
         gap: 6mm;
+        align-items: baseline;
+      }
+      .about > .mono-label {
+        padding-top: 0.6mm;
       }
       .about p {
         margin: 0 0 2mm 0;
@@ -152,6 +156,7 @@
         line-height: 1.45;
         color: var(--ink-2);
       }
+      .about p:first-child { margin-top: 0; }
       .about p:last-child { margin-bottom: 0; }
       .about .keyword { color: var(--accent); font-weight: 500; }
 
@@ -404,6 +409,29 @@
         font-size: 8.5pt;
         color: var(--ink-3);
       }
+
+      /* Closing block */
+      .closing {
+        margin-top: 8mm;
+        padding-top: 6mm;
+        border-top: 0.5px solid var(--rule);
+        text-align: center;
+      }
+      .closing p {
+        margin: 0;
+        font-size: 10pt;
+        line-height: 1.5;
+        color: var(--ink-2);
+      }
+      .closing .url {
+        display: inline-block;
+        margin-top: 4mm;
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 9.5pt;
+        font-weight: 500;
+        color: var(--accent);
+        letter-spacing: 0.02em;
+      }
     </style>
   </head>
   <body>
@@ -442,7 +470,7 @@
             I help engineering teams ship faster with AI - built on DevOps fundamentals that actually run in production.
           </p>
           <p>
-            The career arc is intentional: Senior Software Quality Analyst and SDET, then deeper into <span class="keyword">DevOps and platform engineering</span>, and now building the <span class="keyword">AI layer</span> at scale - PR review automation across hundreds of production repositories, support tooling that lives where engineers already work, and a metrics layer that gives leadership a real picture of adoption and cost. The QA roots are why my AI work runs in production, not just in demos.
+            The career arc is intentional: Senior Software Quality Analyst and SDET, then deeper into <span class="keyword">DevOps, platform engineering and agentic engineering</span>, and now building the <span class="keyword">AI layer</span> at scale - PR review automation across hundreds of production repositories, support tooling that lives where engineers already work, and a metrics layer that gives leadership a real picture of adoption and cost. The QA roots are why my AI work runs in production, not just in demos.
           </p>
         </div>
       </div>
@@ -592,12 +620,12 @@
       <div class="section-label"><span class="mono-label">skills</span></div>
       <div class="skills">
         <div class="skill-group">
-          <h4>CI/CD &amp; infrastructure</h4>
-          <div class="chips">Azure DevOps · GitHub Actions · IIS · Kubernetes · Docker · ArgoCD · Octopus Deploy · Helm · Terraform · RHEL OpenShift</div>
+          <h4>CI/CD, infrastructure &amp; secrets</h4>
+          <div class="chips">Azure DevOps · GitHub Actions · IIS · Kubernetes · Docker · ArgoCD · Octopus Deploy · Helm · Terraform · RHEL OpenShift · HashiCorp Vault</div>
         </div>
         <div class="skill-group">
           <h4>AI / LLM</h4>
-          <div class="chips">Anthropic Claude (API + Vision) · OpenAI · Google · ElevenLabs · Open-weights · Prompt caching · Edge inference · MCP · Agentic workflows</div>
+          <div class="chips">Anthropic Claude (API + Vision) · OpenAI · Google · ElevenLabs · HeyGen · Open-weights · Prompt caching · Edge inference · MCP · Agentic workflows</div>
         </div>
         <div class="skill-group">
           <h4>Testing &amp; quality engineering</h4>
@@ -704,6 +732,14 @@
         </div>
       </div>
     </section>
+
+    <div class="closing">
+      <p>
+        Thank you for taking the time to read through my CV - I genuinely appreciate it.<br />
+        I'd welcome a conversation about how my experience could fit your team.
+      </p>
+      <span class="url">🌐 https://www.stewart-burton.com</span>
+    </div>
 
   </body>
 </html>

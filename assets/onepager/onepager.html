@@ -184,10 +184,10 @@
       }
       .impact li {
         position: relative;
-        padding-left: 4.5mm;
-        margin-bottom: 2mm;
-        font-size: 8.75pt;
-        line-height: 1.4;
+        padding-left: 4mm;
+        margin-bottom: 1.4mm;
+        font-size: 8.25pt;
+        line-height: 1.35;
         color: var(--ink-2);
       }
       .impact li::before {
@@ -249,24 +249,57 @@
       }
       .chips .sep { color: var(--accent); }
 
+      /* Profile photo */
+      .profile-block {
+        margin-top: 5mm;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2.5mm;
+      }
+      .profile-block img {
+        width: 44mm;
+        height: 44mm;
+        object-fit: cover;
+        object-position: 70% 50%;
+        border-radius: 50%;
+        border: 0.5px solid var(--rule);
+        display: block;
+      }
+      .profile-block .caption {
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 7.5pt;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--ink-3);
+        text-align: center;
+      }
+      .profile-block .caption .accent { color: var(--accent); }
+
       /* Footer */
       footer {
         margin-top: auto;
-        padding-top: 2.5mm;
+        padding-top: 3mm;
         border-top: 0.5px solid var(--rule);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-family: "JetBrains Mono", ui-monospace, monospace;
-        font-size: 7pt;
-        text-transform: uppercase;
-        letter-spacing: 0.07em;
-        color: var(--ink-4);
+        text-align: center;
       }
-      footer .links { display: flex; gap: 5mm; }
-      footer a { color: var(--ink-3); text-decoration: none; }
-      footer a:hover { color: var(--accent); }
-      footer .accent { color: var(--accent); }
+      footer p {
+        margin: 0;
+        font-size: 8.75pt;
+        line-height: 1.45;
+        color: var(--ink-2);
+        font-family: Inter, system-ui, sans-serif;
+        letter-spacing: 0;
+      }
+      footer .url {
+        display: inline-block;
+        margin-top: 1.5mm;
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 8.5pt;
+        font-weight: 500;
+        color: var(--accent);
+        letter-spacing: 0.02em;
+      }
     </style>
   </head>
   <body>
@@ -319,8 +352,9 @@
               <p>
                 Unified support toolkit (CLI + REST API), VS Code chat
                 participant, Atlassian assistant, JIRA task/epic automation,
-                and a Kafka AI deployment workflow. Platform actions inside
-                the developer workspace, with safe two-step flows.
+                Kafka AI deployment workflow. Disk, logs, services,
+                deployment, and runbook triage live in the developer
+                workspace - with safe two-step flows for live actions.
               </p>
             </div>
 
@@ -343,6 +377,10 @@
                 via Playwright. Test strategy, fast feedback gates, and
                 device/browser coverage rooted in years of SDET / Senior SQA work.
               </p>
+            </div>
+
+            <div class="profile-block">
+              <img src="profile.jpg" alt="Stewart Burton" />
             </div>
           </section>
         </div>
@@ -373,8 +411,21 @@
                 transitions, linking, and bulk updates across saved filters.
               </li>
               <li>
-                <strong>Live consumer AI products</strong> on iOS, Android, and
-                the open web with CI quality gates (Playwright + Maestro).
+                <strong>Observability &amp; root-cause</strong> with Dynatrace, ELK,
+                Grafana - alerting into Teams; multi-hour RCAs resolved in minutes.
+              </li>
+              <li>
+                <strong>Build &amp; release hardening</strong> - K8s build agents,
+                custom Dockerfiles, modular CI/CD, secure approval gates introduced
+                where none existed.
+              </li>
+              <li>
+                <strong>Security &amp; quality gates</strong> - approved secret stores,
+                SonarQube wired to branch policies, OWASP-aligned test design.
+              </li>
+              <li>
+                <strong>Live consumer AI products</strong> on iOS, Android, web with
+                CI quality gates (Playwright + Maestro).
               </li>
               <li>
                 <strong>Open-source ADO → GitHub migration platform</strong> -
@@ -424,6 +475,7 @@
               <span>Helm</span><span class="sep">·</span>
               <span>Terraform</span><span class="sep">·</span>
               <span>Ansible</span><span class="sep">·</span>
+              <span>HashiCorp Vault</span><span class="sep">·</span>
               <span>Kafka</span><span class="sep">·</span>
               <span>Dynatrace</span><span class="sep">·</span>
               <span>SonarQube</span><span class="sep">·</span>
@@ -433,18 +485,19 @@
               <span>Confluence</span><span class="sep">·</span>
               <span>Power Automate</span><span class="sep">·</span>
               <span>n8n</span><span class="sep">·</span>
-              <span>Claude / OpenAI / ElevenLabs APIs</span>
+              <span>Claude / OpenAI APIs</span><span class="sep">·</span>
+              <span>ElevenLabs / HeyGen APIs</span>
             </div>
           </section>
         </div>
       </div>
 
       <footer>
-        <span>&copy; Stewart Burton &middot; Cape Town, South Africa</span>
-        <div class="links">
-          <a href="https://stewart-burton.com">stewart-burton<span class="accent">.com</span></a>
-          <a href="mailto:stewart@stewart-burton.com">stewart@stewart-burton.com</a>
-        </div>
+        <p>
+          Thank you for taking the time to read through this - I genuinely appreciate it.
+          I'd welcome a conversation about how my experience could fit your team.
+        </p>
+        <span class="url">🌐 https://www.stewart-burton.com</span>
       </footer>
     </div>
   </body>
