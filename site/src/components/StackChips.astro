@@ -1,0 +1,18 @@
+---
+interface Props {
+  items: string[];
+  separator?: boolean;
+}
+const { items, separator = true } = Astro.props;
+---
+
+<ul class="flex flex-wrap items-center gap-x-2 gap-y-1">
+  {items.map((item, idx) => (
+    <li class="flex items-center gap-2">
+      <span class="stack-chip">{item}</span>
+      {separator && idx < items.length - 1 && (
+        <span class="text-accent text-mono-meta" aria-hidden="true">·</span>
+      )}
+    </li>
+  ))}
+</ul>

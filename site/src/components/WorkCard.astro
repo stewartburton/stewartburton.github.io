@@ -1,0 +1,43 @@
+---
+interface Props {
+  title: string;
+  summary: string;
+  status: string;
+  stack: string[];
+  href: string;
+  variant?: 'standard' | 'lead';
+}
+const { title, summary, status, stack, href, variant = 'standard' } = Astro.props;
+const isLead = variant === 'lead';
+---
+
+<a
+  href={href}
+  class:list={[
+    'group flex flex-col justify-between transition-colors',
+    isLead ? 'card-elevated p-8' : 'card p-6 hover:border-border',
+  ]}
+>
+  <div>
+    <span class="font-mono text-mono-label uppercase tracking-wider text-text-tertiary">{status}</span>
+    <h3 class:list={[isLead ? 'text-card-lead' : 'text-card', 'mt-4 text-text-primary']}>
+      {title}
+    </h3>
+    <p class:list={[isLead ? 'text-body' : 'text-card-body', 'mt-3 text-text-secondary max-w-prose']}>
+      {summary}
+    </p>
+  </div>
+  <div class="mt-6">
+    <ul class="flex flex-wrap items-center gap-x-2 gap-y-1">
+      {stack.slice(0, isLead ? 5 : 3).map((s, idx, arr) => (
+        <li class="flex items-center gap-2">
+          <span class="stack-chip">{s}</span>
+          {idx < arr.length - 1 && <span class="text-accent text-mono-meta" aria-hidden="true">·</span>}
+        </li>
+      ))}
+    </ul>
+    <span class="inline-flex items-center gap-2 mt-5 font-mono text-mono-meta uppercase tracking-wide text-text-tertiary group-hover:text-accent transition-colors">
+      read more <span aria-hidden="true">↳</span>
+    </span>
+  </div>
+</a>

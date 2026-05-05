@@ -12,6 +12,12 @@ dist
 dist-ssr
 *.local
 
+# Local-only personal drafts (never commit)
+linkedin-about.txt
+Claude_prompting_guide_website.md
+devops-ai-automation-case-studies.md
+website-rebuild-handoff.md
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -22,3 +28,5 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+.playwright-mcp/
+.astro/

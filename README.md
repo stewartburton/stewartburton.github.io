@@ -46,7 +46,7 @@ stewartburton.github.io/
 │   ├── certificates/          # DevOps certification PDFs
 │   └── profile.jpg           # Professional headshot
 ├── resume/
-│   └── Stewart_Burton_DevOps_Engineer_Resume.pdf
+│   └── Stewart_Burton_AI_DevOps_Engineer_Resume.pdf
 ├── index.html                # Main portfolio page
 ├── style.css                # Modern responsive styling
 ├── script.js                # Interactive functionality

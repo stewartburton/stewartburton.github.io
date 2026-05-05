@@ -1,0 +1,504 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Stewart Burton - DevOps & AI engineer</title>
+    <link rel="preconnect" href="https://rsms.me/" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --ink: #0a0a0a;
+        --ink-2: #2a2a2a;
+        --ink-3: #4d4d4d;
+        --ink-4: #737373;
+        --rule: #d4d4d4;
+        --rule-strong: #a3a3a3;
+        --paper: #ffffff;
+        --paper-2: #fafafa;
+        --accent: #0d9488; /* darker teal for paper contrast / print */
+      }
+
+      @page {
+        size: A4 portrait;
+        margin: 0;
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body {
+        margin: 0;
+        padding: 0;
+        background: var(--paper);
+        color: var(--ink-2);
+        font-family: Inter, system-ui, -apple-system, sans-serif;
+        font-size: 9.5pt;
+        line-height: 1.4;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .sheet {
+        width: 210mm;
+        height: 297mm;
+        padding: 11mm 13mm;
+        display: flex;
+        flex-direction: column;
+        gap: 4mm;
+      }
+
+      .mono {
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        font-size: 8pt;
+        color: var(--ink-4);
+      }
+
+      .accent { color: var(--accent); }
+      .ink { color: var(--ink); }
+
+      /* Header */
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 8mm;
+        padding-bottom: 3mm;
+        border-bottom: 0.5px solid var(--rule);
+      }
+      .header-left h1 {
+        font-size: 19pt;
+        font-weight: 500;
+        letter-spacing: -0.025em;
+        color: var(--ink);
+        margin: 0;
+        line-height: 1.05;
+      }
+      .header-left .tagline {
+        margin-top: 2.5mm;
+        font-size: 10.5pt;
+        line-height: 1.35;
+        color: var(--ink-2);
+        max-width: 110mm;
+        font-weight: 400;
+      }
+      .header-left .tagline .keyword { color: var(--accent); }
+      .header-right {
+        text-align: right;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5mm;
+      }
+      .header-right .nameplate {
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 9pt;
+        font-weight: 500;
+        color: var(--ink);
+        letter-spacing: -0.01em;
+        text-transform: lowercase;
+      }
+      .header-right .nameplate .tld { color: var(--accent); }
+      .header-right .meta { font-size: 8pt; color: var(--ink-3); }
+      .header-right .meta .arrow { color: var(--accent); margin: 0 1mm; }
+
+      /* Sub-strip availability */
+      .strip {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2.5mm 5mm;
+        align-items: center;
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 8pt;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--ink-3);
+      }
+      .strip .arrow { color: var(--accent); }
+
+      /* Section heads */
+      section { padding: 0; }
+      .section-label {
+        display: flex;
+        align-items: center;
+        gap: 2.5mm;
+        margin-bottom: 2.5mm;
+      }
+      .section-label::before {
+        content: "";
+        display: inline-block;
+        width: 6mm;
+        height: 0.5mm;
+        background: var(--accent);
+      }
+      .section-label .label {
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 8pt;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--ink-3);
+      }
+
+      /* Two-column body */
+      .body {
+        display: grid;
+        grid-template-columns: 1.15fr 1fr;
+        gap: 5mm 8mm;
+        flex: 1;
+      }
+
+      /* Pillars */
+      .pillar {
+        margin-bottom: 2.5mm;
+      }
+      .pillar .num {
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 7.5pt;
+        font-weight: 500;
+        color: var(--accent);
+        letter-spacing: 0.08em;
+      }
+      .pillar h3 {
+        margin: 1mm 0 1mm;
+        font-size: 9.75pt;
+        font-weight: 500;
+        color: var(--ink);
+        line-height: 1.2;
+        letter-spacing: -0.01em;
+      }
+      .pillar p {
+        margin: 0;
+        font-size: 8.75pt;
+        line-height: 1.4;
+        color: var(--ink-3);
+      }
+
+      /* Impact list */
+      .impact {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .impact li {
+        position: relative;
+        padding-left: 4mm;
+        margin-bottom: 1.4mm;
+        font-size: 8.25pt;
+        line-height: 1.35;
+        color: var(--ink-2);
+      }
+      .impact li::before {
+        content: "↳";
+        position: absolute;
+        left: 0;
+        color: var(--accent);
+      }
+      .impact li strong {
+        color: var(--ink);
+        font-weight: 500;
+      }
+
+      /* Selected work cards */
+      .work-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5mm;
+      }
+      .work-card {
+        border: 0.5px solid var(--rule);
+        border-radius: 2mm;
+        padding: 2.5mm 3mm;
+      }
+      .work-card .work-eyebrow {
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 6.75pt;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--accent);
+        font-weight: 500;
+      }
+      .work-card h4 {
+        margin: 1mm 0 1mm;
+        font-size: 9pt;
+        font-weight: 500;
+        color: var(--ink);
+        letter-spacing: -0.01em;
+        line-height: 1.2;
+      }
+      .work-card p {
+        margin: 0;
+        font-size: 8pt;
+        line-height: 1.35;
+        color: var(--ink-3);
+      }
+
+      /* Stack chips */
+      .chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1mm 2.5mm;
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 7.25pt;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--ink-3);
+        line-height: 1.5;
+      }
+      .chips .sep { color: var(--accent); }
+
+      /* Profile photo */
+      .profile-block {
+        margin-top: 5mm;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2.5mm;
+      }
+      .profile-block img {
+        width: 44mm;
+        height: 44mm;
+        object-fit: cover;
+        object-position: 70% 50%;
+        border-radius: 50%;
+        border: 0.5px solid var(--rule);
+        display: block;
+      }
+      .profile-block .caption {
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 7.5pt;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--ink-3);
+        text-align: center;
+      }
+      .profile-block .caption .accent { color: var(--accent); }
+
+      /* Footer */
+      footer {
+        margin-top: auto;
+        padding-top: 3mm;
+        border-top: 0.5px solid var(--rule);
+        text-align: center;
+      }
+      footer p {
+        margin: 0;
+        font-size: 8.75pt;
+        line-height: 1.45;
+        color: var(--ink-2);
+        font-family: Inter, system-ui, sans-serif;
+        letter-spacing: 0;
+      }
+      footer .url {
+        display: inline-block;
+        margin-top: 1.5mm;
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 8.5pt;
+        font-weight: 500;
+        color: var(--accent);
+        letter-spacing: 0.02em;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="sheet">
+      <header>
+        <div class="header-left">
+          <h1>Stewart Burton</h1>
+          <p class="tagline">
+            DevOps engineer building the <span class="keyword">AI layer</span>
+            for engineering teams.
+          </p>
+        </div>
+        <div class="header-right">
+          <span class="nameplate">stewart-burton<span class="tld">.com</span></span>
+          <span class="meta">stewart@stewart-burton.com</span>
+          <span class="meta">github.com/stewartburton</span>
+          <span class="meta">linkedin.com/in/stewart-burton</span>
+        </div>
+      </header>
+
+      <div class="strip">
+        <span>Cape Town, South Africa</span>
+        <span class="arrow">→</span>
+        <span>SA, hybrid, or fully remote</span>
+        <span class="arrow">→</span>
+        <span>UK timezone-friendly &middot; British passport</span>
+      </div>
+
+      <div class="body">
+        <!-- Left column -->
+        <div>
+          <section>
+            <div class="section-label"><span class="label">what i build</span></div>
+
+            <div class="pillar">
+              <span class="num">01</span>
+              <h3>AI-assisted code review at enterprise scale</h3>
+              <p>
+                Designed and rolled out AI PR reviews across Azure DevOps and
+                GitHub Copilot. Schema-validated output, severity gating,
+                advisory-to-enforced rollout, kill-switch controls, per-review
+                cost telemetry. Hundreds of production repositories &middot;
+                thousands of reviews per month.
+              </p>
+            </div>
+
+            <div class="pillar">
+              <span class="num">02</span>
+              <h3>AI tooling for DevOps support</h3>
+              <p>
+                Unified support toolkit (CLI + REST API), VS Code chat
+                participant, Atlassian assistant, JIRA task/epic automation,
+                Kafka AI deployment workflow. Disk, logs, services,
+                deployment, and runbook triage live in the developer
+                workspace - with safe two-step flows for live actions.
+              </p>
+            </div>
+
+            <div class="pillar">
+              <span class="num">03</span>
+              <h3>Migration &amp; operational automation</h3>
+              <p>
+                Production-grade Azure DevOps to GitHub migration platform -
+                open source, enterprise-scale. PowerShell automation for
+                backups, server health, and connection management.
+              </p>
+            </div>
+
+            <div class="pillar">
+              <span class="num">04</span>
+              <h3>AI products &amp; quality engineering</h3>
+              <p>
+                PowerMeter, ShotKit, Frenchie Trivia - consumer apps live on
+                App Store, Google Play, and the open web with CI quality gates
+                via Playwright. Test strategy, fast feedback gates, and
+                device/browser coverage rooted in years of SDET / Senior SQA work.
+              </p>
+            </div>
+
+            <div class="profile-block">
+              <img src="profile.jpg" alt="Stewart Burton" />
+            </div>
+          </section>
+        </div>
+
+        <!-- Right column -->
+        <div>
+          <section>
+            <div class="section-label"><span class="label">selected impact</span></div>
+            <ul class="impact">
+              <li>
+                <strong>AI PR review rollout</strong> across hundreds of
+                production-relevant repositories. Thousands of AI-backed reviews
+                per month with full-scope monthly cost in the low hundreds of
+                dollars.
+              </li>
+              <li>
+                <strong>Thousands of developer-hours saved annually</strong> from
+                mechanical pre-triage alone - independent of avoided rework or
+                production incidents.
+              </li>
+              <li>
+                <strong>Schema-validated, severity-gated</strong> reviewer with
+                kill-switch and per-repo opt-in. Advisory-to-enforced rollout
+                pattern reusable across both Azure DevOps and GitHub.
+              </li>
+              <li>
+                <strong>JIRA task &amp; epic automation</strong> - structured creation,
+                transitions, linking, and bulk updates across saved filters.
+              </li>
+              <li>
+                <strong>Observability &amp; root-cause</strong> with Dynatrace, ELK,
+                Grafana - alerting into Teams; multi-hour RCAs resolved in minutes.
+              </li>
+              <li>
+                <strong>Build &amp; release hardening</strong> - K8s build agents,
+                custom Dockerfiles, modular CI/CD, secure approval gates introduced
+                where none existed.
+              </li>
+              <li>
+                <strong>Security &amp; quality gates</strong> - approved secret stores,
+                SonarQube wired to branch policies, OWASP-aligned test design.
+              </li>
+              <li>
+                <strong>Live consumer AI products</strong> on iOS, Android, web with
+                CI quality gates (Playwright + Maestro).
+              </li>
+              <li>
+                <strong>Open-source ADO → GitHub migration platform</strong> -
+                idempotent, auditable, reversible.
+              </li>
+            </ul>
+          </section>
+
+          <section style="margin-top: 3.5mm;">
+            <div class="section-label"><span class="label">recent case studies</span></div>
+            <div class="work-grid">
+              <div class="work-card">
+                <span class="work-eyebrow">enterprise</span>
+                <h4>AI PR reviews on Azure DevOps</h4>
+                <p>Schema-validated, build-pipeline-native, governance-first.</p>
+              </div>
+              <div class="work-card">
+                <span class="work-eyebrow">enterprise</span>
+                <h4>DevOps support toolkit</h4>
+                <p>CLI + API for health, deployment, logs, and runbooks.</p>
+              </div>
+              <div class="work-card">
+                <span class="work-eyebrow">open source</span>
+                <h4>ADO → GitHub migration platform</h4>
+                <p>Inventory, freeze, mirror, parity proof, audit trail.</p>
+              </div>
+              <div class="work-card">
+                <span class="work-eyebrow">enterprise</span>
+                <h4>Atlassian assistant</h4>
+                <p>Wiki + ticket search and JIRA write automation, per-user tokens.</p>
+              </div>
+            </div>
+          </section>
+
+          <section style="margin-top: 3.5mm;">
+            <div class="section-label"><span class="label">stack snapshot</span></div>
+            <div class="chips">
+              <span>Python</span><span class="sep">·</span>
+              <span>PowerShell</span><span class="sep">·</span>
+              <span>C#</span><span class="sep">·</span>
+              <span>Azure DevOps</span><span class="sep">·</span>
+              <span>GitHub Actions</span><span class="sep">·</span>
+              <span>Kubernetes</span><span class="sep">·</span>
+              <span>Docker</span><span class="sep">·</span>
+              <span>ArgoCD</span><span class="sep">·</span>
+              <span>OpenShift</span><span class="sep">·</span>
+              <span>Helm</span><span class="sep">·</span>
+              <span>Terraform</span><span class="sep">·</span>
+              <span>Ansible</span><span class="sep">·</span>
+              <span>HashiCorp Vault</span><span class="sep">·</span>
+              <span>Kafka</span><span class="sep">·</span>
+              <span>Dynatrace</span><span class="sep">·</span>
+              <span>SonarQube</span><span class="sep">·</span>
+              <span>Playwright</span><span class="sep">·</span>
+              <span>Maestro</span><span class="sep">·</span>
+              <span>JIRA</span><span class="sep">·</span>
+              <span>Confluence</span><span class="sep">·</span>
+              <span>Power Automate</span><span class="sep">·</span>
+              <span>n8n</span><span class="sep">·</span>
+              <span>Claude / OpenAI APIs</span><span class="sep">·</span>
+              <span>ElevenLabs / HeyGen APIs</span>
+            </div>
+          </section>
+        </div>
+      </div>
+
+      <footer>
+        <p>
+          Thank you for taking the time to read through this - I genuinely appreciate it.
+          I'd welcome a conversation about how my experience could fit your team.
+        </p>
+        <span class="url">🌐 https://www.stewart-burton.com</span>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,91 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import SectionLabel from '../../components/SectionLabel.astro';
+import WorkCard from '../../components/WorkCard.astro';
+
+const all = await getCollection('work');
+const enterprise = all
+  .filter((e) => e.data.category === 'enterprise' || e.data.category === 'open-source')
+  .sort((a, b) => a.data.order - b.data.order);
+const products = all
+  .filter((e) => e.data.category === 'product')
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<Base title="Work" current="work">
+  <section>
+    <div class="mx-auto max-w-page px-8 py-section">
+      <SectionLabel label="work" />
+      <h1 class="mt-6 text-page-h1 text-text-primary max-w-prose">
+        Two bodies of work. <span class="text-accent">Enterprise AI/DevOps</span>, and AI products shipped solo.
+      </h1>
+      <p class="mt-6 max-w-prose text-body text-text-secondary">
+        The split is intentional. Enterprise = governance, scale, rollout. Independent = end-to-end ownership. Same engineer behind both columns.
+      </p>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-page px-8 section-divider"></div>
+
+  <section>
+    <div class="mx-auto max-w-page px-8 py-section">
+      <div class="flex items-end justify-between gap-6 flex-wrap">
+        <div>
+          <SectionLabel label="enterprise ai / devops" />
+          <h2 class="mt-4 text-h2 text-text-primary">Built inside the enterprise.</h2>
+        </div>
+        <span class="font-mono text-mono-label uppercase tracking-wider text-text-tertiary">
+          {enterprise.length.toString().padStart(2, '0')} / {all.length.toString().padStart(2, '0')}
+        </span>
+      </div>
+      {enterprise.length === 0 ? (
+        <p class="mt-10 text-body text-text-secondary">No case studies published yet.</p>
+      ) : (
+        <div class="mt-10 grid gap-3 md:grid-cols-2">
+          {enterprise.map((e, idx) => (
+            <WorkCard
+              title={e.data.title}
+              summary={e.data.summary}
+              status={e.data.status}
+              stack={e.data.stack}
+              href={`/work/${e.slug}`}
+              variant={idx === 0 ? 'lead' : 'standard'}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-page px-8 section-divider"></div>
+
+  <section>
+    <div class="mx-auto max-w-page px-8 py-section">
+      <div class="flex items-end justify-between gap-6 flex-wrap">
+        <div>
+          <SectionLabel label="independent products" />
+          <h2 class="mt-4 text-h2 text-text-primary">Shipped solo, end to end.</h2>
+        </div>
+        <span class="font-mono text-mono-label uppercase tracking-wider text-text-tertiary">
+          {products.length.toString().padStart(2, '0')} / {all.length.toString().padStart(2, '0')}
+        </span>
+      </div>
+      {products.length === 0 ? (
+        <p class="mt-10 text-body text-text-secondary">No product pages published yet.</p>
+      ) : (
+        <div class="mt-10 grid gap-3 md:grid-cols-3">
+          {products.map((p) => (
+            <WorkCard
+              title={p.data.title}
+              summary={p.data.summary}
+              status={p.data.status}
+              stack={p.data.stack}
+              href={`/work/${p.slug}`}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+</Base>

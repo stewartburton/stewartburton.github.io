@@ -1,0 +1,61 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+---
+
+<Base title="Contact" current="contact">
+  <section>
+    <div class="mx-auto max-w-page px-8 py-section">
+      <SectionLabel label="contact" />
+      <h1 class="mt-6 text-page-h1 text-text-primary max-w-prose">
+        Best to email. I read every message.
+      </h1>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-page px-8 section-divider"></div>
+
+  <section>
+    <div class="mx-auto max-w-page px-8 py-section grid md:grid-cols-[200px_1fr] gap-x-10 gap-y-10">
+      <SectionLabel label="channels" />
+      <div class="grid gap-3 md:grid-cols-2 max-w-3xl">
+        <a href="mailto:stewart@stewart-burton.com" class="card p-6 group">
+          <span class="mono-label">email</span>
+          <p class="mt-3 text-card text-text-primary group-hover:text-accent transition-colors">
+            stewart@stewart-burton.com <span aria-hidden="true">↗</span>
+          </p>
+          <p class="mt-3 text-card-body text-text-secondary">
+            For roles, project enquiries, and anything that needs more than a sentence. I reply within a working day.
+          </p>
+        </a>
+        <a href="https://www.linkedin.com/in/stewart-burton/" rel="me noopener" class="card p-6 group">
+          <span class="mono-label">linkedin</span>
+          <p class="mt-3 text-card text-text-primary group-hover:text-accent transition-colors">
+            stewartburton <span aria-hidden="true">↗</span>
+          </p>
+          <p class="mt-3 text-card-body text-text-secondary">
+            For recruiters: please include the role, salary band, stack, and reporting line in the first message. Saves us both time.
+          </p>
+        </a>
+        <a href="https://github.com/stewartburton" rel="me noopener" class="card p-6 group">
+          <span class="mono-label">github</span>
+          <p class="mt-3 text-card text-text-primary group-hover:text-accent transition-colors">
+            stewartburton <span aria-hidden="true">↗</span>
+          </p>
+          <p class="mt-3 text-card-body text-text-secondary">
+            For code-shaped conversations and the open-source migration platform.
+          </p>
+        </a>
+        <div class="card p-6">
+          <span class="mono-label">based in</span>
+          <p class="mt-3 text-card text-text-primary">
+            Cape Town, South Africa
+          </p>
+          <p class="mt-3 text-card-body text-text-secondary">
+            Available in SA, hybrid, or fully remote. UK timezone-friendly with a British passport.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

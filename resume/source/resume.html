@@ -1,0 +1,745 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Stewart Burton - DevOps & AI engineer</title>
+    <link rel="preconnect" href="https://rsms.me/" />
+    <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <style>
+      :root {
+        --ink: #0a0a0a;
+        --ink-2: #2a2a2a;
+        --ink-3: #4d4d4d;
+        --ink-4: #737373;
+        --rule: #d4d4d4;
+        --paper: #ffffff;
+        --accent: #0d9488;
+        --accent-soft: #ccfbf1;
+      }
+
+      @page {
+        size: A4 portrait;
+        margin: 14mm 16mm;
+        @bottom-left {
+          content: "Stewart Burton · Cape Town";
+          font-family: "JetBrains Mono", ui-monospace, monospace;
+          font-size: 7pt;
+          letter-spacing: 0.07em;
+          text-transform: uppercase;
+          color: #737373;
+        }
+        @bottom-right {
+          content: "stewart-burton.com · page " counter(page) " / " counter(pages);
+          font-family: "JetBrains Mono", ui-monospace, monospace;
+          font-size: 7pt;
+          letter-spacing: 0.07em;
+          text-transform: uppercase;
+          color: #737373;
+        }
+      }
+
+      * { box-sizing: border-box; }
+
+      html, body {
+        margin: 0;
+        padding: 0;
+        background: var(--paper);
+        color: var(--ink-2);
+        font-family: Inter, system-ui, -apple-system, sans-serif;
+        font-size: 9.75pt;
+        line-height: 1.4;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .page-break { page-break-before: always; }
+      .avoid-break { page-break-inside: avoid; }
+
+      .mono-label {
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 8pt;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--ink-3);
+      }
+      .accent { color: var(--accent); }
+
+      /* Header */
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 8mm;
+        padding-bottom: 3mm;
+        border-bottom: 0.5px solid var(--rule);
+      }
+      .header-left h1 {
+        font-size: 21pt;
+        font-weight: 500;
+        letter-spacing: -0.025em;
+        color: var(--ink);
+        margin: 0;
+        line-height: 1.05;
+      }
+      .header-left .tagline {
+        margin-top: 2.5mm;
+        font-size: 10.5pt;
+        line-height: 1.35;
+        color: var(--ink-2);
+        max-width: 110mm;
+      }
+      .header-left .tagline .keyword { color: var(--accent); }
+      .header-right {
+        text-align: right;
+        display: flex;
+        flex-direction: column;
+        gap: 1mm;
+        min-width: 60mm;
+      }
+      .header-right .nameplate {
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 9pt;
+        font-weight: 500;
+        color: var(--ink);
+        text-transform: lowercase;
+      }
+      .header-right .nameplate .tld { color: var(--accent); }
+      .header-right .meta { font-size: 8.25pt; color: var(--ink-3); }
+
+      /* Tagline strip */
+      .strip {
+        margin-top: 3mm;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2mm 4mm;
+        align-items: center;
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 7.75pt;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--ink-3);
+      }
+      .strip .arrow { color: var(--accent); }
+
+      /* Section heads */
+      section { padding: 0; margin-top: 5mm; }
+      .section-label {
+        display: flex;
+        align-items: center;
+        gap: 2.5mm;
+        margin-bottom: 2.5mm;
+      }
+      .section-label::before {
+        content: "";
+        display: inline-block;
+        width: 6mm;
+        height: 0.5mm;
+        background: var(--accent);
+      }
+
+      /* About */
+      .about {
+        display: grid;
+        grid-template-columns: 26mm 1fr;
+        gap: 6mm;
+        align-items: baseline;
+      }
+      .about > .mono-label {
+        padding-top: 0.6mm;
+      }
+      .about p {
+        margin: 0 0 2mm 0;
+        font-size: 9.75pt;
+        line-height: 1.45;
+        color: var(--ink-2);
+      }
+      .about p:first-child { margin-top: 0; }
+      .about p:last-child { margin-bottom: 0; }
+      .about .keyword { color: var(--accent); font-weight: 500; }
+
+      /* Career arc */
+      .arc {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 2mm;
+      }
+      .arc-phase {
+        position: relative;
+        border: 0.5px solid var(--rule);
+        border-radius: 2mm;
+        padding: 3mm 2.8mm 2.8mm;
+      }
+      .arc-phase.lead {
+        border-color: var(--accent);
+        background: var(--accent-soft);
+      }
+      .arc-phase .arc-num {
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 7pt;
+        font-weight: 500;
+        color: var(--accent);
+        letter-spacing: 0.08em;
+      }
+      .arc-phase h3 {
+        margin: 0.8mm 0 0.8mm;
+        font-size: 9pt;
+        font-weight: 500;
+        color: var(--ink);
+        line-height: 1.2;
+      }
+      .arc-phase .arc-meta {
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 7pt;
+        color: var(--ink-3);
+        letter-spacing: 0.04em;
+        margin: 0;
+      }
+      .arc-phase p.arc-body {
+        margin: 1.5mm 0 0 0;
+        font-size: 8.25pt;
+        line-height: 1.35;
+        color: var(--ink-3);
+      }
+      .arc-phase + .arc-phase::before {
+        content: "›";
+        position: absolute;
+        left: -2.4mm;
+        top: 50%;
+        transform: translateY(-50%);
+        color: var(--accent);
+        font-size: 11pt;
+        line-height: 1;
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-weight: 500;
+      }
+
+      /* Work experience */
+      .role {
+        display: grid;
+        grid-template-columns: 26mm 1fr;
+        gap: 6mm;
+        padding: 3mm 0;
+        border-top: 0.5px solid var(--rule);
+      }
+      .role:first-of-type { border-top: 0; padding-top: 0; }
+      .role .role-header {
+        page-break-after: avoid;
+      }
+      .role .role-meta { display: flex; flex-direction: column; gap: 0.8mm; }
+      .role .role-meta .dates {
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 8.25pt;
+        font-weight: 500;
+        color: var(--ink);
+        letter-spacing: 0.04em;
+      }
+      .role .role-meta .location {
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 7.25pt;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--ink-4);
+      }
+      .role .role-meta .duration {
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 7.25pt;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--accent);
+      }
+      .role h3 {
+        margin: 0 0 0.5mm;
+        font-size: 10.5pt;
+        font-weight: 500;
+        color: var(--ink);
+        letter-spacing: -0.01em;
+      }
+      .role .company {
+        font-size: 9.25pt;
+        font-weight: 500;
+        color: var(--ink-2);
+        margin: 0 0 2mm;
+      }
+      .role ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .role ul li {
+        position: relative;
+        padding-left: 4.5mm;
+        margin-bottom: 1.3mm;
+        font-size: 9.25pt;
+        line-height: 1.4;
+        color: var(--ink-2);
+      }
+      .role ul li::before {
+        content: "↳";
+        position: absolute;
+        left: 0;
+        color: var(--accent);
+      }
+      .role .stack-line {
+        margin-top: 2.2mm;
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 7.25pt;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: var(--ink-4);
+      }
+      .role .stack-line .label { color: var(--ink-3); font-weight: 500; }
+
+      /* Highlight callout */
+      .highlight {
+        margin-top: 2.2mm;
+        padding: 2.5mm 3mm;
+        border-left: 1.5mm solid var(--accent);
+        background: var(--accent-soft);
+        border-radius: 0 1.5mm 1.5mm 0;
+        page-break-inside: avoid;
+      }
+      .highlight .h-label {
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 7.5pt;
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        color: var(--accent);
+        font-weight: 500;
+      }
+      .highlight ul {
+        margin-top: 1.2mm;
+      }
+      .highlight ul li {
+        font-size: 8.75pt;
+        margin-bottom: 0.8mm;
+      }
+
+      /* Skills grid */
+      .skills {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3.5mm 8mm;
+      }
+      .skill-group {
+        page-break-inside: avoid;
+      }
+      .skill-group h4 {
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 7.75pt;
+        text-transform: uppercase;
+        letter-spacing: 0.1em;
+        color: var(--accent);
+        margin: 0 0 1.5mm;
+        font-weight: 500;
+      }
+      .skill-group .chips {
+        font-size: 8.75pt;
+        line-height: 1.5;
+        color: var(--ink-2);
+      }
+
+      /* Education */
+      .edu {
+        display: grid;
+        grid-template-columns: 26mm 1fr;
+        gap: 6mm;
+        padding: 2mm 0;
+        border-top: 0.5px solid var(--rule);
+        page-break-inside: avoid;
+      }
+      .edu:first-of-type { border-top: 0; padding-top: 0; }
+      .edu .edu-date {
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 7.75pt;
+        font-weight: 500;
+        color: var(--ink);
+        letter-spacing: 0.04em;
+      }
+      .edu h4 {
+        margin: 0 0 0.4mm;
+        font-size: 9.75pt;
+        font-weight: 500;
+        color: var(--ink);
+      }
+      .edu .institution {
+        font-size: 8.75pt;
+        color: var(--ink-3);
+        margin: 0;
+      }
+
+      /* Strengths + hobbies */
+      .two-col {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8mm;
+      }
+      .strengths {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .strengths li {
+        position: relative;
+        padding-left: 4.5mm;
+        margin-bottom: 1.3mm;
+        font-size: 8.75pt;
+        line-height: 1.4;
+        color: var(--ink-2);
+      }
+      .strengths li::before {
+        content: "↳";
+        position: absolute;
+        left: 0;
+        color: var(--accent);
+      }
+      .strengths li strong { color: var(--ink); font-weight: 500; }
+      .hobbies {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5mm 3.5mm;
+        margin-top: 1mm;
+        font-size: 9pt;
+        color: var(--ink-2);
+      }
+      .references-line {
+        margin-top: 4mm;
+        font-size: 8.5pt;
+        color: var(--ink-3);
+      }
+
+      /* Closing block */
+      .closing {
+        margin-top: 8mm;
+        padding-top: 6mm;
+        border-top: 0.5px solid var(--rule);
+        text-align: center;
+      }
+      .closing p {
+        margin: 0;
+        font-size: 10pt;
+        line-height: 1.5;
+        color: var(--ink-2);
+      }
+      .closing .url {
+        display: inline-block;
+        margin-top: 4mm;
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 9.5pt;
+        font-weight: 500;
+        color: var(--accent);
+        letter-spacing: 0.02em;
+      }
+    </style>
+  </head>
+  <body>
+
+    <header>
+      <div class="header-left">
+        <h1>Stewart Burton</h1>
+        <p class="tagline">
+          DevOps engineer building the <span class="keyword">AI layer</span>
+          for engineering teams.
+        </p>
+      </div>
+      <div class="header-right">
+        <span class="nameplate">stewart-burton<span class="tld">.com</span></span>
+        <span class="meta">stewart@stewart-burton.com</span>
+        <span class="meta">linkedin.com/in/stewart-burton</span>
+        <span class="meta">github.com/stewartburton</span>
+        <span class="meta">+27 71 678 4453</span>
+      </div>
+    </header>
+
+    <div class="strip">
+      <span>Cape Town, South Africa</span>
+      <span class="arrow">→</span>
+      <span>SA, hybrid, or fully remote</span>
+      <span class="arrow">→</span>
+      <span>UK timezone-friendly &middot; British passport</span>
+    </div>
+
+    <section class="avoid-break">
+      <div class="section-label"><span class="mono-label">about</span></div>
+      <div class="about">
+        <span class="mono-label">summary</span>
+        <div>
+          <p>
+            I help engineering teams ship faster with AI - built on DevOps fundamentals that actually run in production.
+          </p>
+          <p>
+            The career arc is intentional: Senior Software Quality Analyst and SDET, then deeper into <span class="keyword">DevOps, platform engineering and agentic engineering</span>, and now building the <span class="keyword">AI layer</span> at scale - PR review automation across hundreds of production repositories, support tooling that lives where engineers already work, and a metrics layer that gives leadership a real picture of adoption and cost. The QA roots are why my AI work runs in production, not just in demos.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="avoid-break">
+      <div class="section-label"><span class="mono-label">career arc</span></div>
+      <div class="arc">
+        <div class="arc-phase">
+          <span class="arc-num">PHASE 01</span>
+          <h3>Software Quality Analyst</h3>
+          <p class="arc-meta">Derivco · Durban → Cape Town · 2015 – 2022</p>
+          <p class="arc-body">Functional, regression, and performance testing across iGaming releases. Mentored junior QA, built CI/CD pipeline test integrations.</p>
+        </div>
+        <div class="arc-phase">
+          <span class="arc-num">PHASE 02</span>
+          <h3>SDET</h3>
+          <p class="arc-meta">Derivco · Cape Town · 2022 – 2023</p>
+          <p class="arc-body">Selenium / PyTest / Playwright frameworks for iGaming and Backoffice. Pipeline ownership and rapid response.</p>
+        </div>
+        <div class="arc-phase">
+          <span class="arc-num">PHASE 03</span>
+          <h3>Senior SQA</h3>
+          <p class="arc-meta">BET Software · Cape Town · 2023 – 2024</p>
+          <p class="arc-body">QA leadership across multiple products. Test automation strategy, CI/CD efficiency, end-to-end frameworks.</p>
+        </div>
+        <div class="arc-phase lead">
+          <span class="arc-num">PHASE 04</span>
+          <h3>DevOps + AI Layer</h3>
+          <p class="arc-meta">BET Software · Cape Town · 2024 – present</p>
+          <p class="arc-body">CI/CD modularisation, AI PR review at enterprise scale, support tooling, migration platform. Solo AI products.</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-label"><span class="mono-label">work experience</span></div>
+
+      <div class="role">
+        <div class="role-meta">
+          <span class="dates">06/2024 - present</span>
+          <span class="location">Cape Town</span>
+          <span class="duration">current</span>
+        </div>
+        <div>
+          <h3>Intermediate DevOps Engineer</h3>
+          <p class="company">BET Software</p>
+          <ul>
+            <li>Implemented modular CI/CD pipelines with Azure DevOps and GitHub Actions; significantly improved build and deploy reliability and time.</li>
+            <li>Authored PowerShell and Python automation for server health-checks, pipeline automation, and log cleanup - saving approx 40 hrs/month of operational toil.</li>
+            <li>Built Ansible playbooks for config management, software deploys, and build-agent cleanup - reducing manual workload by approx 25 hrs/month.</li>
+            <li>Hardened Kubernetes build agents with custom Dockerfiles and pipeline configurations; raised operational efficiency and stability.</li>
+            <li>Integrated active Dynatrace monitoring into Microsoft Teams for real-time alerts and proactive incident management.</li>
+            <li>Curator of the DevOps Confluence space; authored extensive how-to guides and knowledge-sharing articles, reducing onboarding time for graduates and new starters.</li>
+            <li>Automated JIRA task and epic workflows - structured creation, transitions, linking, and bulk updates - cutting manual ticketing overhead and keeping engineering work traceable end-to-end.</li>
+          </ul>
+          <div class="highlight">
+            <span class="h-label">key projects &middot; ai layer + automation</span>
+            <ul>
+              <li>Designed and rolled out AI-assisted PR reviews across Azure DevOps and GitHub Copilot at hundreds of production repositories - schema-validated output, severity gating, advisory-to-enforced rollout, kill-switch controls, per-review cost telemetry.</li>
+              <li>Built a unified DevOps support toolkit (CLI + REST API), VS Code chat participant, Atlassian assistant, and Kafka AI deployment workflow.</li>
+              <li>Modular CI/CD YAML pipelines with conditional Docker setups and isolated deploys; GitHub Actions → ADO migration with auto-PR rewrite tooling.</li>
+              <li>Fully automated BI &amp; Finance pipelines: dacpac artifacts, server health-checks, test suites, and secure approval gates (the company had none prior).</li>
+              <li>Custom SonarQube reporting pipelines that auto-generate Excel reports and graphs for Head of Software &amp; SLT, auto-committed to ADO via Git.</li>
+            </ul>
+          </div>
+          <p class="stack-line"><span class="label">stack:</span> Azure DevOps, GitHub Actions, Python, PowerShell, Ansible, Kubernetes, Docker, ArgoCD, Dynatrace, SonarQube, Confluence, Claude / OpenAI / ElevenLabs APIs</p>
+        </div>
+      </div>
+
+      <div class="role">
+        <div class="role-meta">
+          <span class="dates">06/2023 - 06/2024</span>
+          <span class="location">Cape Town</span>
+          <span class="duration">1 yr</span>
+        </div>
+        <div>
+          <h3>Senior Software Quality Analyst</h3>
+          <p class="company">BET Software</p>
+          <ul>
+            <li>Championed and maintained QA environments across several products.</li>
+            <li>Spearheaded test automation initiatives to enhance CI/CD efficiency and reduce live-issue and deployment risk.</li>
+            <li>Created comprehensive reusable, automatable test packs and aided in the creation of end-to-end testing frameworks covering functional, performance, and integrated security testing.</li>
+            <li>Drove pipeline-integrated quality gates so a green build genuinely meant ready-to-deploy.</li>
+          </ul>
+          <p class="stack-line"><span class="label">stack:</span> Python, PyTest, PowerShell, Postman, SQL Server, Azure DevOps, Git, Docker, Elastic, Grafana, JIRA, Selenium, Playwright, ZenDesk</p>
+        </div>
+      </div>
+
+      <div class="role">
+        <div class="role-meta">
+          <span class="dates">02/2022 - 07/2023</span>
+          <span class="location">Cape Town</span>
+          <span class="duration">1.5 yrs</span>
+        </div>
+        <div>
+          <h3>Software Development Engineer in Test (SDET)</h3>
+          <p class="company">Derivco</p>
+          <ul>
+            <li>Developed and maintained automated test frameworks for iGaming and Backoffice applications.</li>
+            <li>Implemented and executed test automation using Selenium, PyTest, and Playwright frameworks.</li>
+            <li>Incorporated AI-powered automation strategies to optimise software-testing procedures.</li>
+            <li>Owned build and release pipelines, emphasising reliability and maintainability.</li>
+            <li>Member of the Rapid Response team for production incident triage.</li>
+          </ul>
+          <p class="stack-line"><span class="label">stack:</span> Azure DevOps, Azure Test Plans, Selenium, JavaScript, Octopus Deploy, OWASP, C#, PowerShell, SQL Server</p>
+        </div>
+      </div>
+
+      <div class="role">
+        <div class="role-meta">
+          <span class="dates">11/2015 - 02/2022</span>
+          <span class="location">Durban</span>
+          <span class="duration">6.3 yrs</span>
+        </div>
+        <div>
+          <h3>Software Quality Analyst</h3>
+          <p class="company">Derivco</p>
+          <ul>
+            <li>Executed functional, regression, and performance testing for software releases.</li>
+            <li>Conducted performance testing using JMeter and Locust to optimise system efficiency.</li>
+            <li>Improved CI/CD pipeline efficiency through test-automation integration.</li>
+            <li>Facilitated agile processes and mentored junior QA staff.</li>
+            <li>Designed end-to-end CI/CD pipelines automating ephemeral environments in Axiom: web app, backend service, database, and configuration deployment; automated installation of casino games and back-office software, creation and funding of test user accounts, and execution of integrated test suites - reducing manual overhead substantially.</li>
+          </ul>
+          <p class="stack-line"><span class="label">stack:</span> Azure DevOps, Postman, PowerShell, SQL Server, LaunchDarkly, IIS, VMware</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="avoid-break">
+      <div class="section-label"><span class="mono-label">independent products &amp; side projects</span></div>
+      <div class="about">
+        <span class="mono-label">solo work</span>
+        <div>
+          <p>
+            <strong>PowerMeter, ShotKit, Frenchie Trivia</strong> - consumer apps and small projects live on App Store, Google Play, and the open web. End-to-end ownership: edge architecture, mobile, billing, store deployment, and CI quality gates with Playwright. Real users and real production constraints - the kind of hardening that takes a demo to a live app.
+          </p>
+          <p>
+            <strong>ADO &rarr; GitHub migration platform</strong> - production-grade, enterprise-scale, open source. Source freezing, parity validation, retryable batches, and audit reports. Built around the parts of migration that demos skip.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="avoid-break">
+      <div class="section-label"><span class="mono-label">skills</span></div>
+      <div class="skills">
+        <div class="skill-group">
+          <h4>CI/CD, infrastructure &amp; secrets</h4>
+          <div class="chips">Azure DevOps · GitHub Actions · IIS · Kubernetes · Docker · ArgoCD · Octopus Deploy · Helm · Terraform · RHEL OpenShift · HashiCorp Vault</div>
+        </div>
+        <div class="skill-group">
+          <h4>AI / LLM</h4>
+          <div class="chips">Anthropic Claude (API + Vision) · OpenAI · Google · ElevenLabs · HeyGen · Open-weights · Prompt caching · Edge inference · MCP · Agentic workflows</div>
+        </div>
+        <div class="skill-group">
+          <h4>Testing &amp; quality engineering</h4>
+          <div class="chips">Playwright · Maestro · PyTest · Selenium · Vitest / Jest · Postman · JMeter · Locust · Load / functional / regression / API / mobile / exploratory</div>
+        </div>
+        <div class="skill-group">
+          <h4>Test management &amp; case platforms</h4>
+          <div class="chips">Azure Test Plans · Zephyr Scale · Test Rail · JIRA (test workflows + task/epic automation) · Postman Collections · ISTQB-aligned test design</div>
+        </div>
+        <div class="skill-group">
+          <h4>Monitoring &amp; observability</h4>
+          <div class="chips">Dynatrace · Grafana · ELK (Elastic) · Datadog · SonarQube</div>
+        </div>
+        <div class="skill-group">
+          <h4>Cloud &amp; platforms</h4>
+          <div class="chips">Azure · Cloudflare Workers · Windows Server · RHEL OpenShift · Linux administration · VMware vSphere / vCloud</div>
+        </div>
+        <div class="skill-group">
+          <h4>Automation, scripting &amp; workflow</h4>
+          <div class="chips">Python · PowerShell · TypeScript / JavaScript · Ansible · YAML · Bash · C# · Microsoft Power Automate · n8n</div>
+        </div>
+        <div class="skill-group">
+          <h4>Application stacks</h4>
+          <div class="chips">FastAPI · React Native · Vite · Tailwind · SQL Server · Kafka</div>
+        </div>
+        <div class="skill-group">
+          <h4>Documentation &amp; collaboration</h4>
+          <div class="chips">Confluence (curator of multiple spaces) · JIRA · Agile / SCRUM · Knowledge-base authoring</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="avoid-break">
+      <div class="section-label"><span class="mono-label">strengths &amp; outside work</span></div>
+      <div class="two-col">
+        <div>
+          <ul class="strengths">
+            <li><strong>Outcome-first.</strong> Specific over general. "Hundreds of production repositories" beats "large enterprise estate."</li>
+            <li><strong>Sustainable engineering.</strong> Automation that compounds over years, not automation that ships once and rots.</li>
+            <li><strong>Honest about limits.</strong> When the model's wrong, the UI says so. Over-claiming is what makes AI work feel sketchy.</li>
+            <li><strong>Documentation as a deliverable.</strong> Tools the rest of the team can read, run, and modify.</li>
+            <li><strong>Mentorship.</strong> A decade of QA leadership taught me that growing the people next to you is the highest-leverage thing you can do.</li>
+          </ul>
+        </div>
+        <div>
+          <span class="mono-label">outside work</span>
+          <div class="hobbies">
+            <span>Hiking 🥾</span>
+            <span>FPV drones ✈️</span>
+            <span>Motorcycles 🏍️</span>
+            <span>Taekwon-do 🥋</span>
+            <span>Boxing 🥊</span>
+            <span>Coffee road-trips ☕</span>
+            <span>Tech &amp; PC gaming 🎮</span>
+            <span>Agentic coding 🤖</span>
+          </div>
+          <p class="references-line">References and recommendations available on LinkedIn or upon request.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="avoid-break">
+      <div class="section-label"><span class="mono-label">education &amp; certifications</span></div>
+      <div class="edu">
+        <span class="edu-date">07/2024 - 04/2025</span>
+        <div>
+          <h4>DevOps &amp; Cloud training</h4>
+          <p class="institution">LinkedIn Learning &middot; KodeKloud Academy</p>
+        </div>
+      </div>
+      <div class="edu">
+        <span class="edu-date">03/2018</span>
+        <div>
+          <h4>ISTQB&reg; Advanced Level Test Analyst</h4>
+          <p class="institution">SQS &middot; Information Technology, Testing</p>
+        </div>
+      </div>
+      <div class="edu">
+        <span class="edu-date">03/2015</span>
+        <div>
+          <h4>ISTQB&reg; Certified Foundation Level Tester</h4>
+          <p class="institution">ISEB &middot; Information Technology, Testing</p>
+        </div>
+      </div>
+      <div class="edu">
+        <span class="edu-date">2020</span>
+        <div>
+          <h4>LinkedIn Learning - foundations</h4>
+          <p class="institution">AI Foundations: Machine Learning &middot; DevOps Foundations: Containers &middot; Git Essential Training &middot; C# Essential Training</p>
+        </div>
+      </div>
+      <div class="edu">
+        <span class="edu-date">2003 - 2006</span>
+        <div>
+          <h4>Bachelor of Arts (BA) - Psychology, Communications, English</h4>
+          <p class="institution">Varsity College</p>
+        </div>
+      </div>
+      <div class="edu">
+        <span class="edu-date">2002</span>
+        <div>
+          <h4>Matriculated</h4>
+          <p class="institution">Westville Boys' High School</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="closing">
+      <p>
+        Thank you for taking the time to read through my CV - I genuinely appreciate it.<br />
+        I'd welcome a conversation about how my experience could fit your team.
+      </p>
+      <span class="url">🌐 https://www.stewart-burton.com</span>
+    </div>
+
+  </body>
+</html>

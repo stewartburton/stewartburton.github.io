@@ -1,0 +1,70 @@
+---
+// Walks the rendered prose for ```mermaid``` code blocks (which Shiki
+// renders as <pre data-language="mermaid">) and promotes them to clean
+// <pre class="mermaid"> blocks for the Mermaid runtime.
+---
+
+<script>
+  const blocks = document.querySelectorAll('pre[data-language="mermaid"]');
+  blocks.forEach((pre) => {
+    const text = (pre.textContent ?? '').replace(/ /g, ' ');
+    const wrapper = document.createElement('div');
+    wrapper.className =
+      'rounded-[12px] border border-border-subtle bg-bg-card-elevated p-6 my-6 overflow-x-auto';
+    wrapper.style.borderWidth = '0.5px';
+    const target = document.createElement('pre');
+    target.className = 'mermaid';
+    target.style.fontFamily = '"JetBrains Mono", "Geist Mono", monospace';
+    target.style.fontSize = '13px';
+    target.style.background = 'transparent';
+    target.textContent = text;
+    wrapper.appendChild(target);
+    pre.replaceWith(wrapper);
+  });
+
+  if (document.querySelector('pre.mermaid')) {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const w = window as any;
+    if (!w.__mermaidLoaded) {
+      w.__mermaidLoaded = true;
+      import('https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs').then(
+        ({ default: mermaid }) => {
+          mermaid.initialize({
+            startOnLoad: false,
+            theme: 'base',
+            themeVariables: {
+              darkMode: true,
+              background: '#0a0a0a',
+              primaryColor: '#141414',
+              primaryTextColor: '#f5f5f5',
+              primaryBorderColor: '#262626',
+              secondaryColor: '#111111',
+              secondaryTextColor: '#a3a3a3',
+              secondaryBorderColor: '#1f1f1f',
+              tertiaryColor: '#5eead4',
+              tertiaryTextColor: '#0a0a0a',
+              tertiaryBorderColor: '#5eead4',
+              lineColor: '#404040',
+              actorBkg: '#141414',
+              actorBorder: '#262626',
+              actorTextColor: '#f5f5f5',
+              actorLineColor: '#404040',
+              signalColor: '#a3a3a3',
+              signalTextColor: '#d4d4d4',
+              labelBoxBkgColor: '#141414',
+              labelBoxBorderColor: '#262626',
+              labelTextColor: '#f5f5f5',
+              loopTextColor: '#a3a3a3',
+              noteBkgColor: '#1f1f1f',
+              noteBorderColor: '#262626',
+              noteTextColor: '#d4d4d4',
+              fontFamily: '"JetBrains Mono", "Geist Mono", monospace',
+              fontSize: '13px',
+            },
+          });
+          mermaid.run({ querySelector: 'pre.mermaid' });
+        },
+      );
+    }
+  }
+</script>

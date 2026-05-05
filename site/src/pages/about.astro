@@ -1,0 +1,89 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+---
+
+<Base title="About" current="about">
+  <section>
+    <div class="mx-auto max-w-page px-8 py-section">
+      <SectionLabel label="about" />
+      <h1 class="mt-6 text-page-h1 text-text-primary max-w-prose">
+        DevOps engineer, solo AI builder, <span class="text-accent">honest about what works.</span>
+      </h1>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-page px-8 section-divider"></div>
+
+  <section>
+    <div class="mx-auto max-w-page px-8 py-section grid md:grid-cols-[200px_1fr] gap-x-10 gap-y-6">
+      <SectionLabel label="bio" />
+      <div class="max-w-prose body-prose text-body-lead text-text-body">
+        <p>
+          I'm based in Cape Town, with a career that runs from software quality engineering through DevOps and platform work into the AI layer I focus on now. The arc is intentional: I came up as a senior software quality analyst, learning how production systems actually break, before moving deeper into DevOps - pipelines, container platforms, Kafka, observability, and the operational machinery that keeps services live.
+        </p>
+        <p>
+          The last two years I've put that foundation to work building the AI layer for engineering teams at scale - pull request review automation across hundreds of production repositories, support tooling that lives where engineers already work, and a metrics layer that gives leadership a real picture of adoption and cost. The throughline is taking AI from "interesting demo" to "load-bearing infrastructure" without breaking governance.
+        </p>
+        <p>
+          Outside the day job I ship consumer AI products solo: silkspotter, PowerMeter, ShotKit. End-to-end ownership - edge architecture, mobile, billing, store deployment. The discipline of running a real Cloudflare bill against real Stripe revenue is a useful counterweight to enterprise work, where the cost feedback loop is much slower.
+        </p>
+        <p>
+          The career arc is the story behind the work: <a href="https://www.linkedin.com/in/stewart-burton/" rel="me noopener">full history on LinkedIn</a>. The QA and DevOps fundamentals are why the AI work runs in production, not just in demos.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-page px-8 section-divider"></div>
+
+  <section>
+    <div class="mx-auto max-w-page px-8 py-section grid md:grid-cols-[200px_1fr] gap-x-10 gap-y-6">
+      <SectionLabel label="philosophy" />
+      <div class="max-w-prose body-prose text-body text-text-body space-y-6">
+        <p>
+          <span class="text-accent">Sustainable engineering.</span> I optimise for reducing the work, not the headcount. Automation that compounds over years beats automation that ships once and rots. Tools that the rest of the team can read, run, and modify are better than tools only the author can run.
+        </p>
+        <p>
+          <span class="text-accent">Specific over general.</span> "Hundreds of production repositories" beats "large enterprise estate." Recruiters and engineers both reward concrete claims; the people who don't already know how to ask for them aren't the ones I want to be working with.
+        </p>
+        <p>
+          <span class="text-accent">Outcome before mechanism.</span> The first paragraph of any work I'm proud of names the result. The second one explains how. Putting it the other way around is how documentation becomes unread.
+        </p>
+        <p>
+          <span class="text-accent">Honest about limits.</span> When the model's wrong, the UI says so. When the migration doesn't translate, the tool flags it. When the side project is a null result, the writeup is about what you can learn from a null result. The opposite - over-claiming - is what makes AI work feel sketchy. It doesn't have to.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-page px-8 section-divider"></div>
+
+  <section>
+    <div class="mx-auto max-w-page px-8 py-section grid md:grid-cols-[200px_1fr] gap-x-10 gap-y-6">
+      <SectionLabel label="availability" />
+      <div class="max-w-prose">
+        <p class="text-body-lead text-text-body">
+          Cape Town, South Africa. Open to roles in SA, hybrid, or fully remote. UK-timezone-friendly with a British passport.
+        </p>
+        <div class="mt-10 flex flex-wrap gap-x-6 gap-y-3">
+          <a href="/resume/Stewart_Burton_AI_DevOps_Engineer_Resume.pdf" target="_blank" rel="noopener" class="font-mono text-mono-label uppercase tracking-wider text-text-primary hover:text-accent transition-colors inline-flex items-center gap-2">
+            <span class="text-accent" aria-hidden="true">→</span> download cv (pdf)
+          </a>
+          <a href="/resume/Stewart_Burton_AI_DevOps_Engineer_Profile.pdf" target="_blank" rel="noopener" class="font-mono text-mono-label uppercase tracking-wider text-text-primary hover:text-accent transition-colors inline-flex items-center gap-2">
+            <span class="text-accent" aria-hidden="true">→</span> one-pager (pdf)
+          </a>
+          <a href="/certifications" class="font-mono text-mono-label uppercase tracking-wider text-text-primary hover:text-accent transition-colors inline-flex items-center gap-2">
+            <span class="text-accent" aria-hidden="true">→</span> view certifications
+          </a>
+          <a href="/services" class="font-mono text-mono-label uppercase tracking-wider text-text-primary hover:text-accent transition-colors inline-flex items-center gap-2">
+            <span class="text-accent" aria-hidden="true">→</span> see what i offer teams
+          </a>
+          <a href="/contact" class="font-mono text-mono-label uppercase tracking-wider text-text-primary hover:text-accent transition-colors inline-flex items-center gap-2">
+            <span class="text-accent" aria-hidden="true">→</span> get in touch
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
