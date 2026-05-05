@@ -1,0 +1,108 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+
+interface Cert {
+  title: string;
+  issuer: string;
+  year: string;
+  category: 'devops' | 'kubernetes' | 'cloud' | 'observability' | 'iac' | 'foundations' | 'testing';
+  file?: string;
+}
+
+const certs: Cert[] = [
+  // KodeKloud / DevOps stack (2024-2025 push)
+  { title: 'GitOps with ArgoCD', issuer: 'KodeKloud', year: '2025', category: 'kubernetes', file: 'GitOps with ArgoCD.pdf' },
+  { title: 'Prometheus Certified Associate (PCA)', issuer: 'KodeKloud', year: '2025', category: 'observability', file: 'Prometheus Certified Associate (PCA).pdf' },
+  { title: 'Terraform Basics Training Course', issuer: 'KodeKloud', year: '2025', category: 'iac', file: 'Terraform Basics Training Course.pdf' },
+  { title: 'Helm for Beginners', issuer: 'KodeKloud', year: '2025', category: 'kubernetes', file: 'Helm for Beginners.pdf' },
+  { title: 'Docker Training Course for Absolute Beginners', issuer: 'KodeKloud', year: '2025', category: 'devops', file: 'Docker Training Course for Absolute Beginner.pdf' },
+  { title: 'Kubernetes for the Absolute Beginner', issuer: 'KodeKloud', year: '2025', category: 'kubernetes', file: 'Kunernetes for the absolute Beginner - Hands-on Tutorial.pdf' },
+  { title: 'Jenkins For Beginners', issuer: 'KodeKloud', year: '2025', category: 'devops', file: 'Jenkins For Beginners.pdf' },
+  { title: 'DevOps Pre-Requisite Course', issuer: 'KodeKloud', year: '2024', category: 'foundations', file: 'DevOps Pre-Requisite Course.pdf' },
+  { title: 'Fundamentals of DevOps', issuer: 'KodeKloud', year: '2024', category: 'foundations', file: 'Fundimentals of DevOps.pdf' },
+  { title: 'GIT for Beginners', issuer: 'KodeKloud', year: '2024', category: 'foundations', file: 'GIT for Beginners.pdf' },
+  { title: 'Linux Basics', issuer: 'KodeKloud', year: '2024', category: 'foundations', file: 'Linux Basics.pdf' },
+  { title: 'Python Basics', issuer: 'KodeKloud', year: '2024', category: 'foundations', file: 'Python Basics.pdf' },
+  { title: 'Shell Scripts for Beginners', issuer: 'KodeKloud', year: '2024', category: 'foundations', file: 'Shell Scripts for Beginners.pdf' },
+  // QA / Testing track
+  { title: 'ISTQB® Advanced Level Test Analyst', issuer: 'SQS', year: '2018', category: 'testing' },
+  { title: 'ISTQB® Certified Foundation Level Tester', issuer: 'ISEB', year: '2015', category: 'testing' },
+  // LinkedIn Learning fundamentals
+  { title: 'AI Foundations: Machine Learning', issuer: 'LinkedIn Learning', year: '2020', category: 'foundations' },
+  { title: 'DevOps Foundations: Containers', issuer: 'LinkedIn Learning', year: '2020', category: 'foundations' },
+  { title: 'Git Essential Training: The Basics', issuer: 'LinkedIn Learning', year: '2020', category: 'foundations' },
+  { title: 'C# Essential Training: 2 — Flow Control, Arrays, and Exception Handling', issuer: 'LinkedIn Learning', year: '2020', category: 'foundations' },
+];
+
+const groups: Record<string, { label: string; items: Cert[] }> = {
+  kubernetes: { label: 'Kubernetes & GitOps', items: [] },
+  iac: { label: 'Infrastructure as code', items: [] },
+  observability: { label: 'Observability & monitoring', items: [] },
+  devops: { label: 'DevOps tooling', items: [] },
+  testing: { label: 'Testing & quality', items: [] },
+  foundations: { label: 'Foundations', items: [] },
+  cloud: { label: 'Cloud', items: [] },
+};
+
+for (const c of certs) {
+  groups[c.category].items.push(c);
+}
+
+const ordered = ['kubernetes', 'iac', 'observability', 'devops', 'testing', 'foundations', 'cloud'].filter((k) => groups[k].items.length > 0);
+---
+
+<Base title="Certifications" description="Stewart Burton — certifications and training, including KodeKloud, ISTQB, and LinkedIn Learning credentials.">
+  <section>
+    <div class="mx-auto max-w-page px-8 py-section">
+      <SectionLabel label="certifications" />
+      <h1 class="mt-6 text-page-h1 text-text-primary max-w-prose">
+        Certifications &amp; <span class="text-accent">training credentials.</span>
+      </h1>
+      <p class="mt-6 max-w-prose text-body text-text-secondary">
+        Click any certificate to view the PDF. Most are KodeKloud completion certificates from a focused 2024-2025 push through the DevOps and cloud stack. The ISTQB and LinkedIn Learning credentials sit underneath — older but load-bearing for the QA roots of the career arc.
+      </p>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-page px-8 section-divider"></div>
+
+  {ordered.map((groupKey) => {
+    const group = groups[groupKey];
+    return (
+      <section>
+        <div class="mx-auto max-w-page px-8 py-section-tight">
+          <div class="section-label flex items-center gap-2">
+            <span class="block w-6 h-px bg-accent"></span>
+            <span class="mono-label">{group.label.toLowerCase()}</span>
+          </div>
+          <div class="mt-6 grid gap-3 md:grid-cols-2 lg:grid-cols-3">
+            {group.items.map((c) => {
+              const Tag = c.file ? 'a' : 'div';
+              const href = c.file ? `/certificates/${encodeURI(c.file)}` : undefined;
+              const props = c.file ? { href, target: '_blank', rel: 'noopener' } : {};
+              return (
+                <Tag {...props} class="card p-5 group flex flex-col justify-between transition-colors hover:border-border">
+                  <div>
+                    <span class="mono-label">{c.issuer}</span>
+                    <h3 class="mt-3 text-card text-text-primary leading-snug">{c.title}</h3>
+                  </div>
+                  <div class="mt-5 flex items-center justify-between">
+                    <span class="font-mono text-mono-meta uppercase tracking-wide text-text-tertiary">{c.year}</span>
+                    {c.file ? (
+                      <span class="inline-flex items-center gap-1.5 font-mono text-mono-meta uppercase tracking-wide text-text-tertiary group-hover:text-accent transition-colors">
+                        view pdf <span aria-hidden="true">↗</span>
+                      </span>
+                    ) : (
+                      <span class="font-mono text-mono-meta uppercase tracking-wide text-text-tertiary">credential on file</span>
+                    )}
+                  </div>
+                </Tag>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    );
+  })}
+</Base>

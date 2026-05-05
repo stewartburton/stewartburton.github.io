@@ -5,7 +5,7 @@ status: "Live in production"
 order: 5
 role: "Designer and builder"
 summary: "A policy-compatible assistant that brings wiki and issue-tracker search into VS Code and a CLI - using direct REST APIs and per-user credentials, working within the constraints that blocked the standard MCP path."
-stack: ["TypeScript", "Python", "Atlassian REST APIs", "VS Code Extension API", "Codex skill"]
+stack: ["TypeScript", "Python", "Atlassian REST APIs", "JIRA Cloud + Server", "VS Code Extension API", "Codex skill"]
 liveUrl: null
 repoUrl: null
 why: "Most enterprise AI projects die when they hit policy. The interesting work isn't the integration - it's finding the path through. A read-only, per-user-token, REST-based assistant gets you 90% of the value of MCP integration with zero of the platform exception process."
@@ -45,6 +45,12 @@ flowchart TD
 - **Activity questions.** "What did this user touch in the last week" across wiki and issue tracker.
 - **One-click installers.** Windows and macOS installers that handle token entry, secret storage, and VS Code extension registration in a single flow.
 - **No server.** The assistant is entirely client-side. There's no shared backend to compromise, no service credential to rotate, and no platform exception to chase.
+
+## Beyond read-only: JIRA task and epic automation
+
+The same REST integration powers a separate *write* workflow for JIRA: fully-automated creation of tasks and epics from templates, programmatic transitions between statuses, parent/child linking, and bulk updates across saved filters. No prepare/confirm gate - once the trigger fires, the workflow runs end-to-end.
+
+This is what turns "an assistant for searching" into "an assistant for getting work moved through the board." Standing up a sprint's worth of stories from a planning template, retitling and reassigning a batch of tickets after a re-org, or transitioning every ticket linked to a release - all things that previously took an afternoon of clicking - become a single structured call.
 
 ## Outcome
 

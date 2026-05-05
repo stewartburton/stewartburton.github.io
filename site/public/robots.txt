@@ -1,0 +1,32 @@
+# robots.txt for www.stewart-burton.com
+
+# Allow all good search engines
+User-agent: *
+Disallow:
+
+# Block OpenAI's GPTBot
+User-agent: GPTBot
+Disallow: /
+
+# Block Common Crawl bot
+User-agent: CCBot
+Disallow: /
+
+# Block Amazonbot
+User-agent: Amazonbot
+Disallow: /
+
+# Block Claude.ai (AnthropicBot)
+User-agent: anthropic-ai
+Disallow: /
+
+# Block any generic AI scrapers (optional, safer)
+User-agent: ai-crawler
+Disallow: /
+
+# Optional: Block SemrushBot (SEO scraping bots)
+User-agent: SemrushBot
+Disallow: /
+
+# Sitemap (optional if you create one later)
+Sitemap: https://www.stewart-burton.com/sitemap.xml
