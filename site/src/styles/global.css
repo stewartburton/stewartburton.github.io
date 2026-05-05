@@ -30,7 +30,7 @@
     text-decoration: none;
   }
 
-  /* hairline borders — 0.5px is the design-system rule, never 1px+ */
+  /* hairline borders - 0.5px is the design-system rule, never 1px+ */
   .border-hairline {
     border-width: 0.5px;
   }

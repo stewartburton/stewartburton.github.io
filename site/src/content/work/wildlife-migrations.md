@@ -8,7 +8,7 @@ summary: "A dark-mode-first visualisation of large-scale animal movement data. C
 stack: ["D3", "Astro", "Cloudflare Pages"]
 liveUrl: null
 repoUrl: null
-why: "Data visualisation is its own discipline. Building one from scratch is the cheapest way to keep the chops fresh — and it's a reminder that good visual work is mostly subtraction."
+why: "Data visualisation is its own discipline. Building one from scratch is the cheapest way to keep the chops fresh - and it's a reminder that good visual work is mostly subtraction."
 ---
 
 ## What it is

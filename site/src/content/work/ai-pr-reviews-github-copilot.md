@@ -4,11 +4,11 @@ category: "enterprise"
 status: "Live in production"
 order: 2
 role: "Designer, builder, and rollout owner"
-summary: "A repeatable rollout tool that audits repositories, generates repo-specific Copilot instructions, opens PRs, configures rulesets, and tracks adoption — turning what would be hundreds of manual setups into a governed batch workflow."
+summary: "A repeatable rollout tool that audits repositories, generates repo-specific Copilot instructions, opens PRs, configures rulesets, and tracks adoption - turning what would be hundreds of manual setups into a governed batch workflow."
 stack: ["Python", "GitHub APIs", "GitHub Copilot", "Rulesets", "GitHub Actions"]
 liveUrl: null
 repoUrl: null
-why: "GitHub Copilot's built-in PR review is generic out of the box. The work that makes it useful — repo-specific instructions tuned to each codebase's conventions and risk surface — is exactly the work that doesn't scale by hand. This is the tooling that does."
+why: "GitHub Copilot's built-in PR review is generic out of the box. The work that makes it useful - repo-specific instructions tuned to each codebase's conventions and risk surface - is exactly the work that doesn't scale by hand. This is the tooling that does."
 ---
 
 ## The problem
@@ -17,7 +17,7 @@ GitHub Copilot can review PRs, but the quality is generic unless each repository
 
 ## The approach
 
-Treat the rollout itself as a product. Audit each repo, generate a tailored instructions file from real signal (recent PRs, review comments, file tree, config files), put it through a second AI critique pass for quality, then open a PR for human approval. After merge, configure the Copilot ruleset and notify the team. Track which repositories are onboarded, which are pending, and which are skipped — and report it.
+Treat the rollout itself as a product. Audit each repo, generate a tailored instructions file from real signal (recent PRs, review comments, file tree, config files), put it through a second AI critique pass for quality, then open a PR for human approval. After merge, configure the Copilot ruleset and notify the team. Track which repositories are onboarded, which are pending, and which are skipped - and report it.
 
 ## How it works
 
@@ -50,7 +50,7 @@ flowchart TD
 
 ## Impact
 
-Manual setup ran 30–75 minutes per repository — repository inspection, instruction drafting, branching, PR creation, ruleset configuration, team notification. Across hundreds of repositories that's a multi-hundred-hour rollout. The tooling collapses the per-repo cost to minutes of human review time, and the adoption tracker means leadership knows what's onboarded without anyone having to assemble that picture by hand.
+Manual setup ran 30–75 minutes per repository - repository inspection, instruction drafting, branching, PR creation, ruleset configuration, team notification. Across hundreds of repositories that's a multi-hundred-hour rollout. The tooling collapses the per-repo cost to minutes of human review time, and the adoption tracker means leadership knows what's onboarded without anyone having to assemble that picture by hand.
 
 ## What I'd do next
 

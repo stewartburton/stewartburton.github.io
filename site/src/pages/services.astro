@@ -5,30 +5,38 @@ import SectionLabel from '../components/SectionLabel.astro';
 const services = [
   {
     n: '01',
+    title: 'Quality engineering & test automation',
+    body:
+      'Built on a career as an SDET and senior software quality analyst before I moved into DevOps. Quality belongs in the SDLC, not bolted on at the end - which means test strategy that fits the pipeline, fast feedback gates that actually catch regressions, and device/browser coverage that holds up under release pressure. I use Playwright for web, Maestro for mobile, and pytest / Vitest / Jest where each makes sense - then I wire it all into the build so the green tick means something. Real examples in production: end-to-end Playwright suites and CI gates on Frenchie Trivia and izwi.',
+    deliverables: ['Test strategy + pyramid', 'Playwright + Maestro suites', 'CI/CD quality gates', 'Coverage + flake reporting'],
+  },
+  {
+    n: '02',
     title: 'AI PR review rollout',
     body:
       'Help your engineering org ship AI PR review the way it should be shipped: schema-validated output, severity gating, advisory-to-enforced rollout, kill-switch controls, and per-review cost telemetry. I have done this at hundreds of repositories of scale.',
     deliverables: ['Rollout playbook', 'Reviewer pipeline', 'Telemetry + reporting layer', 'Branch policy mapping'],
   },
   {
-    n: '02',
+    n: '03',
     title: 'AI tooling for DevOps support',
     body:
       'Audit the operational drag in your support team and turn it into tooling. Toolkits, chat participants, and structured intakes that make the team faster without removing humans from the loop.',
     deliverables: ['Workflow audit', 'CLI / API design', 'Chat-participant prototype', 'Adoption tracker'],
-  },
-  {
-    n: '03',
-    title: 'Migration platforms',
-    body:
-      'Production-grade migration tooling — Azure DevOps to GitHub, or similar version-control or CI migrations. Idempotent, auditable, reversible. Built around the parts of migration that demos skip.',
-    deliverables: ['Inventory + freeze plan', 'Migration runner', 'Parity validation', 'Audit report'],
+    worksIn: ['ArgoCD', 'OpenShift / oc', 'Kafka', 'Confluence / Jira', 'GitHub', 'Azure DevOps'],
   },
   {
     n: '04',
+    title: 'Migration platforms',
+    body:
+      'Production-grade migration tooling - Azure DevOps to GitHub, or similar version-control or CI migrations. Idempotent, auditable, reversible. Built around the parts of migration that demos skip - including parity validation, which is a quality discipline as much as it is a migration one.',
+    deliverables: ['Inventory + freeze plan', 'Migration runner', 'Parity validation', 'Audit report'],
+  },
+  {
+    n: '05',
     title: 'AI product engineering',
     body:
-      'Solo or with a small team — design, build, and ship a Claude-powered product. Edge architecture, prompt caching, billing integration, store deployment. The hardening that takes a demo to a live app with real users.',
+      'Solo or with a small team - design, build, and ship an AI-powered product on the right model for the job (Anthropic, OpenAI, Google, ElevenLabs, or open-weights). Edge architecture, prompt caching, billing integration, store deployment, and the test automation that takes a demo to a live app with real users.',
     deliverables: ['Architecture decision', 'Edge worker', 'Mobile / web client', 'Production telemetry'],
   },
 ];
@@ -39,10 +47,10 @@ const services = [
     <div class="mx-auto max-w-page px-8 py-section">
       <SectionLabel label="services" />
       <h1 class="mt-6 text-page-h1 text-text-primary max-w-prose">
-        Four ways I help teams. <span class="text-accent">Each one shipped before, not theorised.</span>
+        What I bring to an engineering team. <span class="text-accent">Each capability shipped before, not theorised.</span>
       </h1>
       <p class="mt-6 max-w-prose text-body text-text-secondary">
-        Engagements are scoped to outcomes, not hours. The fastest way to know if there's a fit is a 30-minute call — bring a real problem, leave with a concrete next step.
+        I'm looking for a <span class="text-text-primary">full-time role</span> - permanent, in South Africa, hybrid, or fully remote (UK timezone-friendly with a British passport). The five areas below are the work I'd be hitting the ground running on. They're capabilities I'd plug into a team, not a contractor menu.
       </p>
     </div>
   </section>
@@ -67,6 +75,21 @@ const services = [
                 ))}
               </ul>
             </div>
+            {s.worksIn && (
+              <div class="mt-6">
+                <span class="mono-label">works in</span>
+                <ul class="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1">
+                  {s.worksIn.map((w, idx, arr) => (
+                    <li class="flex items-center gap-2">
+                      <span class="stack-chip">{w}</span>
+                      {idx < arr.length - 1 && (
+                        <span class="text-accent text-mono-meta" aria-hidden="true">·</span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </article>
         ))}
       </div>
@@ -77,16 +100,16 @@ const services = [
 
   <section>
     <div class="mx-auto max-w-page px-8 py-section grid md:grid-cols-[200px_1fr] gap-x-10 gap-y-6">
-      <SectionLabel label="next" />
+      <SectionLabel label="for hiring teams" />
       <div class="max-w-prose">
         <p class="text-body-lead text-text-body">
-          If any of the four sound like the shape of your problem, the next step is a 30-minute call. Bring the actual context — repo count, team size, where the rollout has stalled — and I'll come with concrete options.
+          If your team has a role that overlaps any of these areas - or the brief doesn't fit a neat box - I'd like to hear from you. Roles I'm interested in: AI engineer / AI specialist, senior DevOps, platform engineering, or hybrids that combine them - the kind of seat where AI ships alongside the discipline that makes delivery robust. Permanent only.
         </p>
         <a
           href="/contact"
           class="mt-10 inline-flex items-center gap-2 px-5 py-3 rounded-chip bg-accent text-accent-on-dark font-mono text-mono-label uppercase tracking-wider hover:opacity-90 transition-opacity"
         >
-          Book a call <span aria-hidden="true">→</span>
+          Get in touch <span aria-hidden="true">→</span>
         </a>
       </div>
     </div>

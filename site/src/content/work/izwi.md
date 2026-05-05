@@ -8,12 +8,12 @@ summary: "A small, opinionated language tool for South African languages. Where 
 stack: ["Astro", "Claude API", "Cloudflare Pages"]
 liveUrl: null
 repoUrl: null
-why: "Language tooling for South African languages is thin on the ground. izwi is a deliberate exercise in shipping something useful even when the corpus is small — and being honest about where the model can't help."
+why: "Language tooling for South African languages is thin on the ground. izwi is a deliberate exercise in shipping something useful even when the corpus is small - and being honest about where the model can't help."
 ---
 
 ## What it is
 
-A small web tool for translating, defining, and exploring South African languages. It's a personal project — not a product line — but it's live and used by friends and family.
+A small web tool for translating, defining, and exploring South African languages. It's a personal project - not a product line - but it's live and used by friends and family.
 
 ## How it works
 

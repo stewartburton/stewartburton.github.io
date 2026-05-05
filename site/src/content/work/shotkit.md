@@ -4,16 +4,16 @@ category: "product"
 status: "Live · iOS, Android"
 order: 3
 role: "Solo founder, designer, and engineer"
-summary: "A photo-craft companion app powered by Claude — composition, lighting, and gear hints based on what the camera is actually seeing right now."
+summary: "A photo-craft companion app powered by Claude - composition, lighting, and gear hints based on what the camera is actually seeing right now."
 stack: ["React Native", "Claude API", "Cloudflare Workers"]
 liveUrl: null
 repoUrl: null
-why: "Most photo-AI apps generate the photo. ShotKit helps the photographer make it. The product distinction is small but the design implications are not — it changes what the model is allowed to do."
+why: "Most photo-AI apps generate the photo. ShotKit helps the photographer make it. The product distinction is small but the design implications are not - it changes what the model is allowed to do."
 ---
 
 ## What it is
 
-A pocket assistant for amateur photographers. The phone reads the scene, sends the relevant context to Claude, and gets back composition and lighting hints — framed as suggestions, not autopilot.
+A pocket assistant for amateur photographers. The phone reads the scene, sends the relevant context to Claude, and gets back composition and lighting hints - framed as suggestions, not autopilot.
 
 ## How it works
 

@@ -4,16 +4,16 @@ category: "enterprise"
 status: "Live in production"
 order: 3
 role: "Designer and primary maintainer"
-summary: "A unified support toolkit (CLI + REST API) that consolidates health checks, log analysis, deployment diagnostics, runbook search, and safe cleanup behind one interface — so engineers stop hopping between five tools to answer one question."
+summary: "A unified support toolkit (CLI + REST API) that consolidates health checks, log analysis, deployment diagnostics, runbook search, and safe cleanup behind one interface - so engineers stop hopping between five tools to answer one question."
 stack: ["Python", "FastAPI", "PowerShell", "Container platform CLI", "GitOps APIs", "Search APIs"]
 liveUrl: null
 repoUrl: null
-why: "Most operational drag isn't dramatic — it's the steady tax of context-switching between five tools to answer one question. A toolkit that puts those checks behind one CLI and one API is how you turn senior tribal knowledge into something the rest of the team can actually use."
+why: "Most operational drag isn't dramatic - it's the steady tax of context-switching between five tools to answer one question. A toolkit that puts those checks behind one CLI and one API is how you turn senior tribal knowledge into something the rest of the team can actually use."
 ---
 
 ## The problem
 
-A typical support pass meant moving through monitoring portals, server SSH sessions, deployment dashboards, search platforms, runbook wikis, and container CLIs — once for each question. The process was slow, inconsistent, dependent on engineer experience, and brittle when the senior engineer was off. There was also no audit trail for the maintenance actions that did get taken.
+A typical support pass meant moving through monitoring portals, server SSH sessions, deployment dashboards, search platforms, runbook wikis, and container CLIs - once for each question. The process was slow, inconsistent, dependent on engineer experience, and brittle when the senior engineer was off. There was also no audit trail for the maintenance actions that did get taken.
 
 ## The approach
 
@@ -46,9 +46,9 @@ flowchart TD
 
 ## What I built
 
-- **Shared command modules.** Health checks, log/index operations, deployment status, container diagnostics, and knowledge search — each with structured output the CLI and API both consume.
+- **Shared command modules.** Health checks, log/index operations, deployment status, container diagnostics, and knowledge search - each with structured output the CLI and API both consume.
 - **Interactive menu mode.** For engineers who'd rather pick than type, the CLI offers a discoverable menu, then prints the equivalent command for next time.
-- **Triage suggestions.** After a health check, the toolkit suggests follow-up commands based on detected symptoms — turning a single check into a guided incident path.
+- **Triage suggestions.** After a health check, the toolkit suggests follow-up commands based on detected symptoms - turning a single check into a guided incident path.
 - **Safe-by-default cleanups.** Dry-run is the default for every destructive command. Live execution requires an explicit flag and writes to the audit log.
 - **REST API parity.** Every CLI workflow has a matching API endpoint, so chat assistants and tooling can call the same backend without re-implementing logic.
 

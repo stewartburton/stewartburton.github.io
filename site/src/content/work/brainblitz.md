@@ -4,11 +4,11 @@ category: "product"
 status: "Live · web"
 order: 8
 role: "Solo builder"
-summary: "A small mental-arithmetic trainer with a deliberately spartan UI — no streaks, no leaderboards, no rewards. Just the practice loop, fast and minimal."
+summary: "A small mental-arithmetic trainer with a deliberately spartan UI - no streaks, no leaderboards, no rewards. Just the practice loop, fast and minimal."
 stack: ["Vite", "TypeScript", "Cloudflare Pages"]
 liveUrl: null
 repoUrl: null
-why: "Most learning apps are gamification with practice as a side effect. Brainblitz is the inverse — strip the gamification and the practice loop is what's left. A small but useful design point."
+why: "Most learning apps are gamification with practice as a side effect. Brainblitz is the inverse - strip the gamification and the practice loop is what's left. A small but useful design point."
 ---
 
 ## What it is

@@ -13,13 +13,13 @@ why: "Most teams trying to deploy AI in their engineering workflow get stuck on 
 
 ## The problem
 
-Pull request reviews were inconsistent. Reviewer load was uneven, security and standards drift slipped through to merge, and there was no signal that the team's review bar was actually being applied uniformly across the estate. AI review was the obvious lever — but every prior attempt had stalled on the same three problems: unstructured model output that couldn't be enforced, no path from "running in advisory" to "blocking the merge," and no story for cost or kill-switching when something went wrong.
+Pull request reviews were inconsistent. Reviewer load was uneven, security and standards drift slipped through to merge, and there was no signal that the team's review bar was actually being applied uniformly across the estate. AI review was the obvious lever - but every prior attempt had stalled on the same three problems: unstructured model output that couldn't be enforced, no path from "running in advisory" to "blocking the merge," and no story for cost or kill-switching when something went wrong.
 
 ## The approach
 
 Treat AI review as a **build-pipeline citizen**, not a magic chat client. Run it during PR validation. Make the model produce **schema-validated JSON** rather than prose. Classify findings by severity and let branch policy decide whether each severity blocks. Ship it in advisory mode first, instrument it heavily, and only then flip on enforcement repository by repository.
 
-The single design choice that mattered most was the schema. Once the model is forced to emit a structured object with severity, file path, line range, and rationale, every other governance feature — gating, dedup, telemetry, kill-switch — becomes a small layer on top of normal pipeline plumbing.
+The single design choice that mattered most was the schema. Once the model is forced to emit a structured object with severity, file path, line range, and rationale, every other governance feature - gating, dedup, telemetry, kill-switch - becomes a small layer on top of normal pipeline plumbing.
 
 ## How it works
 
@@ -46,7 +46,7 @@ sequenceDiagram
 ## What I built
 
 - **Diff extractor and prompt assembler.** Pulls the unified diff from the PR, attaches the team's review standards, and constructs a deterministic prompt with explicit severity rubrics.
-- **Schema-validated reviewer.** JSON Schema validation on every model response. Findings that don't match the schema are silently dropped rather than posted — model hallucinations never leak to the PR.
+- **Schema-validated reviewer.** JSON Schema validation on every model response. Findings that don't match the schema are silently dropped rather than posted - model hallucinations never leak to the PR.
 - **Heuristic fallback.** When credentials or quotas are unavailable, a deterministic linter-shaped fallback runs in place of the model so the pipeline behaves predictably.
 - **Severity-aware posting.** Summary comment with overall risk, plus inline file comments for actionable findings. Critical and high findings can be wired to fail the build via branch policy; advisory findings always post but don't block.
 - **Cost and usage telemetry.** Every run writes a metrics artifact: token counts, model used, finding distribution, repo and PR identifiers (sanitised). These roll up into a central store for management reporting.

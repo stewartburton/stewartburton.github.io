@@ -4,16 +4,16 @@ category: "enterprise"
 status: "Live in production"
 order: 6
 role: "Designer and builder"
-summary: "A request-to-PR workflow that turns a structured wiki request into validated Kafka topic and connector YAML — with duplicate detection, secret-reference checks, and environment validation before anything reaches a pull request."
+summary: "A request-to-PR workflow that turns a structured wiki request into validated Kafka topic and connector YAML - with duplicate detection, secret-reference checks, and environment validation before anything reaches a pull request."
 stack: ["Python", "Kafka", "GitOps", "YAML", "Wiki templates", "Vault references"]
 liveUrl: null
 repoUrl: null
-why: "Kafka onboarding is the kind of work that looks low-stakes until a malformed YAML lands in production. The fix isn't to write a smarter linter — it's to redesign the intake so the request is structured before anyone touches the infrastructure code."
+why: "Kafka onboarding is the kind of work that looks low-stakes until a malformed YAML lands in production. The fix isn't to write a smarter linter - it's to redesign the intake so the request is structured before anyone touches the infrastructure code."
 ---
 
 ## The problem
 
-Kafka topic and connector deployments required engineers to translate developer requests into infrastructure YAML by hand. The process was vulnerable to formatting mistakes, duplicate topics, inconsistent environment values, and missing secret references. Every step was manual, and validation only happened during the PR review — by which point a malformed request had already become a malformed YAML file.
+Kafka topic and connector deployments required engineers to translate developer requests into infrastructure YAML by hand. The process was vulnerable to formatting mistakes, duplicate topics, inconsistent environment values, and missing secret references. Every step was manual, and validation only happened during the PR review - by which point a malformed request had already become a malformed YAML file.
 
 ## The approach
 
@@ -47,8 +47,8 @@ flowchart TD
 - **Vault reference checker.** Confirms secret references resolve in the target environment without ever fetching the secret itself.
 - **Duplicate detection with normalisation.** Catches topic redefinitions even when the YAML uses different formatting or value casing.
 - **Diff preview.** Shows the engineer the exact infrastructure change before a PR is opened, so review is reading a diff, not reverse-engineering a request.
-- **Manual AI fallback.** When the API path is unavailable, the tool prints a curated prompt the engineer can paste into a chat client — same workflow, different transport.
+- **Manual AI fallback.** When the API path is unavailable, the tool prints a curated prompt the engineer can paste into a chat client - same workflow, different transport.
 
 ## Outcome
 
-A typical Kafka request that previously required 30–90 minutes of manual interpretation, validation, YAML drafting, and secret checking is now a structured intake that produces a reviewable diff in minutes. The defects that used to surface in production — duplicate topics, missing secret refs, wrong environment values — are caught at intake time. GitOps still owns deployment; this tool just makes sure GitOps gets a clean PR.
+A typical Kafka request that previously required 30–90 minutes of manual interpretation, validation, YAML drafting, and secret checking is now a structured intake that produces a reviewable diff in minutes. The defects that used to surface in production - duplicate topics, missing secret refs, wrong environment values - are caught at intake time. GitOps still owns deployment; this tool just makes sure GitOps gets a clean PR.

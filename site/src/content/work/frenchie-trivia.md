@@ -4,11 +4,11 @@ category: "product"
 status: "Live · web"
 order: 5
 role: "Solo builder"
-summary: "A small trivia game built end-to-end. Light project, real production hosting — the kind of thing that keeps the shipping muscle warm."
+summary: "A small trivia game built end-to-end. Light project, real production hosting - the kind of thing that keeps the shipping muscle warm."
 stack: ["Vite", "TypeScript", "Cloudflare Pages"]
 liveUrl: null
 repoUrl: null
-why: "Side projects that ship are how you stay sharp on the parts of web work that don't show up in enterprise infrastructure. Frenchie Trivia is a personal-scale exercise in the full stack — design, build, deploy, iterate."
+why: "Side projects that ship are how you stay sharp on the parts of web work that don't show up in enterprise infrastructure. Frenchie Trivia is a personal-scale exercise in the full stack - design, build, deploy, iterate."
 ---
 
 ## What it is
@@ -25,7 +25,7 @@ flowchart LR
 
 ## Why it's here
 
-The portfolio isn't only enterprise work. Personal-scale projects keep the frontend muscle warm — type discipline, build tooling, accessibility, deploy automation — and they're a useful counterweight to platform engineering, which tends not to ship visual things.
+The portfolio isn't only enterprise work. Personal-scale projects keep the frontend muscle warm - type discipline, build tooling, accessibility, deploy automation - and they're a useful counterweight to platform engineering, which tends not to ship visual things.
 
 ## Status
 
