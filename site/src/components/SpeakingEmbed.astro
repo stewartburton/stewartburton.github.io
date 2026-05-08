@@ -1,0 +1,69 @@
+---
+interface Talk {
+  id: string;
+  title: string;
+  series: string;
+  episode: number;
+  date: string;
+  duration: string;
+  publisher: string;
+  url: string;
+  thumbnail: string;
+  summary: string;
+}
+
+interface Props {
+  talk: Talk;
+}
+
+const { talk } = Astro.props;
+
+const monthLong = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+const [year, month] = talk.date.split('-');
+const dateLabel = `${monthLong[Number(month) - 1]} ${year}`;
+
+const caption = `${talk.series} · Episode ${talk.episode} · ${dateLabel} · ${talk.duration}`;
+const altText = `${talk.series} Episode ${talk.episode} - ${talk.title}`;
+const linkLabel = `Watch ${talk.series} Episode ${talk.episode} on YouTube (opens in new tab)`;
+---
+
+<figure class="m-0">
+  <a
+    href={talk.url}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label={linkLabel}
+    class="group relative block overflow-hidden rounded-chip border border-hairline border-border-subtle"
+  >
+    <img
+      src={talk.thumbnail}
+      alt={altText}
+      width="1280"
+      height="720"
+      loading="lazy"
+      class="w-full h-auto block transition-transform duration-300 group-hover:scale-[1.02]"
+    />
+    <span
+      aria-hidden="true"
+      class="absolute inset-0 pointer-events-none"
+      style="background: linear-gradient(180deg, rgba(10,10,10,0) 0%, rgba(10,10,10,0.45) 100%);"
+    ></span>
+    <span aria-hidden="true" class="absolute inset-0 flex items-center justify-center">
+      <span class="flex items-center justify-center w-14 h-14 rounded-full border border-hairline border-accent transition-colors" style="background: rgba(10,10,10,0.7);">
+        <svg
+          width="20"
+          height="20"
+          viewBox="0 0 20 20"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          class="text-accent ml-1"
+        >
+          <path d="M5 3.5L17 10L5 16.5V3.5Z" fill="currentColor" />
+        </svg>
+      </span>
+    </span>
+  </a>
+  <figcaption class="mt-3 font-mono text-mono-meta uppercase tracking-wide text-text-tertiary text-center">
+    {caption}
+  </figcaption>
+</figure>
