@@ -1,0 +1,14 @@
+[
+  {
+    "id": "bet-masterclass-ep3",
+    "title": "System Resilience: Engineering for Reliability",
+    "series": "BET Masterclass",
+    "episode": 3,
+    "date": "2026-02",
+    "duration": "~20 min",
+    "publisher": "BET Software",
+    "url": "https://youtu.be/s-2zqj-2OOA",
+    "thumbnail": "/assets/bet-masterclass-ep3-thumbnail.jpg",
+    "summary": "Practical approaches to designing systems that remain reliable under pressure - incident response, observability, and using AI to manage incidents calmly."
+  }
+]
