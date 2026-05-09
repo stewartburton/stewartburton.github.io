@@ -57,7 +57,7 @@ The repo also holds the multi-page CV and the single-page recruiter handout - bo
 │   │   ├── pages/work/[...slug].astro   # case-study template
 │   │   ├── content/work/                # 16 case studies (Markdown + frontmatter)
 │   │   ├── content/config.ts            # collection schema
-│   │   ├── components/                  # TopNav · Footer · SectionLabel · StackChips · MermaidEnhancer · WorkCard
+│   │   ├── components/                  # TopNav · Footer · SectionLabel · StackChips · MermaidEnhancer · WorkCard · SpeakingCard · SpeakingEmbed
 │   │   ├── layouts/Base.astro
 │   │   └── styles/global.css
 │   ├── public/                          # served at site root
