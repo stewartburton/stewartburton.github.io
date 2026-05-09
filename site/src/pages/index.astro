@@ -2,6 +2,8 @@
 import Base from '../layouts/Base.astro';
 import SectionLabel from '../components/SectionLabel.astro';
 import StackChips from '../components/StackChips.astro';
+import SpeakingCard from '../components/SpeakingCard.astro';
+import speaking from '../data/speaking.json';
 
 const pillars = [
   {
@@ -220,6 +222,23 @@ const alsoBuilding = [
           {featured.product.indicator} <span aria-hidden="true">↗</span>
         </span>
       </a>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-page px-8 section-divider"></div>
+
+  <!-- Speaking -->
+  <section>
+    <div class="mx-auto max-w-page px-8 py-section">
+      <SectionLabel label="speaking" />
+      <h2 class="mt-4 text-h2 text-text-primary">On record.</h2>
+      <p class="mt-3 max-w-prose text-body text-text-secondary">
+        Published technical talk on system resilience and the operational philosophy underneath the AI tooling.
+      </p>
+
+      <div class="mt-10">
+        <SpeakingCard talk={speaking[0]} />
+      </div>
     </div>
   </section>
 

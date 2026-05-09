@@ -1,6 +1,8 @@
 ---
 import Base from '../layouts/Base.astro';
 import SectionLabel from '../components/SectionLabel.astro';
+import SpeakingEmbed from '../components/SpeakingEmbed.astro';
+import speaking from '../data/speaking.json';
 ---
 
 <Base title="About" current="about">
@@ -31,6 +33,22 @@ import SectionLabel from '../components/SectionLabel.astro';
         <p>
           The career arc is the story behind the work: <a href="https://www.linkedin.com/in/stewart-burton/" rel="me noopener">full history on LinkedIn</a>. The QA and DevOps fundamentals are why the AI work runs in production, not just in demos.
         </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-page px-8 section-divider"></div>
+
+  <section>
+    <div class="mx-auto max-w-page px-8 py-section grid md:grid-cols-[200px_1fr] gap-x-10 gap-y-6">
+      <SectionLabel label="speaking" />
+      <div class="max-w-prose body-prose text-body-lead text-text-body">
+        <p>
+          In early 2026 I delivered a masterclass on system resilience for BET Software's published masterclass series. The talk covered incident response, observability, eliminating single points of failure, and using AI to manage incidents calmly under pressure - the operational philosophy underneath most of the tooling featured on this site.
+        </p>
+        <div class="mt-8">
+          <SpeakingEmbed talk={speaking[0]} />
+        </div>
       </div>
     </div>
   </section>

@@ -1,0 +1,63 @@
+---
+interface Talk {
+  id: string;
+  title: string;
+  series: string;
+  episode: number;
+  date: string;
+  duration: string;
+  publisher: string;
+  url: string;
+  thumbnail: string;
+  summary: string;
+}
+
+interface Props {
+  talk: Talk;
+}
+
+const { talk } = Astro.props;
+
+const episodeLabel = String(talk.episode).padStart(2, '0');
+
+const monthShort = ['jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec'];
+const [year, month] = talk.date.split('-');
+const dateLabel = `${monthShort[Number(month) - 1]} ${year}`;
+
+const eyebrow = `${talk.series.toLowerCase()} · ep ${episodeLabel} · ${dateLabel}`;
+const altText = `${talk.series} Episode ${talk.episode} - ${talk.title}`;
+const linkLabel = `Watch ${talk.series} Episode ${talk.episode} on YouTube (opens in new tab)`;
+---
+
+<a
+  href={talk.url}
+  target="_blank"
+  rel="noopener noreferrer"
+  aria-label={linkLabel}
+  class="card-elevated p-8 group grid md:grid-cols-[minmax(0,40%)_1fr] gap-x-10 gap-y-6 items-center transition-colors hover:border-border"
+>
+  <div class="relative overflow-hidden rounded-chip">
+    <img
+      src={talk.thumbnail}
+      alt={altText}
+      width="1280"
+      height="720"
+      loading="lazy"
+      class="w-full h-auto block"
+    />
+    <span
+      aria-hidden="true"
+      class="absolute inset-0 pointer-events-none"
+      style="background: linear-gradient(180deg, rgba(10,10,10,0) 0%, rgba(10,10,10,0.4) 100%);"
+    ></span>
+  </div>
+
+  <div>
+    <span class="font-mono text-mono-label uppercase tracking-wider text-accent">{eyebrow}</span>
+    <h3 class="mt-4 text-card-lead text-text-primary">{talk.title}</h3>
+    <p class="mt-3 text-card-body text-text-secondary max-w-prose">{talk.summary}</p>
+    <span class="inline-flex items-center gap-2 mt-6 font-mono text-mono-label uppercase tracking-wider text-text-primary group-hover:text-accent transition-colors">
+      watch on youtube <span class="text-accent" aria-hidden="true">↗</span>
+    </span>
+  </div>
+</a>
