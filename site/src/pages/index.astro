@@ -3,7 +3,11 @@ import Base from '../layouts/Base.astro';
 import SectionLabel from '../components/SectionLabel.astro';
 import StackChips from '../components/StackChips.astro';
 import SpeakingCard from '../components/SpeakingCard.astro';
+import Endorsement from '../components/Endorsement.astro';
 import speaking from '../data/speaking.json';
+import endorsements from '../data/endorsements.json';
+
+const prEndorsement = endorsements['ai-pr-reviews-azure-devops'];
 
 const pillars = [
   {
@@ -222,6 +226,21 @@ const alsoBuilding = [
           {featured.product.indicator} <span aria-hidden="true">↗</span>
         </span>
       </a>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-page px-8 section-divider"></div>
+
+  <!-- Endorsement pull-quote -->
+  <section>
+    <div class="mx-auto max-w-page px-8 py-section">
+      <Endorsement
+        variant="pull"
+        quotes={prEndorsement.quotes}
+        pullQuote={prEndorsement.pullQuote}
+        attribution={prEndorsement.attribution}
+        href="/work/ai-pr-reviews-azure-devops"
+      />
     </div>
   </section>
 

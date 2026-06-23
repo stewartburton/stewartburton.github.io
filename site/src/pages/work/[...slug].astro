@@ -4,6 +4,8 @@ import Base from '../../layouts/Base.astro';
 import SectionLabel from '../../components/SectionLabel.astro';
 import StackChips from '../../components/StackChips.astro';
 import MermaidEnhancer from '../../components/MermaidEnhancer.astro';
+import Endorsement from '../../components/Endorsement.astro';
+import endorsements from '../../data/endorsements.json';
 
 export async function getStaticPaths() {
   const entries = await getCollection('work');
@@ -34,6 +36,10 @@ interface Props {
 const { entry, next } = Astro.props;
 const { Content } = await entry.render();
 const data = entry.data;
+
+const endorsement = (endorsements as Record<string, any>)[entry.slug];
+const endorsementFull = endorsement && Array.isArray(endorsement.quotes) ? endorsement : null;
+const endorsementPointer = endorsement && endorsement.pointer ? endorsement : null;
 
 const sectionLabel =
   data.category === 'enterprise'
@@ -122,6 +128,35 @@ const breadcrumbSection =
         )}
       </div>
     </div>
+
+    <!-- Leadership endorsement: full block on the flagship, short pointer on related case studies -->
+    {endorsementFull && (
+      <>
+        <div class="mx-auto max-w-page px-8 section-divider"></div>
+        <section id="endorsement" class="mx-auto max-w-page px-8 py-section scroll-mt-24">
+          <Endorsement variant="full" quotes={endorsementFull.quotes} attribution={endorsementFull.attribution} />
+        </section>
+      </>
+    )}
+    {endorsementPointer && (
+      <>
+        <div class="mx-auto max-w-page px-8 section-divider"></div>
+        <section class="mx-auto max-w-page px-8 py-section">
+          <a
+            href={endorsementPointer.href}
+            class="card-elevated p-6 group flex items-center justify-between gap-6 flex-wrap"
+          >
+            <div class="max-w-prose">
+              <span class="mono-label text-accent">endorsement</span>
+              <p class="mt-3 text-body text-text-body">{endorsementPointer.pointer}</p>
+            </div>
+            <span class="inline-flex items-center gap-2 font-mono text-mono-label uppercase tracking-wider text-text-primary group-hover:text-accent transition-colors">
+              read the endorsement <span class="text-accent" aria-hidden="true">→</span>
+            </span>
+          </a>
+        </section>
+      </>
+    )}
 
     <!-- Next case study pager -->
     {next && (
