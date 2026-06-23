@@ -8,5 +8,9 @@
       "His work has materially improved engineering quality, reduced risk, and ultimately saved the business money by preventing potential outages. Stewart's ownership, innovation, and execution make him a standout contributor and highly deserving of this recognition.",
       "Stewart has masterfully embraced and implemented new technologies into his day-to-day work. His work in particular with regards to AI code reviews have the potential to save large amounts of time when implemented at scale and within budget. We look forward to seeing what else he can achieve when running point on emerging technologies."
     ]
+  },
+  "ai-pr-reviews-github-copilot": {
+    "pointer": "This Copilot rollout is part of the AI PR review programme that engineering leadership formally recognised.",
+    "href": "/work/ai-pr-reviews-azure-devops#endorsement"
   }
 }
