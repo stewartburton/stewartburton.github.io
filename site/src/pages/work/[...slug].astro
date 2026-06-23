@@ -4,6 +4,8 @@ import Base from '../../layouts/Base.astro';
 import SectionLabel from '../../components/SectionLabel.astro';
 import StackChips from '../../components/StackChips.astro';
 import MermaidEnhancer from '../../components/MermaidEnhancer.astro';
+import Endorsement from '../../components/Endorsement.astro';
+import endorsements from '../../data/endorsements.json';
 
 export async function getStaticPaths() {
   const entries = await getCollection('work');
@@ -34,6 +36,8 @@ interface Props {
 const { entry, next } = Astro.props;
 const { Content } = await entry.render();
 const data = entry.data;
+
+const endorsement = (endorsements as Record<string, { attribution: string; quotes: string[] }>)[entry.slug];
 
 const sectionLabel =
   data.category === 'enterprise'
@@ -122,6 +126,16 @@ const breadcrumbSection =
         )}
       </div>
     </div>
+
+    <!-- Leadership endorsement (when present for this case study) -->
+    {endorsement && (
+      <>
+        <div class="mx-auto max-w-page px-8 section-divider"></div>
+        <section class="mx-auto max-w-page px-8 py-section">
+          <Endorsement variant="full" quotes={endorsement.quotes} attribution={endorsement.attribution} />
+        </section>
+      </>
+    )}
 
     <!-- Next case study pager -->
     {next && (

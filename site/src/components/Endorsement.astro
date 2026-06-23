@@ -1,0 +1,50 @@
+---
+interface Props {
+  quotes: string[];
+  attribution: string;
+  variant?: 'full' | 'pull';
+  /** Case-study link, shown only on the pull variant. */
+  href?: string;
+  /** Single line shown on the pull variant; falls back to the first quote. */
+  pullQuote?: string;
+}
+
+const { quotes, attribution, variant = 'full', href, pullQuote } = Astro.props;
+const lead = pullQuote ?? quotes[0];
+---
+
+{variant === 'full' ? (
+  <figure class="rounded-card border border-hairline border-accent/30 bg-accent/5 p-8">
+    <span class="mono-label text-accent">endorsement</span>
+    <div class="mt-6 space-y-6">
+      {quotes.map((q) => (
+        <blockquote class="border-l border-hairline border-accent/40 pl-5 text-body text-text-body max-w-prose">
+          {q}
+        </blockquote>
+      ))}
+    </div>
+    <figcaption class="mt-8 flex items-center gap-3">
+      <span class="accent-rule" aria-hidden="true"></span>
+      <span class="font-mono text-mono-meta uppercase tracking-wide text-text-secondary">{attribution}</span>
+    </figcaption>
+  </figure>
+) : (
+  <figure>
+    <span class="mono-label text-accent">endorsement</span>
+    <blockquote class="mt-6 text-body-lead text-text-body max-w-prose">{lead}</blockquote>
+    <figcaption class="mt-6 flex flex-wrap items-center gap-x-8 gap-y-3">
+      <span class="inline-flex items-center gap-3">
+        <span class="accent-rule" aria-hidden="true"></span>
+        <span class="font-mono text-mono-meta uppercase tracking-wide text-text-secondary">{attribution}</span>
+      </span>
+      {href && (
+        <a
+          href={href}
+          class="font-mono text-mono-label uppercase tracking-wider text-text-primary hover:text-accent transition-colors inline-flex items-center gap-2"
+        >
+          read the case study <span class="text-accent" aria-hidden="true">→</span>
+        </a>
+      )}
+    </figcaption>
+  </figure>
+)}
