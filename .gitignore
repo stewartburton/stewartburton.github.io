@@ -30,3 +30,6 @@ website-rebuild-handoff.md
 *.sw?
 .playwright-mcp/
 .astro/
+
+# Website backups: track the .zip archives + README, ignore the unzipped working folders
+backups/*/
