@@ -1,0 +1,54 @@
+---
+import Base from '../../layouts/Base.astro';
+import SectionLabel from '../../components/SectionLabel.astro';
+---
+
+<Base
+  title="CalmAir"
+  description="CalmAir measures real turbulence with your iPhone's sensors and tells you what it really was - fully offline, no accounts, no data collected."
+>
+  <section>
+    <div class="mx-auto max-w-page px-8 py-section">
+      <SectionLabel label="calmair" />
+      <h1 class="mt-6 text-page-h1 text-text-primary max-w-prose">
+        Turbulence, measured. Fear, shrunk.
+      </h1>
+      <p class="mt-6 text-card-body text-text-secondary max-w-prose">
+        CalmAir is an iOS app for anxious flyers. It uses your iPhone's motion and barometer
+        sensors to measure real turbulence in flight, and reassures you with plain, factual
+        comparisons - "that bump was 0.3g, about the same as braking at a traffic light." It
+        also has guided breathing and a short library of calm explainer cards. It works 100%
+        offline, in flight mode, with no accounts and no network calls, ever.
+      </p>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-page px-8 section-divider"></div>
+
+  <section>
+    <div class="mx-auto max-w-page px-8 py-section grid md:grid-cols-[200px_1fr] gap-x-10 gap-y-10">
+      <SectionLabel label="support" />
+      <div class="grid gap-3 md:grid-cols-2 max-w-3xl">
+        <a href="mailto:stewart@stewart-burton.com?subject=CalmAir%20support" class="card p-6 group">
+          <span class="mono-label">email</span>
+          <p class="mt-3 text-card text-text-primary group-hover:text-accent transition-colors">
+            stewart@stewart-burton.com <span aria-hidden="true">↗</span>
+          </p>
+          <p class="mt-3 text-card-body text-text-secondary">
+            For bugs, questions, or anything about the app. I read every message and reply
+            within a working day.
+          </p>
+        </a>
+        <a href="/calmair/privacy" class="card p-6 group">
+          <span class="mono-label">privacy</span>
+          <p class="mt-3 text-card text-text-primary group-hover:text-accent transition-colors">
+            Privacy policy <span aria-hidden="true">↗</span>
+          </p>
+          <p class="mt-3 text-card-body text-text-secondary">
+            CalmAir collects nothing. Here's exactly what that means.
+          </p>
+        </a>
+      </div>
+    </div>
+  </section>
+</Base>
