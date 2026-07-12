@@ -5,7 +5,7 @@ import SectionLabel from '../../components/SectionLabel.astro';
 
 <Base
   title="CalmAir Privacy Policy"
-  description="CalmAir's privacy policy: the app collects no data, makes no network calls, and everything stays on your device."
+  description="CalmAir's privacy policy: the app collects no data, stores everything on your device, and makes exactly one narrow, optional network request to name your flight's departure and arrival cities."
 >
   <section>
     <div class="mx-auto max-w-page px-8 py-section">
@@ -26,11 +26,13 @@ import SectionLabel from '../../components/SectionLabel.astro';
       <div>
         <h2 class="mono-label">Data collection</h2>
         <p class="mt-3 text-card-body text-text-secondary">
-          CalmAir makes no network calls of any kind. There are no accounts, no sign-in, no
-          analytics SDKs, and no advertising identifiers. Every reading the app produces - motion
-          data, barometer data, flight history, your appearance preferences - is generated and
-          stored entirely on your device, and never transmitted anywhere. Apple's own App Privacy
-          label for CalmAir reads "Data Not Collected," because none is.
+          CalmAir doesn't collect your data - nothing you generate in the app is ever sent to us
+          or stored anywhere but your own device. There are no accounts, no sign-in, no analytics
+          SDKs, and no advertising identifiers. Every reading the app produces - motion data,
+          barometer data, location, flight history, your appearance preferences - is generated
+          and stored entirely on your device. The one exception is described below under
+          "Location", and even there, nothing is ever sent to us; only Apple sees a coordinate,
+          transiently, to look up a city name.
         </p>
       </div>
 
@@ -45,12 +47,38 @@ import SectionLabel from '../../components/SectionLabel.astro';
       </div>
 
       <div>
+        <h2 class="mono-label">Location</h2>
+        <p class="mt-3 text-card-body text-text-secondary">
+          With your permission, CalmAir records your location during an active flight to draw the
+          route you flew and to keep recording turbulence if you switch to another app - iOS
+          otherwise pauses the app within seconds of it leaving the screen. Your route is stored
+          only on your device, drawn as a simple line, never as a map, and never transmitted
+          anywhere.
+        </p>
+        <p class="mt-3 text-card-body text-text-secondary">
+          The one narrow exception: when a flight starts and again when it ends, CalmAir may send
+          that single coordinate to Apple's built-in geocoding service to look up a city name (so
+          your history can read "Cape Town → London" instead of raw coordinates). This only
+          happens if you have connectivity at that moment - inflight wifi at the gate, for
+          example - and is silently skipped with no loss of function if you don't, which is the
+          common case since most passengers fly in airplane mode. Apple handles that request under
+          its own privacy policy; CalmAir never receives, stores, or sees anything back beyond the
+          city name itself, and nothing else about your flight is ever sent anywhere.
+        </p>
+        <p class="mt-3 text-card-body text-text-secondary">
+          You can decline location access entirely and CalmAir still works exactly the same for
+          turbulence measurement - you'll just lose the flight-path drawing, the city labels, and
+          the ability to keep recording if you switch apps mid-flight.
+        </p>
+      </div>
+
+      <div>
         <h2 class="mono-label">Storage</h2>
         <p class="mt-3 text-card-body text-text-secondary">
-          Flight history, settings, and purchase status are stored locally on your device using
-          standard iOS storage (including the Keychain for purchase status). Deleting the app
-          deletes this data. There is no cloud backup, no server, and no way for anyone -
-          including the developer - to access it remotely.
+          Flight history, route data, settings, and purchase status are stored locally on your
+          device using standard iOS storage (including the Keychain for purchase status).
+          Deleting the app deletes this data. There is no cloud backup, no server, and no way for
+          anyone - including the developer - to access it remotely.
         </p>
       </div>
 
