@@ -1,12 +1,12 @@
 ---
 title: "Hadeda Havoc"
 category: "product"
-status: "Live · iOS (App Review) · paid"
+status: "Live · iOS App Store · paid"
 order: 2
 role: "Solo builder (Claude-Code-planned, agent-built)"
 summary: "A one-tap arcade flyer starring South Africa's most beloved noisy bird - flap a hadeda through Table Mountain, jacaranda-lined Pretoria streets and Highveld thunderstorms, dodging power lines and minibus taxis for snacks and score."
 stack: ["Expo", "React Native", "EAS Build", "Playwright (e2e)", "Cloudflare Pages"]
-liveUrl: "https://hadeda-havoc.stewartb.workers.dev/#about"
+liveUrl: "https://hadeda-havoc.stewartb.workers.dev"
 repoUrl: null
 why: "Shipping a paid iOS game from a Windows PC, with no Mac anywhere in the pipeline, is its own kind of production exercise - EAS Build handles the platform, but the audio resilience, difficulty tuning and OTA update discipline are the same craft as any shipped product."
 ---
@@ -34,4 +34,4 @@ flowchart LR
 
 ## Status
 
-Live game, paid (no ads, no IAP, no accounts). The latest build is in Apple App Review with an OTA-updatable build already on TestFlight for on-device iteration. See the [about page](https://hadeda-havoc.stewartb.workers.dev/#about) for the pitch, gallery and privacy policy.
+Live and approved on the [App Store](https://apps.apple.com/app/hadeda-havoc/id6777222298), paid (no ads, no IAP, no accounts). The marketing homepage at [hadeda-havoc.stewartb.workers.dev](https://hadeda-havoc.stewartb.workers.dev) was rebuilt the same day the app went live - hero, features, a six-city gallery, and a real interactive "hear the screech" moment.
