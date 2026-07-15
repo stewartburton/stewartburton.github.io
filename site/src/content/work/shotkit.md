@@ -2,7 +2,7 @@
 title: "ShotKit"
 category: "product"
 status: "Live · web · iOS / Android in testing"
-order: 3
+order: 6
 role: "Solo founder, designer, and engineer"
 summary: "A photo-craft companion app powered by Claude - composition, lighting, and gear hints based on what the camera is actually seeing right now."
 stack: ["React Native", "Claude API", "Cloudflare Workers", "Web (responsive)"]

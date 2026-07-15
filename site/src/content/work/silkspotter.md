@@ -2,7 +2,7 @@
 title: "silkspotter"
 category: "product"
 status: "Live · web (gated)"
-order: 1
+order: 4
 role: "Solo founder, designer, and engineer"
 summary: "A Claude-Vision-powered identification web app for the kind of objects general-purpose vision models are bad at. Edge inference, prompt caching, adversarial protection - the production hardening most AI demos skip."
 stack: ["Cloudflare Workers", "Claude Vision", "Vectorize", "Web (responsive)"]

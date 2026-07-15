@@ -2,7 +2,7 @@
 title: "Frenchie Trivia"
 category: "product"
 status: "Live · web"
-order: 5
+order: 8
 role: "Solo builder"
 summary: "A small trivia game built end-to-end. Light project, real production hosting - the kind of thing that keeps the shipping muscle warm."
 stack: ["Vite", "TypeScript", "Cloudflare Pages"]

@@ -2,7 +2,7 @@
 title: "Brainblitz"
 category: "product"
 status: "Live · web"
-order: 8
+order: 11
 role: "Solo builder"
 summary: "A small mental-arithmetic trainer with a deliberately spartan UI - no streaks, no leaderboards, no rewards. Just the practice loop, fast and minimal."
 stack: ["Vite", "TypeScript", "Cloudflare Pages"]

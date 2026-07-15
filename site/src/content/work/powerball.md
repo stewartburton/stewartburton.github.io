@@ -2,7 +2,7 @@
 title: "Powerball ML"
 category: "product"
 status: "Personal project"
-order: 7
+order: 10
 role: "Solo builder"
 summary: "A statistical exploration of South African Powerball historical draws. Not a tip service - an honest exploration of randomness, designed mostly to disabuse anyone (myself included) of the idea that there's signal here."
 stack: ["Python", "pandas", "matplotlib", "Jupyter"]

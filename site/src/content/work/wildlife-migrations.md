@@ -2,7 +2,7 @@
 title: "Wildlife migrations"
 category: "product"
 status: "Live · web"
-order: 6
+order: 9
 role: "Solo builder"
 summary: "A dark-mode-first visualisation of large-scale animal movement data. Clean lines, restrained palette, designed to be read at a glance and explored on demand."
 stack: ["D3", "Astro", "Cloudflare Pages"]

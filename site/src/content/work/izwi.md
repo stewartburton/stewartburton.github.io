@@ -2,7 +2,7 @@
 title: "izwi"
 category: "product"
 status: "Live · web"
-order: 4
+order: 7
 role: "Solo builder"
 summary: "A small, opinionated language tool for South African languages. Where the data is good it leans on Claude; where it isn't, it admits that."
 stack: ["Astro", "Claude API", "Cloudflare Pages"]
