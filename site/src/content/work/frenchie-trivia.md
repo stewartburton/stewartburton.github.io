@@ -1,32 +1,36 @@
 ---
 title: "Frenchie Trivia"
 category: "product"
-status: "Live · web"
+status: "In development · iOS/Android"
 order: 8
 role: "Solo builder"
-summary: "A small trivia game built end-to-end. Light project, real production hosting - the kind of thing that keeps the shipping muscle warm."
-stack: ["Vite", "TypeScript", "Cloudflare Pages"]
-liveUrl: null
+summary: "A French Bulldog trivia mobile app with 1,100 questions across 14 categories - ranked play, daily challenges, global and country leaderboards, and a fully offline-capable game engine, built with Firebase auth and a Cloudflare Workers backend."
+stack: ["Expo/React Native", "Cloudflare Workers", "Hono", "Firebase Auth", "Upstash Redis"]
+liveUrl: "https://frenchietrivia.com"
 repoUrl: null
-why: "Side projects that ship are how you stay sharp on the parts of web work that don't show up in enterprise infrastructure. Frenchie Trivia is a personal-scale exercise in the full stack - design, build, deploy, iterate."
+why: "A niche trivia app is easy to ship as a toy and hard to ship as a product - real auth, leaderboards that survive a dropped signal, and five languages are the unglamorous 90% of the work. Frenchie Trivia is a personal-scale exercise in doing that 90% properly rather than skipping straight to the fun part."
 ---
 
 ## What it is
 
-A trivia game with a French Bulldog mascot. Yes, really. It's silly, but it's a real Vite app, on a real CDN, with real users (who are mostly relatives).
+A mobile trivia game for French Bulldog owners and enthusiasts: 1,100 questions across 14 categories (Breed History, Genetics & Colours, Famous Frenchies, and more), with Quick Play, Ranked Play, a Daily Challenge, and a Speed Round, plus achievements and global/country leaderboards. Free to play with an optional annual Premium subscription.
 
 ## How it works
 
 ```mermaid
 flowchart LR
-    User["Web (Vite + TypeScript)"] --> CDN["Cloudflare Pages"]
-    CDN --> User
+    App["Expo/React Native app"] --> Cache["AsyncStorage cache\n(version-aware)"]
+    App --> Worker["Cloudflare Worker (Hono)"]
+    Worker --> D1["D1 (questions, scores, achievements)"]
+    Worker --> Redis["Upstash Redis\n(leaderboard rankings)"]
 ```
 
-## Why it's here
+## What I optimised for
 
-The portfolio isn't only enterprise work. Personal-scale projects keep the frontend muscle warm - type discipline, build tooling, accessibility, deploy automation - and they're a useful counterweight to platform engineering, which tends not to ship visual things.
+- **Offline as a designed fallback, not an afterthought.** All 1,100 questions ship embedded in the binary; a version-aware AsyncStorage cache sits in front of the API, and Quick Play and Ranked Play both work with zero signal - scores queue silently and sync when connectivity returns.
+- **Real account infrastructure from the start.** Firebase Auth (guest, email, Apple, Google) with full GDPR-compliant account deletion, not a bolt-on added after launch.
+- **Five languages, not just English.** UI strings, feedback, achievements, and the full question bank are translated into Spanish, French, Portuguese, and German - a deliberately larger scope than a solo trivia app usually takes on.
 
 ## Status
 
-Live on the open web.
+In active development. Backend live on Cloudflare Workers; the marketing site is live at [frenchietrivia.com](https://frenchietrivia.com) with a playable demo. Android is in Google Play closed testing; iOS TestFlight and App Store submission are next.

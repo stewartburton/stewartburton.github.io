@@ -1,36 +1,36 @@
 ---
 title: "ShotKit"
 category: "product"
-status: "Live · web · iOS / Android in testing"
+status: "Live · web · iPad app"
 order: 6
 role: "Solo founder, designer, and engineer"
-summary: "A photo-craft companion app powered by Claude - composition, lighting, and gear hints based on what the camera is actually seeing right now."
-stack: ["React Native", "Claude API", "Cloudflare Workers", "Web (responsive)"]
+summary: "A natural-language DJI drone mission planner - describe a cinematic shot in plain English and ShotKit generates a flight-ready KMZ, with terrain-aware safety checks, airspace warnings, and battery planning built in."
+stack: ["Cloudflare Workers", "D1", "Claude API", "Google Maps JS API", "Expo (iPad)"]
 liveUrl: "https://shotkit.stewartb.workers.dev"
 repoUrl: null
-why: "Most photo-AI apps generate the photo. ShotKit helps the photographer make it. The product distinction is small but the design implications are not - it changes what the model is allowed to do."
+why: "Drone mission-planning tools make you build a flight waypoint by waypoint. ShotKit's bet is that most cinematic shots - an orbit, a reveal, a crane move - are a handful of named patterns, and a pilot describing the shot in plain English should get a flyable mission back, not a blank map."
 ---
 
 ## What it is
 
-A pocket assistant for amateur photographers. The browser or phone reads the scene, sends the relevant context to Claude, and gets back composition and lighting hints - framed as suggestions, not autopilot.
+A natural-language to DJI WPML mission generator: describe a shot ("slow orbit of the manor house at golden hour, 60m radius") and ShotKit maps it to one of 8 cinematic templates, generating a flight-ready KMZ that loads directly into DJI Fly or DJI Pilot 2. Terrain-follow paths, patrol/perimeter missions, and manual waypoint import round out the planning side.
 
 ## How it works
 
 ```mermaid
 flowchart LR
-    Client["Browser / Phone camera"] --> Edge["Cloudflare Worker"]
-    Edge --> Claude["Claude API"]
-    Claude --> Edge
-    Edge --> Client["Composition / lighting hints"]
+    Prompt["Plain-English prompt"] --> Claude["Claude (template + params)"]
+    Claude --> Context["Sun / wind / weather / terrain context"]
+    Context --> Clamp["Safety clamp + regulatory ceiling"]
+    Clamp --> KMZ["DJI WPML KMZ export"]
 ```
 
-## What's interesting about it
+## What I optimised for
 
-- **No image generation.** The product line is "advise the photographer," not "create an image." That decision shapes every prompt and every UI affordance.
-- **Edge inference.** Same pattern as silkspotter: the Worker fronts every model call, so cost and latency live in one place.
-- **Quietness.** The app doesn't pop up suggestions unsolicited. It surfaces them when the photographer asks.
+- **The prompt does the work a UI usually does.** Cardinal-direction hints, time-of-day phrases ("golden hour"), mood vocabulary ("Nolan/IMAX"), and negative constraints ("stay away from Y") all parse out of one text box instead of a dozen form fields.
+- **Safety that can't be skipped by accident.** A post-Claude clamp silently corrects any proposed altitude/speed/radius beyond the drone or regulatory envelope, and export is gated behind a fresh airspace/NFZ check and pre-flight checklist - no KMZ downloads without it.
+- **Real flight physics, not just geometry.** Battery planning accounts for wind, temperature, and transit distance; wind-aware speed fixes derate per-segment speeds for crosswind stability.
 
 ## Status
 
-Live on the open web at [shotkit.stewartb.workers.dev](https://shotkit.stewartb.workers.dev). iOS and Android builds are in TestFlight / Play Console internal testing - same React Native codebase, same Cloudflare Worker backend, store rollout still in flight.
+Live on the open web at [shotkit.stewartb.workers.dev](https://shotkit.stewartb.workers.dev), with an iPad companion app (Expo/React Native) for on-site planning. 8 mission templates, per-country regulatory ceilings across 8 regions, and export to KMZ/GeoJSON/GPX/CSV/PDF brief.

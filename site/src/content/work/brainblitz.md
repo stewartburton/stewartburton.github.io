@@ -1,34 +1,36 @@
 ---
 title: "Brainblitz"
 category: "product"
-status: "Live · web"
+status: "Personal project · smart TV"
 order: 11
 role: "Solo builder"
-summary: "A small mental-arithmetic trainer with a deliberately spartan UI - no streaks, no leaderboards, no rewards. Just the practice loop, fast and minimal."
-stack: ["Vite", "TypeScript", "Cloudflare Pages"]
+summary: "A two-player trivia game show built for the actual TV, not another phone screen - neon game-show UI, AI-generated voice/music/SFX via ElevenLabs, streaks, achievements, and a leaderboard, controlled entirely from an LG remote."
+stack: ["HTML5/CSS3", "Cloudflare Pages Functions", "Cloudflare KV", "ElevenLabs API"]
 liveUrl: null
 repoUrl: null
-why: "Most learning apps are gamification with practice as a side effect. Brainblitz is the inverse - strip the gamification and the practice loop is what's left. A small but useful design point."
+why: "Every trivia app targets a phone. Brainblitz targets the screen a household is already looking at together during game night - which changes everything about the design: large TV-distance text, remote-only navigation, and a two-player head-to-head format instead of a solo scroll."
 ---
 
 ## What it is
 
-A mental-arithmetic trainer for adults. Pick a difficulty, answer questions, see your time. That's it.
+A Triviaverse-inspired, two-player trivia game show for LG webOS TVs (and any browser): neon game-show visuals sized for viewing distance, full Magic Remote and keyboard navigation, speed scoring with a streak multiplier, and South African Afrikaans expressions ("Lekker!", "Ja Boet!", "Haibo!") woven through the feedback.
 
 ## How it works
 
 ```mermaid
 flowchart LR
-    User["Web (Vite + TypeScript)"] --> CDN["Cloudflare Pages"]
-    CDN --> User
+    Remote["LG Magic Remote / keyboard"] --> Game["Single-file HTML5 game"]
+    Game --> Pages["Cloudflare Pages Functions"]
+    Pages --> KV["Cloudflare KV\n(scores, achievements)"]
+    Pages --> ElevenLabs["ElevenLabs\n(voice, music, SFX)"]
 ```
 
-## Design choices worth noting
+## What I optimised for
 
-- **No streaks.** Streaks are coercive; they punish missed days. The point is to practice when you want to, not when an app demands.
-- **No leaderboard.** Comparing yourself to other people is mostly a distraction from comparing yourself to yesterday's-you.
-- **No animation.** The interface should feel instant. Anything that delays the next question is friction, full stop.
+- **Zero install friction on a TV.** The entire game is a single HTML file with zero dependencies - point the TV's built-in browser at a URL and it runs, no app store, no sideloading.
+- **AI-generated audio that degrades gracefully.** ElevenLabs generates custom music and sound effects, cached in KV - if the API is unavailable, a Web Audio API synth step-sequencer fills in seamlessly, so the game never goes silent.
+- **A real two-player format.** Streak multipliers, speed scoring, and an answer-cascade reveal are built around a head-to-head living-room dynamic, not a leaderboard of strangers.
 
 ## Status
 
-Live on the open web. Personal-scale.
+Personal project, built for home use on an LG webOS TV. 250+ built-in questions across custom categories (Frenchies, Braai Culture, SA Food & Slang, and more), 15 unlockable achievements per player, and a PIN-locked admin panel with an ElevenLabs cost dashboard.
