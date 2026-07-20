@@ -19,3 +19,4 @@ See the `MANIFEST.md` inside each zip for full restore steps.
 | Date | Archive | Git tag | Live commit |
 |---|---|---|---|
 | 2026-06-23 | `stewart-burton.com_backup_2026-06-23.zip` | `backup/live-2026-06-23` | `5f11928` |
+| 2026-07-20 | `stewart-burton.com_backup_2026-07-20.zip` | `backup/live-2026-07-20` | `fc7a69d` |
