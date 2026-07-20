@@ -102,7 +102,3 @@ The agent layer borrows its safety model directly from DevOps practice: least pr
 ## What it teaches
 
 The subscription arithmetic works - a typical AI power-user stack runs $70 to $120 per month, and the local-first setup replaces most of it - but the durable value is the engineering. Sizing models to VRAM, choosing quantization levels deliberately, scheduling a single GPU across competing workloads, grounding answers with retrieval instead of context stuffing, and gating an autonomous agent with approvals and audit logs are the same patterns that make enterprise AI platforms trustworthy. The lab is where they get proven at personal scale first.
-
-## What I'd do next
-
-A second GPU so the LLM and image pipeline can run concurrently instead of being sequenced; Prometheus and Grafana observability over GPU memory, latency, and model usage; and hybrid retrieval (dense plus keyword search with reranking) to push the RAG layer's answer quality further.
