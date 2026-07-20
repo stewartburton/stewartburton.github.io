@@ -5,7 +5,7 @@ status: "Live in production"
 order: 7
 role: "Designer and builder"
 summary: "A reporting layer for AI PR review rollout - central metrics store, organisation inventory scans, adoption status, and self-service Grafana dashboards on OpenShift - turning per-pipeline-run telemetry into a governance picture leaders can act on."
-stack: ["Python", "Azure DevOps APIs", "GitHub APIs", "OpenAI API", "GitHub Models API", "Metrics pipelines", "Grafana", "OpenShift", "ArgoCD"]
+stack: ["Python", "Azure DevOps APIs", "GitHub APIs", "OpenAI API", "Grafana", "OpenShift", "GitHub Models API", "Metrics pipelines", "ArgoCD"]
 liveUrl: null
 repoUrl: null
 why: "Technical proof that AI review works isn't enough. Leaders sign off on adoption, cost, and risk - not on how the model classifies severity. This is the layer that converts engineering telemetry into the evidence model that gets the rollout funded."
