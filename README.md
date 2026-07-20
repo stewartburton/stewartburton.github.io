@@ -2,7 +2,7 @@
 
 # Stewart Burton
 
-DevOps engineer building the **`AI layer`** for engineering teams.
+Applied AI engineer focused on **`AI platform enablement`**, developer productivity, DevOps automation and internal AI tooling.
 
 <sub>CAPE&nbsp;TOWN,&nbsp;SOUTH&nbsp;AFRICA&nbsp;&nbsp;→&nbsp;&nbsp;SA,&nbsp;HYBRID,&nbsp;OR&nbsp;FULLY&nbsp;REMOTE&nbsp;&nbsp;→&nbsp;&nbsp;UK&nbsp;TIMEZONE-FRIENDLY&nbsp;·&nbsp;BRITISH&nbsp;PASSPORT</sub>
 
