@@ -42,6 +42,7 @@ flowchart LR
 - **Rollout status exports.** Generated weekly. Adoption count, cost trend, finding distribution, top repositories by review volume.
 - **Leadership summaries.** Pre-formatted briefs and presentation-ready material. Same source data, different audience.
 - **Grafana dashboards on OpenShift, delivered via GitOps.** The metrics store is surfaced through two Grafana dashboards running on OpenShift: one covering AI PR reviews on Azure DevOps (review volume, comments, usage and cost) and one covering AI PR reviews on GitHub (review volume and comments). ArgoCD watches the repository, so any change to the collector code or dashboard definitions is detected and deployed automatically - when leadership requests a new metric or view, the change ships on commit and appears on the next dashboard refresh, with no manual deployment step.
+- **Threshold monitoring on the rollout signals.** The dashboards track cost drift, adoption stalls, and unusual finding spikes, so deviations surface as they happen rather than at the next reporting cycle. Alert rules live in the repository and ship through the same ArgoCD pipeline as everything else.
 
 ## Outcome
 
@@ -49,4 +50,4 @@ The reporting cadence dropped from "manual one-day exercise per cycle" to "scrip
 
 ## What I'd do next
 
-Threshold alerting on the same data - cost drift, adoption stalls, unusual finding spikes - so the dashboards flag what needs attention instead of waiting to be checked. The GitOps pipeline makes that an incremental change: define alert rules in the repository and ArgoCD ships them like everything else.
+Correlate review findings with post-merge outcomes - defect rates, rework, incident links - to quantify what the AI reviews actually prevent. The adoption and cost picture is already live on the dashboards; tying findings to downstream outcomes would turn it into impact evidence: not just "the reviews are used and affordable" but "here is what they caught before it shipped."
