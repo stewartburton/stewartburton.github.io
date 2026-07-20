@@ -28,7 +28,7 @@ flowchart LR
     Inventory["Org Inventory Scanner"] --> Collector
     Collector --> Store["Central Metrics Store"]
     Store --> Reports["Summary Reports"]
-    Store --> Grafana["Grafana Dashboards on OpenShift"]
+    Store --> Grafana["Grafana on OpenShift: Azure DevOps + GitHub Review Dashboards"]
     Git["Code + Dashboard Definitions (Git)"] --> ArgoCD["ArgoCD (GitOps)"] --> Grafana
     Reports --> Leaders["Management / InfoSec / DevOps Leads"]
     Grafana --> Leaders
@@ -41,7 +41,7 @@ flowchart LR
 - **Org inventory scanner.** Scans the source-control estate and tags each repository with its rollout state - onboarded, advisory, enforced, opted-out, archived.
 - **Rollout status exports.** Generated weekly. Adoption count, cost trend, finding distribution, top repositories by review volume.
 - **Leadership summaries.** Pre-formatted briefs and presentation-ready material. Same source data, different audience.
-- **Grafana dashboards on OpenShift, delivered via GitOps.** The metrics store is surfaced through Grafana dashboards running on OpenShift, with ArgoCD watching the repository. Any change to the collector code or dashboard definitions is detected and deployed automatically - when leadership requests a new metric or view, the change ships on commit and appears on the next dashboard refresh, with no manual deployment step.
+- **Grafana dashboards on OpenShift, delivered via GitOps.** The metrics store is surfaced through two Grafana dashboards running on OpenShift: one covering AI PR reviews on Azure DevOps (review volume, comments, usage and cost) and one covering AI PR reviews on GitHub (review volume and comments). ArgoCD watches the repository, so any change to the collector code or dashboard definitions is detected and deployed automatically - when leadership requests a new metric or view, the change ships on commit and appears on the next dashboard refresh, with no manual deployment step.
 
 ## Outcome
 
