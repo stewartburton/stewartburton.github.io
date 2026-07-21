@@ -10,10 +10,59 @@ interface Props {
 }
 const {
   title,
-  description = 'Applied AI engineer building practical AI systems for software teams. Cape Town, South Africa.',
+  description = 'Applied AI engineer building practical AI systems for software teams - AI platform enablement, developer productivity, and DevOps automation. Cape Town, South Africa.',
   current,
 } = Astro.props;
-const fullTitle = title === 'Home' ? 'Stewart Burton - Applied AI & DevOps engineer' : `${title} · stewart-burton.com`;
+const fullTitle =
+  title === 'Home'
+    ? 'Stewart Burton - Applied AI Engineer | AI Platform & Developer Productivity'
+    : `${title} · stewart-burton.com`;
+
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Stewart Burton',
+  url: 'https://www.stewart-burton.com',
+  email: 'mailto:stewart@stewart-burton.com',
+  jobTitle: 'AI-focused DevOps Engineer',
+  worksFor: {
+    '@type': 'Organization',
+    name: 'BET Software',
+  },
+  description:
+    'Applied AI engineer building practical AI systems for software teams - AI platform enablement, developer productivity, and DevOps automation. Officially an Intermediate DevOps Engineer at BET Software, with recent work centred on AI-focused engineering.',
+  knowsAbout: [
+    'Applied AI',
+    'AI Platform Engineering',
+    'Developer Productivity',
+    'AI-assisted code review',
+    'LLM tooling',
+    'RAG',
+    'Model orchestration',
+    'Prompt engineering',
+    'AI workflow integration',
+    'GitHub',
+    'Azure DevOps',
+    'CI/CD',
+    'DevOps automation',
+    'Kubernetes',
+    'Docker',
+    'OpenShift',
+    'ArgoCD',
+    'Observability',
+    'Dynatrace',
+    'Grafana',
+    'Prometheus',
+    'ELK',
+    'Security and governance',
+  ],
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Cape Town',
+    addressCountry: 'ZA',
+  },
+  sameAs: ['https://www.linkedin.com/in/stewart-burton/', 'https://github.com/stewartburton'],
+};
 ---
 
 <!doctype html>
@@ -34,6 +83,7 @@ const fullTitle = title === 'Home' ? 'Stewart Burton - Applied AI & DevOps engin
       rel="stylesheet"
     />
     <title>{fullTitle}</title>
+    <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
   </head>
   <body class="bg-bg-primary text-text-body antialiased">
     <TopNav current={current} />
