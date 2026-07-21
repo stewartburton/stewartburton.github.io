@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>Stewart Burton - DevOps & AI engineer</title>
+    <title>Stewart Burton - Applied AI & DevOps engineer</title>
     <link rel="preconnect" href="https://rsms.me/" />
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -22,7 +22,7 @@
       }
 
       @page {
-        size: A4 portrait;
+        size: A4 landscape;
         margin: 0;
       }
 
@@ -40,37 +40,28 @@
       }
 
       .sheet {
-        width: 210mm;
-        height: 297mm;
-        padding: 11mm 13mm;
+        width: 297mm;
+        height: 210mm;
+        padding: 8mm 12mm;
         display: flex;
         flex-direction: column;
-        gap: 4mm;
-      }
-
-      .mono {
-        font-family: "JetBrains Mono", ui-monospace, monospace;
-        font-weight: 500;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        font-size: 8pt;
-        color: var(--ink-4);
+        gap: 3mm;
       }
 
       .accent { color: var(--accent); }
       .ink { color: var(--ink); }
 
-      /* Header */
+      /* Header band */
       header {
         display: flex;
         justify-content: space-between;
-        align-items: flex-start;
+        align-items: center;
         gap: 8mm;
-        padding-bottom: 3mm;
+        padding-bottom: 3.5mm;
         border-bottom: 0.5px solid var(--rule);
       }
       .header-left h1 {
-        font-size: 19pt;
+        font-size: 21pt;
         font-weight: 500;
         letter-spacing: -0.025em;
         color: var(--ink);
@@ -78,45 +69,58 @@
         line-height: 1.05;
       }
       .header-left .tagline {
-        margin-top: 2.5mm;
-        font-size: 10.5pt;
+        margin: 2.5mm 0 0;
+        font-size: 11pt;
         line-height: 1.35;
         color: var(--ink-2);
-        max-width: 110mm;
+        max-width: 150mm;
         font-weight: 400;
       }
       .header-left .tagline .keyword { color: var(--accent); }
+      .header-left .strip {
+        margin-top: 3mm;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.5mm 4mm;
+        align-items: center;
+        font-family: "JetBrains Mono", ui-monospace, monospace;
+        font-size: 7.75pt;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--ink-3);
+      }
+      .header-left .strip .arrow { color: var(--accent); }
       .header-right {
+        display: flex;
+        align-items: center;
+        gap: 6mm;
+        flex-shrink: 0;
+      }
+      .contact-stack {
         text-align: right;
         display: flex;
         flex-direction: column;
         gap: 1.5mm;
       }
-      .header-right .nameplate {
+      .contact-stack .nameplate {
         font-family: "JetBrains Mono", ui-monospace, monospace;
-        font-size: 9pt;
+        font-size: 9.5pt;
         font-weight: 500;
         color: var(--ink);
         letter-spacing: -0.01em;
         text-transform: lowercase;
       }
-      .header-right .nameplate .tld { color: var(--accent); }
-      .header-right .meta { font-size: 8pt; color: var(--ink-3); }
-      .header-right .meta .arrow { color: var(--accent); margin: 0 1mm; }
-
-      /* Sub-strip availability */
-      .strip {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 2.5mm 5mm;
-        align-items: center;
-        font-family: "JetBrains Mono", ui-monospace, monospace;
-        font-size: 8pt;
-        text-transform: uppercase;
-        letter-spacing: 0.06em;
-        color: var(--ink-3);
+      .contact-stack .nameplate .tld { color: var(--accent); }
+      .contact-stack .meta { font-size: 8pt; color: var(--ink-3); }
+      .header-right img {
+        width: 22mm;
+        height: 22mm;
+        object-fit: cover;
+        object-position: 70% 50%;
+        border-radius: 50%;
+        border: 0.5px solid var(--rule);
+        display: block;
       }
-      .strip .arrow { color: var(--accent); }
 
       /* Section heads */
       section { padding: 0; }
@@ -124,7 +128,7 @@
         display: flex;
         align-items: center;
         gap: 2.5mm;
-        margin-bottom: 2.5mm;
+        margin-bottom: 3mm;
       }
       .section-label::before {
         content: "";
@@ -142,17 +146,26 @@
         color: var(--ink-3);
       }
 
-      /* Two-column body */
+      /* Three-column body */
       .body {
         display: grid;
-        grid-template-columns: 1.15fr 1fr;
-        gap: 5mm 8mm;
+        grid-template-columns: 1fr 1fr 1fr;
         flex: 1;
+        min-height: 0;
+        overflow: hidden;
       }
+      .body > .col {
+        padding: 0 6mm;
+        display: flex;
+        flex-direction: column;
+      }
+      .body > .col:first-child { padding-left: 0; }
+      .body > .col:last-child { padding-right: 0; }
+      .body > .col + .col { border-left: 0.5px solid var(--rule); }
 
       /* Pillars */
       .pillar {
-        margin-bottom: 2.5mm;
+        margin-bottom: 2.8mm;
       }
       .pillar .num {
         font-family: "JetBrains Mono", ui-monospace, monospace;
@@ -163,7 +176,7 @@
       }
       .pillar h3 {
         margin: 1mm 0 1mm;
-        font-size: 9.75pt;
+        font-size: 10pt;
         font-weight: 500;
         color: var(--ink);
         line-height: 1.2;
@@ -171,8 +184,8 @@
       }
       .pillar p {
         margin: 0;
-        font-size: 8.75pt;
-        line-height: 1.4;
+        font-size: 8.25pt;
+        line-height: 1.38;
         color: var(--ink-3);
       }
 
@@ -185,9 +198,9 @@
       .impact li {
         position: relative;
         padding-left: 4mm;
-        margin-bottom: 1.4mm;
+        margin-bottom: 1.6mm;
         font-size: 8.25pt;
-        line-height: 1.35;
+        line-height: 1.38;
         color: var(--ink-2);
       }
       .impact li::before {
@@ -201,16 +214,16 @@
         font-weight: 500;
       }
 
-      /* Selected work cards */
+      /* Selected work cards - stacked in landscape column */
       .work-grid {
         display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 2.5mm;
+        grid-template-columns: 1fr;
+        gap: 3mm;
       }
       .work-card {
         border: 0.5px solid var(--rule);
         border-radius: 2mm;
-        padding: 2.5mm 3mm;
+        padding: 3mm 3.5mm;
       }
       .work-card .work-eyebrow {
         font-family: "JetBrains Mono", ui-monospace, monospace;
@@ -222,7 +235,7 @@
       }
       .work-card h4 {
         margin: 1mm 0 1mm;
-        font-size: 9pt;
+        font-size: 9.5pt;
         font-weight: 500;
         color: var(--ink);
         letter-spacing: -0.01em;
@@ -230,12 +243,24 @@
       }
       .work-card p {
         margin: 0;
-        font-size: 8pt;
+        font-size: 8.25pt;
         line-height: 1.35;
         color: var(--ink-3);
       }
 
-      /* Stack chips */
+      /* Bottom band: stack chips + sign-off */
+      .bottom {
+        border-top: 0.5px solid var(--rule);
+        padding-top: 3.5mm;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10mm;
+      }
+      .bottom .stack-side {
+        max-width: 185mm;
+      }
+      .bottom .section-label { margin-bottom: 2mm; }
       .chips {
         display: flex;
         flex-wrap: wrap;
@@ -248,50 +273,18 @@
         line-height: 1.5;
       }
       .chips .sep { color: var(--accent); }
-
-      /* Profile photo */
-      .profile-block {
-        margin-top: 5mm;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 2.5mm;
+      .signoff {
+        text-align: right;
+        flex-shrink: 0;
+        max-width: 78mm;
       }
-      .profile-block img {
-        width: 44mm;
-        height: 44mm;
-        object-fit: cover;
-        object-position: 70% 50%;
-        border-radius: 50%;
-        border: 0.5px solid var(--rule);
-        display: block;
-      }
-      .profile-block .caption {
-        font-family: "JetBrains Mono", ui-monospace, monospace;
-        font-size: 7.5pt;
-        text-transform: uppercase;
-        letter-spacing: 0.08em;
-        color: var(--ink-3);
-        text-align: center;
-      }
-      .profile-block .caption .accent { color: var(--accent); }
-
-      /* Footer */
-      footer {
-        margin-top: auto;
-        padding-top: 3mm;
-        border-top: 0.5px solid var(--rule);
-        text-align: center;
-      }
-      footer p {
+      .signoff p {
         margin: 0;
-        font-size: 8.75pt;
+        font-size: 8.5pt;
         line-height: 1.45;
         color: var(--ink-2);
-        font-family: Inter, system-ui, sans-serif;
-        letter-spacing: 0;
       }
-      footer .url {
+      .signoff .url {
         display: inline-block;
         margin-top: 1.5mm;
         font-family: "JetBrains Mono", ui-monospace, monospace;
@@ -308,29 +301,31 @@
         <div class="header-left">
           <h1>Stewart Burton</h1>
           <p class="tagline">
-            DevOps engineer building the <span class="keyword">AI layer</span>
-            for engineering teams.
+            Applied AI engineer building <span class="keyword">practical AI systems</span>
+            for software teams.
           </p>
+          <div class="strip">
+            <span>Cape Town, South Africa</span>
+            <span class="arrow">→</span>
+            <span>SA, hybrid, or fully remote</span>
+            <span class="arrow">→</span>
+            <span>UK / Europe timezone-friendly &middot; British passport</span>
+          </div>
         </div>
         <div class="header-right">
-          <span class="nameplate">stewart-burton<span class="tld">.com</span></span>
-          <span class="meta">stewart@stewart-burton.com</span>
-          <span class="meta">github.com/stewartburton</span>
-          <span class="meta">linkedin.com/in/stewart-burton</span>
+          <div class="contact-stack">
+            <span class="nameplate">stewart-burton<span class="tld">.com</span></span>
+            <span class="meta">stewart@stewart-burton.com</span>
+            <span class="meta">github.com/stewartburton</span>
+            <span class="meta">linkedin.com/in/stewart-burton</span>
+          </div>
+          <img src="profile.jpg" alt="Stewart Burton" />
         </div>
       </header>
 
-      <div class="strip">
-        <span>Cape Town, South Africa</span>
-        <span class="arrow">→</span>
-        <span>SA, hybrid, or fully remote</span>
-        <span class="arrow">→</span>
-        <span>UK timezone-friendly &middot; British passport</span>
-      </div>
-
       <div class="body">
-        <!-- Left column -->
-        <div>
+        <!-- Column 1: what I build -->
+        <div class="col">
           <section>
             <div class="section-label"><span class="label">what i build</span></div>
 
@@ -339,10 +334,9 @@
               <h3>AI-assisted code review at enterprise scale</h3>
               <p>
                 Designed and rolled out AI PR reviews across Azure DevOps and
-                GitHub Copilot. Schema-validated output, severity gating,
-                advisory-to-enforced rollout, kill-switch controls, per-review
-                cost telemetry. Hundreds of production repositories &middot;
-                thousands of reviews per month.
+                GitHub Copilot: schema-validated output, severity gating,
+                advisory-to-enforced rollout, kill-switches, cost telemetry.
+                Hundreds of repositories &middot; thousands of reviews per month.
               </p>
             </div>
 
@@ -351,10 +345,8 @@
               <h3>AI tooling for DevOps support</h3>
               <p>
                 Unified support toolkit (CLI + REST API), VS Code chat
-                participant, Atlassian assistant, JIRA task/epic automation,
-                Kafka AI deployment workflow. Disk, logs, services,
-                deployment, and runbook triage live in the developer
-                workspace - with safe two-step flows for live actions.
+                participant, Atlassian assistant, Kafka AI deployment workflow -
+                runbook, log, and deployment triage in the developer workspace.
               </p>
             </div>
 
@@ -364,9 +356,7 @@
               <p>
                 Production-grade Azure DevOps to GitHub migration platform -
                 open source, enterprise-scale. Playwright + local vision-model
-                automation of a ~3,400-game casino catalog: metadata extraction
-                and uptime checks, est. 5-7 person-weeks per refresh collapsed
-                to 2-3 days unattended.
+                automation of a ~3,400-game casino catalog, unattended.
               </p>
             </div>
 
@@ -375,21 +365,16 @@
               <h3>AI products &amp; quality engineering</h3>
               <p>
                 Hadeda Havoc, Fettle, izwi, PowerMeter, ShotKit - thirteen
-                consumer products built solo: a paid iOS game on the App Store,
-                apps on iOS and Android, and live web apps, with CI quality
-                gates via Playwright. Test strategy and device/browser coverage
-                rooted in years of SDET / Senior SQA work.
+                consumer products built solo: a paid iOS App Store game,
+                iOS/Android apps, and live web apps. Rooted in years of
+                SDET / Senior SQA work.
               </p>
-            </div>
-
-            <div class="profile-block">
-              <img src="profile.jpg" alt="Stewart Burton" />
             </div>
           </section>
         </div>
 
-        <!-- Right column -->
-        <div>
+        <!-- Column 2: selected impact -->
+        <div class="col">
           <section>
             <div class="section-label"><span class="label">selected impact</span></div>
             <ul class="impact">
@@ -408,10 +393,6 @@
                 <strong>Schema-validated, severity-gated</strong> reviewer with
                 kill-switch and per-repo opt-in. Advisory-to-enforced rollout
                 pattern reusable across both Azure DevOps and GitHub.
-              </li>
-              <li>
-                <strong>JIRA task &amp; epic automation</strong> - structured creation,
-                transitions, linking, and bulk updates across saved filters.
               </li>
               <li>
                 <strong>Observability &amp; root-cause</strong> with Dynatrace, ELK,
@@ -436,14 +417,22 @@
               </li>
             </ul>
           </section>
+        </div>
 
-          <section style="margin-top: 3.5mm;">
+        <!-- Column 3: recent case studies -->
+        <div class="col">
+          <section>
             <div class="section-label"><span class="label">recent case studies</span></div>
             <div class="work-grid">
               <div class="work-card">
                 <span class="work-eyebrow">enterprise</span>
                 <h4>AI PR reviews on Azure DevOps</h4>
                 <p>Schema-validated, build-pipeline-native, governance-first.</p>
+              </div>
+              <div class="work-card">
+                <span class="work-eyebrow">enterprise</span>
+                <h4>Casino catalog automation</h4>
+                <p>Playwright + a local vision model: est. 5-7 person-weeks of manual catalog work per refresh, done in 2-3 days unattended.</p>
               </div>
               <div class="work-card">
                 <span class="work-eyebrow">enterprise</span>
@@ -455,53 +444,46 @@
                 <h4>ADO → GitHub migration platform</h4>
                 <p>Inventory, freeze, mirror, parity proof, audit trail.</p>
               </div>
-              <div class="work-card">
-                <span class="work-eyebrow">enterprise</span>
-                <h4>Atlassian assistant</h4>
-                <p>Wiki + ticket search and JIRA write automation, per-user tokens.</p>
-              </div>
-            </div>
-          </section>
-
-          <section style="margin-top: 3.5mm;">
-            <div class="section-label"><span class="label">stack snapshot</span></div>
-            <div class="chips">
-              <span>Python</span><span class="sep">·</span>
-              <span>PowerShell</span><span class="sep">·</span>
-              <span>C#</span><span class="sep">·</span>
-              <span>Azure DevOps</span><span class="sep">·</span>
-              <span>GitHub Actions</span><span class="sep">·</span>
-              <span>Kubernetes</span><span class="sep">·</span>
-              <span>Docker</span><span class="sep">·</span>
-              <span>ArgoCD</span><span class="sep">·</span>
-              <span>OpenShift</span><span class="sep">·</span>
-              <span>Helm</span><span class="sep">·</span>
-              <span>Terraform</span><span class="sep">·</span>
-              <span>Ansible</span><span class="sep">·</span>
-              <span>HashiCorp Vault</span><span class="sep">·</span>
-              <span>Kafka</span><span class="sep">·</span>
-              <span>Dynatrace</span><span class="sep">·</span>
-              <span>SonarQube</span><span class="sep">·</span>
-              <span>Playwright</span><span class="sep">·</span>
-              <span>Maestro</span><span class="sep">·</span>
-              <span>JIRA</span><span class="sep">·</span>
-              <span>Confluence</span><span class="sep">·</span>
-              <span>Power Automate</span><span class="sep">·</span>
-              <span>n8n</span><span class="sep">·</span>
-              <span>Claude / OpenAI APIs</span><span class="sep">·</span>
-              <span>ElevenLabs / HeyGen APIs</span>
             </div>
           </section>
         </div>
       </div>
 
-      <footer>
-        <p>
-          Thank you for taking the time to read through this - I genuinely appreciate it.
-          I'd welcome a conversation about how my experience could fit your team.
-        </p>
-        <span class="url">🌐 https://www.stewart-burton.com</span>
-      </footer>
+      <div class="bottom">
+        <div class="stack-side">
+          <div class="section-label"><span class="label">stack snapshot</span></div>
+          <div class="chips">
+            <span>Claude / OpenAI APIs</span><span class="sep">·</span>
+            <span>Local LLMs / VLMs</span><span class="sep">·</span>
+            <span>Python</span><span class="sep">·</span>
+            <span>TypeScript</span><span class="sep">·</span>
+            <span>PowerShell</span><span class="sep">·</span>
+            <span>C#</span><span class="sep">·</span>
+            <span>Azure DevOps</span><span class="sep">·</span>
+            <span>GitHub Actions</span><span class="sep">·</span>
+            <span>Kubernetes</span><span class="sep">·</span>
+            <span>Docker</span><span class="sep">·</span>
+            <span>ArgoCD</span><span class="sep">·</span>
+            <span>OpenShift</span><span class="sep">·</span>
+            <span>Helm</span><span class="sep">·</span>
+            <span>Terraform</span><span class="sep">·</span>
+            <span>Ansible</span><span class="sep">·</span>
+            <span>HashiCorp Vault</span><span class="sep">·</span>
+            <span>Kafka</span><span class="sep">·</span>
+            <span>Dynatrace</span><span class="sep">·</span>
+            <span>SonarQube</span><span class="sep">·</span>
+            <span>Playwright</span><span class="sep">·</span>
+            <span>Maestro</span><span class="sep">·</span>
+            <span>JIRA</span><span class="sep">·</span>
+            <span>n8n</span><span class="sep">·</span>
+            <span>ElevenLabs / HeyGen APIs</span>
+          </div>
+        </div>
+        <div class="signoff">
+          <p>Thank you for reading - I'd welcome a conversation about how my experience could fit your team.</p>
+          <span class="url">🌐 https://www.stewart-burton.com</span>
+        </div>
+      </div>
     </div>
   </body>
 </html>
