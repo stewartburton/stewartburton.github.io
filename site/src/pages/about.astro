@@ -20,7 +20,8 @@ import speaking from '../data/speaking.json';
   <section>
     <div class="mx-auto max-w-page px-8 py-section grid md:grid-cols-[200px_1fr] gap-x-10 gap-y-6">
       <SectionLabel label="bio" />
-      <div class="max-w-prose body-prose text-body-lead text-text-body">
+      <div class="grid gap-10 lg:grid-cols-[minmax(0,1fr)_280px] items-start">
+        <div class="max-w-prose body-prose text-body-lead text-text-body">
         <p>
           I'm based in Cape Town, with a career that runs from software quality engineering through DevOps and platform work into the applied AI engineering I focus on now. The arc is intentional: I came up as a senior software quality analyst, learning how production systems actually break, before moving deeper into DevOps - pipelines, container platforms, Kafka, observability, and the operational machinery that keeps services live.
         </p>
@@ -33,6 +34,15 @@ import speaking from '../data/speaking.json';
         <p>
           The career arc is the story behind the work: <a href="https://www.linkedin.com/in/stewart-burton/" rel="me noopener">full history on LinkedIn</a>. The QA and DevOps fundamentals are why the AI work runs in production, not just in demos.
         </p>
+        </div>
+        <img
+          src="/assets/portrait.jpg"
+          alt="Stewart Burton at his desk in Cape Town"
+          width="800"
+          height="1000"
+          loading="lazy"
+          class="w-full max-w-[280px] lg:max-w-none rounded-card border border-hairline border-border-subtle"
+        />
       </div>
     </div>
   </section>
