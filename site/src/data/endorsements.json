@@ -1,7 +1,7 @@
 {
   "ai-pr-reviews-azure-devops": {
     "attribution": "Upper management & Head of Software Development",
-    "pullQuote": "Stewart was the driver of the design, implementation, and scaling of AI-powered PR reviews across the organisation.",
+    "pullQuote": "His work has materially improved engineering quality, reduced risk, and ultimately saved the business money by preventing potential outages. Stewart's ownership, innovation, and execution make him a standout contributor and highly deserving of recognition.",
     "quotes": [
       "Stewart was the driver of the design, implementation, and scaling of AI-powered PR reviews across the organisation, enabling consistent, automated code quality checks across all active repos. When we ran into issues with the primary implementation, he introduced a resilient architecture combining OpenAI and GitHub Models, ensuring continuous operation even under cost and platform constraints.",
       "Beyond implementation, Stewart elevated the initiative by developing ROI-driven reporting that clearly demonstrates business value, including production issues prevented and security risks flagged. He has also continuously improved the accuracy and credibility of these insights, ensuring leadership can trust the data.",

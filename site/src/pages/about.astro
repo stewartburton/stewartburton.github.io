@@ -2,7 +2,11 @@
 import Base from '../layouts/Base.astro';
 import SectionLabel from '../components/SectionLabel.astro';
 import SpeakingEmbed from '../components/SpeakingEmbed.astro';
+import Endorsement from '../components/Endorsement.astro';
 import speaking from '../data/speaking.json';
+import endorsements from '../data/endorsements.json';
+
+const prEndorsement = endorsements['ai-pr-reviews-azure-devops'];
 ---
 
 <Base title="About" current="about">
@@ -74,6 +78,20 @@ import speaking from '../data/speaking.json';
           <li class="flex gap-3"><span class="text-accent" aria-hidden="true">↳</span> Secure, measurable AI adoption inside engineering teams</li>
         </ul>
       </div>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-page px-8 section-divider"></div>
+
+  <section>
+    <div class="mx-auto max-w-page px-8 py-section">
+      <Endorsement
+        variant="pull"
+        quotes={prEndorsement.quotes}
+        pullQuote={prEndorsement.pullQuote}
+        attribution={prEndorsement.attribution}
+        href="/work/ai-pr-reviews-azure-devops"
+      />
     </div>
   </section>
 
