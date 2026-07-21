@@ -33,4 +33,4 @@ flowchart LR
 
 ## Status
 
-Live and gated (invite-only registration, Cloudflare Turnstile, per-IP rate limiting) at [silkspotter.net](https://silkspotter.net). A daily scrape keeps race entries and silk data current; the admin panel tracks coverage per meeting and per race.
+Live and gated (invite-only registration, Cloudflare Turnstile, per-IP rate limiting) at [silkspotter.net](https://silkspotter.net). A scheduled scrape pipeline (run from an SA-located machine, since the source data page is geofenced to SA IPs) refreshes race entries and silk data; the admin panel tracks coverage per meeting and per race.

@@ -5,7 +5,7 @@ status: "Live · iOS App Store · paid"
 order: 2
 role: "Solo builder (Claude-Code-planned, agent-built)"
 summary: "A one-tap arcade flyer starring South Africa's most beloved noisy bird - flap a hadeda through Table Mountain, jacaranda-lined Pretoria streets and Highveld thunderstorms, dodging power lines and minibus taxis for snacks and score."
-stack: ["Expo", "React Native", "EAS Build", "Playwright (e2e)", "Cloudflare Pages"]
+stack: ["Expo", "React Native", "EAS Build", "Playwright (e2e)", "Cloudflare Workers"]
 liveUrl: "https://hadeda-havoc.stewartb.workers.dev"
 repoUrl: null
 why: "Shipping a paid iOS game from a Windows PC, with no Mac anywhere in the pipeline, is its own kind of production exercise - EAS Build handles the platform, but the audio resilience, difficulty tuning and OTA update discipline are the same craft as any shipped product."

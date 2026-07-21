@@ -13,13 +13,13 @@ why: "Language tooling for South African languages is thin on the ground, and mo
 
 ## What it is
 
-A widget-first word discovery app: a different South African word or phrase lands on your home screen every morning, drawn from a 449-entry curated corpus spanning isiZulu, isiXhosa, Afrikaans, Sesotho, Sepedi, Setswana, Tshivenda, Xitsonga, siSwati, isiNdebele, Tsotsitaal, Kaaps, and SA Indian English.
+A widget-first word discovery app: a different South African word or phrase lands on your home screen every morning, drawn from a 468-entry curated corpus spanning isiZulu, isiXhosa, Afrikaans, Sesotho, Sepedi, Setswana, Tshivenda, Xitsonga, siSwati, isiNdebele, Tsotsitaal, Kaaps, and SA Indian English.
 
 ## How it works
 
 ```mermaid
 flowchart LR
-    Corpus["Bundled corpus (449 entries)"] --> Provider["BundledContentProvider"]
+    Corpus["Bundled corpus (468 entries)"] --> Provider["BundledContentProvider"]
     Provider --> App["React Native app (expo-router)"]
     Provider --> WidgetiOS["iOS widget (Swift/SwiftUI)"]
     Provider --> WidgetAndroid["Android widget"]

@@ -13,7 +13,7 @@ why: "Every 'will it fit in my car / doorway / suitcase' question gets answered 
 
 ## What it is
 
-A native iOS utility that scans a space once with the phone's LiDAR sensor, then checks whether an object fits into it - including the angle it needs to go in at, not just whether its bounding box is smaller. Built for the recurring real-world question of "will this couch/box/suitcase fit through that door/trunk/gap."
+A native iOS utility that scans a space once with the phone's LiDAR sensor, then checks whether an object fits into it - including the angle it needs to go in at, not just whether its bounding box is smaller. Given several objects, a multi-object "Pack Check" answers whether they all pack into one container together. Built for the recurring real-world question of "will this couch/box/suitcase fit through that door/trunk/gap."
 
 ## How it works
 
@@ -22,15 +22,17 @@ flowchart LR
     LiDAR["ARKit LiDAR scan"] --> FitKit["FitKit\n(pure Swift math core)"]
     FitKit --> Voxels["Voxel containment + convex hulls"]
     FitKit --> Search["Orientation search + insertion-path BFS"]
+    FitKit --> Pack["Multi-object packing engine"]
     Search --> Result["Fits / doesn't fit + how to angle it"]
+    Pack --> Result
 ```
 
 ## What I optimised for
 
-- **A portable math core.** `FitKit` - voxel containment, convex hulls, orientation search, insertion-path BFS, passage traversal - is deliberately built with zero UIKit/ARKit/SwiftUI dependencies, so the hard geometry logic is testable (100+ tests) independent of the app shell.
+- **A portable math core.** `FitKit` - voxel containment, convex hulls, orientation search, insertion-path BFS, passage traversal - is deliberately built with zero UIKit/ARKit/SwiftUI dependencies, so the hard geometry logic is testable (180+ tests) independent of the app shell.
 - **Real insertion paths, not bounding boxes.** The engine checks whether an object can actually be walked through a passage at some orientation, which is the difference between a useful answer and a naive dimension comparison.
 - **No accounts, no cloud, no subscription.** A premium one-time purchase, fully offline - the kind of utility that shouldn't need a login to tell you if your couch fits.
 
 ## Status
 
-In active build. The FitKit math core is CI-green with 100+ tests; the SwiftUI app scaffold has every screen navigable with SwiftData models and a Keychain-backed entitlement store. AR scanning, real-device verification, and monetization are next.
+In active build. The FitKit math core - including the multi-object packing engine - passes 180+ tests, run locally on Windows via the official Swift toolchain (macOS CI is manual-only); the SwiftUI app scaffold has every screen wired up in code with SwiftData models and a Keychain-backed entitlement store, pending its first compile-and-run on a Mac. AR scanning, real-device verification, and monetization are next.

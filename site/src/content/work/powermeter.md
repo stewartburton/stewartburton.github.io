@@ -34,4 +34,4 @@ flowchart LR
 
 ## Status
 
-Live on the web at [powermeter.app](https://powermeter.app/login) and as a native app for iOS and Android (React Native/Expo, Firebase auth, RevenueCat subscriptions). A single Pro tier (R149.99/year) unlocks AI meter scan, PDF report export, and an iOS home-screen widget across both platforms.
+Live on the web at [powermeter.app](https://powermeter.app/login) and as a native app for iOS and Android (React Native/Expo, Firebase auth, RevenueCat subscriptions). A single Pro tier (R149.99/year) unlocks AI meter scan, PDF report export, and an iOS home-screen widget.
