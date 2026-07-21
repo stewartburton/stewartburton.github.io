@@ -2,7 +2,7 @@
 title: "Kafka AI deployment assistant"
 category: "enterprise"
 status: "Live in production"
-order: 6
+order: 7
 role: "Designer and builder"
 summary: "A request-to-PR workflow that turns a structured wiki request into validated Kafka topic and connector YAML - with duplicate detection, secret-reference checks, and environment validation before anything reaches a pull request."
 stack: ["Python", "Kafka", "GitOps", "YAML", "Wiki templates", "Vault references"]

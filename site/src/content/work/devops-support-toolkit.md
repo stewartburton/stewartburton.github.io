@@ -2,7 +2,7 @@
 title: "DevOps support toolkit"
 category: "enterprise"
 status: "Live in production"
-order: 3
+order: 4
 role: "Designer and primary maintainer"
 summary: "A unified support toolkit (CLI + REST API) that consolidates health checks, log analysis, deployment diagnostics, runbook search, and safe cleanup behind one interface - so engineers stop hopping between five tools to answer one question."
 stack: ["Python", "FastAPI", "PowerShell", "Container platform CLI", "GitOps APIs", "Search APIs"]

@@ -2,7 +2,7 @@
 title: "Atlassian assistant for VS Code and Codex"
 category: "enterprise"
 status: "Live in production"
-order: 5
+order: 6
 role: "Designer and builder"
 summary: "A policy-compatible assistant that brings wiki and issue-tracker search into VS Code and a CLI - using direct REST APIs and per-user credentials, working within the constraints that blocked the standard MCP path."
 stack: ["TypeScript", "Python", "Atlassian REST APIs", "JIRA Cloud + Server", "VS Code Extension API", "Codex skill"]

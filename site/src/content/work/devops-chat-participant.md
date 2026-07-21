@@ -2,7 +2,7 @@
 title: "DevOps chat participant for VS Code"
 category: "enterprise"
 status: "Live in production"
-order: 4
+order: 5
 role: "Designer and builder"
 summary: "An @devops chat participant inside GitHub Copilot Chat that brings runbook search, deployment diagnostics, log retrieval, and guarded operational actions into the IDE - turning VS Code into the team's operational cockpit."
 stack: ["TypeScript", "VS Code Extension API", "GitHub Copilot Chat", "FastAPI client", "Container platform CLI"]

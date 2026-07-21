@@ -2,7 +2,7 @@
 title: "PR review management reporting"
 category: "enterprise"
 status: "Live in production"
-order: 7
+order: 8
 role: "Designer and builder"
 summary: "A reporting layer for AI PR review rollout - central metrics store, organisation inventory scans, adoption status, and leadership-ready summaries - turning per-pipeline-run telemetry into a governance picture leaders can act on."
 stack: ["Python", "Azure DevOps APIs", "GitHub APIs", "Metrics pipelines", "Reporting templates"]

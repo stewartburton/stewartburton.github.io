@@ -2,7 +2,7 @@
 title: "Azure DevOps → GitHub migration platform"
 category: "open-source"
 status: "Open source · production-grade"
-order: 8
+order: 9
 role: "Designer and primary author"
 summary: "A production-grade, open-source migration platform for moving Azure DevOps repositories - and their history, branch protections, and CI lineage - to GitHub. Built around the parts of migration the demo never shows: source freezing, retryable batches, parity proofs."
 stack: ["Python", "Azure DevOps APIs", "GitHub APIs", "PowerShell", "GitHub Actions"]
