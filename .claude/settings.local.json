@@ -20,7 +20,9 @@
       "Read(C:\\Users\\stewa/**)",
       "Read(C:\\Users\\stewa/**)",
       "Bash(npx playwright:*)",
-      "Bash(del screenshot.js)"
+      "Bash(del screenshot.js)",
+      "mcp__bf7c680d-5fdc-5ef4-b4a0-abadb619bf0a__register_repo_root",
+      "mcp__bf7c680d-5fdc-5ef4-b4a0-abadb619bf0a__delete_trigger"
     ],
     "deny": [],
     "ask": []
