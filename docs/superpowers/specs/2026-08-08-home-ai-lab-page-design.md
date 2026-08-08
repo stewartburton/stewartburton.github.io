@@ -1,7 +1,13 @@
 # Home AI lab page (/lab) - design
 
 Date: 2026-08-08
-Status: approved, ready to implement
+Status: shipped in PR #31, then superseded in part.
+
+Two things changed after this was written, both covered in
+[2026-08-09-site-restructure-and-lab-accuracy.md](2026-08-09-site-restructure-and-lab-accuracy.md):
+the "built in this workshop" cards now sit alongside a full `/smaller-things` page,
+and four tool claims taken from the lab repo turned out to describe an intended
+stack rather than a running one.
 
 ## Problem
 
