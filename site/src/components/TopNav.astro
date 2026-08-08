@@ -1,8 +1,11 @@
 ---
-const { current } = Astro.props as { current?: 'home' | 'work' | 'about' | 'services' | 'contact' };
+const { current } = Astro.props as {
+  current?: 'home' | 'work' | 'lab' | 'about' | 'services' | 'contact';
+};
 
 const navItems = [
   { href: '/work', label: 'work', key: 'work' },
+  { href: '/lab', label: 'lab', key: 'lab' },
   { href: '/about', label: 'about', key: 'about' },
   { href: '/services', label: 'services', key: 'services' },
   { href: '/contact', label: 'contact', key: 'contact' },

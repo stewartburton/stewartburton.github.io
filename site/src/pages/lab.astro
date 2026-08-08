@@ -1,0 +1,438 @@
+---
+import Base from '../layouts/Base.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import StackChips from '../components/StackChips.astro';
+
+const description =
+  'A local-first AI platform on one 12 GB GPU - model serving, voice, RAG memory, image generation, automation and a supervised personal agent, run as daily infrastructure.';
+
+const stats = [
+  { label: 'the constraint', value: '1 GPU / 12 GB', note: 'RTX 4070, 64 GB system RAM' },
+  { label: 'running locally', value: '6 models', note: 'flagship MoE down to a 4B router' },
+  { label: 'subscriptions replaced', value: 'R1,300-R2,200', note: 'per month (about $70-$120)' },
+];
+
+const hardware = [
+  { k: 'workstation', v: 'Intel i7-13700KF, Windows 11 Pro' },
+  { k: 'gpu', v: 'NVIDIA RTX 4070, 12 GB VRAM' },
+  { k: 'memory', v: '64 GB system RAM' },
+  { k: 'exposure', v: 'Localhost by default, nothing published by accident' },
+];
+
+const decisions = [
+  {
+    h: 'Quantization is a decision, not a default',
+    p: 'Models run as GGUF builds with the quant level chosen per model size. Q4_K_M is the sweet spot for 7B to 14B on 12 GB; dropping to Q4_K_S or Q3_K_M only ever happens to fit a larger model, and it gets benchmarked when it does.',
+  },
+  {
+    h: 'Mixture-of-experts beats brute force on small hardware',
+    p: 'A 35B MoE model with roughly 3B active parameters per token offloads expert weights to system RAM and still runs fast, because each token only touches the active experts. That is 30B-class quality at close to 8B-class speed on a 12 GB card.',
+  },
+  {
+    h: 'One heavy GPU consumer at a time',
+    p: 'The language model and the image pipeline never contend. The automation bus sequences GPU work - unload, render, reload - instead of letting two jobs fight over VRAM and both lose.',
+  },
+  {
+    h: 'Retrieval instead of long context',
+    p: 'Every token of context costs VRAM in the KV cache, so context stays modest and the knowledge base does the remembering. Long documents get retrieved from, not pasted in.',
+  },
+];
+
+const models = [
+  { m: 'Qwen3.6-35B-A3B', t: 'MoE, ~3B active', r: 'Flagship reasoning and vision. The daily driver.', s: '~20 GB' },
+  { m: 'Qwen3-Coder-30B-A3B', t: 'MoE, ~3B active', r: 'Agentic coding and tool calling. Backs the agent.', s: '~18 GB' },
+  { m: 'Qwen3.5-9B', t: 'Dense', r: 'Fast general workhorse. Fits entirely in VRAM.', s: '~5.5 GB' },
+  { m: 'Qwen3.5-4B', t: 'Dense', r: 'Low-latency routing, classification, inline completion.', s: '~2.5 GB' },
+  { m: 'Qwen3-VL-8B', t: 'Dense VLM', r: 'OCR, screenshots, charts and diagrams.', s: '~6 GB' },
+  { m: 'qwen3-embedding:0.6b', t: 'Embedding', r: 'RAG vectors at 1024 dimensions.', s: '<1 GB' },
+];
+
+const layers = [
+  {
+    n: 'Serving',
+    d: 'llama.cpp with llama-swap runs as a background service behind one OpenAI-compatible endpoint, hot-swapping role-mapped models on demand. Ollama stays as the always-on runtime for the automation stack, and a self-hosted chat workspace sits over both.',
+  },
+  {
+    n: 'Coding agents',
+    d: 'Continue, Cline and Aider wired into VS Code against local coding models, with a frontier cloud model kept for the work that genuinely needs it.',
+  },
+  {
+    n: 'Voice',
+    d: 'faster-whisper for speech in, Kokoro for speech out, held resident by a persistent voice service. Keeping both models warm instead of cold-starting them per request took a turn from about 14 seconds to about 1.4.',
+  },
+  {
+    n: 'Memory',
+    d: 'A plain-Markdown knowledge vault embedded into Qdrant. Answers come back grounded, with citations pointing at real notes rather than at the model.',
+  },
+  {
+    n: 'Automation',
+    d: 'n8n as the automation bus, Home Assistant for the physical layer, and a Stream Deck of one-press launchers for the whole platform.',
+  },
+  {
+    n: 'Image generation',
+    d: 'ComfyUI running SDXL and Flux.1 schnell, scheduled around the language model by the bus. The lab generates its own launcher icons.',
+  },
+];
+
+const routing = [
+  { task: 'Everyday chat, summarising, tagging', route: 'Local', why: 'Fast, private, free at the margin' },
+  { task: 'Inline completion and code chat', route: 'Local', why: 'Latency matters more than depth, and code stays put' },
+  { task: 'Anything touching personal or client data', route: 'Local only', why: 'Non-negotiable. No escalation path exists' },
+  { task: 'Embeddings and retrieval', route: 'Local', why: 'Must be local and consistent across the corpus' },
+  { task: 'Large multi-file refactor', route: 'Local first, then cloud', why: 'Try local, escalate only when the output is visibly weak' },
+  { task: 'Deep or novel reasoning, architecture design', route: 'Cloud', why: 'Frontier quality is worth paying for on hard problems' },
+  { task: 'Context that will not chunk cleanly', route: 'Cloud', why: 'Exceeds the local KV budget at any sensible quant' },
+];
+
+const guardrails = [
+  ['Least privilege', 'Every tool gets the minimum scope. Filesystem tools see allowlisted directories only, never system paths.'],
+  ['Allowlists, not blocklists', 'Only explicitly registered tools exist. There is no generic "run anything" surface to forget to close.'],
+  ['Tiered autonomy', 'A policy engine with three modes. Read-only actions auto-approve and log; the irreversible ones - delete, force-push, merge to main - stay tap-to-approve even in the most permissive mode.'],
+  ['Audit trail', 'Every plan, tool call, parameter set, approval decision and result is appended to a log.'],
+  ['Untrusted by assumption', 'Model output and retrieved content are treated as hostile input, on the assumption that the model can be wrong, manipulated or prompt-injected.'],
+  ['Secrets and spend', 'Secrets live in OS-level credential storage behind pre-commit scanning, never in git. The cloud fallback carries spend caps.'],
+];
+
+const economics = [
+  ['Paid AI stack it replaces', 'R1,300-R2,200/mo', 'about $70-$120'],
+  ['Electricity, moderate to heavy use', 'R110-R220/mo', 'about $6-$12'],
+  ['Net saving, conservative', 'about R445/mo', 'about $24'],
+  ['Net saving, full local-first', 'about R1,485/mo', 'about $80'],
+  ['Break-even on the AI-relevant hardware', '8 to 40 months', 'depending on which of the two above holds'],
+];
+
+const built = [
+  {
+    t: 'PowerMeter',
+    h: '/work/powermeter',
+    d: 'Prepaid electricity tracking with AI meter-reading, live on the App Store and Google Play.',
+  },
+  {
+    t: 'Fettle',
+    h: '/work/fettle',
+    d: 'A cross-brand smart catalogue for the toolbox. Photograph a tool, it identifies and remembers it.',
+  },
+  {
+    t: 'Izwi',
+    h: '/work/izwi',
+    d: 'Widget-first South African word and phrase discovery, with native iOS and Android home-screen widgets.',
+  },
+];
+
+const stack = [
+  'llama.cpp',
+  'llama-swap',
+  'Ollama',
+  'Qwen3 family',
+  'GGUF quantization',
+  'Qdrant',
+  'faster-whisper',
+  'Kokoro TTS',
+  'ComfyUI',
+  'n8n',
+  'Open WebUI',
+  'Home Assistant',
+  'Docker / WSL2',
+  'Python',
+];
+---
+
+<Base title="Home AI lab" description={description} current="lab">
+  <!-- Hero -->
+  <section>
+    <div class="mx-auto max-w-page px-8 pt-16 pb-section">
+      <SectionLabel label="home ai lab" />
+      <h1 class="mt-6 text-page-h1 text-text-primary max-w-prose">
+        One 12 GB GPU, run like <span class="text-accent">production infrastructure</span>.
+      </h1>
+      <p class="mt-6 max-w-prose text-body-lead text-text-body">
+        A local-first AI platform on a single consumer workstation: model serving, voice, retrieval
+        memory, image generation, automation, and a supervised personal agent. It runs every day and
+        does real work, it replaces most of a paid AI subscription stack, and it is where platform
+        lessons get learned cheaply before they turn up in enterprise work.
+      </p>
+
+      <dl class="mt-12 grid gap-3 md:grid-cols-3">
+        {stats.map((s) => (
+          <div class="card p-6">
+            <dt class="mono-label">{s.label}</dt>
+            <dd class="mt-3 text-card-lead text-text-primary">{s.value}</dd>
+            <dd class="mt-2 text-card-body text-text-secondary">{s.note}</dd>
+          </div>
+        ))}
+      </dl>
+
+      <p class="mt-6 font-mono text-mono-meta uppercase tracking-wide text-text-tertiary">
+        stack verified against the lab repo, 8 august 2026
+      </p>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-page px-8 section-divider"></div>
+
+  <!-- The constraint -->
+  <section>
+    <div class="mx-auto max-w-page px-8 py-section grid md:grid-cols-[200px_1fr] gap-x-10 gap-y-8">
+      <SectionLabel label="the constraint" />
+      <div class="min-w-0">
+        <h2 class="text-h2 text-text-primary">The hardware is the design brief.</h2>
+        <p class="mt-5 max-w-prose text-body text-text-body">
+          Everything on this page runs on one workstation. No second GPU, no rented instance. That
+          ceiling is what makes the platform worth writing about: a bigger card would have let most
+          of these decisions go unmade.
+        </p>
+
+        <dl class="mt-8 grid gap-3 sm:grid-cols-2">
+          {hardware.map((h) => (
+            <div class="card p-5">
+              <dt class="mono-label">{h.k}</dt>
+              <dd class="mt-3 text-card-body text-text-primary">{h.v}</dd>
+            </div>
+          ))}
+        </dl>
+
+        <ul class="mt-10 space-y-6">
+          {decisions.map((d, i) => (
+            <li class="grid grid-cols-[2rem_1fr] gap-x-4">
+              <span class="font-mono text-mono-label text-accent pt-1">
+                {(i + 1).toString().padStart(2, '0')}
+              </span>
+              <div>
+                <h3 class="text-card text-text-primary">{d.h}</h3>
+                <p class="mt-2 max-w-prose text-body text-text-secondary">{d.p}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-page px-8 section-divider"></div>
+
+  <!-- What runs on it -->
+  <section>
+    <div class="mx-auto max-w-page px-8 py-section grid md:grid-cols-[200px_1fr] gap-x-10 gap-y-8">
+      <SectionLabel label="what runs on it" />
+      <div class="min-w-0">
+        <h2 class="text-h2 text-text-primary">The resident model set.</h2>
+        <p class="mt-5 max-w-prose text-body text-text-body">
+          Six models, each with a job. Sizes are approximate weights-on-disk at Q4_K_M; add a
+          gigabyte or two for the KV cache at working context.
+        </p>
+
+        <div class="mt-8 overflow-x-auto">
+          <table class="w-full min-w-[560px] border-collapse text-left">
+            <thead>
+              <tr class="border-b border-hairline border-border">
+                <th class="mono-label pb-3 pr-4 font-medium">model</th>
+                <th class="mono-label pb-3 pr-4 font-medium">type</th>
+                <th class="mono-label pb-3 pr-4 font-medium">role</th>
+                <th class="mono-label pb-3 font-medium whitespace-nowrap">size</th>
+              </tr>
+            </thead>
+            <tbody>
+              {models.map((m) => (
+                <tr class="border-b border-hairline border-border-subtle align-top">
+                  <td class="py-4 pr-4 font-mono text-card-body text-text-primary whitespace-nowrap">{m.m}</td>
+                  <td class="py-4 pr-4 text-card-body text-text-secondary whitespace-nowrap">{m.t}</td>
+                  <td class="py-4 pr-4 text-card-body text-text-secondary">{m.r}</td>
+                  <td class="py-4 font-mono text-card-body text-text-body whitespace-nowrap">{m.s}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <h3 class="mt-12 text-card-lead text-text-primary">The layers around them</h3>
+        <div class="mt-6 grid gap-3 sm:grid-cols-2">
+          {layers.map((l) => (
+            <div class="card p-6">
+              <span class="mono-label text-accent">{l.n}</span>
+              <p class="mt-3 text-card-body text-text-secondary">{l.d}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-page px-8 section-divider"></div>
+
+  <!-- Routing policy -->
+  <section>
+    <div class="mx-auto max-w-page px-8 py-section grid md:grid-cols-[200px_1fr] gap-x-10 gap-y-8">
+      <SectionLabel label="routing policy" />
+      <div class="min-w-0">
+        <h2 class="text-h2 text-text-primary">Local by default. Cloud on named exceptions.</h2>
+        <p class="mt-5 max-w-prose text-body text-text-body">
+          "Local-first" is only meaningful if the escalation rule is written down, because otherwise
+          every hard prompt quietly becomes a cloud call and the bill arrives to explain it. This is
+          the policy the front ends enforce.
+        </p>
+
+        <div class="mt-8 overflow-x-auto">
+          <table class="w-full min-w-[560px] border-collapse text-left">
+            <thead>
+              <tr class="border-b border-hairline border-border">
+                <th class="mono-label pb-3 pr-4 font-medium">task</th>
+                <th class="mono-label pb-3 pr-4 font-medium">route</th>
+                <th class="mono-label pb-3 font-medium">why</th>
+              </tr>
+            </thead>
+            <tbody>
+              {routing.map((r) => (
+                <tr class="border-b border-hairline border-border-subtle align-top">
+                  <td class="py-4 pr-4 text-card-body text-text-primary">{r.task}</td>
+                  <td class:list={[
+                    'py-4 pr-4 font-mono text-card-body whitespace-nowrap',
+                    r.route.startsWith('Local') ? 'text-accent' : 'text-text-body',
+                  ]}>{r.route}</td>
+                  <td class="py-4 text-card-body text-text-secondary">{r.why}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-page px-8 section-divider"></div>
+
+  <!-- Agent + guardrails -->
+  <section>
+    <div class="mx-auto max-w-page px-8 py-section grid md:grid-cols-[200px_1fr] gap-x-10 gap-y-8">
+      <SectionLabel label="the agent" />
+      <div class="min-w-0">
+        <h2 class="text-h2 text-text-primary">An agent with a security model borrowed from DevOps.</h2>
+        <p class="mt-5 max-w-prose text-body text-text-body">
+          The lab runs a persistent personal agent, reachable from a phone through chat, voice notes
+          or photographs. It plans against a local model and acts through a fixed set of registered
+          tools: vault search, web search, image generation, file access, speech, automation
+          triggers, and a sandboxed development loop that can branch, test, commit and open a pull
+          request. Every reply carries a one-tap rating, logged, so model quality gets trended from
+          real use rather than assumed.
+        </p>
+
+        <div class="mt-8 grid gap-3 sm:grid-cols-2">
+          {guardrails.map(([h, p]) => (
+            <div class="card p-6">
+              <span class="mono-label text-accent">{h}</span>
+              <p class="mt-3 text-card-body text-text-secondary">{p}</p>
+            </div>
+          ))}
+        </div>
+
+        <aside class="mt-8 rounded-card border border-hairline border-accent/30 bg-accent/5 p-6 max-w-prose">
+          <span class="mono-label text-accent">the honest version</span>
+          <p class="mt-3 text-body text-text-body">
+            The written safety design gates every destructive and outbound action behind a human. The
+            configuration actually running on a personal machine is the permissive one, where shell
+            and development work go through unattended and only the irreversible actions stay
+            tap-to-approve. Both facts belong here: the interesting engineering is the policy engine
+            that makes the difference a setting rather than a rewrite.
+          </p>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-page px-8 section-divider"></div>
+
+  <!-- Economics -->
+  <section>
+    <div class="mx-auto max-w-page px-8 py-section grid md:grid-cols-[200px_1fr] gap-x-10 gap-y-8">
+      <SectionLabel label="economics" />
+      <div class="min-w-0">
+        <h2 class="text-h2 text-text-primary">What it costs, and what it saves.</h2>
+        <p class="mt-5 max-w-prose text-body text-text-body">
+          Figures come from the lab's own cost ledger, in rand at roughly R18.50 to the dollar
+          (early 2026), against Cape Town electricity tariffs of about R3.00-R4.00 per kWh. The GPU
+          draws around 200W under inference load.
+        </p>
+
+        <div class="mt-8 overflow-x-auto">
+          <table class="w-full min-w-[520px] border-collapse text-left">
+            <tbody>
+              {economics.map(([k, v, n]) => (
+                <tr class="border-b border-hairline border-border-subtle align-baseline">
+                  <td class="py-4 pr-4 text-card-body text-text-secondary">{k}</td>
+                  <td class="py-4 pr-4 font-mono text-card-body text-text-primary whitespace-nowrap">{v}</td>
+                  <td class="py-4 font-mono text-mono-meta uppercase tracking-wide text-text-tertiary whitespace-nowrap">{n}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        <p class="mt-6 max-w-prose text-body text-text-secondary">
+          The arithmetic is real but it is not the point. The durable return is knowing how to size a
+          model to a VRAM budget, schedule one GPU across competing workloads, ground answers with
+          retrieval instead of context stuffing, and gate an autonomous agent with approvals and an
+          audit log.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-page px-8 section-divider"></div>
+
+  <!-- Built in this workshop -->
+  <section>
+    <div class="mx-auto max-w-page px-8 py-section">
+      <SectionLabel label="built in this workshop" />
+      <h2 class="mt-4 text-h2 text-text-primary">What the tooling gets pointed at.</h2>
+      <p class="mt-5 max-w-prose text-body text-text-secondary">
+        These shipped products were built using the lab's local coding agents and its cloud fallback.
+        They do not run on the lab - they are what the workshop is for.
+      </p>
+      <div class="mt-10 grid gap-3 md:grid-cols-3">
+        {built.map((b) => (
+          <a href={b.h} class="card p-6 group flex flex-col justify-between hover:border-border transition-colors">
+            <div>
+              <h3 class="text-card text-text-primary">{b.t}</h3>
+              <p class="mt-3 text-card-body text-text-secondary">{b.d}</p>
+            </div>
+            <span class="inline-flex items-center gap-2 mt-6 font-mono text-mono-meta uppercase tracking-wide text-text-tertiary group-hover:text-accent transition-colors">
+              case study <span aria-hidden="true">↳</span>
+            </span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-page px-8 section-divider"></div>
+
+  <!-- Transfer -->
+  <section>
+    <div class="mx-auto max-w-page px-8 py-section grid md:grid-cols-[200px_1fr] gap-x-10 gap-y-8">
+      <SectionLabel label="why it matters at work" />
+      <div class="min-w-0">
+        <h2 class="text-h2 text-text-primary">The same patterns, one budget smaller.</h2>
+        <p class="mt-5 max-w-prose text-body text-text-body">
+          An enterprise AI platform is trustworthy for the same reasons this one is: models chosen
+          against a measured budget rather than a benchmark headline, an explicit routing policy so
+          sensitive data cannot leak into a hosted API by accident, retrieval that cites its sources,
+          and agents that operate under least privilege with approvals and an audit trail. Proving
+          those at personal scale first is cheap. Discovering them in production is not.
+        </p>
+
+        <div class="mt-8">
+          <span class="mono-label">stack</span>
+          <div class="mt-3"><StackChips items={stack} /></div>
+        </div>
+
+        <div class="mt-10 flex flex-wrap gap-6">
+          <a href="/work" class="font-mono text-mono-label uppercase tracking-wider text-accent hover:underline inline-flex items-center gap-2">
+            enterprise and product work <span aria-hidden="true">→</span>
+          </a>
+          <a href="/contact" class="font-mono text-mono-label uppercase tracking-wider text-text-primary hover:text-accent inline-flex items-center gap-2">
+            get in touch <span class="text-accent" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>
