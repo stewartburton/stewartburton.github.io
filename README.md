@@ -29,7 +29,9 @@ The repo also holds the multi-page CV and the single-page recruiter handout - bo
 | | |
 |---|---|
 | Site | [`www.stewart-burton.com`](https://www.stewart-burton.com) |
-| Work index | [`/work`](https://www.stewart-burton.com/work) |
+| Work index | [`/work`](https://www.stewart-burton.com/work) <sub>· enterprise AI/DevOps only</sub> |
+| Independent products | [`/smaller-things`](https://www.stewart-burton.com/smaller-things) <sub>· grouped live / in build / personal</sub> |
+| Home AI lab | [`/lab`](https://www.stewart-burton.com/lab) <sub>· the platform underneath</sub> |
 | Certifications | [`/certifications`](https://www.stewart-burton.com/certifications) <sub>· inline PDF modal viewer</sub> |
 | CV (4-page) | [`/resume/...Resume.pdf`](https://www.stewart-burton.com/resume/Stewart_Burton_AI_DevOps_Engineer_Resume.pdf) |
 | One-pager | [`/resume/...Profile.pdf`](https://www.stewart-burton.com/resume/Stewart_Burton_AI_DevOps_Engineer_Profile.pdf) |
@@ -53,9 +55,9 @@ The repo also holds the multi-page CV and the single-page recruiter handout - bo
 .
 ├── site/                                # Astro source - the live site
 │   ├── src/
-│   │   ├── pages/                       # /, /work, /about, /services, /contact, /certifications
-│   │   ├── pages/work/[...slug].astro   # case-study template
-│   │   ├── content/work/                # 16 case studies (Markdown + frontmatter)
+│   │   ├── pages/                       # /, /work, /smaller-things, /lab, /about, /services, /contact, /certifications
+│   │   ├── pages/work/[...slug].astro   # case-study template (serves both enterprise and product entries)
+│   │   ├── content/work/                # 21 case studies (Markdown + frontmatter): 9 enterprise, 12 product
 │   │   ├── content/config.ts            # collection schema
 │   │   ├── components/                  # TopNav · Footer · SectionLabel · StackChips · MermaidEnhancer · WorkCard · SpeakingCard · SpeakingEmbed
 │   │   ├── layouts/Base.astro
@@ -80,6 +82,26 @@ The repo also holds the multi-page CV and the single-page recruiter handout - bo
 ```
 
 <sub>The legacy static site (`index.html`, `style.css`, `script.js`) at the repo root is from before the rebuild. It's not served - only the Astro `site/dist/` build is.</sub>
+
+---
+
+##### `›` SITE STRUCTURE
+
+Three bodies of work, one page each, no product described in two places:
+
+| Page | Owns | Source |
+|---|---|---|
+| `/work` | Enterprise AI/DevOps case studies | `content/work/` where `category` is `enterprise` or `open-source` |
+| `/smaller-things` | Independent products, grouped live / in build / personal | `content/work/` where `category` is `product`, grouped by the `status` prefix |
+| `/lab` | The home AI platform | Hand-written `pages/lab.astro`, sourced from `D:\AI\ai-platform-lab` |
+
+Case studies for both categories live at `/work/<slug>`; product pages set their breadcrumb root and nav highlight to `/smaller-things`. `/work/ai-platform-lab` redirects to `/lab` via `redirects` in `astro.config.mjs`.
+
+**Counts are derived, never hardcoded.** The group headers on `/smaller-things`, the case-study count on `/work` and the homepage's "N independent products / N of them live" all read from the content collection, so one `status` change updates every surface at once.
+
+**Grouping depends on the `status` prefix.** `Live` puts a product in the live group; `Personal project` puts it in the personal group; anything else (`Beta`, `In development`, `Private pilot`) lands in the in-build group. Keep the prefix conventional when adding an entry.
+
+**Two content rules on `/lab`:** no port numbers, hostnames or internal IPs, and no tool listed as in-use without install evidence. The source repo documents an *intended* stack next to the running one and does not mark them apart - Continue, Cline, Aider and DaVinci Resolve were all published as in-use before checking, and none of them were. The page carries a dated "stack verified against the lab repo" line; bump it when refreshing.
 
 ---
 
