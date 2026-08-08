@@ -80,6 +80,10 @@ const layers = [
     n: 'Image generation',
     d: 'ComfyUI running SDXL and Flux.1 schnell, sequenced around the language model by the bus so the two never contend for VRAM. Photoreal people and scenes, product and marketing imagery, and store assets, down to the lab\'s own launcher icons.',
   },
+  {
+    n: 'Media pipeline',
+    d: 'App Store previews and social cuts are built by script rather than by hand in an editor: ffmpeg does the splicing, audio mixing and fades, caption burn-in and encoding, hitting Apple\'s App Preview rules exactly (portrait, constant 30fps, a native device size with no scaling, real captured gameplay rather than cinematic footage). Generated clips are stitched around the limits of whatever produced them, one cut joining two generations because the generator caps at fifteen seconds. Imagery is a deliberate mix of local models and cloud ones; audio pairs generated sound with a properly licensed field recording. Scripting it means a re-cut is a re-run, and the reasoning sits in the script instead of in someone\'s memory.',
+  },
 ];
 
 const routing = [
@@ -161,6 +165,7 @@ const stack = [
   'faster-whisper',
   'Kokoro TTS',
   'ComfyUI',
+  'ffmpeg',
   'n8n',
   'Open WebUI',
   'Home Assistant',
