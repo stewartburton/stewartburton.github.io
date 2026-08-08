@@ -1,0 +1,90 @@
+---
+import Base from '../../layouts/Base.astro';
+import SectionLabel from '../../components/SectionLabel.astro';
+---
+
+<Base
+  title="Will It Fit"
+  description="Will It Fit scans your car boot, cupboard or doorway with your iPhone's LiDAR, then tells you whether an object fits and how to angle it in. Fully offline, no accounts, one-time purchase."
+>
+  <section>
+    <div class="mx-auto max-w-page px-8 py-section">
+      <SectionLabel label="will it fit" />
+      <h1 class="mt-6 text-page-h1 text-text-primary max-w-prose">
+        Stop guessing at the furniture shop.
+      </h1>
+      <p class="mt-6 text-card-body text-text-secondary max-w-prose">
+        Will It Fit is an iOS app that scans a space once, your car boot, a cupboard, a suitcase, a
+        doorway, and then checks any object against it. It answers the question people actually
+        have, which is not "how big is this" but "will it go in". It measures the sealed interior
+        volume rather than a bounding box, and it checks whether the object can physically get
+        through the opening, which is the failure a tape measure never warns you about.
+      </p>
+      <p class="mt-6 text-card-body text-text-secondary max-w-prose">
+        There is also a Quick Measure mode that sizes any bag against the cabin and checked limits
+        of more than 40 airlines, offline, at the airport, where you need it.
+      </p>
+      <p class="mt-6 text-card-body text-text-secondary max-w-prose">
+        It runs entirely on your phone. No account, no cloud, no subscription, and not a single
+        network request. Scanning needs an iPhone with LiDAR; on other devices you can type or tap
+        out dimensions instead.
+      </p>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-page px-8 section-divider"></div>
+
+  <section>
+    <div class="mx-auto max-w-page px-8 py-section grid md:grid-cols-[200px_1fr] gap-x-10 gap-y-10">
+      <SectionLabel label="support" />
+      <div class="grid gap-3 md:grid-cols-2 max-w-3xl">
+        <a href="mailto:ai@stewart-burton.com?subject=Will%20It%20Fit%20support" class="card p-6 group">
+          <span class="mono-label">email</span>
+          <p class="mt-3 text-card text-text-primary group-hover:text-accent transition-colors">
+            ai@stewart-burton.com <span aria-hidden="true">↗</span>
+          </p>
+          <p class="mt-3 text-card-body text-text-secondary">
+            For bugs, questions, a scan that got it wrong, or anything else about the app. I read
+            every message and reply within a working day.
+          </p>
+        </a>
+        <a href="/willitfit/privacy" class="card p-6 group">
+          <span class="mono-label">privacy</span>
+          <p class="mt-3 text-card text-text-primary group-hover:text-accent transition-colors">
+            Privacy policy <span aria-hidden="true">↗</span>
+          </p>
+          <p class="mt-3 text-card-body text-text-secondary">
+            Will It Fit collects nothing and sends nothing. Here is exactly what that means.
+          </p>
+        </a>
+        <a href="/willitfit/terms" class="card p-6 group">
+          <span class="mono-label">terms</span>
+          <p class="mt-3 text-card text-text-primary group-hover:text-accent transition-colors">
+            Terms of use <span aria-hidden="true">↗</span>
+          </p>
+          <p class="mt-3 text-card-body text-text-secondary">
+            What the one-time unlock buys, and why a scan is an estimate rather than a promise.
+          </p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-page px-8 section-divider"></div>
+
+  <section>
+    <div class="mx-auto max-w-page px-8 py-section grid md:grid-cols-[200px_1fr] gap-x-10 gap-y-10">
+      <SectionLabel label="accuracy" />
+      <div class="max-w-prose">
+        <p class="text-card-body text-text-secondary">
+          A LiDAR scan is an estimate, and the app says so rather than pretending otherwise. It
+          applies a safety margin before it will call something a fit, it flags a low-confidence
+          scan instead of quietly averaging it away, and it marks a result as a tight squeeze when
+          the clearance is inside the margin of error. Check a tape measure before you spend real
+          money. The point of the app is to stop you driving to a shop to find out, not to remove
+          the last check.
+        </p>
+      </div>
+    </div>
+  </section>
+</Base>

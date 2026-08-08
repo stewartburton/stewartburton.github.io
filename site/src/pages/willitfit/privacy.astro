@@ -1,0 +1,123 @@
+---
+import Base from '../../layouts/Base.astro';
+import SectionLabel from '../../components/SectionLabel.astro';
+---
+
+<Base
+  title="Will It Fit Privacy Policy"
+  description="Will It Fit's privacy policy: the app collects no data, makes no network requests at all, and every scan stays on your device."
+>
+  <section>
+    <div class="mx-auto max-w-page px-8 py-section">
+      <SectionLabel label="will it fit · privacy policy" />
+      <h1 class="mt-6 text-page-h1 text-text-primary max-w-prose">
+        Will It Fit collects nothing, and sends nothing.
+      </h1>
+      <p class="mt-6 text-card-body text-text-secondary max-w-prose">
+        Last updated: August 2026
+      </p>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-page px-8 section-divider"></div>
+
+  <section>
+    <div class="mx-auto max-w-page px-8 py-section max-w-prose space-y-8">
+      <div>
+        <h2 class="mono-label">Data collection</h2>
+        <p class="mt-3 text-card-body text-text-secondary">
+          Will It Fit doesn't collect your data. There are no accounts, no sign-in, no analytics
+          SDKs, no advertising identifiers, and no crash-reporting service. Everything the app
+          produces, every scan, every measurement, every saved space and every result, is created
+          and stored entirely on your device.
+        </p>
+        <p class="mt-3 text-card-body text-text-secondary">
+          The app makes no network requests of its own at all. Not one. It is built to work with
+          the phone in airplane mode, in an underground car park, or in a shop with no signal,
+          because that is exactly where people need it. The only network traffic associated with
+          the app is Apple's own, when you make or restore a purchase, which is described below.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="mono-label">Camera and LiDAR</h2>
+        <p class="mt-3 text-card-body text-text-secondary">
+          Scanning uses your iPhone's camera and its LiDAR depth sensor, with your permission. The
+          camera feed and the depth data are processed live on your device to build a 3D mesh of
+          the space or object you are pointing at, and that mesh is immediately reduced to the
+          measurements the app actually needs. No photograph, video, or camera frame is ever
+          uploaded anywhere, because the app has nowhere to upload it to.
+        </p>
+        <p class="mt-3 text-card-body text-text-secondary">
+          When you save a space to your library, the app keeps a single still thumbnail of it so
+          the saved card has a picture on it. That thumbnail lives on your device with everything
+          else and is only ever shown to you.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="mono-label">Storage</h2>
+        <p class="mt-3 text-card-body text-text-secondary">
+          Saved spaces, passages, fit-check history, your settings, and your purchase status are
+          stored locally on your device using standard iOS storage, including the Keychain for
+          purchase status. There is no cloud sync, no server, and no way for anyone, including the
+          developer, to reach any of it remotely. Deleting the app deletes the data with it.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="mono-label">Share cards</h2>
+        <p class="mt-3 text-card-body text-text-secondary">
+          The app can render a result as an image you can share. That image is generated on your
+          device and handed to the standard iOS share sheet. Nothing is posted anywhere on your
+          behalf, and the app is not told what you do with the image after that. Where it goes is
+          entirely your choice, and whichever app or service you send it to handles it under its
+          own privacy policy.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="mono-label">Purchases</h2>
+        <p class="mt-3 text-card-body text-text-secondary">
+          The lifetime unlock is a one-time purchase processed entirely through Apple's In-App
+          Purchase system. Payment details are handled by Apple and are never seen by Will It Fit
+          or its developer. The app stores only a yes-or-no record of whether the unlock has been
+          bought, in your device's Keychain, so that reinstalling doesn't lose it. Restoring a
+          purchase asks Apple, not us.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="mono-label">Airline and parcel data</h2>
+        <p class="mt-3 text-card-body text-text-secondary">
+          The cabin and checked baggage limits, and the courier parcel sizes, that Quick Measure
+          compares your bag against are bundled inside the app as a plain data file. Looking one
+          up is a local lookup. Nothing about your bag, your airline, or your trip is transmitted.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="mono-label">Children</h2>
+        <p class="mt-3 text-card-body text-text-secondary">
+          Will It Fit does not knowingly collect information from anyone, including children,
+          because it does not collect information from anyone.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="mono-label">Changes to this policy</h2>
+        <p class="mt-3 text-card-body text-text-secondary">
+          If this policy ever changes, the update will be posted on this page with a new "last
+          updated" date above.
+        </p>
+      </div>
+
+      <div>
+        <h2 class="mono-label">Contact</h2>
+        <p class="mt-3 text-card-body text-text-secondary">
+          Questions about this policy: <a href="mailto:ai@stewart-burton.com" class="text-accent hover:underline">ai@stewart-burton.com</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+</Base>
