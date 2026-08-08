@@ -54,23 +54,31 @@ const layers = [
   },
   {
     n: 'Coding agents',
-    d: 'Continue, Cline and Aider wired into VS Code against local coding models, with a frontier cloud model kept for the work that genuinely needs it.',
+    d: 'Claude Code, OpenAI Codex and GitHub Copilot, steered by portable SKILL.md skills and AGENTS.md guidance that work across all three rather than being written per vendor. The local coding model is driven by the lab\'s own agent for sandboxed development work, not through an IDE plugin.',
   },
   {
     n: 'Voice',
     d: 'faster-whisper for speech in, Kokoro for speech out, held resident by a persistent voice service. Keeping both models warm instead of cold-starting them per request took a turn from about 14 seconds to about 1.4.',
   },
   {
-    n: 'Memory',
-    d: 'A plain-Markdown knowledge vault embedded into Qdrant. Answers come back grounded, with citations pointing at real notes rather than at the model.',
+    n: 'Retrieval memory',
+    d: 'An Obsidian vault of plain Markdown, embedded into Qdrant. Answers come back grounded, with citations pointing at the real note rather than at the model. The notes stay ordinary files on disk, so nothing gets trapped inside a database.',
+  },
+  {
+    n: 'Agent memory',
+    d: 'Separate from retrieval, the coding agents carry their own: CLAUDE.md and AGENTS.md instruction files at global and per-project scope, plus memory notes that persist decisions, corrections and constraints between sessions. Retrieval answers what was written down. This is what stops the same correction being needed twice.',
   },
   {
     n: 'Automation',
     d: 'n8n as the automation bus, Home Assistant for the physical layer, and a Stream Deck of one-press launchers for the whole platform.',
   },
   {
+    n: 'Home security',
+    d: 'Cameras ride Home Assistant events instead of streaming: when an armed camera reports a person, the already-captured frame is pulled (no stream, no battery cost), described by the local vision model, and pushed to my phone through a self-hosted ntfy channel. Per-camera cooldowns, empty-frame suppression and quiet hours keep it from becoming noise. No footage leaves the house and there is no cloud vision subscription. The same channel carries the platform\'s own watchdog alerts.',
+  },
+  {
     n: 'Image generation',
-    d: 'ComfyUI running SDXL and Flux.1 schnell, scheduled around the language model by the bus. The lab generates its own launcher icons.',
+    d: 'ComfyUI running SDXL and Flux.1 schnell, sequenced around the language model by the bus so the two never contend for VRAM. Photoreal people and scenes, product and marketing imagery, and store assets, down to the lab\'s own launcher icons.',
   },
 ];
 
@@ -149,12 +157,14 @@ const stack = [
   'Qwen3 family',
   'GGUF quantization',
   'Qdrant',
+  'Obsidian',
   'faster-whisper',
   'Kokoro TTS',
   'ComfyUI',
   'n8n',
   'Open WebUI',
   'Home Assistant',
+  'ntfy',
   'Docker / WSL2',
   'Python',
 ];
@@ -269,8 +279,11 @@ const stack = [
 
         <h3 class="mt-12 text-card-lead text-text-primary">The layers around them</h3>
         <div class="mt-6 grid gap-3 sm:grid-cols-2">
-          {layers.map((l) => (
-            <div class="card p-6">
+          {layers.map((l, i) => (
+            <div class:list={[
+              'card p-6',
+              i === layers.length - 1 && layers.length % 2 === 1 && 'sm:col-span-2',
+            ]}>
               <span class="mono-label text-accent">{l.n}</span>
               <p class="mt-3 text-card-body text-text-secondary">{l.d}</p>
             </div>
