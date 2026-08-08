@@ -1,7 +1,7 @@
 ---
 title: "Frenchie Trivia"
 category: "product"
-status: "In development · iOS/Android"
+status: "Live · iOS + Android"
 order: 8
 role: "Solo builder"
 summary: "A French Bulldog trivia mobile app with 1,100 questions across 14 categories - ranked play, daily challenges, global and country leaderboards, and a fully offline-capable game engine, built with Firebase auth and a Cloudflare Workers backend."
@@ -33,4 +33,4 @@ flowchart LR
 
 ## Status
 
-In active development. Backend live on Cloudflare Workers; the marketing site is live at [frenchietrivia.com](https://frenchietrivia.com) with a playable demo. Android is in Google Play closed testing; iOS TestFlight and App Store submission are next.
+Live on the iOS App Store and Google Play, and still shipping. First released in March 2026, now on version 1.4.1 - which added an offline score queue with idempotent submission so a retried score can never double-count, anti-repeat question selection backed by a persisted LRU of recently served questions, category mastery medals, and a pinned rank row for players outside the visible top 100. Backend on Cloudflare Workers; the marketing site at [frenchietrivia.com](https://frenchietrivia.com) carries a playable demo.
