@@ -1,4 +1,5 @@
 ---
+import { getCollection } from 'astro:content';
 import Base from '../layouts/Base.astro';
 import SectionLabel from '../components/SectionLabel.astro';
 import StackChips from '../components/StackChips.astro';
@@ -8,6 +9,11 @@ import speaking from '../data/speaking.json';
 import endorsements from '../data/endorsements.json';
 
 const prEndorsement = endorsements['ai-pr-reviews-azure-devops'];
+
+const allWork = await getCollection('work');
+const productEntries = allWork.filter((e) => e.data.category === 'product');
+const productCount = productEntries.length;
+const liveCount = productEntries.filter((e) => e.data.status.startsWith('Live')).length;
 
 const pillars = [
   {
@@ -37,8 +43,8 @@ const pillars = [
     n: '04',
     title: 'AI products, shipped solo',
     body:
-      'Hadeda Havoc, Fettle, izwi, PowerMeter, ShotKit - thirteen consumer products built solo: a paid iOS game on the App Store, apps on iOS and Android, and live web apps. End-to-end ownership: edge architecture, frontend, mobile, and the production hardening that takes a demo to a live app.',
-    href: '/work/hadeda-havoc',
+      'Hadeda Havoc, Fettle, izwi, PowerMeter, ShotKit - twelve consumer products built solo: a paid iOS game on the App Store, apps on iOS and Android, and live web apps. End-to-end ownership: edge architecture, frontend, mobile, and the production hardening that takes a demo to a live app.',
+    href: '/smaller-things',
   },
 ];
 
@@ -71,18 +77,6 @@ const featured = {
     href: '/work/silkspotter',
   },
 };
-
-const alsoBuilding = [
-  { title: 'Fettle', body: 'Cross-brand smart catalog for the toolbox - snap a photo, Fettle identifies the tool and matches batteries across brands. iOS app in TestFlight.', stack: ['Cloudflare Workers', 'Claude Vision', 'Expo'], href: '/work/fettle' },
-  { title: 'Hadeda Havoc', body: "One-tap arcade flyer starring South Africa's most beloved noisy bird. Live and paid on the iOS App Store.", stack: ['Expo', 'React Native', 'EAS Build'], href: '/work/hadeda-havoc' },
-  { title: 'Home AI lab', body: 'Local-first AI platform on a single 12 GB GPU - six local models, warm voice pipeline, RAG memory, and a supervised personal agent, in daily use at home.', stack: ['llama.cpp', 'Qwen3', 'Qdrant'], href: '/lab' },
-  { title: 'PowerMeter', body: 'Multi-tenant electricity tracker for SA prepaid users - token logs, monthly forecasts, ZAR-with-VAT context, and an AI meter-reading scan. Live on web + iOS/Android.', stack: ['Cloudflare Workers', 'React Native/Expo', 'Claude Vision'], href: '/work/powermeter' },
-  { title: 'ShotKit', body: 'Natural-language DJI drone mission planner - describe a cinematic shot in plain English, get a flight-ready KMZ with terrain-aware safety checks. Live on web; iPad app.', stack: ['Cloudflare Workers', 'Claude API', 'Expo (iPad)'], href: '/work/shotkit' },
-  { title: 'izwi', body: 'Widget-first South African word discovery - a different word lands on your home screen every morning, across isiZulu, isiXhosa, Afrikaans and more. Live on iOS + Android.', stack: ['Expo/React Native', 'Swift/SwiftUI', 'TypeScript'], href: '/work/izwi' },
-  { title: 'Frenchie Trivia', body: 'French Bulldog trivia app - 1,100 questions across 14 categories, ranked play, leaderboards, and an offline-capable game engine. iOS/Android in development.', stack: ['Expo/React Native', 'Cloudflare Workers', 'Firebase Auth'], href: '/work/frenchie-trivia' },
-  { title: 'Wildlife migrations', body: 'Interactive 3D globe visualising migration routes for 62 species, aggregating real data from Movebank, eBird, and Journey North. Live on the web.', stack: ['React', 'Mapbox GL JS', 'Cloudflare Workers'], href: '/work/wildlife-migrations' },
-  { title: 'Powerball ML', body: 'Statistical intelligence for SA Powerball - 1,740 draws scraped, and a split-aware expected-value engine with a backtested 2.41x payout lift. Not a tip service.', stack: ['Python/FastAPI', 'Next.js', 'Prisma'], href: '/work/powerball' },
-];
 ---
 
 <Base title="Home" current="home">
@@ -281,22 +275,34 @@ const alsoBuilding = [
       <SectionLabel label="also building" />
       <h2 class="mt-4 text-h2 text-text-primary">Smaller things that ship.</h2>
       <p class="mt-3 max-w-prose text-body text-text-secondary">
-        Side projects, experiments, and tools - each one live somewhere. The point is the shipping muscle, not the codebase.
+        Side projects, experiments and tools, built solo and shipped end to end. The point is the shipping muscle, not any one codebase.
       </p>
 
-      <div class="mt-10 grid gap-3 md:grid-cols-3">
-        {alsoBuilding.map((p) => (
-          <a href={p.href} class="card p-5 group">
-            <h3 class="inline-flex items-center gap-2 text-card text-text-primary">
-              {p.title}
-              <span class="text-accent text-mono-meta" aria-hidden="true">↗</span>
-            </h3>
-            <p class="mt-3 text-card-body text-text-secondary">{p.body}</p>
-            <div class="mt-5">
-              <StackChips items={p.stack} />
-            </div>
-          </a>
-        ))}
+      <div class="mt-10 grid gap-3 md:grid-cols-2">
+        <a href="/smaller-things" class="card-elevated p-8 group flex flex-col justify-between">
+          <div>
+            <span class="mono-label">shipped solo</span>
+            <h3 class="mt-3 text-card-lead text-text-primary">{productCount} independent products</h3>
+            <p class="mt-3 text-card-body text-text-secondary max-w-prose">
+              {liveCount} of them live on the App Store, Google Play or the open web. Built end to end: edge architecture, mobile and web clients, billing, store submission, and the tests that hold it together.
+            </p>
+          </div>
+          <span class="inline-flex items-center gap-2 mt-6 font-mono text-mono-label uppercase tracking-wider text-text-primary group-hover:text-accent transition-colors">
+            see them all <span class="text-accent" aria-hidden="true">→</span>
+          </span>
+        </a>
+        <a href="/lab" class="card-elevated p-8 group flex flex-col justify-between">
+          <div>
+            <span class="mono-label">the platform underneath</span>
+            <h3 class="mt-3 text-card-lead text-text-primary">Home AI lab</h3>
+            <p class="mt-3 text-card-body text-text-secondary max-w-prose">
+              Six local models on one 12 GB GPU, an explicit local-vs-cloud routing policy, retrieval memory with citations, and a supervised agent under least privilege. Run as daily infrastructure.
+            </p>
+          </div>
+          <span class="inline-flex items-center gap-2 mt-6 font-mono text-mono-label uppercase tracking-wider text-text-primary group-hover:text-accent transition-colors">
+            see the lab <span class="text-accent" aria-hidden="true">→</span>
+          </span>
+        </a>
       </div>
     </div>
   </section>

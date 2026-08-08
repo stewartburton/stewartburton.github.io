@@ -1,0 +1,149 @@
+---
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import SectionLabel from '../components/SectionLabel.astro';
+import WorkCard from '../components/WorkCard.astro';
+
+const all = await getCollection('work');
+const products = all
+  .filter((e) => e.data.category === 'product')
+  .sort((a, b) => a.data.order - b.data.order);
+
+const isLive = (s: string) => s.startsWith('Live');
+const isPersonal = (s: string) => s.startsWith('Personal project');
+
+const live = products.filter((p) => isLive(p.data.status));
+const personal = products.filter((p) => isPersonal(p.data.status));
+const building = products.filter((p) => !isLive(p.data.status) && !isPersonal(p.data.status));
+
+const groups = [
+  {
+    key: 'live',
+    label: 'live',
+    heading: 'Out in the world.',
+    blurb:
+      'On the App Store, on Google Play, or on the open web, with real users and the production hardening that takes a demo to a live app.',
+    items: live,
+  },
+  {
+    key: 'building',
+    label: 'in build',
+    heading: 'Close, not out yet.',
+    blurb: 'In TestFlight, in private pilot, or still being finished. Listed because the work is real, not because it shipped.',
+    items: building,
+  },
+  {
+    key: 'personal',
+    label: 'personal',
+    heading: 'Built for one user.',
+    blurb: 'Made to scratch my own itch. No store listing, no roadmap, and none of the pretence that there is one.',
+    items: personal,
+  },
+];
+
+const description =
+  'Independent products shipped solo - mobile apps, web apps and tools, live on the App Store, Google Play and the open web.';
+---
+
+<Base title="Smaller things" description={description} current="smaller-things">
+  <section>
+    <div class="mx-auto max-w-page px-8 pt-16 pb-section">
+      <SectionLabel label="smaller things" />
+      <h1 class="mt-6 text-page-h1 text-text-primary max-w-prose">
+        Smaller things that ship. <span class="text-accent">{products.length} of them.</span>
+      </h1>
+      <p class="mt-6 max-w-prose text-body-lead text-text-body">
+        Side projects, experiments and tools, built solo and end to end: edge architecture, mobile
+        and web clients, billing, store submissions, and the test automation that turns a demo into
+        something strangers can use. The point is the shipping muscle, not any one codebase.
+      </p>
+      <p class="mt-5 max-w-prose text-body text-text-secondary">
+        Enterprise AI and DevOps work lives on <a href="/work" class="text-accent hover:underline">work</a>.
+        The platform most of this gets built on is the
+        <a href="/lab" class="text-accent hover:underline">home AI lab</a>.
+      </p>
+
+      <dl class="mt-12 grid gap-3 sm:grid-cols-3">
+        <div class="card p-6">
+          <dt class="mono-label">live</dt>
+          <dd class="mt-3 text-card-lead text-text-primary">{live.length}</dd>
+          <dd class="mt-2 text-card-body text-text-secondary">App Store, Google Play, open web</dd>
+        </div>
+        <div class="card p-6">
+          <dt class="mono-label">in build</dt>
+          <dd class="mt-3 text-card-lead text-text-primary">{building.length}</dd>
+          <dd class="mt-2 text-card-body text-text-secondary">TestFlight, private pilot, in progress</dd>
+        </div>
+        <div class="card p-6">
+          <dt class="mono-label">personal</dt>
+          <dd class="mt-3 text-card-lead text-text-primary">{personal.length}</dd>
+          <dd class="mt-2 text-card-body text-text-secondary">Built for one user, me</dd>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  {groups.map((g) => g.items.length > 0 && (
+    <>
+      <div class="mx-auto max-w-page px-8 section-divider"></div>
+      <section>
+        <div class="mx-auto max-w-page px-8 py-section">
+          <div class="flex items-end justify-between gap-6 flex-wrap">
+            <div>
+              <SectionLabel label={g.label} />
+              <h2 class="mt-4 text-h2 text-text-primary">{g.heading}</h2>
+            </div>
+            <span class="font-mono text-mono-label uppercase tracking-wider text-text-tertiary">
+              {g.items.length.toString().padStart(2, '0')} / {products.length.toString().padStart(2, '0')}
+            </span>
+          </div>
+          <p class="mt-5 max-w-prose text-body text-text-secondary">{g.blurb}</p>
+          <div class="mt-10 grid gap-3 md:grid-cols-3">
+            {g.items.map((p) => (
+              <WorkCard
+                title={p.data.title}
+                summary={p.data.summary}
+                status={p.data.status}
+                stack={p.data.stack}
+                href={`/work/${p.slug}`}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
+  ))}
+
+  <div class="mx-auto max-w-page px-8 section-divider"></div>
+
+  <section>
+    <div class="mx-auto max-w-page px-8 py-section grid gap-3 md:grid-cols-2">
+      <a href="/lab" class="card-elevated p-8 group flex flex-col justify-between">
+        <div>
+          <span class="mono-label">the workshop behind them</span>
+          <h2 class="mt-3 text-card-lead text-text-primary">Home AI lab</h2>
+          <p class="mt-3 text-card-body text-text-secondary max-w-prose">
+            Local model serving, retrieval memory and coding agents on one 12 GB GPU. Most of these
+            products were built with it.
+          </p>
+        </div>
+        <span class="inline-flex items-center gap-2 mt-6 font-mono text-mono-label uppercase tracking-wider text-text-primary group-hover:text-accent transition-colors">
+          see the lab <span class="text-accent" aria-hidden="true">→</span>
+        </span>
+      </a>
+      <a href="/work" class="card-elevated p-8 group flex flex-col justify-between">
+        <div>
+          <span class="mono-label">the other body of work</span>
+          <h2 class="mt-3 text-card-lead text-text-primary">Enterprise AI and DevOps</h2>
+          <p class="mt-3 text-card-body text-text-secondary max-w-prose">
+            AI code review across hundreds of production repositories, support tooling, and
+            enterprise-scale migration platforms. Governance, scale and rollout.
+          </p>
+        </div>
+        <span class="inline-flex items-center gap-2 mt-6 font-mono text-mono-label uppercase tracking-wider text-text-primary group-hover:text-accent transition-colors">
+          see the work <span class="text-accent" aria-hidden="true">→</span>
+        </span>
+      </a>
+    </div>
+  </section>
+</Base>

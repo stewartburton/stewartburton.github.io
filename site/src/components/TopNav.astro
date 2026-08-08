@@ -1,10 +1,11 @@
 ---
 const { current } = Astro.props as {
-  current?: 'home' | 'work' | 'lab' | 'about' | 'services' | 'contact';
+  current?: 'home' | 'work' | 'smaller-things' | 'lab' | 'about' | 'services' | 'contact';
 };
 
 const navItems = [
   { href: '/work', label: 'work', key: 'work' },
+  { href: '/smaller-things', label: 'smaller things', key: 'smaller-things' },
   { href: '/lab', label: 'lab', key: 'lab' },
   { href: '/about', label: 'about', key: 'about' },
   { href: '/services', label: 'services', key: 'services' },
@@ -17,7 +18,7 @@ const navItems = [
     <a href="/" class="font-mono text-card-sm text-text-primary tracking-tight">
       stewart-burton<span class="text-accent">.com</span>
     </a>
-    <ul class="flex items-center gap-6">
+    <ul class="flex flex-wrap items-center gap-x-6 gap-y-2">
       {navItems.map((item) => (
         <li>
           <a

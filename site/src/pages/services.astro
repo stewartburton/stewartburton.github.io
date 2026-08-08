@@ -34,6 +34,15 @@ const services = [
   },
   {
     n: '05',
+    title: 'Private AI on your own infrastructure',
+    body:
+      'For teams whose data cannot go to a hosted API - regulated, contractual, or simply sensitive. Open-weight models served on hardware you control, sized against a real VRAM budget rather than a benchmark headline; a written local-vs-cloud routing policy so nothing sensitive leaks into a vendor by default; retrieval over your own documents that answers with citations; and agents held to least privilege with approvals and an audit trail. It also changes the cost shape: capacity you own instead of a per-seat licence that scales with headcount. I run exactly this stack daily on a single 12 GB GPU - the constraint is the point, because it forces the sizing and scheduling decisions a bigger budget lets you skip.',
+    deliverables: ['Model + hardware sizing', 'Routing policy (local vs cloud)', 'RAG over internal docs', 'Agent guardrails + audit', 'Cost model vs per-seat licences'],
+    href: '/lab',
+    hrefLabel: 'see it running',
+  },
+  {
+    n: '06',
     title: 'AI product engineering',
     body:
       'Solo or with a small team - design, build, and ship an AI-powered product on the right model for the job (Anthropic, OpenAI, Google, ElevenLabs, or open-weights). Edge architecture, prompt caching, billing integration, store deployment, and the test automation that takes a demo to a live app with real users.',
@@ -50,7 +59,7 @@ const services = [
         What I bring to an engineering team. <span class="text-accent">Each capability shipped before, not theorised.</span>
       </h1>
       <p class="mt-6 max-w-prose text-body text-text-secondary">
-        I'm looking for a <span class="text-text-primary">full-time role</span> - permanent, in South Africa, hybrid, or fully remote (UK / Europe timezone-friendly with a British passport). The five areas below are the work I'd be hitting the ground running on. They're capabilities I'd plug into a team, not a contractor menu.
+        I'm looking for a <span class="text-text-primary">full-time role</span> - permanent, in South Africa, hybrid, or fully remote (UK / Europe timezone-friendly with a British passport). The six areas below are the work I'd be hitting the ground running on. They're capabilities I'd plug into a team, not a contractor menu.
       </p>
     </div>
   </section>
@@ -89,6 +98,14 @@ const services = [
                   ))}
                 </ul>
               </div>
+            )}
+            {s.href && (
+              <a
+                href={s.href}
+                class="inline-flex items-center gap-2 mt-6 font-mono text-mono-label uppercase tracking-wider text-text-primary hover:text-accent transition-colors"
+              >
+                {s.hrefLabel ?? 'read more'} <span class="text-accent" aria-hidden="true">→</span>
+              </a>
             )}
           </article>
         ))}

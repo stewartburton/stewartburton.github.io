@@ -119,6 +119,29 @@ const built = [
   },
 ];
 
+const business = [
+  {
+    n: '01',
+    h: 'Data that is not allowed to leave',
+    p: 'Regulated, contractual or simply sensitive material can be worked on by a model that never makes an outbound call. The routing policy is the control: local-only is a rule with no escalation path, not a preference someone can override on a deadline.',
+  },
+  {
+    n: '02',
+    h: 'Cost that does not scale with headcount',
+    p: 'Per-seat AI licences grow linearly with the org chart. Owned capacity does not. The sizing work is what makes that trade real rather than theoretical: knowing which jobs a 4B model does perfectly well is worth more than access to a bigger one.',
+  },
+  {
+    n: '03',
+    h: 'Answers that cite the internal source',
+    p: 'Retrieval over your own documents, returning citations into the real document rather than a confident paragraph with no provenance. That is the difference between a tool a compliance team can accept and one it cannot.',
+  },
+  {
+    n: '04',
+    h: 'Agents that can be signed off',
+    p: 'Least privilege, tool allowlists, tiered approvals and an audit trail on every action. The governance questions an enterprise asks before letting software act on its systems are the same ones this lab already answers.',
+  },
+];
+
 const stack = [
   'llama.cpp',
   'llama-swap',
@@ -399,6 +422,42 @@ const stack = [
             </span>
           </a>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <div class="mx-auto max-w-page px-8 section-divider"></div>
+
+  <!-- For a business -->
+  <section>
+    <div class="mx-auto max-w-page px-8 py-section grid md:grid-cols-[200px_1fr] gap-x-10 gap-y-8">
+      <SectionLabel label="for a business" />
+      <div class="min-w-0">
+        <h2 class="text-h2 text-text-primary">The same stack, pointed at a company's problem.</h2>
+        <p class="mt-5 max-w-prose text-body text-text-body">
+          Most organisations that want AI cannot simply post their data to a hosted API, and most
+          that can are paying per seat for capability they could own. This is what the lab is a
+          working answer to, at a scale small enough to prove cheaply.
+        </p>
+
+        <ul class="mt-8 space-y-6">
+          {business.map((b) => (
+            <li class="grid grid-cols-[2rem_1fr] gap-x-4">
+              <span class="font-mono text-mono-label text-accent pt-1">{b.n}</span>
+              <div>
+                <h3 class="text-card text-text-primary">{b.h}</h3>
+                <p class="mt-2 max-w-prose text-body text-text-secondary">{b.p}</p>
+              </div>
+            </li>
+          ))}
+        </ul>
+
+        <a
+          href="/services"
+          class="inline-flex items-center gap-2 mt-10 font-mono text-mono-label uppercase tracking-wider text-accent hover:underline"
+        >
+          private ai as an engagement <span aria-hidden="true">→</span>
+        </a>
       </div>
     </div>
   </section>

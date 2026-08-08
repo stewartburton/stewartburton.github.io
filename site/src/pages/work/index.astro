@@ -8,9 +8,7 @@ const all = await getCollection('work');
 const enterprise = all
   .filter((e) => e.data.category === 'enterprise' || e.data.category === 'open-source')
   .sort((a, b) => a.data.order - b.data.order);
-const products = all
-  .filter((e) => e.data.category === 'product')
-  .sort((a, b) => a.data.order - b.data.order);
+const productCount = all.filter((e) => e.data.category === 'product').length;
 ---
 
 <Base title="Work" current="work">
@@ -18,10 +16,16 @@ const products = all
     <div class="mx-auto max-w-page px-8 py-section">
       <SectionLabel label="work" />
       <h1 class="mt-6 text-page-h1 text-text-primary max-w-prose">
-        Two bodies of work. <span class="text-accent">Enterprise AI/DevOps</span>, and AI products shipped solo.
+        <span class="text-accent">Enterprise AI and DevOps</span>, built inside a production estate.
       </h1>
       <p class="mt-6 max-w-prose text-body text-text-secondary">
-        Each column proves something different. Enterprise = governance, scale, rollout. Independent = end-to-end ownership. Same engineer behind both.
+        AI code review across hundreds of repositories, support tooling that lives where engineers
+        already work, and migration platforms built for scale. What this column proves is
+        governance, rollout and the discipline of shipping into someone else's production.
+      </p>
+      <p class="mt-5 max-w-prose text-body text-text-secondary">
+        The other side of the picture, {productCount} products shipped solo, is on
+        <a href="/smaller-things" class="text-accent hover:underline">smaller things</a>.
       </p>
     </div>
   </section>
@@ -36,7 +40,7 @@ const products = all
           <h2 class="mt-4 text-h2 text-text-primary">Built inside the enterprise.</h2>
         </div>
         <span class="font-mono text-mono-label uppercase tracking-wider text-text-tertiary">
-          {enterprise.length.toString().padStart(2, '0')} / {all.length.toString().padStart(2, '0')}
+          {enterprise.length.toString().padStart(2, '0')} case studies
         </span>
       </div>
       {enterprise.length === 0 ? (
@@ -61,43 +65,30 @@ const products = all
   <div class="mx-auto max-w-page px-8 section-divider"></div>
 
   <section>
-    <div class="mx-auto max-w-page px-8 py-section">
-      <div class="flex items-end justify-between gap-6 flex-wrap">
+    <div class="mx-auto max-w-page px-8 py-section grid gap-3 md:grid-cols-2">
+      <a href="/smaller-things" class="card-elevated p-8 group flex flex-col justify-between">
         <div>
-          <SectionLabel label="independent products" />
-          <h2 class="mt-4 text-h2 text-text-primary">Shipped solo, end to end.</h2>
-        </div>
-        <span class="font-mono text-mono-label uppercase tracking-wider text-text-tertiary">
-          {products.length.toString().padStart(2, '0')} / {all.length.toString().padStart(2, '0')}
-        </span>
-      </div>
-      {products.length === 0 ? (
-        <p class="mt-10 text-body text-text-secondary">No product pages published yet.</p>
-      ) : (
-        <div class="mt-10 grid gap-3 md:grid-cols-3">
-          {products.map((p) => (
-            <WorkCard
-              title={p.data.title}
-              summary={p.data.summary}
-              status={p.data.status}
-              stack={p.data.stack}
-              href={`/work/${p.slug}`}
-            />
-          ))}
-        </div>
-      )}
-
-      <a href="/lab" class="mt-3 card-elevated p-8 group flex items-center justify-between gap-6 flex-wrap">
-        <div>
-          <span class="mono-label">the workshop behind them</span>
-          <h3 class="mt-3 text-card-lead text-text-primary">Home AI lab</h3>
-          <p class="mt-3 max-w-prose text-card-body text-text-secondary">
-            A local-first AI platform on one 12 GB GPU: six local models, an explicit local-vs-cloud
-            routing policy, retrieval memory, and a supervised agent under least privilege. Run as
-            daily infrastructure, not a demo.
+          <span class="mono-label">shipped solo</span>
+          <h2 class="mt-3 text-card-lead text-text-primary">Smaller things that ship</h2>
+          <p class="mt-3 text-card-body text-text-secondary max-w-prose">
+            {productCount} independent products - mobile and web apps on the App Store, Google Play
+            and the open web. End-to-end ownership, from edge architecture to store submission.
           </p>
         </div>
-        <span class="inline-flex items-center gap-2 font-mono text-mono-label uppercase tracking-wider text-text-primary group-hover:text-accent transition-colors">
+        <span class="inline-flex items-center gap-2 mt-6 font-mono text-mono-label uppercase tracking-wider text-text-primary group-hover:text-accent transition-colors">
+          see them <span class="text-accent" aria-hidden="true">→</span>
+        </span>
+      </a>
+      <a href="/lab" class="card-elevated p-8 group flex flex-col justify-between">
+        <div>
+          <span class="mono-label">the platform underneath</span>
+          <h2 class="mt-3 text-card-lead text-text-primary">Home AI lab</h2>
+          <p class="mt-3 text-card-body text-text-secondary max-w-prose">
+            A local-first AI platform on one 12 GB GPU: six local models, an explicit local-vs-cloud
+            routing policy, retrieval memory, and a supervised agent under least privilege.
+          </p>
+        </div>
+        <span class="inline-flex items-center gap-2 mt-6 font-mono text-mono-label uppercase tracking-wider text-text-primary group-hover:text-accent transition-colors">
           see the lab <span class="text-accent" aria-hidden="true">→</span>
         </span>
       </a>
