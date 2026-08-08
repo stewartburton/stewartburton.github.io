@@ -47,16 +47,19 @@ const sectionLabel =
     : data.category === 'open-source'
     ? 'open source'
     : 'independent product';
-const breadcrumbSection =
-  data.category === 'product' ? 'Independent products' : 'Enterprise AI/DevOps';
+const isProduct = data.category === 'product';
+const breadcrumbRoot = isProduct
+  ? { href: '/smaller-things', label: 'smaller things' }
+  : { href: '/work', label: 'work' };
+const breadcrumbSection = isProduct ? 'Shipped solo' : 'Enterprise AI/DevOps';
 ---
 
-<Base title={data.title} description={data.summary} current="work">
+<Base title={data.title} description={data.summary} current={isProduct ? 'smaller-things' : 'work'}>
   <article>
     <!-- Breadcrumb -->
     <div class="mx-auto max-w-page px-8 pt-12">
       <nav class="font-mono text-mono-meta uppercase tracking-wide text-text-tertiary">
-        <a href="/work" class="hover:text-accent transition-colors">work</a>
+        <a href={breadcrumbRoot.href} class="hover:text-accent transition-colors">{breadcrumbRoot.label}</a>
         <span class="mx-2 text-border-strong" aria-hidden="true">/</span>
         <span>{breadcrumbSection}</span>
         <span class="mx-2 text-border-strong" aria-hidden="true">/</span>
