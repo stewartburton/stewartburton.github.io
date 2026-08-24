@@ -121,7 +121,7 @@ jobs:
           }
 
           $changed = git diff --name-only HEAD^ HEAD
-          $sourceChanged = $changed -contains 'resume/source/resume.html' -or $changed -contains 'assets/onepager/onepager.html'
+          $sourceChanged = $changed -contains 'resume/source/resume.html' -or $changed -contains 'assets/onepager/onepager.html' -or $changed -contains '.github/workflows/validate-genaiops-docs.yml'
           if (-not $sourceChanged) {
             Write-Host "Recruiter document sources did not change; no PDF sync commit needed."
             exit 0
