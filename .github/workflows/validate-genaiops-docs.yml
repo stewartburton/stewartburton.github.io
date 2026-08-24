@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   validate:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - name: Checkout PR branch
         uses: actions/checkout@v4
@@ -31,58 +31,62 @@ jobs:
         run: npm run build
         working-directory: site
 
-      - name: Find Chrome and PDF tools
-        shell: bash
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install PDF inspector
+        run: python -m pip install pypdf
+
+      - name: Find Chrome
+        shell: pwsh
         run: |
-          set -euo pipefail
-          CHROME="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser)"
-          echo "CHROME=$CHROME" >> "$GITHUB_ENV"
-          if ! command -v pdfinfo >/dev/null 2>&1; then
-            sudo apt-get update
-            sudo apt-get install -y poppler-utils
-          fi
-          "$CHROME" --version
-          pdfinfo -v | head -1 || true
+          $chrome = "$env:ProgramFiles\Google\Chrome\Application\chrome.exe"
+          if (-not (Test-Path $chrome)) {
+            $chrome = "${env:ProgramFiles(x86)}\Google\Chrome\Application\chrome.exe"
+          }
+          if (-not (Test-Path $chrome)) {
+            throw "Google Chrome not found on Windows runner"
+          }
+          "CHROME=$chrome" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          & $chrome --version
 
       - name: Preserve published PDFs and record page counts
-        shell: bash
+        shell: pwsh
         run: |
-          set -euo pipefail
-          mkdir -p validation-baseline
-          cp resume/Stewart_Burton_AI_DevOps_Engineer_Resume.pdf validation-baseline/Published_Resume.pdf
-          cp assets/onepager/Stewart_Burton_AI_DevOps_Engineer_Profile.pdf validation-baseline/Published_Profile.pdf
-          echo "Published CV pages: $(pdfinfo validation-baseline/Published_Resume.pdf | awk '/^Pages:/ {print $2}')"
-          echo "Published one-pager pages: $(pdfinfo validation-baseline/Published_Profile.pdf | awk '/^Pages:/ {print $2}')"
+          New-Item -ItemType Directory -Force -Path validation-baseline | Out-Null
+          Copy-Item resume/Stewart_Burton_AI_DevOps_Engineer_Resume.pdf validation-baseline/Published_Resume.pdf
+          Copy-Item assets/onepager/Stewart_Burton_AI_DevOps_Engineer_Profile.pdf validation-baseline/Published_Profile.pdf
+          python -c "from pypdf import PdfReader; print('Published CV pages:', len(PdfReader(r'validation-baseline/Published_Resume.pdf').pages)); print('Published one-pager pages:', len(PdfReader(r'validation-baseline/Published_Profile.pdf').pages))"
 
-      - name: Generate recruiter PDFs
-        shell: bash
+      - name: Generate recruiter PDFs on Windows Chrome
+        shell: pwsh
         run: |
-          set -euo pipefail
-          "$CHROME" \
-            --headless=new --disable-gpu --no-pdf-header-footer \
-            --print-to-pdf="$GITHUB_WORKSPACE/resume/Stewart_Burton_AI_DevOps_Engineer_Resume.pdf" \
-            "file://$GITHUB_WORKSPACE/resume/source/resume.html"
+          $resumeHtml = (Resolve-Path 'resume/source/resume.html').Path.Replace('\','/')
+          $resumePdf = Join-Path (Resolve-Path 'resume').Path 'Stewart_Burton_AI_DevOps_Engineer_Resume.pdf'
+          $profileHtml = (Resolve-Path 'assets/onepager/onepager.html').Path.Replace('\','/')
+          $profilePdf = Join-Path (Resolve-Path 'assets/onepager').Path 'Stewart_Burton_AI_DevOps_Engineer_Profile.pdf'
 
-          "$CHROME" \
-            --headless=new --disable-gpu --no-pdf-header-footer \
-            --print-to-pdf="$GITHUB_WORKSPACE/assets/onepager/Stewart_Burton_AI_DevOps_Engineer_Profile.pdf" \
-            --print-to-pdf-no-header --no-margins \
-            "file://$GITHUB_WORKSPACE/assets/onepager/onepager.html"
+          & $env:CHROME '--headless=new' '--disable-gpu' '--no-pdf-header-footer' "--print-to-pdf=$resumePdf" "file:///$resumeHtml"
+          if ($LASTEXITCODE -ne 0) { throw "CV PDF generation failed with exit code $LASTEXITCODE" }
 
-          mkdir -p "$GITHUB_WORKSPACE/site/public/resume"
-          cp "$GITHUB_WORKSPACE/resume/Stewart_Burton_AI_DevOps_Engineer_Resume.pdf" "$GITHUB_WORKSPACE/site/public/resume/"
-          cp "$GITHUB_WORKSPACE/assets/onepager/Stewart_Burton_AI_DevOps_Engineer_Profile.pdf" "$GITHUB_WORKSPACE/site/public/resume/"
+          & $env:CHROME '--headless=new' '--disable-gpu' '--no-pdf-header-footer' '--print-to-pdf-no-header' '--no-margins' "--print-to-pdf=$profilePdf" "file:///$profileHtml"
+          if ($LASTEXITCODE -ne 0) { throw "One-pager PDF generation failed with exit code $LASTEXITCODE" }
+
+          New-Item -ItemType Directory -Force -Path site/public/resume | Out-Null
+          Copy-Item $resumePdf site/public/resume/Stewart_Burton_AI_DevOps_Engineer_Resume.pdf -Force
+          Copy-Item $profilePdf site/public/resume/Stewart_Burton_AI_DevOps_Engineer_Profile.pdf -Force
 
       - name: Enforce document page counts
-        shell: bash
+        shell: pwsh
         run: |
-          set -euo pipefail
-          CV_PAGES="$(pdfinfo resume/Stewart_Burton_AI_DevOps_Engineer_Resume.pdf | awk '/^Pages:/ {print $2}')"
-          PROFILE_PAGES="$(pdfinfo assets/onepager/Stewart_Burton_AI_DevOps_Engineer_Profile.pdf | awk '/^Pages:/ {print $2}')"
-          echo "CV pages: $CV_PAGES"
-          echo "One-pager pages: $PROFILE_PAGES"
-          test "$CV_PAGES" = "4"
-          test "$PROFILE_PAGES" = "1"
+          $cvPages = python -c "from pypdf import PdfReader; print(len(PdfReader(r'resume/Stewart_Burton_AI_DevOps_Engineer_Resume.pdf').pages))"
+          $profilePages = python -c "from pypdf import PdfReader; print(len(PdfReader(r'assets/onepager/Stewart_Burton_AI_DevOps_Engineer_Profile.pdf').pages))"
+          Write-Host "CV pages: $cvPages"
+          Write-Host "One-pager pages: $profilePages"
+          if ($cvPages.Trim() -ne '4') { throw "CV must remain 4 pages; got $cvPages" }
+          if ($profilePages.Trim() -ne '1') { throw "One-pager must remain 1 page; got $profilePages" }
 
       - name: Upload baseline and generated PDFs for visual review
         if: always()
