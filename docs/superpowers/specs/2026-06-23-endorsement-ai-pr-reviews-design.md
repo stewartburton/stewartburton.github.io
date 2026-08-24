@@ -103,7 +103,7 @@ later follow-up, explicitly out of scope here.
 
 - Dark + single teal accent (`#5eead4`), 0.5px hairline borders only, no shadows, no gradients.
 - Type: Inter body, JetBrains Mono labels; weights 400/500 only.
-- Copy uses `-` (hyphen), never `—` (em dash).
+- Copy uses `-` (hyphen), never ` - ` (em dash).
 - No new design tokens; reuse `card`, `mono-label`, `section-divider`, `border-accent/30`,
   `text-body-lead`, `max-w-prose`, `max-w-page`, `py-section`.
 

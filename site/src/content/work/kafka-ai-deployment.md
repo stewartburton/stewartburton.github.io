@@ -51,4 +51,4 @@ flowchart TD
 
 ## Outcome
 
-A typical Kafka request that previously required 30–90 minutes of manual interpretation, validation, YAML drafting, and secret checking is now a structured intake that produces a reviewable diff in minutes. The defects that used to surface in production - duplicate topics, missing secret refs, wrong environment values - are caught at intake time. GitOps still owns deployment; this tool just makes sure GitOps gets a clean PR.
+A typical Kafka request that previously required 30-90 minutes of manual interpretation, validation, YAML drafting, and secret checking is now a structured intake that produces a reviewable diff in minutes. The defects that used to surface in production - duplicate topics, missing secret refs, wrong environment values - are caught at intake time. GitOps still owns deployment; this tool just makes sure GitOps gets a clean PR.

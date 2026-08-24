@@ -54,7 +54,7 @@ This is what turns "an assistant for searching" into "an assistant for getting w
 
 ## Outcome
 
-A policy-compatible way to bring enterprise knowledge into the AI workflow that engineers were already using. The assistant ships the value the MCP route was meant to ship - without the security and infrastructure dependencies that blocked it. Wiki and ticket lookups that previously took 5–15 minutes through portal search become natural-language queries with summarised answers.
+A policy-compatible way to bring enterprise knowledge into the AI workflow that engineers were already using. The assistant ships the value the MCP route was meant to ship - without the security and infrastructure dependencies that blocked it. Wiki and ticket lookups that previously took 5-15 minutes through portal search become natural-language queries with summarised answers.
 
 ## Why per-user tokens matter
 

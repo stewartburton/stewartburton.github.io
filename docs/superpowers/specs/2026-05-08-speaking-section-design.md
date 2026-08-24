@@ -177,7 +177,7 @@ Insert a new `<section>` between *bio* (ends ~line 36) and *philosophy* (~line 4
 - Paragraph: *(see edit above)*
 - Embed caption: `BET Masterclass · Episode 3 · February 2026 · ~20 min`
 
-All copy uses hyphens (`-`), never em dashes (`—`), per house style.
+All copy uses hyphens (`-`), never em dashes (` - `), per house style.
 
 ---
 

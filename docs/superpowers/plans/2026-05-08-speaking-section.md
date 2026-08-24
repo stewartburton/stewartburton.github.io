@@ -84,7 +84,7 @@ Write the file with these exact contents:
 ```
 
 Notes:
-- Hyphens (`-`) only, never em dashes (`—`).
+- Hyphens (`-`) only, never em dashes (` - `).
 - The `thumbnail` path is the public URL (`/assets/...`), not the filesystem path.
 - The array (not a single object) is intentional - a future second talk just appends.
 
@@ -568,7 +568,7 @@ Expected: clean commit, two files changed.
 Run from PowerShell (project root):
 
 ```powershell
-Select-String -Path "site\src\components\SpeakingCard.astro","site\src\components\SpeakingEmbed.astro","site\src\data\speaking.json","site\src\pages\index.astro","site\src\pages\about.astro" -Pattern "—"
+Select-String -Path "site\src\components\SpeakingCard.astro","site\src\components\SpeakingEmbed.astro","site\src\data\speaking.json","site\src\pages\index.astro","site\src\pages\about.astro" -Pattern " - "
 ```
 
 Expected: no matches. If any em dash was introduced, replace with `-` and amend the relevant commit (or create a fixup commit) before pushing.

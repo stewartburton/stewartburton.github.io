@@ -52,7 +52,7 @@ flowchart LR
 
 ## Outcome
 
-For roughly ten meaningful uses per engineer per day, the chat participant saves 10–20 minutes per lookup or incident step - runbook search, log collection, deployment history. Across the team that adds up to hundreds of hours per year, but the bigger win is qualitative: the IDE becomes a place where operational signal lives, not just code.
+For roughly ten meaningful uses per engineer per day, the chat participant saves 10-20 minutes per lookup or incident step - runbook search, log collection, deployment history. Across the team that adds up to hundreds of hours per year, but the bigger win is qualitative: the IDE becomes a place where operational signal lives, not just code.
 
 ## What it doesn't do
 

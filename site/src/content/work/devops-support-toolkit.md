@@ -54,7 +54,7 @@ flowchart TD
 
 ## Outcome
 
-A multi-system support pass that previously took 2–4 hours of portal-hopping now takes 15–30 minutes through guided commands and triage output. Across an active support shift, that's hours saved per engineer per day, with the additional benefit that newer engineers get a guided path through workflows that previously needed senior context.
+A multi-system support pass that previously took 2-4 hours of portal-hopping now takes 15-30 minutes through guided commands and triage output. Across an active support shift, that's hours saved per engineer per day, with the additional benefit that newer engineers get a guided path through workflows that previously needed senior context.
 
 ## Patterns worth lifting
 

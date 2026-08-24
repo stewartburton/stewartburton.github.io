@@ -50,7 +50,7 @@ flowchart TD
 
 ## Impact
 
-Manual setup ran 30–75 minutes per repository - repository inspection, instruction drafting, branching, PR creation, ruleset configuration, team notification. Across hundreds of repositories that's a multi-hundred-hour rollout. The tooling collapses the per-repo cost to minutes of human review time, and the adoption tracker means leadership knows what's onboarded without anyone having to assemble that picture by hand.
+Manual setup ran 30-75 minutes per repository - repository inspection, instruction drafting, branching, PR creation, ruleset configuration, team notification. Across hundreds of repositories that's a multi-hundred-hour rollout. The tooling collapses the per-repo cost to minutes of human review time, and the adoption tracker means leadership knows what's onboarded without anyone having to assemble that picture by hand.
 
 ## What I'd do next
 
