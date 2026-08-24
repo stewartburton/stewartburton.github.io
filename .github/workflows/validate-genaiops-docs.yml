@@ -68,11 +68,29 @@ jobs:
           $profileHtml = (Resolve-Path 'assets/onepager/onepager.html').Path.Replace('\','/')
           $profilePdf = Join-Path (Resolve-Path 'assets/onepager').Path 'Stewart_Burton_AI_DevOps_Engineer_Profile.pdf'
 
-          & $env:CHROME '--headless=new' '--disable-gpu' '--no-pdf-header-footer' "--print-to-pdf=$resumePdf" "file:///$resumeHtml"
-          if ($LASTEXITCODE -ne 0) { throw "CV PDF generation failed with exit code $LASTEXITCODE" }
+          $resumeArgs = @(
+            '--headless=new',
+            '--disable-gpu',
+            '--no-pdf-header-footer',
+            "--print-to-pdf=$resumePdf",
+            "file:///$resumeHtml"
+          )
+          $resumeProcess = Start-Process -FilePath $env:CHROME -ArgumentList $resumeArgs -Wait -PassThru -NoNewWindow
+          if ($resumeProcess.ExitCode -ne 0) { throw "CV PDF generation failed with exit code $($resumeProcess.ExitCode)" }
+          if (-not (Test-Path $resumePdf)) { throw "CV PDF was not created" }
 
-          & $env:CHROME '--headless=new' '--disable-gpu' '--no-pdf-header-footer' '--print-to-pdf-no-header' '--no-margins' "--print-to-pdf=$profilePdf" "file:///$profileHtml"
-          if ($LASTEXITCODE -ne 0) { throw "One-pager PDF generation failed with exit code $LASTEXITCODE" }
+          $profileArgs = @(
+            '--headless=new',
+            '--disable-gpu',
+            '--no-pdf-header-footer',
+            '--print-to-pdf-no-header',
+            '--no-margins',
+            "--print-to-pdf=$profilePdf",
+            "file:///$profileHtml"
+          )
+          $profileProcess = Start-Process -FilePath $env:CHROME -ArgumentList $profileArgs -Wait -PassThru -NoNewWindow
+          if ($profileProcess.ExitCode -ne 0) { throw "One-pager PDF generation failed with exit code $($profileProcess.ExitCode)" }
+          if (-not (Test-Path $profilePdf)) { throw "One-pager PDF was not created" }
 
           New-Item -ItemType Directory -Force -Path site/public/resume | Out-Null
           Copy-Item $resumePdf site/public/resume/Stewart_Burton_AI_DevOps_Engineer_Resume.pdf -Force
