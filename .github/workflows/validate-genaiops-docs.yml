@@ -1,0 +1,84 @@
+name: Validate GenAIOps site and recruiter PDFs
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout PR branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+
+      - name: Install site dependencies
+        run: npm ci
+        working-directory: site
+
+      - name: Build Astro site
+        run: npm run build
+        working-directory: site
+
+      - name: Find Chrome and PDF tools
+        shell: bash
+        run: |
+          set -euo pipefail
+          CHROME="$(command -v google-chrome || command -v google-chrome-stable || command -v chromium || command -v chromium-browser)"
+          echo "CHROME=$CHROME" >> "$GITHUB_ENV"
+          if ! command -v pdfinfo >/dev/null 2>&1; then
+            sudo apt-get update
+            sudo apt-get install -y poppler-utils
+          fi
+          "$CHROME" --version
+          pdfinfo -v | head -1 || true
+
+      - name: Generate recruiter PDFs
+        shell: bash
+        run: |
+          set -euo pipefail
+          "$CHROME" \
+            --headless=new --disable-gpu --no-pdf-header-footer \
+            --print-to-pdf="$GITHUB_WORKSPACE/resume/Stewart_Burton_AI_DevOps_Engineer_Resume.pdf" \
+            "file://$GITHUB_WORKSPACE/resume/source/resume.html"
+
+          "$CHROME" \
+            --headless=new --disable-gpu --no-pdf-header-footer \
+            --print-to-pdf="$GITHUB_WORKSPACE/assets/onepager/Stewart_Burton_AI_DevOps_Engineer_Profile.pdf" \
+            --print-to-pdf-no-header --no-margins \
+            "file://$GITHUB_WORKSPACE/assets/onepager/onepager.html"
+
+          mkdir -p "$GITHUB_WORKSPACE/site/public/resume"
+          cp "$GITHUB_WORKSPACE/resume/Stewart_Burton_AI_DevOps_Engineer_Resume.pdf" "$GITHUB_WORKSPACE/site/public/resume/"
+          cp "$GITHUB_WORKSPACE/assets/onepager/Stewart_Burton_AI_DevOps_Engineer_Profile.pdf" "$GITHUB_WORKSPACE/site/public/resume/"
+
+      - name: Enforce document page counts
+        shell: bash
+        run: |
+          set -euo pipefail
+          CV_PAGES="$(pdfinfo resume/Stewart_Burton_AI_DevOps_Engineer_Resume.pdf | awk '/^Pages:/ {print $2}')"
+          PROFILE_PAGES="$(pdfinfo assets/onepager/Stewart_Burton_AI_DevOps_Engineer_Profile.pdf | awk '/^Pages:/ {print $2}')"
+          echo "CV pages: $CV_PAGES"
+          echo "One-pager pages: $PROFILE_PAGES"
+          test "$CV_PAGES" = "4"
+          test "$PROFILE_PAGES" = "1"
+
+      - name: Upload generated PDFs for visual review
+        uses: actions/upload-artifact@v4
+        with:
+          name: genaiops-recruiter-pdfs
+          if-no-files-found: error
+          path: |
+            resume/Stewart_Burton_AI_DevOps_Engineer_Resume.pdf
+            assets/onepager/Stewart_Burton_AI_DevOps_Engineer_Profile.pdf
