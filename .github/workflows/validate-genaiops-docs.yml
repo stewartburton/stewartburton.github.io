@@ -44,6 +44,13 @@ jobs:
           "$CHROME" --version
           pdfinfo -v | head -1 || true
 
+      - name: Record current published page counts
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "Published CV pages: $(pdfinfo resume/Stewart_Burton_AI_DevOps_Engineer_Resume.pdf | awk '/^Pages:/ {print $2}')"
+          echo "Published one-pager pages: $(pdfinfo assets/onepager/Stewart_Burton_AI_DevOps_Engineer_Profile.pdf | awk '/^Pages:/ {print $2}')"
+
       - name: Generate recruiter PDFs
         shell: bash
         run: |
@@ -75,6 +82,7 @@ jobs:
           test "$PROFILE_PAGES" = "1"
 
       - name: Upload generated PDFs for visual review
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: genaiops-recruiter-pdfs
