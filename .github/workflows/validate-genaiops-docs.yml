@@ -5,7 +5,8 @@ on:
     branches: [main]
 
 permissions:
-  contents: read
+  contents: write
+  pull-requests: read
 
 jobs:
   validate:
@@ -105,6 +106,32 @@ jobs:
           Write-Host "One-pager pages: $profilePages"
           if ($cvPages.Trim() -ne '4') { throw "CV must remain 4 pages; got $cvPages" }
           if ($profilePages.Trim() -ne '1') { throw "One-pager must remain 1 page; got $profilePages" }
+
+      - name: Commit validated PDFs to PR branch
+        if: github.event.pull_request.head.repo.full_name == github.repository
+        shell: pwsh
+        run: |
+          $lastMessage = git log -1 --pretty=%B
+          if ($lastMessage -match '\[pdf-sync\]') {
+            Write-Host "Validated PDFs already synced by the previous run."
+            exit 0
+          }
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add resume/Stewart_Burton_AI_DevOps_Engineer_Resume.pdf
+          git add assets/onepager/Stewart_Burton_AI_DevOps_Engineer_Profile.pdf
+          git add site/public/resume/Stewart_Burton_AI_DevOps_Engineer_Resume.pdf
+          git add site/public/resume/Stewart_Burton_AI_DevOps_Engineer_Profile.pdf
+
+          git diff --cached --quiet
+          if ($LASTEXITCODE -eq 0) {
+            Write-Host "No PDF changes to commit."
+            exit 0
+          }
+
+          git commit -m "Update validated recruiter PDFs [pdf-sync]"
+          git push origin "HEAD:${{ github.head_ref }}"
 
       - name: Upload baseline and generated PDFs for visual review
         if: always()
