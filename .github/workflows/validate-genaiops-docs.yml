@@ -4,7 +4,7 @@ on:
   pull_request:
     branches: [main]
   push:
-    branches: [feature/genaiops-positioning]
+    branches: [main, feature/genaiops-positioning]
 
 permissions:
   contents: write
@@ -17,7 +17,8 @@ jobs:
       - name: Checkout branch
         uses: actions/checkout@v4
         with:
-          ref: feature/genaiops-positioning
+          ref: ${{ github.head_ref || github.ref_name }}
+          fetch-depth: 2
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -109,13 +110,20 @@ jobs:
           if ($cvPages.Trim() -ne '4') { throw "CV must remain 4 pages; got $cvPages" }
           if ($profilePages.Trim() -ne '1') { throw "One-pager must remain 1 page; got $profilePages" }
 
-      - name: Commit validated PDFs to feature branch
-        if: github.ref == 'refs/heads/feature/genaiops-positioning'
+      - name: Commit validated PDFs when recruiter sources changed
+        if: github.event_name == 'push'
         shell: pwsh
         run: |
           $lastMessage = git log -1 --pretty=%B
           if ($lastMessage -match '\[pdf-sync\]') {
             Write-Host "Validated PDFs already synced by the previous run."
+            exit 0
+          }
+
+          $changed = git diff --name-only HEAD^ HEAD
+          $sourceChanged = $changed -contains 'resume/source/resume.html' -or $changed -contains 'assets/onepager/onepager.html'
+          if (-not $sourceChanged) {
+            Write-Host "Recruiter document sources did not change; no PDF sync commit needed."
             exit 0
           }
 
@@ -133,7 +141,7 @@ jobs:
           }
 
           git commit -m "Update validated recruiter PDFs [pdf-sync]"
-          git push origin HEAD:feature/genaiops-positioning
+          git push origin "HEAD:${{ github.ref_name }}"
 
       - name: Upload baseline and generated PDFs for visual review
         if: always()
