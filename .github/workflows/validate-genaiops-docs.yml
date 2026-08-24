@@ -1,0 +1,156 @@
+name: Validate GenAIOps site and recruiter PDFs
+
+on:
+  pull_request:
+    branches: [main]
+  push:
+    branches: [main, feature/genaiops-positioning]
+
+permissions:
+  contents: write
+  pull-requests: read
+
+jobs:
+  validate:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.head_ref || github.ref_name }}
+          fetch-depth: 2
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: site/package-lock.json
+
+      - name: Install site dependencies
+        run: npm ci
+        working-directory: site
+
+      - name: Build Astro site
+        run: npm run build
+        working-directory: site
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install PDF inspector
+        run: python -m pip install pypdf
+
+      - name: Find Chrome
+        shell: pwsh
+        run: |
+          $chrome = "$env:ProgramFiles\Google\Chrome\Application\chrome.exe"
+          if (-not (Test-Path $chrome)) {
+            $chrome = "${env:ProgramFiles(x86)}\Google\Chrome\Application\chrome.exe"
+          }
+          if (-not (Test-Path $chrome)) {
+            throw "Google Chrome not found on Windows runner"
+          }
+          "CHROME=$chrome" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append
+          & $chrome --version
+
+      - name: Preserve published PDFs and record page counts
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force -Path validation-baseline | Out-Null
+          Copy-Item resume/Stewart_Burton_AI_DevOps_Engineer_Resume.pdf validation-baseline/Published_Resume.pdf
+          Copy-Item assets/onepager/Stewart_Burton_AI_DevOps_Engineer_Profile.pdf validation-baseline/Published_Profile.pdf
+          python -c "from pypdf import PdfReader; print('Published CV pages:', len(PdfReader(r'validation-baseline/Published_Resume.pdf').pages)); print('Published one-pager pages:', len(PdfReader(r'validation-baseline/Published_Profile.pdf').pages))"
+
+      - name: Generate recruiter PDFs on Windows Chrome
+        shell: pwsh
+        run: |
+          $resumeHtml = (Resolve-Path 'resume/source/resume.html').Path.Replace('\','/')
+          $resumePdf = Join-Path (Resolve-Path 'resume').Path 'Stewart_Burton_AI_DevOps_Engineer_Resume.pdf'
+          $profileHtml = (Resolve-Path 'assets/onepager/onepager.html').Path.Replace('\','/')
+          $profilePdf = Join-Path (Resolve-Path 'assets/onepager').Path 'Stewart_Burton_AI_DevOps_Engineer_Profile.pdf'
+
+          $resumeArgs = @(
+            '--headless=new',
+            '--disable-gpu',
+            '--no-pdf-header-footer',
+            "--print-to-pdf=$resumePdf",
+            "file:///$resumeHtml"
+          )
+          $resumeProcess = Start-Process -FilePath $env:CHROME -ArgumentList $resumeArgs -Wait -PassThru -NoNewWindow
+          if ($resumeProcess.ExitCode -ne 0) { throw "CV PDF generation failed with exit code $($resumeProcess.ExitCode)" }
+          if (-not (Test-Path $resumePdf)) { throw "CV PDF was not created" }
+
+          $profileArgs = @(
+            '--headless=new',
+            '--disable-gpu',
+            '--no-pdf-header-footer',
+            '--print-to-pdf-no-header',
+            '--no-margins',
+            "--print-to-pdf=$profilePdf",
+            "file:///$profileHtml"
+          )
+          $profileProcess = Start-Process -FilePath $env:CHROME -ArgumentList $profileArgs -Wait -PassThru -NoNewWindow
+          if ($profileProcess.ExitCode -ne 0) { throw "One-pager PDF generation failed with exit code $($profileProcess.ExitCode)" }
+          if (-not (Test-Path $profilePdf)) { throw "One-pager PDF was not created" }
+
+          New-Item -ItemType Directory -Force -Path site/public/resume | Out-Null
+          Copy-Item $resumePdf site/public/resume/Stewart_Burton_AI_DevOps_Engineer_Resume.pdf -Force
+          Copy-Item $profilePdf site/public/resume/Stewart_Burton_AI_DevOps_Engineer_Profile.pdf -Force
+
+      - name: Enforce document page counts
+        shell: pwsh
+        run: |
+          $cvPages = python -c "from pypdf import PdfReader; print(len(PdfReader(r'resume/Stewart_Burton_AI_DevOps_Engineer_Resume.pdf').pages))"
+          $profilePages = python -c "from pypdf import PdfReader; print(len(PdfReader(r'assets/onepager/Stewart_Burton_AI_DevOps_Engineer_Profile.pdf').pages))"
+          Write-Host "CV pages: $cvPages"
+          Write-Host "One-pager pages: $profilePages"
+          if ($cvPages.Trim() -ne '4') { throw "CV must remain 4 pages; got $cvPages" }
+          if ($profilePages.Trim() -ne '1') { throw "One-pager must remain 1 page; got $profilePages" }
+
+      - name: Commit validated PDFs when recruiter sources changed
+        if: github.event_name == 'push'
+        shell: pwsh
+        run: |
+          $lastMessage = git log -1 --pretty=%B
+          if ($lastMessage -match '\[pdf-sync\]') {
+            Write-Host "Validated PDFs already synced by the previous run."
+            exit 0
+          }
+
+          $changed = git diff --name-only HEAD^ HEAD
+          $sourceChanged = $changed -contains 'resume/source/resume.html' -or $changed -contains 'assets/onepager/onepager.html'
+          if (-not $sourceChanged) {
+            Write-Host "Recruiter document sources did not change; no PDF sync commit needed."
+            exit 0
+          }
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add resume/Stewart_Burton_AI_DevOps_Engineer_Resume.pdf
+          git add assets/onepager/Stewart_Burton_AI_DevOps_Engineer_Profile.pdf
+          git add site/public/resume/Stewart_Burton_AI_DevOps_Engineer_Resume.pdf
+          git add site/public/resume/Stewart_Burton_AI_DevOps_Engineer_Profile.pdf
+
+          git diff --cached --quiet
+          if ($LASTEXITCODE -eq 0) {
+            Write-Host "No PDF changes to commit."
+            exit 0
+          }
+
+          git commit -m "Update validated recruiter PDFs [pdf-sync]"
+          git push origin "HEAD:${{ github.ref_name }}"
+
+      - name: Upload baseline and generated PDFs for visual review
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: genaiops-recruiter-pdfs
+          if-no-files-found: error
+          path: |
+            validation-baseline/Published_Resume.pdf
+            validation-baseline/Published_Profile.pdf
+            resume/Stewart_Burton_AI_DevOps_Engineer_Resume.pdf
+            assets/onepager/Stewart_Burton_AI_DevOps_Engineer_Profile.pdf
