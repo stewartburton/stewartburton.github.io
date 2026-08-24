@@ -3,6 +3,8 @@ name: Validate GenAIOps site and recruiter PDFs
 on:
   pull_request:
     branches: [main]
+  push:
+    branches: [feature/genaiops-positioning]
 
 permissions:
   contents: write
@@ -12,10 +14,10 @@ jobs:
   validate:
     runs-on: windows-latest
     steps:
-      - name: Checkout PR branch
+      - name: Checkout branch
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.head_ref }}
+          ref: feature/genaiops-positioning
 
       - name: Set up Node
         uses: actions/setup-node@v4
@@ -107,8 +109,8 @@ jobs:
           if ($cvPages.Trim() -ne '4') { throw "CV must remain 4 pages; got $cvPages" }
           if ($profilePages.Trim() -ne '1') { throw "One-pager must remain 1 page; got $profilePages" }
 
-      - name: Commit validated PDFs to PR branch
-        if: github.event.pull_request.head.repo.full_name == github.repository
+      - name: Commit validated PDFs to feature branch
+        if: github.ref == 'refs/heads/feature/genaiops-positioning'
         shell: pwsh
         run: |
           $lastMessage = git log -1 --pretty=%B
@@ -131,7 +133,7 @@ jobs:
           }
 
           git commit -m "Update validated recruiter PDFs [pdf-sync]"
-          git push origin "HEAD:${{ github.head_ref }}"
+          git push origin HEAD:feature/genaiops-positioning
 
       - name: Upload baseline and generated PDFs for visual review
         if: always()
