@@ -1,4 +1,4 @@
-# Claude Prompting Guide — Stewart Burton (DevOps • AI & Automation)
+# Claude Prompting Guide - Stewart Burton (DevOps • AI & Automation)
 ## Customized for stewart-burton.com website development
 
 > This guide is tuned for **stewart-burton.com** development: GitHub Pages, Jekyll/Hugo/Static Site, responsive design, professional portfolio, and modern web standards. Copy/paste the prompt snippets as-is and swap placeholders like `<section>`, `<content>`, `<feature>`.
@@ -454,7 +454,7 @@ Include testing tools and validation steps.
 
 ## Good vs Bad examples (website context)
 
-### Example 1 — Portfolio Project Page
+### Example 1 - Portfolio Project Page
 
 Bad:
 ```prompt
@@ -474,7 +474,7 @@ Create a case study page for "Enterprise GitHub Migration" project:
 Mobile-optimized, fast loading, professional photography suggestions included.
 ```
 
-### Example 2 — Blog Implementation
+### Example 2 - Blog Implementation
 
 Bad:
 ```prompt
