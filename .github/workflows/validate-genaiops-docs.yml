@@ -44,12 +44,15 @@ jobs:
           "$CHROME" --version
           pdfinfo -v | head -1 || true
 
-      - name: Record current published page counts
+      - name: Preserve published PDFs and record page counts
         shell: bash
         run: |
           set -euo pipefail
-          echo "Published CV pages: $(pdfinfo resume/Stewart_Burton_AI_DevOps_Engineer_Resume.pdf | awk '/^Pages:/ {print $2}')"
-          echo "Published one-pager pages: $(pdfinfo assets/onepager/Stewart_Burton_AI_DevOps_Engineer_Profile.pdf | awk '/^Pages:/ {print $2}')"
+          mkdir -p validation-baseline
+          cp resume/Stewart_Burton_AI_DevOps_Engineer_Resume.pdf validation-baseline/Published_Resume.pdf
+          cp assets/onepager/Stewart_Burton_AI_DevOps_Engineer_Profile.pdf validation-baseline/Published_Profile.pdf
+          echo "Published CV pages: $(pdfinfo validation-baseline/Published_Resume.pdf | awk '/^Pages:/ {print $2}')"
+          echo "Published one-pager pages: $(pdfinfo validation-baseline/Published_Profile.pdf | awk '/^Pages:/ {print $2}')"
 
       - name: Generate recruiter PDFs
         shell: bash
@@ -81,12 +84,14 @@ jobs:
           test "$CV_PAGES" = "4"
           test "$PROFILE_PAGES" = "1"
 
-      - name: Upload generated PDFs for visual review
+      - name: Upload baseline and generated PDFs for visual review
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: genaiops-recruiter-pdfs
           if-no-files-found: error
           path: |
+            validation-baseline/Published_Resume.pdf
+            validation-baseline/Published_Profile.pdf
             resume/Stewart_Burton_AI_DevOps_Engineer_Resume.pdf
             assets/onepager/Stewart_Burton_AI_DevOps_Engineer_Profile.pdf
