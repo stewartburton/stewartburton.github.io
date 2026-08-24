@@ -10,12 +10,12 @@ interface Props {
 }
 const {
   title,
-  description = 'Applied AI engineer building practical AI systems for software teams - AI platform enablement, developer productivity, and DevOps automation. Cape Town, South Africa.',
+  description = 'Applied AI engineer specialising in AI platform engineering, GenAIOps, developer productivity and production AI automation. Cape Town, South Africa.',
   current,
 } = Astro.props;
 const fullTitle =
   title === 'Home'
-    ? 'Stewart Burton - Applied AI Engineer | AI Platform & Developer Productivity'
+    ? 'Stewart Burton - Applied AI Engineer | AI Platform & GenAIOps'
     : `${title} · stewart-burton.com`;
 
 const personSchema = {
@@ -30,10 +30,16 @@ const personSchema = {
     name: 'BET Software',
   },
   description:
-    'Applied AI engineer building practical AI systems for software teams - AI platform enablement, developer productivity, and DevOps automation. Officially an Intermediate DevOps Engineer at BET Software, with recent work centred on AI-focused engineering.',
+    'Applied AI engineer specialising in AI platform engineering, GenAIOps, developer productivity and production AI automation. Officially an Intermediate DevOps Engineer at BET Software, with recent work centred on AI-focused engineering.',
   knowsAbout: [
     'Applied AI',
     'AI Platform Engineering',
+    'GenAIOps',
+    'LLMOps',
+    'Generative AI Operations',
+    'AI evaluation',
+    'AI observability',
+    'Agentic systems',
     'Developer Productivity',
     'AI-assisted code review',
     'LLM tooling',
