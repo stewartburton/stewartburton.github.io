@@ -8,7 +8,7 @@ const description =
 
 const stats = [
   { label: 'the constraint', value: '1 GPU / 12 GB', note: 'RTX 4070, 64 GB system RAM' },
-  { label: 'running locally', value: '6 models', note: 'flagship MoE down to a 4B router' },
+  { label: 'running locally', value: '5 models', note: 'a 30B MoE down to a 4B router' },
   { label: 'subscriptions replaced', value: 'R1,300-R2,200', note: 'per month (about $70-$120)' },
 ];
 
@@ -22,11 +22,11 @@ const hardware = [
 const decisions = [
   {
     h: 'Quantization is a decision, not a default',
-    p: 'Models run as GGUF builds with the quant level chosen per model size. Q4_K_M is the sweet spot for 7B to 14B on 12 GB; dropping to Q4_K_S or Q3_K_M only ever happens to fit a larger model, and it gets benchmarked when it does.',
+    p: 'Models run as GGUF builds with the quant level chosen per model size, and the choice is measured rather than assumed. Q4_K_M is the sweet spot on 12 GB. Moving the 30B coder up to Q6_K was tried and rejected on evidence: it never finished loading, because with the experts held in system RAM the ceiling is the working set, not the file size.',
   },
   {
     h: 'Mixture-of-experts beats brute force on small hardware',
-    p: 'A 35B MoE model with roughly 3B active parameters per token offloads expert weights to system RAM and still runs fast, because each token only touches the active experts. That is 30B-class quality at close to 8B-class speed on a 12 GB card.',
+    p: 'A 30B MoE model with roughly 3B active parameters per token offloads its expert weights to system RAM and still answers at about 25 tokens a second, because each token only touches the active experts. A dense 30B would not fit on this card at all.',
   },
   {
     h: 'One heavy GPU consumer at a time',
@@ -39,9 +39,8 @@ const decisions = [
 ];
 
 const models = [
-  { m: 'Qwen3.6-35B-A3B', t: 'MoE, ~3B active', r: 'Flagship reasoning and vision. The daily driver.', s: '~20 GB' },
   { m: 'Qwen3-Coder-30B-A3B', t: 'MoE, ~3B active', r: 'Agentic coding and tool calling. Backs the agent.', s: '~18 GB' },
-  { m: 'Qwen3.5-9B', t: 'Dense', r: 'Fast general workhorse. Fits entirely in VRAM.', s: '~5.5 GB' },
+  { m: 'Qwen3.5-9B', t: 'Dense', r: 'Chat and voice. The daily driver, and resident so a spoken turn never waits for a model swap.', s: '~5.5 GB' },
   { m: 'Qwen3.5-4B', t: 'Dense', r: 'Low-latency routing, classification, inline completion.', s: '~2.5 GB' },
   { m: 'Qwen3-VL-8B', t: 'Dense VLM', r: 'OCR, screenshots, charts and diagrams.', s: '~6 GB' },
   { m: 'qwen3-embedding:0.6b', t: 'Embedding', r: 'RAG vectors at 1024 dimensions.', s: '<1 GB' },
@@ -255,7 +254,8 @@ const stack = [
       <div class="min-w-0">
         <h2 class="text-h2 text-text-primary">The resident model set.</h2>
         <p class="mt-5 max-w-prose text-body text-text-body">
-          Six models, each with a job. Sizes are approximate weights-on-disk at Q4_K_M; add a
+          Five models, each with a job, each mapped to a role in one config file so no surface
+          picks its own. Sizes are approximate weights-on-disk at the quant each one runs; add a
           gigabyte or two for the KV cache at working context.
         </p>
 
