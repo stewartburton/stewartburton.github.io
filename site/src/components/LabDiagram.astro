@@ -1,0 +1,14 @@
+---
+interface Props {
+  svg: string;
+  alt: string;
+}
+const { svg, alt } = Astro.props;
+// The image role and label live on the wrapper, so hide the inline SVG from the a11y tree.
+const markup = svg.replace('<svg ', '<svg aria-hidden="true" focusable="false" ');
+---
+
+<figure class="card-elevated p-4 md:p-6 overflow-x-auto">
+  <div class="min-w-[880px]" role="img" aria-label={alt} set:html={markup} />
+  <p class="md:hidden mt-3 mono-meta">scroll sideways to see the whole diagram</p>
+</figure>

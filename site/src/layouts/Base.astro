@@ -6,13 +6,17 @@ import Footer from '../components/Footer.astro';
 interface Props {
   title: string;
   description?: string;
+  /** Canonical path on the site, e.g. /lab/. Omit to emit no canonical link. */
+  canonical?: string;
   current?: 'home' | 'work' | 'smaller-things' | 'lab' | 'about' | 'services' | 'contact';
 }
 const {
   title,
   description = 'Applied AI engineer specialising in AI platform engineering, GenAIOps, developer productivity and production AI automation. Cape Town, South Africa.',
   current,
+  canonical,
 } = Astro.props;
+const canonicalUrl = canonical ? new URL(canonical, 'https://www.stewart-burton.com').href : undefined;
 const fullTitle =
   title === 'Home'
     ? 'Stewart Burton - Applied AI Engineer | AI Platform & GenAIOps'
@@ -80,6 +84,8 @@ const personSchema = {
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
+    {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+    {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
     <link rel="preconnect" href="https://rsms.me/" />
     <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />

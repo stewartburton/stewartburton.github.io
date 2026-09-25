@@ -1,0 +1,43 @@
+---
+import type { LabVersion } from '../lib/lab';
+
+interface Props {
+  versions: LabVersion[];
+  /** id of the version being viewed */
+  active: string;
+}
+const { versions, active } = Astro.props;
+const current = versions.find((v) => v.isCurrent);
+---
+
+<nav aria-label="Lab versions" class="mt-8">
+  <div class="flex items-center gap-3">
+    <span class="mono-label">history</span>
+    <span class="mono-meta">
+      {current?.data.label} current{versions.length > 1 && `, ${versions.length - 1} archived`}
+    </span>
+  </div>
+  <ul class="mt-3 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+    {versions.map((v) => (
+      <li>
+        <a
+          href={v.isCurrent ? '/lab/' : v.path}
+          aria-current={v.id === active ? 'page' : undefined}
+          class:list={[
+            'card block p-4 h-full transition-colors',
+            v.id === active ? 'border-accent/30 bg-accent/5' : 'hover:border-border',
+          ]}
+        >
+          <span class="flex items-center justify-between gap-3">
+            <span class:list={['font-mono text-mono-label uppercase', v.id === active ? 'text-accent' : 'text-text-primary']}>
+              {v.data.label}
+            </span>
+            <span class="mono-meta">{v.isCurrent ? 'current' : 'archived'}</span>
+          </span>
+          <span class="mt-2 block text-card-body text-text-secondary">{v.data.summary}</span>
+          <span class="mt-3 block mono-meta">as of {v.data.asOf}</span>
+        </a>
+      </li>
+    ))}
+  </ul>
+</nav>

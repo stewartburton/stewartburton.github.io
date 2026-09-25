@@ -1,0 +1,18 @@
+---
+import Base from '../../layouts/Base.astro';
+import LabVersionPage from '../../components/LabVersionPage.astro';
+import { getLabVersions } from '../../lib/lab';
+
+// /lab/ always shows the newest version. Older ones live at /lab/vN/.
+const versions = await getLabVersions();
+const latest = versions[0];
+---
+
+<Base
+  title={latest.data.title}
+  description={latest.data.description}
+  current="lab"
+  canonical="/lab/"
+>
+  <LabVersionPage version={latest} versions={versions} />
+</Base>

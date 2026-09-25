@@ -1,0 +1,31 @@
+---
+import Base from '../../layouts/Base.astro';
+import LabVersionPage from '../../components/LabVersionPage.astro';
+import { getLabVersions } from '../../lib/lab';
+
+export async function getStaticPaths() {
+  const versions = await getLabVersions();
+  return versions.map((version) => ({
+    params: { version: version.id },
+    props: { version, versions },
+  }));
+}
+
+const { version, versions } = Astro.props;
+const { data } = version;
+// The current version is also served at /lab/, which is its canonical address.
+// Archived versions are their own canonical page.
+const title = version.isCurrent ? `${data.title} ${data.label}` : `${data.title} ${data.label} (archived)`;
+const description = version.isCurrent
+  ? data.description
+  : `Archived ${data.label} of the home AI lab, as of ${data.asOf}. ${data.description}`;
+---
+
+<Base
+  title={title}
+  description={description}
+  current="lab"
+  canonical={version.isCurrent ? '/lab/' : version.path}
+>
+  <LabVersionPage version={version} versions={versions} />
+</Base>
