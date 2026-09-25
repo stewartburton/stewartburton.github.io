@@ -1,0 +1,246 @@
+---
+import SectionLabel from './SectionLabel.astro';
+import StackChips from './StackChips.astro';
+import LabVersionNav from './LabVersionNav.astro';
+import LabDiagram from './LabDiagram.astro';
+import type { LabVersion } from '../lib/lab';
+
+interface Props {
+  version: LabVersion;
+  versions: LabVersion[];
+}
+const { version, versions } = Astro.props;
+const { data } = version;
+const current = versions.find((v) => v.isCurrent)!;
+
+const cellClass: Record<string, string> = {
+  primary: 'text-card-body text-text-primary',
+  'primary-mono': 'font-mono text-card-body text-text-primary whitespace-nowrap',
+  secondary: 'text-card-body text-text-secondary',
+  'secondary-nowrap': 'text-card-body text-text-secondary whitespace-nowrap',
+  'body-mono': 'font-mono text-card-body text-text-body whitespace-nowrap',
+  route: 'font-mono text-card-body whitespace-nowrap',
+  meta: 'font-mono text-mono-meta uppercase tracking-wide text-text-tertiary whitespace-nowrap',
+};
+---
+
+<!-- Hero -->
+<section>
+  <div class="mx-auto max-w-page px-8 pt-16 pb-section">
+    <SectionLabel label={data.eyebrow} />
+
+    <LabVersionNav versions={versions} active={version.id} />
+
+    {!version.isCurrent && (
+      <aside
+        role="note"
+        class="mt-6 rounded-card border border-hairline border-border bg-bg-card-elevated p-6 max-w-prose"
+      >
+        <span class="mono-label text-accent">
+          archived {data.label}, as of {data.asOf}
+        </span>
+        <p class="mt-3 text-body text-text-body">
+          This is the lab as it was described on {data.asOf}, kept as a historical record and
+          replaced on {version.archivedOn}.
+          {data.archiveNote && ` ${data.archiveNote} `}
+          <a class="text-accent hover:underline" href="/lab/">Read the current version ({current.data.label})</a>.
+        </p>
+      </aside>
+    )}
+
+    <h1 class="mt-8 text-page-h1 text-text-primary max-w-prose">
+      {data.heading[0]}<span class="text-accent">{data.heading[1]}</span>{data.heading[2]}
+    </h1>
+    <p class="mt-6 max-w-prose text-body-lead text-text-body">{data.lead}</p>
+
+    <dl class="mt-12 grid gap-3 md:grid-cols-3">
+      {data.stats.map((s) => (
+        <div class="card p-6">
+          <dt class="mono-label">{s.label}</dt>
+          <dd class="mt-3 text-card-lead text-text-primary">{s.value}</dd>
+          <dd class="mt-2 text-card-body text-text-secondary">{s.note}</dd>
+        </div>
+      ))}
+    </dl>
+
+    <p class="mt-6 font-mono text-mono-meta uppercase tracking-wide text-text-tertiary">
+      {data.stamp}
+    </p>
+  </div>
+</section>
+
+<div class="mx-auto max-w-page px-8 section-divider"></div>
+
+<!-- Architecture diagram -->
+<section>
+  <div class="mx-auto max-w-page px-8 py-section grid md:grid-cols-[200px_1fr] gap-x-10 gap-y-8">
+    <SectionLabel label={data.diagram.label} />
+    <div class="min-w-0">
+      <h2 class="text-h2 text-text-primary">{data.diagram.heading}</h2>
+      <p class="mt-5 max-w-prose text-body text-text-body">{data.diagram.intro}</p>
+      <div class="mt-8">
+        <LabDiagram svg={version.svg} alt={data.diagram.alt} />
+      </div>
+    </div>
+  </div>
+</section>
+
+{data.sections.map((s) => (
+  <>
+    <div class="mx-auto max-w-page px-8 section-divider"></div>
+    <section>
+      {s.layout === 'stacked' ? (
+        <div class="mx-auto max-w-page px-8 py-section">
+          <SectionLabel label={s.label} />
+          <h2 class="mt-4 text-h2 text-text-primary">{s.heading}</h2>
+          {s.intro && <p class="mt-5 max-w-prose text-body text-text-secondary">{s.intro}</p>}
+          {s.blocks.map((b) => (
+            b.type === 'linkcards' && (
+              <div class="mt-10 grid gap-3 md:grid-cols-3">
+                {b.items.map((c) => (
+                  <a href={c.href} class="card p-6 group flex flex-col justify-between hover:border-border transition-colors">
+                    <div>
+                      <h3 class="text-card text-text-primary">{c.title}</h3>
+                      <p class="mt-3 text-card-body text-text-secondary">{c.text}</p>
+                    </div>
+                    <span class="inline-flex items-center gap-2 mt-6 font-mono text-mono-meta uppercase tracking-wide text-text-tertiary group-hover:text-accent transition-colors">
+                      {c.cta} <span aria-hidden="true">↳</span>
+                    </span>
+                  </a>
+                ))}
+              </div>
+            )
+          ))}
+        </div>
+      ) : (
+        <div class="mx-auto max-w-page px-8 py-section grid md:grid-cols-[200px_1fr] gap-x-10 gap-y-8">
+          <SectionLabel label={s.label} />
+          <div class="min-w-0">
+            <h2 class="text-h2 text-text-primary">{s.heading}</h2>
+            {s.intro && <p class="mt-5 max-w-prose text-body text-text-body">{s.intro}</p>}
+
+            {s.blocks.map((b) => (
+              <>
+                {b.type === 'facts' && (
+                  <dl class="mt-8 grid gap-3 sm:grid-cols-2">
+                    {b.items.map((f) => (
+                      <div class="card p-5">
+                        <dt class="mono-label">{f.k}</dt>
+                        <dd class="mt-3 text-card-body text-text-primary">{f.v}</dd>
+                      </div>
+                    ))}
+                  </dl>
+                )}
+
+                {b.type === 'numbered' && (
+                  <ul class="mt-10 space-y-6">
+                    {b.items.map((n, i) => (
+                      <li class="grid grid-cols-[2rem_1fr] gap-x-4">
+                        <span class="font-mono text-mono-label text-accent pt-1">
+                          {(i + 1).toString().padStart(2, '0')}
+                        </span>
+                        <div>
+                          <h3 class="text-card text-text-primary">{n.h}</h3>
+                          <p class="mt-2 max-w-prose text-body text-text-secondary">{n.p}</p>
+                        </div>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+
+                {b.type === 'cards' && (
+                  <>
+                    {b.title && <h3 class="mt-12 text-card-lead text-text-primary">{b.title}</h3>}
+                    <div class:list={['grid gap-3 sm:grid-cols-2', b.title ? 'mt-6' : 'mt-8']}>
+                      {b.items.map((c, i) => (
+                        <div class:list={[
+                          'card p-6',
+                          i === b.items.length - 1 && b.items.length % 2 === 1 && 'sm:col-span-2',
+                        ]}>
+                          <span class="mono-label text-accent">{c.label}</span>
+                          <p class="mt-3 text-card-body text-text-secondary">{c.text}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </>
+                )}
+
+                {b.type === 'table' && (
+                  <>
+                    {b.title && <h3 class="mt-12 text-card-lead text-text-primary">{b.title}</h3>}
+                    <div class:list={['overflow-x-auto', b.title ? 'mt-6' : 'mt-8']}>
+                      <table class="w-full min-w-[560px] border-collapse text-left">
+                        {b.columns.some((c) => c.head) && (
+                          <thead>
+                            <tr class="border-b-[0.5px] border-border">
+                              {b.columns.map((c, ci) => (
+                                <th class:list={['mono-label pb-3 font-medium', ci < b.columns.length - 1 && 'pr-4']}>
+                                  {c.head}
+                                </th>
+                              ))}
+                            </tr>
+                          </thead>
+                        )}
+                        <tbody>
+                          {b.rows.map((row) => (
+                            <tr class="border-b-[0.5px] border-border-subtle align-top">
+                              {row.map((cell, ci) => (
+                                <td class:list={[
+                                  'py-4',
+                                  ci < row.length - 1 && 'pr-4',
+                                  cellClass[b.columns[ci].style],
+                                  b.columns[ci].style === 'route' &&
+                                    (cell.startsWith('Local') ? 'text-accent' : 'text-text-body'),
+                                ]}>
+                                  {cell}
+                                </td>
+                              ))}
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </>
+                )}
+
+                {b.type === 'callout' && (
+                  <aside class="mt-8 rounded-card border border-hairline border-accent/30 bg-accent/5 p-6 max-w-prose">
+                    <span class="mono-label text-accent">{b.label}</span>
+                    <p class="mt-3 text-body text-text-body">{b.text}</p>
+                  </aside>
+                )}
+
+                {b.type === 'prose' && (
+                  <p class="mt-6 max-w-prose text-body text-text-secondary">{b.text}</p>
+                )}
+
+                {b.type === 'chips' && (
+                  <div class="mt-8">
+                    <span class="mono-label">{b.label}</span>
+                    <div class="mt-3"><StackChips items={b.items} /></div>
+                  </div>
+                )}
+
+                {b.type === 'links' && (
+                  <div class="mt-10 flex flex-wrap gap-6">
+                    {b.items.map((l) => (
+                      <a
+                        href={l.href}
+                        class:list={[
+                          'font-mono text-mono-label uppercase tracking-wider inline-flex items-center gap-2',
+                          l.tone === 'accent' ? 'text-accent hover:underline' : 'text-text-primary hover:text-accent',
+                        ]}
+                      >
+                        {l.label} <span class:list={[l.tone === 'primary' && 'text-accent']} aria-hidden="true">→</span>
+                      </a>
+                    ))}
+                  </div>
+                )}
+              </>
+            ))}
+          </div>
+        </div>
+      )}
+    </section>
+  </>
+))}

@@ -1,0 +1,358 @@
+# v1 of the lab page: the /lab/ page as it stood on 26 Aug 2026, preserved as published.
+# Do not edit the claims below. See README.md in this folder.
+version: 1
+label: v1
+asOf: 26 Aug 2026
+summary: One 12 GB GPU, five models behind one endpoint, voice, retrieval memory, image generation
+  and a supervised personal agent.
+title: Home AI lab
+description: A local-first AI platform on one 12 GB GPU - model serving, voice, RAG memory, image
+  generation, automation and a supervised personal agent, run as daily infrastructure.
+eyebrow: home ai lab
+heading:
+  - "One 12 GB GPU, run like "
+  - production infrastructure
+  - .
+lead: "A local-first AI platform on a single consumer workstation: model serving, voice, retrieval
+  memory, image generation, automation, and a supervised personal agent. It runs every day and does
+  real work, it replaces most of a paid AI subscription stack, and it is where platform lessons get
+  learned cheaply before they turn up in enterprise work."
+stats:
+  - label: the constraint
+    value: 1 GPU / 12 GB
+    note: RTX 4070, 64 GB system RAM
+  - label: running locally
+    value: 5 models
+    note: a 30B MoE down to a 4B router
+  - label: subscriptions replaced
+    value: R1,300-R2,200
+    note: per month (about $70-$120)
+stamp: stack verified against the lab repo, 8 august 2026
+archiveNote: "The model list on this page was corrected on 26 Aug 2026. Some details later proved
+  stale, so v2 drops or corrects them: the 4B model is now a rollback rather than a router, and the
+  Ollama runtime and the chat workspace named below could not be re-verified."
+diagram:
+  label: architecture
+  heading: How the pieces connect.
+  intro: One personal agent in the middle, one local model endpoint behind it, and everything else
+    hanging off those two. Arrows show the direction of a request.
+  alt: Architecture diagram of the v1 lab. A phone and a desktop microphone send chat, voice notes and
+    photos to the personal agent. Home Assistant passes person events from the cameras to the agent,
+    which replies through a self-hosted push channel. The agent makes role-mapped calls to a single
+    llama-swap endpoint, which serves two resident models always loaded and two swap models loaded
+    on demand, one heavy model at a time. The agent also queries a Qdrant retrieval store fed
+    nightly from an Obsidian vault, triggers n8n automations that sequence ComfyUI image jobs around
+    the language model, and falls back to cloud coding agents only on named exceptions. A separate
+    ffmpeg pipeline produces App Store and social video.
+sections:
+  - label: the constraint
+    heading: The hardware is the design brief.
+    intro: "Everything on this page runs on one workstation. No second GPU, no rented instance. That
+      ceiling is what makes the platform worth writing about: a bigger card would have let most of
+      these decisions go unmade."
+    blocks:
+      - type: facts
+        items:
+          - k: workstation
+            v: Intel i7-13700KF, Windows 11 Pro
+          - k: gpu
+            v: NVIDIA RTX 4070, 12 GB VRAM
+          - k: memory
+            v: 64 GB system RAM
+          - k: exposure
+            v: Localhost by default, nothing published by accident
+      - type: numbered
+        items:
+          - h: Quantization is a decision, not a default
+            p: "Models run as GGUF builds with the quant level chosen per model size, and the choice is measured
+              rather than assumed. Q4_K_M is the sweet spot on 12 GB. Moving the 30B coder up to
+              Q6_K was tried and rejected on evidence: it never finished loading, because with the
+              experts held in system RAM the ceiling is the working set, not the file size."
+          - h: Mixture-of-experts beats brute force on small hardware
+            p: A 30B MoE model with roughly 3B active parameters per token offloads its expert weights to system
+              RAM and still answers at about 25 tokens a second, because each token only touches the
+              active experts. A dense 30B would not fit on this card at all.
+          - h: One heavy GPU consumer at a time
+            p: The language model and the image pipeline never contend. The automation bus sequences GPU work -
+              unload, render, reload - instead of letting two jobs fight over VRAM and both lose.
+          - h: Retrieval instead of long context
+            p: Every token of context costs VRAM in the KV cache, so context stays modest and the knowledge base
+              does the remembering. Long documents get retrieved from, not pasted in.
+  - label: what runs on it
+    heading: The resident model set.
+    intro: Five models, each with a job, each mapped to a role in one config file so no surface picks
+      its own. Sizes are approximate weights-on-disk at the quant each one runs; add a gigabyte or
+      two for the KV cache at working context.
+    blocks:
+      - type: table
+        columns:
+          - head: model
+            style: primary-mono
+          - head: type
+            style: secondary-nowrap
+          - head: role
+            style: secondary
+          - head: size
+            style: body-mono
+        rows:
+          - - Qwen3-Coder-30B-A3B
+            - MoE, ~3B active
+            - Agentic coding and tool calling. Backs the agent.
+            - ~18 GB
+          - - Qwen3.5-9B
+            - Dense
+            - Chat and voice. The daily driver, and resident so a spoken turn never waits for a
+              model swap.
+            - ~5.5 GB
+          - - Qwen3.5-4B
+            - Dense
+            - Low-latency routing, classification, inline completion.
+            - ~2.5 GB
+          - - Qwen3-VL-8B
+            - Dense VLM
+            - OCR, screenshots, charts and diagrams.
+            - ~6 GB
+          - - qwen3-embedding:0.6b
+            - Embedding
+            - RAG vectors at 1024 dimensions.
+            - <1 GB
+      - type: cards
+        title: The layers around them
+        items:
+          - label: Serving
+            text: llama.cpp with llama-swap runs as a background service behind one OpenAI-compatible endpoint,
+              hot-swapping role-mapped models on demand. Ollama stays as the always-on runtime for
+              the automation stack, and a self-hosted chat workspace sits over both.
+          - label: Coding agents
+            text: Claude Code, OpenAI Codex and GitHub Copilot, steered by portable SKILL.md skills and
+              AGENTS.md guidance that work across all three rather than being written per vendor.
+              The local coding model is driven by the lab's own agent for sandboxed development
+              work, not through an IDE plugin.
+          - label: Voice
+            text: faster-whisper for speech in, Kokoro for speech out, held resident by a persistent voice
+              service. Keeping both models warm instead of cold-starting them per request took a
+              turn from about 14 seconds to about 1.4.
+          - label: Retrieval memory
+            text: An Obsidian vault of plain Markdown, embedded into Qdrant. Answers come back grounded, with
+              citations pointing at the real note rather than at the model. The notes stay ordinary
+              files on disk, so nothing gets trapped inside a database.
+          - label: Agent memory
+            text: "Separate from retrieval, the coding agents carry their own: CLAUDE.md and AGENTS.md
+              instruction files at global and per-project scope, plus memory notes that persist
+              decisions, corrections and constraints between sessions. Retrieval answers what was
+              written down. This is what stops the same correction being needed twice."
+          - label: Automation
+            text: n8n as the automation bus, Home Assistant for the physical layer, and a Stream Deck of
+              one-press launchers for the whole platform.
+          - label: Home security
+            text: "Cameras ride Home Assistant events instead of streaming: when an armed camera reports a
+              person, the already-captured frame is pulled (no stream, no battery cost), described
+              by the local vision model, and pushed to my phone through a self-hosted ntfy channel.
+              Per-camera cooldowns, empty-frame suppression and quiet hours keep it from becoming
+              noise. No footage leaves the house and there is no cloud vision subscription. The same
+              channel carries the platform's own watchdog alerts."
+          - label: Image generation
+            text: ComfyUI running SDXL and Flux.1 schnell, sequenced around the language model by the bus so the
+              two never contend for VRAM. Photoreal people and scenes, product and marketing
+              imagery, and store assets, down to the lab's own launcher icons.
+          - label: Media pipeline
+            text: "App Store previews and social cuts are built by script rather than by hand in an editor:
+              ffmpeg does the splicing, audio mixing and fades, caption burn-in and encoding,
+              hitting Apple's App Preview rules exactly (portrait, constant 30fps, a native device
+              size with no scaling, real captured gameplay rather than cinematic footage). Generated
+              clips are stitched around the limits of whatever produced them, one cut joining two
+              generations because the generator caps at fifteen seconds. Imagery is a deliberate mix
+              of local models and cloud ones; audio pairs generated sound with a properly licensed
+              field recording. Scripting it means a re-cut is a re-run, and the reasoning sits in
+              the script instead of in someone's memory."
+  - label: routing policy
+    heading: Local by default. Cloud on named exceptions.
+    intro: '"Local-first" is only meaningful if the escalation rule is written down, because otherwise
+      every hard prompt quietly becomes a cloud call and the bill arrives to explain it. This is the
+      policy the front ends enforce.'
+    blocks:
+      - type: table
+        columns:
+          - head: task
+            style: primary
+          - head: route
+            style: route
+          - head: why
+            style: secondary
+        rows:
+          - - Everyday chat, summarising, tagging
+            - Local
+            - Fast, private, free at the margin
+          - - Inline completion and code chat
+            - Local
+            - Latency matters more than depth, and code stays put
+          - - Anything touching personal or client data
+            - Local only
+            - Non-negotiable. No escalation path exists
+          - - Embeddings and retrieval
+            - Local
+            - Must be local and consistent across the corpus
+          - - Large multi-file refactor
+            - Local first, then cloud
+            - Try local, escalate only when the output is visibly weak
+          - - Deep or novel reasoning, architecture design
+            - Cloud
+            - Frontier quality is worth paying for on hard problems
+          - - Context that will not chunk cleanly
+            - Cloud
+            - Exceeds the local KV budget at any sensible quant
+  - label: the agent
+    heading: An agent with a security model borrowed from DevOps.
+    intro: "The lab runs a persistent personal agent, reachable from a phone through chat, voice notes
+      or photographs. It plans against a local model and acts through a fixed set of registered
+      tools: vault search, web search, image generation, file access, speech, automation triggers,
+      and a sandboxed development loop that can branch, test, commit and open a pull request. Every
+      reply carries a one-tap rating, logged, so model quality gets trended from real use rather
+      than assumed."
+    blocks:
+      - type: cards
+        items:
+          - label: Least privilege
+            text: Every tool gets the minimum scope. Filesystem tools see allowlisted directories only, never
+              system paths.
+          - label: Allowlists, not blocklists
+            text: Only explicitly registered tools exist. There is no generic "run anything" surface to forget
+              to close.
+          - label: Tiered autonomy
+            text: A policy engine with three modes. Read-only actions auto-approve and log; the irreversible
+              ones - delete, force-push, merge to main - stay tap-to-approve even in the most
+              permissive mode.
+          - label: Audit trail
+            text: Every plan, tool call, parameter set, approval decision and result is appended to a log.
+          - label: Untrusted by assumption
+            text: Model output and retrieved content are treated as hostile input, on the assumption that the
+              model can be wrong, manipulated or prompt-injected.
+          - label: Secrets and spend
+            text: Secrets live in OS-level credential storage behind pre-commit scanning, never in git. The
+              cloud fallback carries spend caps.
+      - type: callout
+        label: the honest version
+        text: "The written safety design gates every destructive and outbound action behind a human. The
+          configuration actually running on a personal machine is the permissive one, where shell
+          and development work go through unattended and only the irreversible actions stay
+          tap-to-approve. Both facts belong here: the interesting engineering is the policy engine
+          that makes the difference a setting rather than a rewrite."
+  - label: economics
+    heading: What it costs, and what it saves.
+    intro: Figures come from the lab's own cost ledger, in rand at roughly R18.50 to the dollar (early
+      2026), against Cape Town electricity tariffs of about R3.00-R4.00 per kWh. The GPU draws
+      around 200W under inference load.
+    blocks:
+      - type: table
+        columns:
+          - style: secondary
+          - style: primary-mono
+          - style: meta
+        rows:
+          - - Paid AI stack it replaces
+            - R1,300-R2,200/mo
+            - about $70-$120
+          - - Electricity, moderate to heavy use
+            - R110-R220/mo
+            - about $6-$12
+          - - Net saving, conservative
+            - about R445/mo
+            - about $24
+          - - Net saving, full local-first
+            - about R1,485/mo
+            - about $80
+          - - Break-even on the AI-relevant hardware
+            - 8 to 40 months
+            - depending on which of the two above holds
+      - type: prose
+        text: The arithmetic is real but it is not the point. The durable return is knowing how to size a
+          model to a VRAM budget, schedule one GPU across competing workloads, ground answers with
+          retrieval instead of context stuffing, and gate an autonomous agent with approvals and an
+          audit log.
+  - label: built in this workshop
+    layout: stacked
+    heading: What the tooling gets pointed at.
+    intro: These shipped products were built using the lab's local coding agents and its cloud fallback.
+      They do not run on the lab - they are what the workshop is for.
+    blocks:
+      - type: linkcards
+        items:
+          - title: PowerMeter
+            href: /work/powermeter
+            text: Prepaid electricity tracking with AI meter-reading, live on the App Store and Google Play.
+            cta: case study
+          - title: Fettle
+            href: /work/fettle
+            text: A cross-brand smart catalogue for the toolbox. Photograph a tool, it identifies and remembers
+              it.
+            cta: case study
+          - title: Izwi
+            href: /work/izwi
+            text: Widget-first South African word and phrase discovery, with native iOS and Android home-screen
+              widgets.
+            cta: case study
+  - label: for a business
+    heading: The same stack, pointed at a company's problem.
+    intro: Most organisations that want AI cannot simply post their data to a hosted API, and most that
+      can are paying per seat for capability they could own. This is what the lab is a working
+      answer to, at a scale small enough to prove cheaply.
+    blocks:
+      - type: numbered
+        items:
+          - h: Data that is not allowed to leave
+            p: "Regulated, contractual or simply sensitive material can be worked on by a model that never makes
+              an outbound call. The routing policy is the control: local-only is a rule with no
+              escalation path, not a preference someone can override on a deadline."
+          - h: Cost that does not scale with headcount
+            p: "Per-seat AI licences grow linearly with the org chart. Owned capacity does not. The sizing work
+              is what makes that trade real rather than theoretical: knowing which jobs a 4B model
+              does perfectly well is worth more than access to a bigger one."
+          - h: Answers that cite the internal source
+            p: Retrieval over your own documents, returning citations into the real document rather than a
+              confident paragraph with no provenance. That is the difference between a tool a
+              compliance team can accept and one it cannot.
+          - h: Agents that can be signed off
+            p: Least privilege, tool allowlists, tiered approvals and an audit trail on every action. The
+              governance questions an enterprise asks before letting software act on its systems are
+              the same ones this lab already answers.
+      - type: links
+        items:
+          - label: private ai as an engagement
+            href: /services
+            tone: accent
+  - label: why it matters at work
+    heading: The same patterns, one budget smaller.
+    intro: "An enterprise AI platform is trustworthy for the same reasons this one is: models chosen
+      against a measured budget rather than a benchmark headline, an explicit routing policy so
+      sensitive data cannot leak into a hosted API by accident, retrieval that cites its sources,
+      and agents that operate under least privilege with approvals and an audit trail. Proving those
+      at personal scale first is cheap. Discovering them in production is not."
+    blocks:
+      - type: chips
+        label: stack
+        items:
+          - llama.cpp
+          - llama-swap
+          - Ollama
+          - Qwen3 family
+          - GGUF quantization
+          - Qdrant
+          - Obsidian
+          - faster-whisper
+          - Kokoro TTS
+          - ComfyUI
+          - ffmpeg
+          - n8n
+          - Open WebUI
+          - Home Assistant
+          - ntfy
+          - Docker / WSL2
+          - Python
+      - type: links
+        items:
+          - label: enterprise and product work
+            href: /work
+            tone: accent
+          - label: get in touch
+            href: /contact
+            tone: primary

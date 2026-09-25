@@ -1,0 +1,115 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 520" width="100%" class="ld-svg" preserveAspectRatio="xMidYMin meet">
+<style>
+.ld-svg{display:block;height:auto;max-width:100%}
+.ld-lane{fill:none;stroke:#404040;stroke-width:1;stroke-dasharray:2 5}
+.ld-lane-label{font:500 11px 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.08em;fill:#737373}
+.ld-group{fill:rgba(94,234,212,.03);stroke:#5eead4;stroke-opacity:.3;stroke-width:1}
+.ld-box{fill:#111111;stroke:#262626;stroke-width:1}
+.ld-box-hub{fill:rgba(94,234,212,.06);stroke:#5eead4;stroke-opacity:.6}
+.ld-box-local{stroke:#5eead4;stroke-opacity:.35}
+.ld-box-dim{fill:#0d0d0d;stroke:#262626;stroke-dasharray:4 3}
+.ld-title{font:500 14px Inter,system-ui,-apple-system,sans-serif;fill:#f5f5f5}
+.ld-box-dim .ld-title{fill:#a3a3a3}
+.ld-sub{font:400 12px Inter,system-ui,-apple-system,sans-serif;fill:#a3a3a3}
+.ld-tag{font:500 10px 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.06em;fill:#a3a3a3}
+.ld-tag-accent{fill:#5eead4}
+.ld-edge{fill:none;stroke:#525252;stroke-width:1.4}
+.ld-edge-accent{stroke:#5eead4}
+.ld-edge-dash{stroke-dasharray:6 5}
+.ld-elabel{font:400 11px 'JetBrains Mono',ui-monospace,monospace;fill:#a3a3a3}
+</style>
+<defs>
+<marker id="ld-arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#525252"/></marker>
+<marker id="ld-arrow-accent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#5eead4"/></marker>
+</defs>
+<rect class="ld-box ld-box-box" x="30" y="30" width="200" height="58" rx="8"/>
+<text class="ld-title" x="44" y="52">Phone</text>
+<text class="ld-sub" x="44" y="71">chat, voice notes, photos</text>
+<rect class="ld-box ld-box-box" x="30" y="110" width="200" height="58" rx="8"/>
+<text class="ld-title" x="44" y="132">Desktop mic</text>
+<text class="ld-sub" x="44" y="151">real-time voice</text>
+<rect class="ld-box ld-box-box" x="30" y="230" width="200" height="58" rx="8"/>
+<text class="ld-title" x="44" y="252">Home Assistant</text>
+<text class="ld-sub" x="44" y="271">person events</text>
+<rect class="ld-box ld-box-box" x="30" y="340" width="200" height="58" rx="8"/>
+<text class="ld-title" x="44" y="362">Cameras</text>
+<text class="ld-sub" x="44" y="381">frame pulled on event</text>
+<rect class="ld-box ld-box-box" x="30" y="430" width="200" height="58" rx="8"/>
+<text class="ld-title" x="44" y="452">ntfy push</text>
+<text class="ld-sub" x="44" y="471">self-hosted, to the phone</text>
+<rect class="ld-box ld-box-hub" x="330" y="20" width="200" height="480" rx="8"/>
+<text class="ld-tag" x="344" y="37">LOCAL</text>
+<text class="ld-title" x="344" y="58">Personal agent</text>
+<text class="ld-sub" x="344" y="77">plans on a local model</text>
+<text class="ld-sub" x="344" y="93">registered tools only</text>
+<text class="ld-sub" x="344" y="109">tiered approvals</text>
+<text class="ld-sub" x="344" y="125">audit log on every action</text>
+<rect class="ld-box ld-box-local" x="650" y="20" width="210" height="150" rx="8"/>
+<text class="ld-tag" x="664" y="37">LOCAL</text>
+<text class="ld-title" x="664" y="58">llama-swap</text>
+<text class="ld-sub" x="664" y="77">one OpenAI-compatible</text>
+<text class="ld-sub" x="664" y="93">endpoint, role-mapped</text>
+<text class="ld-sub" x="664" y="109">models</text>
+<rect class="ld-box ld-box-box" x="650" y="200" width="210" height="58" rx="8"/>
+<text class="ld-title" x="664" y="222">Qdrant</text>
+<text class="ld-sub" x="664" y="241">retrieval, cited answers</text>
+<rect class="ld-box ld-box-box" x="650" y="290" width="210" height="58" rx="8"/>
+<text class="ld-title" x="664" y="312">n8n</text>
+<text class="ld-sub" x="664" y="331">automation bus</text>
+<rect class="ld-box ld-box-box" x="650" y="380" width="210" height="88" rx="8"/>
+<text class="ld-tag" x="664" y="397">CLOUD</text>
+<text class="ld-title" x="664" y="418">Cloud fallback</text>
+<text class="ld-sub" x="664" y="437">Claude Code, Codex, Copilot</text>
+<text class="ld-sub" x="664" y="453">named exceptions only</text>
+<rect class="ld-box ld-box-local" x="980" y="20" width="230" height="78" rx="8"/>
+<text class="ld-tag" x="994" y="37">ALWAYS LOADED</text>
+<text class="ld-title" x="994" y="58">Resident models</text>
+<text class="ld-sub" x="994" y="77">Qwen3.5-9B</text>
+<text class="ld-sub" x="994" y="93">Qwen3-Embedding-0.6B</text>
+<rect class="ld-box ld-box-local" x="980" y="110" width="230" height="78" rx="8"/>
+<text class="ld-tag" x="994" y="127">ON DEMAND, ONE HEAVY AT A TIME</text>
+<text class="ld-title" x="994" y="148">Swap models</text>
+<text class="ld-sub" x="994" y="167">Qwen3-Coder-30B-A3B</text>
+<text class="ld-sub" x="994" y="183">Qwen3-VL-8B</text>
+<rect class="ld-box ld-box-box" x="980" y="200" width="230" height="58" rx="8"/>
+<text class="ld-title" x="994" y="222">Obsidian vault</text>
+<text class="ld-sub" x="994" y="241">plain Markdown notes</text>
+<rect class="ld-box ld-box-box" x="980" y="290" width="230" height="58" rx="8"/>
+<text class="ld-title" x="994" y="312">ComfyUI</text>
+<text class="ld-sub" x="994" y="331">image jobs, run around the LLM</text>
+<rect class="ld-box ld-box-box" x="980" y="400" width="230" height="70" rx="8"/>
+<text class="ld-tag" x="994" y="417">SCRIPTED, STANDALONE</text>
+<text class="ld-title" x="994" y="438">ffmpeg pipeline</text>
+<text class="ld-sub" x="994" y="457">App Store and social video</text>
+<path class="ld-edge" d="M230,59 L330,59" marker-end="url(#ld-arrow)"/>
+<path class="ld-edge" d="M230,139 L330,139" marker-end="url(#ld-arrow)"/>
+<path class="ld-edge" d="M230,259 L330,259" marker-end="url(#ld-arrow)"/>
+<text class="ld-elabel" x="280" y="240" text-anchor="middle">frame to</text>
+<text class="ld-elabel" x="280" y="253" text-anchor="middle">describe</text>
+<path class="ld-edge" d="M130,340 L130,288" marker-end="url(#ld-arrow)"/>
+<path class="ld-edge" d="M330,459 L230,459" marker-end="url(#ld-arrow)"/>
+<text class="ld-elabel" x="280" y="438" text-anchor="middle">alert</text>
+<text class="ld-elabel" x="280" y="451" text-anchor="middle">with image</text>
+<path class="ld-edge" d="M530,95 L650,95" marker-end="url(#ld-arrow)"/>
+<text class="ld-elabel" x="590" y="76" text-anchor="middle">role-mapped</text>
+<text class="ld-elabel" x="590" y="89" text-anchor="middle">model calls</text>
+<path class="ld-edge" d="M530,229 L650,229" marker-end="url(#ld-arrow)"/>
+<text class="ld-elabel" x="590" y="221" text-anchor="middle">retrieval</text>
+<path class="ld-edge" d="M530,319 L650,319" marker-end="url(#ld-arrow)"/>
+<text class="ld-elabel" x="590" y="311" text-anchor="middle">triggers</text>
+<path class="ld-edge ld-edge-dash" d="M530,424 L650,424" marker-end="url(#ld-arrow)"/>
+<text class="ld-elabel" x="590" y="405" text-anchor="middle">exceptions</text>
+<text class="ld-elabel" x="590" y="418" text-anchor="middle">only</text>
+<path class="ld-edge" d="M860,59 L980,59" marker-end="url(#ld-arrow)"/>
+<text class="ld-elabel" x="920" y="40" text-anchor="middle">always</text>
+<text class="ld-elabel" x="920" y="53" text-anchor="middle">loaded</text>
+<path class="ld-edge" d="M860,149 L980,149" marker-end="url(#ld-arrow)"/>
+<text class="ld-elabel" x="920" y="130" text-anchor="middle">on</text>
+<text class="ld-elabel" x="920" y="143" text-anchor="middle">demand</text>
+<path class="ld-edge" d="M980,229 L860,229" marker-end="url(#ld-arrow)"/>
+<text class="ld-elabel" x="920" y="210" text-anchor="middle">nightly</text>
+<text class="ld-elabel" x="920" y="223" text-anchor="middle">embedding</text>
+<path class="ld-edge" d="M860,319 L980,319" marker-end="url(#ld-arrow)"/>
+<text class="ld-elabel" x="920" y="300" text-anchor="middle">image</text>
+<text class="ld-elabel" x="920" y="313" text-anchor="middle">jobs</text>
+</svg>
