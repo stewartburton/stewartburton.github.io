@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 1190" width="100%" class="ld-svg" preserveAspectRatio="xMidYMin meet">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 1206" width="100%" class="ld-svg" preserveAspectRatio="xMidYMin meet">
 <style>
 .ld-svg{display:block;height:auto;max-width:100%}
 .ld-lane{fill:none;stroke:#404040;stroke-width:1;stroke-dasharray:2 5}
@@ -25,8 +25,8 @@
 <rect class="ld-lane" x="10" y="10" width="1220" height="340" rx="12"/>
 <text class="ld-lane-label" x="28" y="34">PERSONAL ASSISTANT · LOCAL</text>
 <rect class="ld-box ld-box-box" x="30" y="52" width="200" height="52" rx="8"/>
-<text class="ld-title" x="44" y="74">Phone</text>
-<text class="ld-sub" x="44" y="93">chat, voice, photos</text>
+<text class="ld-title" x="44" y="74">WhatsApp</text>
+<text class="ld-sub" x="44" y="93">Hermes: chat, voice, photos</text>
 <rect class="ld-box ld-box-box" x="30" y="118" width="200" height="52" rx="8"/>
 <text class="ld-title" x="44" y="140">Desktop mic</text>
 <text class="ld-sub" x="44" y="159">real-time voice</text>
@@ -75,129 +75,136 @@
 <path class="ld-edge" d="M960,78 L860,78" marker-end="url(#ld-arrow)"/>
 <text class="ld-elabel" x="910" y="58" text-anchor="middle">nightly</text>
 <text class="ld-elabel" x="910" y="71" text-anchor="middle">embedding</text>
-<rect class="ld-lane" x="10" y="365" width="1220" height="205" rx="12"/>
+<rect class="ld-lane" x="10" y="365" width="1220" height="221" rx="12"/>
 <text class="ld-lane-label" x="28" y="389">LOCAL INFERENCE · ONE 12 GB GPU</text>
-<rect class="ld-box ld-box-local" x="650" y="390" width="210" height="160" rx="8"/>
+<rect class="ld-box ld-box-local" x="650" y="390" width="210" height="176" rx="8"/>
 <text class="ld-tag" x="664" y="407">LOCAL</text>
 <text class="ld-title" x="664" y="428">llama-swap</text>
 <text class="ld-sub" x="664" y="447">one OpenAI-compatible</text>
 <text class="ld-sub" x="664" y="463">endpoint, role-mapped</text>
 <text class="ld-sub" x="664" y="479">models</text>
 <rect class="ld-box ld-box-local" x="960" y="386" width="250" height="66" rx="8"/>
-<text class="ld-tag" x="974" y="403">ALWAYS LOADED</text>
+<text class="ld-tag" x="974" y="403">ALWAYS LOADED · 32K CONTEXT</text>
 <text class="ld-title" x="974" y="424">Qwen3.5-9B, Embedding-0.6B</text>
 <text class="ld-sub" x="974" y="443">chat, voice, retrieval, alert vision</text>
 <rect class="ld-box ld-box-local" x="960" y="460" width="250" height="66" rx="8"/>
 <text class="ld-tag" x="974" y="477">ON DEMAND, ONE HEAVY AT A TIME</text>
-<text class="ld-title" x="974" y="498">Qwen3-Coder-30B, Qwen3-VL-8B</text>
-<text class="ld-sub" x="974" y="517">agentic coding, photo and screen reading</text>
-<rect class="ld-box ld-box-dim" x="960" y="534" width="250" height="28" rx="8"/>
-<text class="ld-tag" x="1198" y="554" text-anchor="end">ROLLBACK</text>
-<text class="ld-title" x="974" y="556">Qwen3.5-4B</text>
+<text class="ld-title" x="974" y="498">GPT-OSS-20B, Qwen3-VL-8B</text>
+<text class="ld-sub" x="974" y="517">coder, photo and screen reading</text>
+<rect class="ld-box ld-box-dim" x="960" y="534" width="250" height="44" rx="8"/>
+<text class="ld-tag" x="974" y="551">FALLBACKS</text>
+<text class="ld-title" x="974" y="570">Qwen3-Coder-30B, Qwen3.5-4B</text>
 <path class="ld-edge" d="M470,337 L470,470 L650,470" marker-end="url(#ld-arrow)"/>
 <text class="ld-elabel" x="594" y="452" text-anchor="middle">model calls,</text>
 <text class="ld-elabel" x="594" y="465" text-anchor="middle">alert frames</text>
 <path class="ld-edge" d="M860,419 L960,419" marker-end="url(#ld-arrow)"/>
 <path class="ld-edge" d="M860,493 L960,493" marker-end="url(#ld-arrow)"/>
 <path class="ld-edge ld-edge-dash" d="M860,548 L960,548" marker-end="url(#ld-arrow)"/>
-<path class="ld-edge ld-edge-dash" d="M360,337 L360,640" marker-end="url(#ld-arrow)"/>
+<path class="ld-edge ld-edge-dash" d="M360,337 L360,656" marker-end="url(#ld-arrow)"/>
 <text class="ld-elabel" x="372" y="400" text-anchor="start">optional task</text>
 <text class="ld-elabel" x="372" y="413" text-anchor="start">hand-off</text>
-<rect class="ld-lane" x="10" y="585" width="1220" height="600" rx="12"/>
-<text class="ld-lane-label" x="28" y="609">PAPERCLIP AGENT TEAM · MOSTLY CLOUD, RESEARCH LOCAL</text>
-<rect class="ld-group" x="290" y="630" width="610" height="410" rx="12"/>
-<text class="ld-tag ld-tag-accent" x="306" y="654">PAPERCLIP CONTROL PLANE</text>
-<text class="ld-sub" x="306" y="672">issues, review gates, routines, audit trail</text>
-<rect class="ld-box ld-box-box" x="30" y="820" width="200" height="64" rx="8"/>
-<text class="ld-title" x="44" y="842">Board</text>
-<text class="ld-sub" x="44" y="861">Stewart: sets goals, approves</text>
-<rect class="ld-box ld-box-box" x="330" y="820" width="170" height="64" rx="8"/>
-<text class="ld-tag" x="488" y="840" text-anchor="end">CLAUDE</text>
-<text class="ld-title" x="344" y="842">CEO agent</text>
-<text class="ld-sub" x="344" y="861">splits goals, sets gates</text>
-<rect class="ld-box ld-box-local" x="650" y="690" width="210" height="44" rx="8"/>
-<text class="ld-tag" x="848" y="710" text-anchor="end">LOCAL 9B</text>
-<text class="ld-title" x="664" y="712">Research</text>
-<text class="ld-sub" x="664" y="731">reads, measures, no edits</text>
-<path class="ld-edge" d="M560,712 L650,712" marker-end="url(#ld-arrow)"/>
-<rect class="ld-box ld-box-box" x="650" y="742" width="210" height="44" rx="8"/>
-<text class="ld-tag" x="848" y="762" text-anchor="end">CLAUDE</text>
-<text class="ld-title" x="664" y="764">Engineering</text>
-<text class="ld-sub" x="664" y="783">branches, tests first</text>
-<path class="ld-edge" d="M560,764 L650,764" marker-end="url(#ld-arrow)"/>
-<rect class="ld-box ld-box-box" x="650" y="794" width="210" height="44" rx="8"/>
-<text class="ld-tag" x="848" y="814" text-anchor="end">CLAUDE</text>
-<text class="ld-title" x="664" y="816">Marketing</text>
-<text class="ld-sub" x="664" y="835">drafts only</text>
-<path class="ld-edge" d="M560,816 L650,816" marker-end="url(#ld-arrow)"/>
-<rect class="ld-box ld-box-box" x="650" y="846" width="210" height="44" rx="8"/>
-<text class="ld-tag" x="848" y="866" text-anchor="end">CLAUDE</text>
-<text class="ld-title" x="664" y="868">Growth &amp; Metrics</text>
-<text class="ld-sub" x="664" y="887">weekly numbers, read-only</text>
-<path class="ld-edge" d="M560,868 L650,868" marker-end="url(#ld-arrow)"/>
-<rect class="ld-box ld-box-box" x="650" y="898" width="210" height="44" rx="8"/>
-<text class="ld-tag" x="848" y="918" text-anchor="end">CLAUDE</text>
-<text class="ld-title" x="664" y="920">Customer Support</text>
-<text class="ld-sub" x="664" y="939">triage, reply drafts</text>
-<path class="ld-edge" d="M560,920 L650,920" marker-end="url(#ld-arrow)"/>
-<rect class="ld-box ld-box-box" x="650" y="950" width="210" height="44" rx="8"/>
-<text class="ld-tag" x="848" y="970" text-anchor="end">CODEX</text>
-<text class="ld-title" x="664" y="972">QA</text>
-<text class="ld-sub" x="664" y="991">independent review, runs tests</text>
-<path class="ld-edge" d="M560,972 L650,972" marker-end="url(#ld-arrow)"/>
-<rect class="ld-box ld-box-box" x="650" y="1002" width="210" height="44" rx="8"/>
-<text class="ld-tag" x="848" y="1022" text-anchor="end">CODEX</text>
-<text class="ld-title" x="664" y="1024">Security / Ops</text>
-<text class="ld-sub" x="664" y="1043">weekly sweep, read-only</text>
-<path class="ld-edge" d="M560,1024 L650,1024" marker-end="url(#ld-arrow)"/>
-<path class="ld-edge" d="M500,852 H560 M560,712 V1024"/>
-<text class="ld-elabel" x="508" y="842">subtasks</text>
-<path class="ld-edge ld-edge-accent" d="M230,852 L330,852" marker-end="url(#ld-arrow-accent)"/>
-<text class="ld-elabel" x="280" y="843" text-anchor="middle">goal</text>
-<path class="ld-edge" d="M755,690 L755,550" marker-end="url(#ld-arrow)"/>
-<text class="ld-elabel" x="767" y="600" text-anchor="start">local model,</text>
-<text class="ld-elabel" x="767" y="613" text-anchor="start">no per-token cost</text>
-<rect class="ld-box ld-box-box" x="960" y="742" width="200" height="200" rx="8"/>
-<text class="ld-tag" x="974" y="759">CLOUD</text>
-<text class="ld-title" x="974" y="780">Claude subscription</text>
-<text class="ld-sub" x="974" y="799">CEO, Engineering, Marketing,</text>
-<text class="ld-sub" x="974" y="815">Growth &amp; Metrics, Support</text>
-<text class="ld-sub" x="974" y="831">subscription login</text>
-<rect class="ld-box ld-box-box" x="960" y="950" width="200" height="96" rx="8"/>
-<text class="ld-tag" x="974" y="967">CLOUD</text>
-<text class="ld-title" x="974" y="988">Codex subscription</text>
-<text class="ld-sub" x="974" y="1007">QA, Security / Ops</text>
-<text class="ld-sub" x="974" y="1023">subscription login</text>
-<path class="ld-edge" d="M860,764 L960,764" marker-end="url(#ld-arrow)"/>
-<path class="ld-edge" d="M860,816 L960,816" marker-end="url(#ld-arrow)"/>
-<path class="ld-edge" d="M860,868 L960,868" marker-end="url(#ld-arrow)"/>
-<path class="ld-edge" d="M860,920 L960,920" marker-end="url(#ld-arrow)"/>
-<path class="ld-edge" d="M860,972 L960,972" marker-end="url(#ld-arrow)"/>
-<path class="ld-edge" d="M860,1024 L960,1024" marker-end="url(#ld-arrow)"/>
-<rect class="ld-box ld-box-box" x="960" y="626" width="200" height="56" rx="8"/>
-<text class="ld-tag" x="974" y="643">LOCAL GRAPH</text>
-<text class="ld-title" x="974" y="664">Graphify</text>
-<text class="ld-sub" x="974" y="683">orients before reading</text>
-<path class="ld-edge ld-edge-dash" d="M1160,654 L1190,654 L1190,772 L1162,772" marker-end="url(#ld-arrow)"/>
-<path class="ld-edge ld-edge-dash" d="M1190,772 V980 H1162" marker-end="url(#ld-arrow)"/>
-<text class="ld-tag ld-tag-accent" x="28" y="1080">REVIEW FLOW · ENGINEERING SUBTASKS</text>
-<rect class="ld-box ld-box-box" x="30" y="1096" width="250" height="68" rx="8"/>
-<text class="ld-tag" x="44" y="1113">STEP 1</text>
-<text class="ld-title" x="44" y="1134">Engineering pushes</text>
-<text class="ld-sub" x="44" y="1153">paperclip/* branch, tests first</text>
-<path class="ld-edge ld-edge-accent" d="M280,1130 L340,1130" marker-end="url(#ld-arrow-accent)"/>
-<rect class="ld-box ld-box-box" x="340" y="1096" width="250" height="68" rx="8"/>
-<text class="ld-tag" x="354" y="1113">STEP 2</text>
-<text class="ld-title" x="354" y="1134">QA reviews</text>
-<text class="ld-sub" x="354" y="1153">different vendor, runs the tests</text>
-<path class="ld-edge ld-edge-accent" d="M590,1130 L650,1130" marker-end="url(#ld-arrow-accent)"/>
-<rect class="ld-box ld-box-box" x="650" y="1096" width="250" height="68" rx="8"/>
-<text class="ld-tag" x="664" y="1113">STEP 3</text>
-<text class="ld-title" x="664" y="1134">Board approves</text>
-<text class="ld-sub" x="664" y="1153">only then can a task reach done</text>
-<path class="ld-edge ld-edge-accent" d="M900,1130 L960,1130" marker-end="url(#ld-arrow-accent)"/>
-<rect class="ld-box ld-box-hub" x="960" y="1096" width="250" height="68" rx="8"/>
-<text class="ld-tag" x="974" y="1113">STEP 4</text>
-<text class="ld-title" x="974" y="1134">Manual merge to main</text>
-<text class="ld-sub" x="974" y="1153">hooks refuse agent pushes</text>
+<rect class="ld-lane" x="10" y="601" width="1220" height="600" rx="12"/>
+<text class="ld-lane-label" x="28" y="625">PAPERCLIP AGENT TEAM · MOSTLY CLOUD, RESEARCH LOCAL</text>
+<rect class="ld-group" x="290" y="646" width="610" height="410" rx="12"/>
+<text class="ld-tag ld-tag-accent" x="306" y="670">PAPERCLIP CONTROL PLANE</text>
+<text class="ld-sub" x="306" y="688">issues, review gates, routines, audit trail</text>
+<rect class="ld-box ld-box-box" x="30" y="836" width="200" height="64" rx="8"/>
+<text class="ld-title" x="44" y="858">Board</text>
+<text class="ld-sub" x="44" y="877">Stewart: sets goals, approves</text>
+<rect class="ld-box ld-box-box" x="330" y="836" width="170" height="64" rx="8"/>
+<text class="ld-tag" x="488" y="856" text-anchor="end">CLAUDE</text>
+<text class="ld-title" x="344" y="858">CEO agent</text>
+<text class="ld-sub" x="344" y="877">splits goals, sets gates</text>
+<rect class="ld-box ld-box-local" x="650" y="706" width="210" height="44" rx="8"/>
+<text class="ld-tag" x="848" y="726" text-anchor="end">LOCAL MODEL</text>
+<text class="ld-title" x="664" y="728">Research</text>
+<text class="ld-sub" x="664" y="747">reads, measures, no edits</text>
+<path class="ld-edge" d="M560,728 L650,728" marker-end="url(#ld-arrow)"/>
+<rect class="ld-box ld-box-box" x="650" y="758" width="210" height="44" rx="8"/>
+<text class="ld-tag" x="848" y="778" text-anchor="end">CLAUDE</text>
+<text class="ld-title" x="664" y="780">Engineering</text>
+<text class="ld-sub" x="664" y="799">branches, tests first</text>
+<path class="ld-edge" d="M560,780 L650,780" marker-end="url(#ld-arrow)"/>
+<rect class="ld-box ld-box-box" x="650" y="810" width="210" height="44" rx="8"/>
+<text class="ld-tag" x="848" y="830" text-anchor="end">CLAUDE</text>
+<text class="ld-title" x="664" y="832">Marketing</text>
+<text class="ld-sub" x="664" y="851">drafts only</text>
+<path class="ld-edge" d="M560,832 L650,832" marker-end="url(#ld-arrow)"/>
+<rect class="ld-box ld-box-box" x="650" y="862" width="210" height="44" rx="8"/>
+<text class="ld-tag" x="848" y="882" text-anchor="end">CLAUDE</text>
+<text class="ld-title" x="664" y="884">Growth &amp; Metrics</text>
+<text class="ld-sub" x="664" y="903">weekly numbers, read-only</text>
+<path class="ld-edge" d="M560,884 L650,884" marker-end="url(#ld-arrow)"/>
+<rect class="ld-box ld-box-box" x="650" y="914" width="210" height="44" rx="8"/>
+<text class="ld-tag" x="848" y="934" text-anchor="end">CLAUDE</text>
+<text class="ld-title" x="664" y="936">Customer Support</text>
+<text class="ld-sub" x="664" y="955">triage, reply drafts</text>
+<path class="ld-edge" d="M560,936 L650,936" marker-end="url(#ld-arrow)"/>
+<rect class="ld-box ld-box-box" x="650" y="966" width="210" height="44" rx="8"/>
+<text class="ld-tag" x="848" y="986" text-anchor="end">CODEX</text>
+<text class="ld-title" x="664" y="988">QA</text>
+<text class="ld-sub" x="664" y="1007">independent review, runs tests</text>
+<path class="ld-edge" d="M560,988 L650,988" marker-end="url(#ld-arrow)"/>
+<rect class="ld-box ld-box-box" x="650" y="1018" width="210" height="44" rx="8"/>
+<text class="ld-tag" x="848" y="1038" text-anchor="end">CODEX</text>
+<text class="ld-title" x="664" y="1040">Security / Ops</text>
+<text class="ld-sub" x="664" y="1059">weekly sweep, read-only</text>
+<path class="ld-edge" d="M560,1040 L650,1040" marker-end="url(#ld-arrow)"/>
+<path class="ld-edge" d="M500,868 H560 M560,728 V1040"/>
+<text class="ld-elabel" x="508" y="858">subtasks</text>
+<rect class="ld-box ld-box-box" x="30" y="936" width="220" height="66" rx="8"/>
+<text class="ld-tag" x="44" y="953">PRIVATE</text>
+<text class="ld-title" x="44" y="974">Tailscale</text>
+<text class="ld-sub" x="44" y="993">private tailnet, no public port</text>
+<path class="ld-edge" d="M130,900 L130,936" marker-end="url(#ld-arrow)"/>
+<text class="ld-elabel" x="142" y="923" text-anchor="start">dashboard on phone</text>
+<path class="ld-edge" d="M250,969 L290,969" marker-end="url(#ld-arrow)"/>
+<path class="ld-edge ld-edge-accent" d="M230,868 L330,868" marker-end="url(#ld-arrow-accent)"/>
+<text class="ld-elabel" x="280" y="859" text-anchor="middle">goal</text>
+<path class="ld-edge" d="M755,706 L755,566" marker-end="url(#ld-arrow)"/>
+<text class="ld-elabel" x="767" y="616" text-anchor="start">local model,</text>
+<text class="ld-elabel" x="767" y="629" text-anchor="start">no per-token cost</text>
+<rect class="ld-box ld-box-box" x="960" y="758" width="200" height="200" rx="8"/>
+<text class="ld-tag" x="974" y="775">CLOUD</text>
+<text class="ld-title" x="974" y="796">Claude subscription</text>
+<text class="ld-sub" x="974" y="815">CEO, Engineering, Marketing,</text>
+<text class="ld-sub" x="974" y="831">Growth &amp; Metrics, Support</text>
+<text class="ld-sub" x="974" y="847">subscription login</text>
+<rect class="ld-box ld-box-box" x="960" y="966" width="200" height="96" rx="8"/>
+<text class="ld-tag" x="974" y="983">CLOUD</text>
+<text class="ld-title" x="974" y="1004">Codex subscription</text>
+<text class="ld-sub" x="974" y="1023">QA, Security / Ops</text>
+<text class="ld-sub" x="974" y="1039">subscription login</text>
+<path class="ld-edge" d="M860,780 L960,780" marker-end="url(#ld-arrow)"/>
+<path class="ld-edge" d="M860,832 L960,832" marker-end="url(#ld-arrow)"/>
+<path class="ld-edge" d="M860,884 L960,884" marker-end="url(#ld-arrow)"/>
+<path class="ld-edge" d="M860,936 L960,936" marker-end="url(#ld-arrow)"/>
+<path class="ld-edge" d="M860,988 L960,988" marker-end="url(#ld-arrow)"/>
+<path class="ld-edge" d="M860,1040 L960,1040" marker-end="url(#ld-arrow)"/>
+<rect class="ld-box ld-box-box" x="960" y="642" width="200" height="56" rx="8"/>
+<text class="ld-tag" x="974" y="659">LOCAL GRAPH</text>
+<text class="ld-title" x="974" y="680">Graphify</text>
+<text class="ld-sub" x="974" y="699">orients before reading</text>
+<path class="ld-edge ld-edge-dash" d="M1160,670 L1190,670 L1190,788 L1162,788" marker-end="url(#ld-arrow)"/>
+<path class="ld-edge ld-edge-dash" d="M1190,788 V996 H1162" marker-end="url(#ld-arrow)"/>
+<text class="ld-tag ld-tag-accent" x="28" y="1096">REVIEW FLOW · ENGINEERING SUBTASKS</text>
+<rect class="ld-box ld-box-box" x="30" y="1112" width="250" height="68" rx="8"/>
+<text class="ld-tag" x="44" y="1129">STEP 1</text>
+<text class="ld-title" x="44" y="1150">Engineering pushes</text>
+<text class="ld-sub" x="44" y="1169">paperclip/* branch, tests first</text>
+<path class="ld-edge ld-edge-accent" d="M280,1146 L340,1146" marker-end="url(#ld-arrow-accent)"/>
+<rect class="ld-box ld-box-box" x="340" y="1112" width="250" height="68" rx="8"/>
+<text class="ld-tag" x="354" y="1129">STEP 2</text>
+<text class="ld-title" x="354" y="1150">QA reviews</text>
+<text class="ld-sub" x="354" y="1169">different vendor, runs the tests</text>
+<path class="ld-edge ld-edge-accent" d="M590,1146 L650,1146" marker-end="url(#ld-arrow-accent)"/>
+<rect class="ld-box ld-box-box" x="650" y="1112" width="250" height="68" rx="8"/>
+<text class="ld-tag" x="664" y="1129">STEP 3</text>
+<text class="ld-title" x="664" y="1150">Board approves</text>
+<text class="ld-sub" x="664" y="1169">only then can a task reach done</text>
+<path class="ld-edge ld-edge-accent" d="M900,1146 L960,1146" marker-end="url(#ld-arrow-accent)"/>
+<rect class="ld-box ld-box-hub" x="960" y="1112" width="250" height="68" rx="8"/>
+<text class="ld-tag" x="974" y="1129">STEP 4</text>
+<text class="ld-title" x="974" y="1150">Manual merge to main</text>
+<text class="ld-sub" x="974" y="1169">hooks refuse agent pushes</text>
 </svg>

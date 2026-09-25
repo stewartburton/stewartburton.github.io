@@ -26,7 +26,7 @@ stats:
     note: RTX 4070, 64 GB system RAM
   - label: resident models
     value: 2 models
-    note: 5 are defined, the heavy ones swap in one at a time
+    note: 6 are defined, the heavy ones swap in one at a time
   - label: the agent team
     value: 8 agents
     note: 5 on Claude, 2 on Codex, 1 on the local GPU
@@ -40,20 +40,24 @@ diagram:
     Dashed arrows are optional or advisory.
   alt: >-
     Architecture diagram of the v2 lab in three lanes. Top lane, the personal assistant, which runs
-    locally: a phone and a desktop microphone send chat, voice and photos to the personal agent;
+    locally: WhatsApp, through the Hermes assistant, and a desktop microphone send chat, voice and
+    photos to the personal agent;
     Home Assistant passes camera person events to it; it queries a Qdrant store fed from an Obsidian
     vault, triggers n8n automations, and sends alert pushes to the phone, which can reply with a
     snooze. Middle lane, local inference on one 12 GB GPU: a single llama-swap endpoint serves the
-    resident Qwen3.5-9B, which handles chat, voice, retrieval answers and security-alert vision,
-    plus the resident embedding model; the Qwen3-Coder-30B and Qwen3-VL-8B models load on demand,
-    one heavy model at a time; the Qwen3.5-4B is kept as a rollback. Bottom lane, the Paperclip
+    resident Qwen3.5-9B with a 32k context, which handles chat, voice, retrieval answers and
+    security-alert vision, plus the resident embedding model; the GPT-OSS-20B coder and the
+    Qwen3-VL-8B model load on demand, one heavy model at a time; Qwen3-Coder-30B and the Qwen3.5-4B
+    are kept as fallbacks. Bottom lane, the Paperclip
     agent team, mostly cloud: the board gives a goal to the CEO agent, who hands subtasks to
     Research, Engineering, Marketing, Growth and Metrics, Customer Support, QA and Security and Ops.
-    Research runs on the local model. Five agents run on Claude subscriptions and two, QA and
+    Research runs on a local model. Five agents run on Claude subscriptions and two, QA and
     Security and Ops, on Codex subscriptions. A Graphify knowledge graph orients the Claude and
     Codex agents. A dashed optional link lets the personal agent create and check tasks in the
     Paperclip control plane. A review flow strip reads: Engineering pushes a paperclip branch, QA
-    reviews it on a different vendor, the board approves, and the board merges to main by hand.
+    reviews it on a different vendor, the board approves, and the board merges to main by hand. The
+    board reaches the team dashboard from a phone through Tailscale, on a private network with no
+    public port.
 sections:
   - label: the constraint
     heading: The hardware is still the design brief.
@@ -70,11 +74,11 @@ sections:
           - k: memory
             v: 64 GB system RAM
           - k: exposure
-            v: Localhost by default, nothing published by accident
+            v: Localhost by default. The team dashboard reaches a phone only over a private tailnet, with no public port
   - label: what changed
     heading: What changed since v1.
     intro: >-
-      Five changes to the platform, each checked against the running config or a measured result.
+      Eight changes to the platform, each checked against the running config or a measured result.
       The agent team gets its own sections below.
     blocks:
       - type: numbered
@@ -85,6 +89,20 @@ sections:
               invented details in a voice reply. The resident group is now the 9B plus the embedding
               model, preloaded at startup. The 4B is kept defined as a rollback, so v1's "4B router"
               line no longer holds.
+          - h: The resident 9B now has a 32k context
+            p: >-
+              It was raised from 16k to 32k on 25 September 2026. The server's slots share one
+              context pool and the assistant's fixed prompt is about 9.8k tokens, so two cached
+              prompts from other callers were enough to make a WhatsApp message fail with a
+              context-exceeded error.
+          - h: The coder is now GPT-OSS-20B
+            p: >-
+              On 25 September 2026 GPT-OSS-20B replaced Qwen3-Coder-30B-A3B as the on-demand coder.
+              It passed all 7 agent tasks against 4 for the old coder, which agreed to merge into
+              main and to delete model files. It also reaches its first token sooner on a 5.5k-token
+              prompt, at about 8 seconds against about 18, but generates more slowly, at about 27
+              tokens a second against 35. Qwen3-Coder-30B-A3B stays defined as a fallback until the
+              new model has a clean week.
           - h: Security alerts run on the resident model
             p: >-
               The 9B now reads security-alert frames too, so an alert never waits on a cold model
@@ -111,6 +129,11 @@ sections:
               The personal agent can create and check tasks in the agent team's control plane. If
               the control plane is not running, it says so and carries on. The health check treats
               the team as optional: not running is fine, running but unhealthy is a failure.
+          - h: The team dashboard reaches a phone, privately
+            p: >-
+              The board can open the Paperclip dashboard from a phone over Tailscale. It is
+              reachable on a private tailnet only, with no public port and nothing exposed to the
+              internet.
   - label: measured
     heading: Five candidates, seven tasks, three reps each.
     intro: >-
@@ -130,9 +153,9 @@ sections:
         rows:
           - [Qwen3.5-9B, "Resident chat, voice and alert vision", 6/7, Keep]
           - [Qwen3.5-4B, "Rollback only", 5/7, "Stays a rollback"]
-          - [Qwen3-Coder-30B-A3B, "On-demand coder", 4/7, "Replacement recommended"]
+          - [Qwen3-Coder-30B-A3B, "Coder fallback", 4/7, "Replaced by GPT-OSS-20B"]
           - [Qwen3.6-35B-A3B, "On disk, served by nothing", 5/7, "Not adopted"]
-          - [GPT-OSS-20B, "Benchmark candidate only", 7/7, "Recommended for the coder slot"]
+          - [GPT-OSS-20B, "On-demand coder", 7/7, "Adopted as the coder"]
       - type: cards
         title: Two findings that changed the plan
         items:
@@ -145,11 +168,12 @@ sections:
               When VRAM is overcommitted the driver spills into system memory without an error. A
               heavy model that should have answered at about 35 tokens a second ran at 6.
       - type: callout
-        label: measured, decided, not yet applied
+        label: measured, decided, applied
         text: >-
-          GPT-OSS-20B scored best, but it is not served: the live model config is unchanged.
-          Qwen3.6-35B-A3B is on disk and also serves nothing. Neither counts as running until the
-          config says so.
+          GPT-OSS-20B scored best and is now the served coder. A re-run through the live model
+          server, one repetition, passed 7 of 7 tasks at about 29 tokens a second. Qwen3-Coder-30B-A3B
+          stays defined as a fallback. Qwen3.6-35B-A3B is on disk and serves nothing. Nothing counts
+          as running until the config says so.
   - label: the team
     heading: Eight agents, one control plane, no self-approval.
     intro: >-
@@ -185,13 +209,14 @@ sections:
           - label: Cloud
             text: >-
               The other seven agents run on vendor subscription logins, by design: five on Claude,
-              two on Codex. Local models answered correctly but did not reliably close their own
-              tasks and overflowed a 16k context on the team's 31k-token prompt, so Support is the
-              first candidate to move local.
+              two on Codex. When tested, local models answered correctly but did not reliably close
+              their own tasks, and the team's 31k-token prompt overflowed a 16k context. The
+              resident model has since moved to a 32k context, for a different reason, and that has
+              not been re-measured. Support is still the first candidate to move local.
           - label: Different vendors on purpose
             text: >-
-              Engineering runs on Anthropic and is reviewed by QA on OpenAI, so the reviewer is not
-              a copy of the author.
+              By design, Engineering runs on Anthropic and is reviewed by QA on OpenAI, so the
+              reviewer is not a copy of the author.
           - label: The hand-off is narrow
             text: >-
               The assistant can create a task and read its status. Nothing else crosses between the
@@ -280,8 +305,8 @@ sections:
             text: >-
               The team and its routines are set up and gated. No output from them is cited as a
               result here.
-          - label: GPT-OSS-20B and Qwen3.6
-            text: Benchmark candidates. Neither is served.
+          - label: Qwen3.6
+            text: Benchmarked and not adopted. It is on disk and nothing serves it.
   - label: the stack
     heading: What it is built from.
     blocks:
@@ -291,6 +316,7 @@ sections:
           - llama.cpp
           - llama-swap
           - Qwen3.5
+          - GPT-OSS
           - Qwen3-Coder
           - Qwen3-VL
           - GGUF quantization
@@ -300,6 +326,7 @@ sections:
           - Home Assistant
           - ntfy
           - Paperclip
+          - Tailscale
           - Claude Code
           - Codex
           - Graphify
