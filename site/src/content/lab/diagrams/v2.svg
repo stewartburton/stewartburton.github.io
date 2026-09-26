@@ -174,7 +174,6 @@
 <text class="ld-title" x="974" y="744">Store data collector</text>
 <text class="ld-sub" x="974" y="763">fixed scripts, no shell</text>
 <text class="ld-sub" x="974" y="779">for Growth and Security</text>
-<path class="ld-edge ld-edge-dash" d="M960,750 L870,750" marker-end="url(#ld-arrow)"/>
 <rect class="ld-box ld-box-box" x="960" y="814" width="200" height="190" rx="8"/>
 <text class="ld-tag" x="974" y="831">CLOUD</text>
 <text class="ld-title" x="974" y="852">Claude subscription</text>

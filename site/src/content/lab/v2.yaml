@@ -255,8 +255,9 @@ sections:
           - label: Different vendors, when it can be
             text: >-
               By design, Engineering runs on Anthropic and is reviewed by QA on OpenAI, so the
-              reviewer is not a copy of the author. Today QA is on Claude through a temporary
-              override, so reviews are independent but not cross-vendor until QA moves back.
+              reviewer is not a copy of the author. Today QA is still on Claude: a temporary
+              override has expired, but the roster has not been re-provisioned yet. Until it is,
+              reviews are independent but not cross-vendor.
           - label: The hand-off is narrow
             text: >-
               The assistant can create a task and read its status. Nothing else crosses between the
@@ -281,7 +282,7 @@ sections:
             p: >-
               QA reads the change and runs the tests. If it asks for changes, the task returns to
               Engineering automatically. QA is meant to run on a different vendor from Engineering;
-              today it is temporarily on the same one.
+              today it is still on the same one, pending re-provisioning.
           - h: The board approves
             p: Only after approval can the task reach done.
           - h: The merge is the board's call
@@ -328,7 +329,8 @@ sections:
           - label: Overrides that expire
             text: >-
               An agent's runtime can be swapped temporarily, as with QA on Claude while a Codex
-              allowance resets, with an expiry so the repository's spec returns by itself.
+              allowance resets, with an expiry, so the next re-provisioning restores the repository's spec
+              without anyone having to undo it.
           - label: Daily backups
             text: >-
               The control plane's database and settings are copied daily to two separate drives,
