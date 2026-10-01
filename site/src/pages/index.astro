@@ -43,7 +43,7 @@ const pillars = [
     n: '04',
     title: 'AI products, shipped solo',
     body:
-      'Hadeda Havoc, Fettle, izwi, PowerMeter, ShotKit - twelve consumer products built solo: a paid iOS game on the App Store, apps on iOS and Android, and live web apps. End-to-end ownership: edge architecture, frontend, mobile, and the production hardening that takes a demo to a live app.',
+      'Hadeda Havoc, Fettle, izwi, PowerMeter, ShotKit - consumer products built solo: a paid iOS game on the App Store, apps on iOS and Android, and live web apps. End-to-end ownership: edge architecture, frontend, mobile, and the production hardening that takes a demo to a live app.',
     href: '/smaller-things',
   },
 ];
@@ -69,13 +69,6 @@ const featured = {
       href: '/work/migration-platform',
     },
   ],
-  product: {
-    title: 'silkspotter',
-    body:
-      'Claude Vision in production. Edge inference, prompt caching, adversarial protection - the kind of hardening most AI demos skip. Live on the open web at silkspotter.net (gated).',
-    indicator: 'silkspotter.net',
-    href: '/work/silkspotter',
-  },
 };
 ---
 
@@ -221,17 +214,6 @@ const featured = {
         </div>
       </div>
 
-      <!-- Product feature -->
-      <a href={featured.product.href} class="card-elevated p-8 mt-3 group flex items-end justify-between gap-6 flex-wrap">
-        <div class="max-w-prose">
-          <span class="font-mono text-mono-label uppercase tracking-wider text-accent">independent product</span>
-          <h3 class="mt-4 text-card-lead text-text-primary">{featured.product.title}</h3>
-          <p class="mt-3 text-card-body text-text-secondary">{featured.product.body}</p>
-        </div>
-        <span class="inline-flex items-center gap-2 font-mono text-mono-label uppercase tracking-wider text-accent group-hover:underline">
-          {featured.product.indicator} <span aria-hidden="true">↗</span>
-        </span>
-      </a>
     </div>
   </section>
 
