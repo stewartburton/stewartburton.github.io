@@ -8,4 +8,4 @@ Build and Astro check pass, all original 36 routes retained before upstream sync
 
 ## Release
 
-Web rollout pending final deployment checks. Native app builds and store actions are outside this pass.
+GitHub Pages build and deployment succeeded: https://github.com/stewartburton/stewartburton.github.io/actions/runs/40187477773 (deployed commit 4b03fa9). Live homepage returns 200. Both Astro lockfiles were also verified with real clean npm ci on macOS.
