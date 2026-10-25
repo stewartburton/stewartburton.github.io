@@ -1,14 +1,15 @@
-# v2 of the lab page: the lab as of 25 Sep 2026.
+# v2 of the lab page: the lab as of 26 Sep 2026 (refreshed from 25 Sep, see the PR for the fact check).
 # Every claim here was checked against the running config or a measured result.
 # If it could not be verified it is left out, and listed under "what v2 does not claim".
 version: 2
 label: v2
-asOf: 25 Sep 2026
-summary: Two resident models, security alerts on the local 9B, and an eight-agent team behind a review gate.
+asOf: 26 Sep 2026
+summary: Two resident models, security alerts on the local 9B, and an eight-agent team, two of them on the local GPU, behind a review gate.
 title: Home AI lab
 description: >-
   A local-first AI platform on one 12 GB GPU, now with a team of AI agents beside it: what changed
-  since v1, the measured model refresh, and the review gate that keeps every merge manual.
+  since v1, the measured model refresh, which agents run locally and which in the cloud, and the
+  review gate that keeps every merge a board decision.
 eyebrow: home ai lab
 heading:
   - "One 12 GB GPU, run like "
@@ -18,8 +19,9 @@ lead: >-
   A local-first AI platform on a single consumer workstation, now with a small team of AI agents
   working beside it. The personal assistant, voice, retrieval, vision and home security alerts
   still run on the local GPU. The agent team does engineering, research and weekly reporting under
-  written review gates, and this page is plain about which parts run locally and which run on cloud
-  subscriptions.
+  written review gates. The plan is for the local GPU to do the recurring weekly work while cloud
+  subscriptions handle code and planning. Today that split is partway there, and this page says
+  exactly which agents run where.
 stats:
   - label: the constraint
     value: 1 GPU / 12 GB
@@ -29,35 +31,40 @@ stats:
     note: 6 are defined, the heavy ones swap in one at a time
   - label: the agent team
     value: 8 agents
-    note: 5 on Claude, 2 on Codex, 1 on the local GPU
-stamp: checked against the lab repo and the running services, 25 september 2026
+    note: 2 on the local GPU, 5 on Claude, 1 on Codex
+stamp: checked against the lab repo and the live agent roster, 26 september 2026
 diagram:
   label: architecture
   heading: How the pieces connect, now with a team.
   intro: >-
     The top two lanes are the v1 platform, updated. The bottom lane is new: an agent team beside the
-    assistant, joined to it only by an optional task hand-off. Teal arrows are the review flow.
-    Dashed arrows are optional or advisory.
+    assistant, joined to it only by an optional task hand-off. Boxes marked local run on the lab's
+    own GPU; the others run on vendor subscriptions. Teal arrows are the review flow. Dashed arrows
+    and dashed boxes are optional, advisory or not yet in use.
   alt: >-
     Architecture diagram of the v2 lab in three lanes. Top lane, the personal assistant, which runs
     locally: WhatsApp, through the Hermes assistant, and a desktop microphone send chat, voice and
-    photos to the personal agent;
+    photos to the personal agent, which transcribes WhatsApp voice notes on the CPU, builds a short
+    daily brief in code and accepts a reconnect command;
     Home Assistant passes camera person events to it; it queries a Qdrant store fed from an Obsidian
     vault, triggers n8n automations, and sends alert pushes to the phone, which can reply with a
     snooze. Middle lane, local inference on one 12 GB GPU: a single llama-swap endpoint serves the
     resident Qwen3.5-9B with a 32k context, which handles chat, voice, retrieval answers and
-    security-alert vision, plus the resident embedding model; the GPT-OSS-20B coder and the
-    Qwen3-VL-8B model load on demand, one heavy model at a time; Qwen3-Coder-30B and the Qwen3.5-4B
-    are kept as fallbacks. Bottom lane, the Paperclip
-    agent team, mostly cloud: the board gives a goal to the CEO agent, who hands subtasks to
-    Research, Engineering, Marketing, Growth and Metrics, Customer Support, QA and Security and Ops.
-    Research runs on a local model. Five agents run on Claude subscriptions and two, QA and
-    Security and Ops, on Codex subscriptions. A Graphify knowledge graph orients the Claude and
-    Codex agents. A dashed optional link lets the personal agent create and check tasks in the
-    Paperclip control plane. A review flow strip reads: Engineering pushes a paperclip branch, QA
-    reviews it on a different vendor, the board approves, and the board merges to main by hand. The
-    board reaches the team dashboard from a phone through Tailscale, on a private network with no
-    public port.
+    security-alert vision, plus the resident embedding model; the GPT-OSS-20B coder, which the local
+    agents also use, and the Qwen3-VL-8B model load on demand, one heavy model at a time;
+    Qwen3-Coder-30B and the Qwen3.5-4B are kept as fallbacks. Bottom lane, the Paperclip
+    agent team, two agents local and six in the cloud: the board gives a goal to the CEO agent, who
+    hands subtasks to Research, Customer Support, Engineering, Marketing, Growth and Metrics, QA and
+    Security and Ops. Research and Customer Support run on the local model. Five agents, the CEO,
+    Engineering, Marketing, Growth and Metrics and QA, run on Claude subscriptions, and Security
+    and Ops runs on a Codex subscription. A dashed box shows a store data collector, made of fixed
+    scripts that give a local agent named tools and no shell, which Growth and Metrics and Security
+    and Ops are set up to use when they move to the local GPU next. A Graphify knowledge graph
+    orients the Claude and Codex agents. A dashed optional link lets the personal agent create and
+    check tasks in the Paperclip control plane. A review flow strip reads: Engineering pushes a
+    paperclip branch, QA reviews it as a separate agent, the board approves, and the CEO merges the
+    approved commit only when the board says so. The board reaches the team dashboard from a phone
+    through Tailscale, on a private network with no public port.
 sections:
   - label: the constraint
     heading: The hardware is still the design brief.
@@ -78,8 +85,8 @@ sections:
   - label: what changed
     heading: What changed since v1.
     intro: >-
-      Eight changes to the platform, each checked against the running config or a measured result.
-      The agent team gets its own sections below.
+      Eleven changes, each checked against the running config, the repository's main branch or a
+      measured result. The agent team gets its own sections below.
     blocks:
       - type: numbered
         items:
@@ -134,6 +141,28 @@ sections:
               The board can open the Paperclip dashboard from a phone over Tailscale. It is
               reachable on a private tailnet only, with no public port and nothing exposed to the
               internet.
+          - h: WhatsApp voice notes are transcribed on the CPU
+            p: >-
+              The speech model that turns WhatsApp voice notes into text used to load onto the GPU
+              at the first note and hold about 1.5 GB of VRAM until the adapter restarted, most of
+              the heavy model's headroom. Since 25 September it runs on the CPU: about 6.6 seconds
+              to load once, then a 9-second note took 11 seconds, with VRAM unchanged. Real-time
+              desktop voice still uses the GPU.
+          - h: A shorter morning brief, and a reconnect command
+            p: >-
+              The daily WhatsApp brief is now built line by line in code, most actionable first, and
+              a source that fails is left out rather than reported as empty. The local model writes
+              one thing, a short phrase about overnight security events. Google sign-in expires
+              about weekly, so the health check now alerts on an expired one, and replying
+              "reconnect" on WhatsApp reopens it. Both changes are merged and covered by tests; the
+              brief and the command have not been observed in daily use.
+          - h: The weekly numbers come from scripts, not the model
+            p: >-
+              A 20B model should not do currency arithmetic or run scans. A store data collector and
+              a security check run first as fixed scripts, and the local model only writes the report
+              from their output. Its only actions are a short list of named tools, with no shell.
+              This is merged and tested, but the two agents that use it, Growth & Metrics and
+              Security / Ops, have not been switched to it yet and still run in the cloud.
   - label: measured
     heading: Five candidates, seven tasks, three reps each.
     intro: >-
@@ -162,7 +191,9 @@ sections:
           - label: Real headroom is about 2.8 GB
             text: >-
               The two resident models plus the Windows desktop already hold about 9.4 GB of the
-              12 GB, so a heavy model has roughly 2.8 GB of true headroom, not 12.
+              12 GB, so a heavy model has roughly 2.8 GB of true headroom, not 12. A speech model
+              loaded on the GPU for WhatsApp voice notes could hold about 1.5 GB more until a
+              restart, which is why those notes now run on the CPU.
           - label: Windows pages VRAM to RAM silently
             text: >-
               When VRAM is overcommitted the driver spills into system memory without an error. A
@@ -179,7 +210,10 @@ sections:
     intro: >-
       The team runs on Paperclip, a self-hosted control plane that sits beside the personal
       assistant, not in front of it: stopping it changes nothing for the assistant. Each agent has
-      one job and one concurrent run, and wakes on an assignment or a mention, not on a timer.
+      one job and one concurrent run, and wakes on an assignment or a mention, not on a heartbeat
+      timer. The scheduled routines in the guardrails section are the one exception. The plan is for
+      the local GPU to do the recurring weekly work and for the cloud to handle code and planning.
+      Today two of the eight agents run locally, and the roster below is the live one.
     blocks:
       - type: table
         columns:
@@ -192,31 +226,38 @@ sections:
         rows:
           - [CEO, "Turns a goal into two or three subtasks, sets the review gates and reports to the board.", Claude]
           - [Engineering, "Implements on paperclip/* git branches, tests first. Never merges.", Claude]
-          - [QA, "Reviews Engineering's branch independently and runs the tests.", Codex]
+          - [QA, "Reviews Engineering's branch independently and runs the tests.", "Claude, for now"]
           - [Research, "Reads, measures and compares. Cannot edit.", Local GPU]
           - [Marketing, "Store copy, social drafts, SEO and a weekly plan. Drafts only, publishes nothing.", Claude]
-          - [Growth & Metrics, "Weekly per-app downloads, revenue and reviews. Read-only.", Claude]
-          - [Security / Ops, "Weekly sweep for auth bypass, secrets, dependencies and DNS. Read-only.", Codex]
-          - [Customer Support, "Triages, drafts replies and turns bugs into tasks. Drafts only.", Claude]
+          - [Growth & Metrics, "Weekly per-app downloads, revenue and reviews. Read-only. Set up to move to the local GPU next.", Claude]
+          - [Security / Ops, "Weekly sweep for auth bypass, secrets, dependencies and DNS. Read-only. Set up to move to the local GPU next.", Codex]
+          - [Customer Support, "Triages, drafts replies and turns bugs into tasks. Drafts only.", Local GPU]
       - type: cards
         title: Local and cloud, stated plainly
         items:
           - label: Local
             text: >-
-              Every personal-assistant model call, and the Research agent, run on the lab's own GPU
-              through one model endpoint with no per-token cost. Only one agent uses the GPU, so the
-              team can create at most one local inference job at a time.
+              Every personal-assistant model call, and two agents, Research and Customer Support,
+              run on the lab's own GPU through one model endpoint with no per-token cost. The two
+              agents use the on-demand coder model and share the GPU with the assistant. They have
+              no shell: they read the repository through read-only tools, and the worker code, not
+              the model, closes each task.
           - label: Cloud
             text: >-
-              The other seven agents run on vendor subscription logins, by design: five on Claude,
-              two on Codex. When tested, local models answered correctly but did not reliably close
-              their own tasks, and the team's 31k-token prompt overflowed a 16k context. The
-              resident model has since moved to a 32k context, for a different reason, and that has
-              not been re-measured. Support is still the first candidate to move local.
-          - label: Different vendors on purpose
+              The other six agents run on vendor subscription logins, by design: five on Claude,
+              one on Codex. Code and planning stay there. When tested, local models answered
+              correctly but did not reliably close their own tasks, and the team's 31k-token prompt
+              overflowed a 16k context. Closing the task in code fixed the first problem for
+              Research and Support. The resident model has since moved to a 32k context, for a
+              different reason, and that has not been re-measured. Growth & Metrics and Security /
+              Ops are the next two set up to move local; they are not yet, so this page counts them
+              in the cloud.
+          - label: Different vendors, when it can be
             text: >-
               By design, Engineering runs on Anthropic and is reviewed by QA on OpenAI, so the
-              reviewer is not a copy of the author.
+              reviewer is not a copy of the author. Today QA is still on Claude: a temporary
+              override has expired, but the roster has not been re-provisioned yet. Until it is,
+              reviews are independent but not cross-vendor.
           - label: The hand-off is narrow
             text: >-
               The assistant can create a task and read its status. Nothing else crosses between the
@@ -237,22 +278,26 @@ sections:
             p: >-
               In its own clone, on a paperclip/* branch, writing the test first. It commits, pushes
               the branch to the local checkout and hands the task to review.
-          - h: QA reviews from a different vendor
+          - h: QA reviews as a separate agent
             p: >-
               QA reads the change and runs the tests. If it asks for changes, the task returns to
-              Engineering automatically.
+              Engineering automatically. QA is meant to run on a different vendor from Engineering;
+              today it is still on the same one, pending re-provisioning.
           - h: The board approves
             p: Only after approval can the task reach done.
-          - h: The merge is manual
+          - h: The merge is the board's call
             p: >-
-              Stewart merges to main by hand. Two layers stop the agents doing it: a client-side
-              hook in the agent clone, and a server-side hook on the source checkout that refuses
-              any push to main. Adding a new agent also needs board approval.
+              Merging is never automatic. The CEO agent may merge, but only when the board tells it
+              to in a comment, and only the exact commit QA approved. No other agent merges. Two
+              hooks also stop any agent pushing to main directly: a client-side hook in the agent
+              clone, and a server-side hook on the source checkout. Adding a new agent needs board
+              approval.
       - type: callout
         label: the honest version
         text: >-
           The gate is set per Engineering subtask by the CEO, so it is a habit of the workflow,
-          backed by the merge hooks, not a property of every task. Three weekly routines are
+          backed by the merge hooks, not a property of every task. Three routines, two weekly and
+          one monthly, are
           switched on but have not fired yet, so no routine output is claimed on this page.
   - label: guardrails
     heading: The same safety model, sized for a team.
@@ -270,10 +315,26 @@ sections:
             text: >-
               Each agent has a budget cap that pauses it automatically if it runs away. The
               mechanism is real; the amounts are not published.
-          - label: Weekly routines
+          - label: Scheduled routines
             text: >-
-              A security sweep on Sundays, and a numbers report and a growth plan on Mondays. They
-              only run while the control plane is up, and it is not started with the rest of the lab.
+              A weekly numbers report, a weekly security sweep, and a monthly growth loop that the
+              CEO runs, with one experiment per app for the board to approve. Marketing's own weekly
+              plan is paused and folded into the monthly loop. They only run while the control plane
+              is up.
+          - label: Quota guard
+            text: >-
+              Budget caps only count metered spend, and the agents run on subscriptions, so a loop
+              would burn quota without tripping one. A watchdog counts each subscription agent's
+              runs per day, pauses one that runs more than 40 times and alerts the phone.
+          - label: Overrides that expire
+            text: >-
+              An agent's runtime can be swapped temporarily, as with QA on Claude while a Codex
+              allowance resets, with an expiry, so the next re-provisioning restores the repository's spec
+              without anyone having to undo it.
+          - label: Daily backups
+            text: >-
+              The control plane's database and settings are copied daily to two separate drives,
+              keeping seven days. The secrets key is deliberately not copied.
           - label: Three stores, kept apart
             text: >-
               The control plane holds task history, the repository's core folder holds durable
@@ -283,7 +344,8 @@ sections:
     heading: What v2 does not claim.
     intro: >-
       The rule for this page is that nothing is listed as running without evidence. These items
-      were described in v1, or are in progress, and could not be confirmed on 25 September 2026.
+      were described in v1, or are in progress, and could not be confirmed on 25 and 26 September
+      2026.
     blocks:
       - type: cards
         items:
@@ -305,6 +367,15 @@ sections:
             text: >-
               The team and its routines are set up and gated. No output from them is cited as a
               result here.
+          - label: Local weekly reports
+            text: >-
+              Growth & Metrics and Security / Ops are set up to run locally but have not been
+              switched. A proof run found the local model chasing a false positive and inventing
+              percentages, so the role instructions now forbid both. No local report is cited.
+          - label: The brief and reconnect in daily use
+            text: >-
+              The new morning brief and the reconnect command are merged and covered by tests, but
+              no live run of either is cited here.
           - label: Qwen3.6
             text: Benchmarked and not adopted. It is on disk and nothing serves it.
   - label: the stack
