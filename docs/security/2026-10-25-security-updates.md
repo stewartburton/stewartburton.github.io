@@ -4,7 +4,7 @@ Upgrade Astro 5.18.1 to 7.4.2 and compatible MDX. Preserve Tailwind 3 via PostCS
 
 ## Verification
 
-Build and Astro check pass, all 36 routes retained. Desktop/mobile browser comparison preserves headings, fonts and layout. Critical/high audit counts are zero; five moderate advisories remain.
+Build and Astro check pass, all original 36 routes retained before upstream sync; final 35-page build preserves the newer remote removal of Silkspotter. Desktop/mobile browser comparison preserves headings, fonts and layout. Critical/high audit counts are zero; five moderate advisories remain.
 
 ## Release
 
