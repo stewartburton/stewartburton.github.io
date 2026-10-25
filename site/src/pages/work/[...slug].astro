@@ -1,5 +1,5 @@
 ---
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
 import Base from '../../layouts/Base.astro';
 import SectionLabel from '../../components/SectionLabel.astro';
 import StackChips from '../../components/StackChips.astro';
@@ -23,7 +23,7 @@ export async function getStaticPaths() {
     const idx = list.indexOf(entry);
     const next = list[(idx + 1) % list.length] ?? null;
     return {
-      params: { slug: entry.slug },
+      params: { slug: entry.id },
       props: { entry, next },
     };
   });
@@ -34,10 +34,10 @@ interface Props {
   next: CollectionEntry<'work'> | null;
 }
 const { entry, next } = Astro.props;
-const { Content } = await entry.render();
+const { Content } = await render(entry);
 const data = entry.data;
 
-const endorsement = (endorsements as Record<string, any>)[entry.slug];
+const endorsement = (endorsements as Record<string, any>)[entry.id];
 const endorsementFull = endorsement && Array.isArray(endorsement.quotes) ? endorsement : null;
 const endorsementPointer = endorsement && endorsement.pointer ? endorsement : null;
 
@@ -164,7 +164,7 @@ const breadcrumbSection = isProduct ? 'Shipped solo' : 'Enterprise AI/DevOps';
     <!-- Next case study pager -->
     {next && (
       <div class="mx-auto max-w-page px-8 pb-section">
-        <a href={`/work/${next.slug}`} class="card-elevated p-8 group flex items-center justify-between gap-6 flex-wrap">
+        <a href={`/work/${next.id}`} class="card-elevated p-8 group flex items-center justify-between gap-6 flex-wrap">
           <div>
             <span class="mono-label">next case study</span>
             <h2 class="mt-3 text-card-lead text-text-primary">{next.data.title}</h2>

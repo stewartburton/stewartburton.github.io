@@ -53,7 +53,7 @@ const productCount = all.filter((e) => e.data.category === 'product').length;
               summary={e.data.summary}
               status={e.data.status}
               stack={e.data.stack}
-              href={`/work/${e.slug}`}
+              href={`/work/${e.id}`}
               variant={idx === 0 ? 'lead' : 'standard'}
             />
           ))}

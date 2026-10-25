@@ -16,7 +16,7 @@ export const GET: APIRoute = async () => {
   }
   for (const f of dirPages) paths.add(`/${f.split('/')[1]}/`);
 
-  for (const w of await getCollection('work')) paths.add(`/work/${w.slug}/`);
+  for (const w of await getCollection('work')) paths.add(`/work/${w.id}/`);
 
   // /lab/ is the newest version; its /lab/vN/ twin is canonicalised to it, so only archived
   // versions get their own entry.
