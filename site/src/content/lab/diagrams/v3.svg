@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1240 470" width="1240" height="470" fill="none">
+<style>
+.ld-lane{fill:#0d0d0d;stroke:#262626;stroke-width:1}
+.ld-lane-label{font:500 10px 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.08em;fill:#737373}
+.ld-group{fill:rgba(94,234,212,.03);stroke:#5eead4;stroke-opacity:.3;stroke-width:1}
+.ld-box{fill:#111111;stroke:#262626;stroke-width:1}
+.ld-box-hub{fill:rgba(94,234,212,.06);stroke:#5eead4;stroke-opacity:.6}
+.ld-box-local{stroke:#5eead4;stroke-opacity:.35}
+.ld-bracket{fill:none;stroke:#5eead4;stroke-opacity:.35;stroke-width:1;stroke-dasharray:2 4}
+.ld-box-dim{fill:#0d0d0d;stroke:#262626;stroke-dasharray:4 3}
+.ld-title{font:500 14px Inter,system-ui,-apple-system,sans-serif;fill:#f5f5f5}
+.ld-box-dim .ld-title{fill:#a3a3a3}
+.ld-sub{font:400 12px Inter,system-ui,-apple-system,sans-serif;fill:#a3a3a3}
+.ld-tag{font:500 10px 'JetBrains Mono',ui-monospace,monospace;letter-spacing:.06em;fill:#a3a3a3}
+.ld-tag-accent{fill:#5eead4}
+.ld-edge{fill:none;stroke:#525252;stroke-width:1.4}
+.ld-edge-accent{stroke:#5eead4}
+.ld-edge-dash{stroke-dasharray:6 5}
+.ld-elabel{font:400 11px 'JetBrains Mono',ui-monospace,monospace;fill:#a3a3a3}
+</style>
+<defs><marker id="ld-arrow-v3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0,1 L9,5 L0,9 z" fill="#525252"/></marker></defs>
+<rect class="ld-lane" x="10" y="10" width="1220" height="170" rx="12"/>
+<text class="ld-lane-label" x="30" y="38">EXISTING PLATFORM / CONFIGURATION RETAINED</text>
+<rect class="ld-box" x="30" y="60" width="250" height="82" rx="8"/>
+<text class="ld-title" x="48" y="89">Hermes + application workflows</text>
+<text class="ld-sub" x="48" y="115">Chat, voice, retrieval and coding</text>
+<path class="ld-edge" d="M280 101 H350" marker-end="url(#ld-arrow-v3)"/>
+<rect class="ld-box ld-box-local" x="350" y="60" width="240" height="82" rx="8"/>
+<text class="ld-title" x="368" y="89">llama-swap + llama.cpp</text>
+<text class="ld-sub" x="368" y="115">Existing role-mapped models</text>
+<text class="ld-sub" x="640" y="89">Serving was stopped at inspection.</text>
+<text class="ld-sub" x="640" y="115">No model roles changed for this pilot.</text>
+<rect class="ld-lane" x="10" y="200" width="1220" height="180" rx="12"/>
+<text class="ld-lane-label" x="30" y="228">NEW / MANUAL EXPERIMENT</text>
+<rect class="ld-box" x="30" y="250" width="250" height="90" rx="8"/>
+<text class="ld-title" x="48" y="281">Pilot launcher</text>
+<text class="ld-sub" x="48" y="307">Check workload and GPU headroom</text>
+<path class="ld-edge" d="M280 295 H350" marker-end="url(#ld-arrow-v3)"/>
+<rect class="ld-box ld-box-hub" x="350" y="250" width="240" height="90" rx="8"/>
+<text class="ld-title" x="368" y="281">Unsloth Studio</text>
+<text class="ld-sub" x="368" y="307">Separate environment and storage</text>
+<path class="ld-edge ld-edge-dash" d="M590 295 H650" marker-end="url(#ld-arrow-v3)"/>
+<rect class="ld-box-dim" x="650" y="250" width="250" height="90" rx="8"/>
+<text class="ld-title" x="668" y="281">Held-out evaluation</text>
+<text class="ld-sub" x="668" y="307">Planned quality + latency comparison</text>
+<path class="ld-edge ld-edge-dash" d="M900 295 H960" marker-end="url(#ld-arrow-v3)"/>
+<rect class="ld-box-dim" x="960" y="250" width="240" height="90" rx="8"/>
+<text class="ld-title" x="978" y="281">Separate promotion decision</text>
+<text class="ld-sub" x="978" y="307">No production integration yet</text>
+<rect class="ld-group" x="10" y="400" width="1220" height="58" rx="10"/>
+<text class="ld-title" x="30" y="434">ONE RTX 4070 / 12 GB</text>
+<text class="ld-sub" x="300" y="434">Shared hardware, separate sessions. Stop the pilot before waking the lab or gaming.</text>
+</svg>

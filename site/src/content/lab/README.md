@@ -15,7 +15,7 @@ derived from the files below. There is no per-version page to copy.
 
 1. Copy `v2.yaml` to `v3.yaml`. Set `version: 3`, `label: v3`, `asOf`, `summary` (one line for the
    history strip), `title`, `description`, and the content: `lead`, `stats`, `stamp`, `sections`.
-   The shape is checked at build time by the `lab` schema in `src/content/config.ts`; the build
+   The shape is checked at build time by the `lab` schema in `src/content.config.ts`; the build
    fails with the field name if something is missing.
 2. Add `diagrams/v3.svg`, and write its `diagram.alt` text in `v3.yaml`. The build fails if the
    SVG is missing.

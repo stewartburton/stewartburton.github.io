@@ -1,0 +1,125 @@
+version: 3
+label: v3
+asOf: 4 Nov 2026
+summary: An on-demand Unsloth Studio pilot, with separate storage, explicit GPU checks and no production model changes.
+title: Home AI lab
+description: A measured Unsloth Studio experiment beside the existing local AI platform, with verified installation status, resource boundaries and a test plan before fine-tuning.
+eyebrow: home ai lab
+heading:
+  - "One GPU, with "
+  - room to experiment
+  - .
+lead: >-
+  Unsloth Studio adds a place to inspect datasets and try model experiments on the same workstation.
+  It is an occasional tool, launched separately from the assistant. This version records the pilot,
+  the checks that protect the existing workloads, and what still needs evidence before any trained
+  model earns a production role.
+stats:
+  - label: the constraint
+    value: 1 GPU / 12 GB
+    note: RTX 4070, 64 GB system RAM
+  - label: the addition
+    value: 1 pilot
+    note: Unsloth Studio, launched on demand
+  - label: production models changed
+    value: "0"
+    note: Existing serving configuration retained
+stamp: checked against the workstation, current repository history and official Unsloth documentation, 4 november 2026
+diagram:
+  label: architecture
+  heading: A separate experiment beside the platform.
+  intro: >-
+    The existing assistant and model server remain configured as before. Studio has its own
+    environment and storage. Both share the same GPU, so an experiment needs a separate session.
+    The dashed path is a future evaluation and promotion process, not a deployed integration.
+  alt: >-
+    Two separate lanes share one GPU. The configured assistant connects to llama-swap and its
+    existing models. A manual pilot launcher checks for competing workloads before opening
+    Unsloth Studio with separate datasets and model storage. A dashed arrow leads from Studio
+    to held-out evaluation and then a separate approval before any production model change.
+sections:
+  - label: decision
+    heading: Add the workbench. Make training earn its place.
+    blocks:
+      - type: numbered
+        items:
+          - h: A useful place for focused experiments
+            p: Studio brings dataset inspection, model comparison and a fine-tuning interface. The first candidate is classifying synthetic app feedback into bugs, questions and feedback. It must improve a recurring product workflow to justify further work.
+          - h: Keep the serving path stable
+            p: The existing llama.cpp and llama-swap configuration still maps chat, voice and retrieval to Qwen3.5-9B and coding to GPT-OSS-20B. Unsloth has not replaced those models or been connected to the assistant or agent team.
+          - h: Install separately and launch deliberately
+            p: The pilot uses an isolated native Windows environment, separate caches and a manual launcher. It binds to this machine only, disables server-side tools and creates no public tunnel. There is no new always-on GPU service.
+  - label: observed
+    heading: Configured is different from running.
+    blocks:
+      - type: prose
+        text: >-
+          The model-serving service was stopped with manual startup when this assessment began.
+          No llama-swap or llama-server process was running. That state was preserved. The older
+          snapshots describe the platform at their dates; they do not establish what was running
+          during this check.
+      - type: cards
+        items:
+          - label: Memory at inspection
+            text: About 8 GB of GPU memory was free. That is a momentary reading, not a training budget; desktop and other workloads can change it. A model fitting on a 12 GB card alone does not mean it fits alongside the assistant.
+          - label: A launch-time guard
+            text: The pilot launcher checks the chosen listener, detected model and speech workloads, and free GPU memory. It refuses conflicts and does not stop other applications. It is not a GPU scheduler or a guarantee against later competing launches.
+          - label: Explicit stop
+            text: The current workload-control buttons do not manage Studio. The pilot must be stopped separately before waking the lab or gaming. Its stop command preserves models, datasets, chats and exports.
+  - label: validation
+    heading: What has been checked.
+    blocks:
+      - type: facts
+        items:
+          - k: Installer source
+            v: Official versioned installer, v0.1.914-beta; checksum recorded in the implementation notes.
+          - k: Installation
+            v: Unsloth 2026.11.1 on Python 3.12.15, with CUDA-enabled PyTorch 2.11.0. GPU detection and the core training-library import passed. No training run is claimed.
+          - k: UI and lifecycle
+            v: The browser reached first-run account setup, protected API requests rejected unauthenticated access, and start/stop checks passed. The pilot was left stopped. The owner still needs to choose a password.
+          - k: Dependency limits
+            v: Three installer dependency issues were repaired. Two conflicts remain in optional SQL and audio tooling; those workflows are unvalidated. The full dependency check is not clean.
+          - k: Existing services
+            v: No production serving configuration, model roles or workload-control files changed by this pilot.
+          - k: Licensing
+            v: Core Unsloth code is Apache-2.0; Studio and its optional CLI are AGPLv3. Models and datasets have separate licenses.
+  - label: next experiment
+    heading: Establish a baseline before fine-tuning.
+    blocks:
+      - type: numbered
+        items:
+          - h: Start with synthetic feedback
+            p: Use labelled app-feedback examples, including ambiguous inputs. Compare prompting and structured output first. Private customer messages and the personal knowledge vault are outside this pilot.
+          - h: Train only if there is a measured gap
+            p: A small model, short context and a tiny first training run limit the experiment. Run it in a separate GPU session, measure peak memory and stop if it interferes with other work or spills into shared memory.
+          - h: Require held-out evidence
+            p: The proposed gate is at least 100 held-out examples, three runs, at least 95 percent valid-schema output and 90 percent macro-F1, plus latency and adversarial checks. These are targets, not achieved results. Any export must be retested in the existing runtime before a separate promotion decision.
+      - type: callout
+        label: bounded effort
+        text: Two focused sessions should establish a useful recurring task. If prompting already meets the need, or there is no practical use, park the pilot. No new hardware or paid service is needed for this stage.
+  - label: limits
+    heading: What v3 does not claim.
+    blocks:
+      - type: prose
+        text: >-
+          No fine-tuning run, quality improvement, speed gain or production model promotion has
+          been demonstrated. This check does not revalidate the current agent roster or scheduled
+          routines described in v2. Repository changes that have not been activated are not counted
+          as deployed capabilities. The experiment remains separate from the production model path.
+  - label: sources and history
+    heading: Follow the evidence and the earlier versions.
+    blocks:
+      - type: links
+        items:
+          - label: Official Unsloth installation and requirements
+            href: https://unsloth.ai/docs/new/studio/install
+            tone: accent
+          - label: Versioned upstream source and licenses
+            href: https://github.com/unslothai/unsloth/tree/v0.1.914-beta
+            tone: primary
+          - label: v2, the platform and agent workforce
+            href: /lab/v2/
+            tone: primary
+          - label: v1, the original local platform
+            href: /lab/v1/
+            tone: primary
