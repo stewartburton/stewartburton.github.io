@@ -38,6 +38,26 @@ diagram:
     Unsloth Studio with separate datasets and model storage. A dashed arrow leads from Studio
     to held-out evaluation and then a separate approval before any production model change.
 sections:
+  - label: purpose correction
+    heading: Installation is verified. A useful training task is still unproven.
+    blocks:
+      - type: prose
+        text: >-
+          Correction, 4 November 2026: the app-feedback classifier below was an
+          illustrative proposal, not an established product need. It is withdrawn.
+          The original proposal remains here as part of the dated history, not an
+          active work item. Studio is installed and stopped; no dataset or classifier
+          was built and no training benefit has been demonstrated.
+      - type: prose
+        text: >-
+          The selected experiment is now improving conversations with the personal
+          local assistant across recognition, response style and speech naturalness.
+          A local evaluation pack provides speech samples, dialogue cases and an
+          optional microphone recorder. Initial component checks ran with existing
+          models; owner recordings and listening evaluation are still needed.
+          No fine-tuning or production voice change is claimed. The ElevenLabs voice
+          business remains cloud-hosted and independent of the home lab. No customer
+          conversations were exported and no business cost benefit has been established.
   - label: decision
     heading: Add the workbench. Make training earn its place.
     blocks:
